@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Item | My Retro Room</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/sell.css">
+    
+</head>
+<body>
+
+    <header>
+        <div class="header-main">
+            <div class="logo">
+                <a href="index.html"><img src="../images/logo-removebg-preview.png" class="logopic" alt="My Retro Room"></a>
+            </div>
+            
+            <div class="user-menu">
+                <a href="../html/login.html"><button class="btn-login-header" id="loginBtn">LOGIN</button></a>
+
+                <div class="profile-container" id="userProfile" style="display: none;">
+                    <div class="profile-chip" id="profileTrigger">
+                        <img src="../images/profilepic.jpg" class="avatar" alt="User">
+                        <span id="userName">Ricardo C.</span>
+                        <i class="fa-solid fa-chevron-down arrow-id"></i>
+                    </div>
+
+                    <ul class="dropdown-menu" id="profileDropdown">
+                        <li><a href="../html/profile.html"><i class="fa-solid fa-user-ninja"></i> Profile</a></li>
+                        <li><a href="../html/settings.html"><i class="fa-solid fa-gears"></i> Settings</a></li>
+                        <li><a href="#"><i class="fa-solid fa-user-plus"></i> Invite a Friends</a></li>
+                        <li><a href="#"><i class="fa-solid fa-ghost"></i> Messages</a></li>
+                        <li><a href="#"><i class="fa-solid fa-khanda"></i> My Orders</a></li>
+                        <li><a href="#"><i class="fa-solid fa-gem"></i> Donations</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#" class="logout" id="logoutBtn"><i class="fa-solid fa-power-off"></i> Log Out</a></li>
+                    </ul>
+                </div>
+                <a href="../html/messages.html" class="icon-btn">
+                    <i class="fa-solid fa-message"></i>
+                </a>
+
+                <a href="#" class="icon-btn" id="notifBtn">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="notif-badge" id="notifCount">3</span>
+                </a>
+
+                <div class="notif-dropdown" id="notifDropdown">
+                    <!-- seu dropdown de notificações -->
+                </div>
+
+                <a href="cart.html" class="icon-btn">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+            </div>
+        </div>
+
+        <nav class="category-bar">
+            <div class="nav-links">
+                 <a href="../index.html">MARKET</a>
+                <a href="../html/sell.html">SELL</a>
+                <a href="#">CONSOLES</a>
+                <a href="#">GAMES</a>
+                <a href="#">COLLECTIBLES</a>
+                <a href="#">ARCADE</a>
+                <a href="#">COMMUNITY</a>
+                <a href="#">BLOG</a>
+                <a href="#">AUCTION</a>
+            </div>
+            <div class="theme-switch-container">
+                <span>LIGHT MODE / DARK MODE</span>
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </nav>
+    </header>
+
+   <aside class="sidebar">
+        <a href="../html/index.html" class="side-item" title="Home">
+            <i class="fas fa-home"></i>
+        </a>
+        <a href="../html/sell.html" class="side-item" title="Vender">
+            <i class="fa-solid fa-plus"></i>
+        </a>
+        <a href="../html/profile.html" class="side-item" title="Perfil">
+            <i class="fa-solid fa-user"></i>
+        </a>
+        <a href="../html/notifications.html" class="side-item active" title="Notificações">
+            <i class="fa-solid fa-bell"></i>
+        </a>
+        <a href="../html/messages.html" class="side-item" title="Mensagens">
+            <i class="fa-solid fa-message"></i>
+        </a>
+        <a href="../html/orders.html" class="side-item" title="Pedidos">
+            <i class="fa-solid fa-receipt"></i>
+        </a>
+    </aside>
+        
+        <section id="inteiro">
+            <div class="search-wrapper">
+                <div class="search-container">
+                    <input type="text" placeholder="Search for retro games, consoles, gear..." id="site-search">
+                    <button type="submit" class="search-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    <!-- AQUI: main-content ABRE e o footer vai DENTRO -->
+    <div class="main-content">
+        <main>
+            <div class="sell-container">
+                <div class="sell-card">
+                    <h1>List your <span class="highlight">Geek Gear</span></h1>
+                    <p>Provide the information below to list your item.</p>
+                    <br>
+
+                    <form id="listing-form">
+                        <div class="form-split-layout">
+                            <div class="form-left-col">
+                                <div class="form-group">
+                                    <div class="upload-container">
+                                        <label>Item Photos</label>
+                                        <p class="photo-counter">Photos: <span id="count">0</span>/10</p>
+                                        <label for="file-upload" class="upload-section">
+                                            <div class="upload-content">
+                                                <i class="fas fa-camera upload-icon"></i>
+                                                <p>Click to add photos</p>
+                                                <input type="text" id="photo-helper" style="opacity:0; width:1px; height:1px; position:absolute; pointer-events:none;">
+                                            </div>
+                                            <input type="file" id="file-upload" hidden accept="image/*" multiple>
+                                        </label>
+                                        <div id="preview-grid" class="upload-grid"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Listing Title (Max 40 chars)</label>
+                                    <input type="text" id="title-input" name="title" placeholder="ex: Nintendo 64" maxlength="40" required>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Price ($)</label>
+                                        <input type="text" id="price-input" name="price" placeholder="0" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Category</label>
+                                        <select id="main-category" name="main-category" required>
+                                            <option value="">Select Category</option>
+                                            <option value="Accessories">Accessories</option>
+                                            <option value="Apparel">Apparel</option>
+                                            <option value="Arcade">Arcade & Pinball</option>
+                                            <option value="Books">Books & Comics</option>
+                                            <option value="Collectibles">Collectibles</option>
+                                            <option value="Consoles">Consoles</option>
+                                            <option value="Games">Games</option>
+                                            <option value="PC Gaming">PC Gaming</option>
+                                            <option value="Repair & Modding">Repair & Modding</option>
+                                            <option value="Trading">Trading Cards</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group" id="subcategory-wrapper" style="display: none;">
+                                        <label>Subcategory / Platform</label>
+                                        <select id="sub-category" name="sub-category">
+                                            <option value="">Select Subcategory</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Condition</label>
+                                        <select id="item-condition" name="condition" required>
+                                            <option value="">Select Condition</option>
+                                            <option value="New">New / Factory Sealed</option>
+                                            <option value="Mint">Mint (Like New)</option>
+                                            <option value="CIB">CIB - Complete in Box</option>
+                                            <option value="Good">Good (Minor wear)</option>
+                                            <option value="Fair">Fair (Noticeable wear)</option>
+                                            <option value="Loose">Loose (Item only)</option>
+                                            <option value="For Parts">For Parts / Not Working</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-right-col">
+                                <div class="form-group desc-group">
+                                    <label>Description</label>
+                                    <textarea id="desc-input" name="description" placeholder="Describe your item... (e.g., Any scratches? Is the manual included? Does it power on?)" maxlength="1000" required></textarea>
+                                    <p class="char-counter"><span id="desc-char-count">0</span>/1000</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-primary" style="margin-top: 20px; width: 100%;">PUBLISH ITEM</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+       <footer class="main-footer">
+            <div class="footer-container">
+                <div class="footer-brand">
+                    <h2 class="footer-logo">MY RETRO ROOM</h2>
+                    <p class="footer-subtext">O maior marketplace de retro gaming da Europa</p>
+                    <div class="brand-socials">
+                        <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="#" title="Twitch"><i class="fab fa-twitch"></i></a>
+                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-nav">
+                    <div class="nav-col">
+                        <h4>Comprar</h4>
+                        <a href="#">Consoles</a>
+                        <a href="#">Jogos</a>
+                        <a href="#">Arcade</a>
+                        <a href="#">Acessórios</a>
+                    </div>
+                    <div class="nav-col">
+                        <h4>Vender</h4>
+                        <a href="../html/sell.html">Publicar Anúncio</a>
+                        <a href="#">Taxas</a>
+                        <a href="#">Envios</a>
+                        <a href="#">Segurança</a>
+                    </div>
+                </div>
+                
+                <div class="footer-end">
+                    <div class="social-row">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    
+                    <div class="payment-row">
+                        <div class="pay-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="Apple Pay" loading="lazy">
+                        </div>
+                        <div class="pay-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" loading="lazy">
+                        </div>
+                        <div class="pay-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" loading="lazy">
+                        </div>
+                        <div class="pay-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg" alt="Amex" loading="lazy">
+                        </div>
+                        <div class="pay-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/PayPal_accept.svg" alt="PayPal" loading="lazy">
+                        </div>
+                    </div>
+                    
+                    <p class="copyright">
+                        © 2026 My Retro Room. Todos os direitos reservados. 
+                        <a href="#" style="color: #888;">Termos de Uso</a> | 
+                        <a href="#" style="color: #888;">Privacidade</a> | 
+                        <a href="#" style="color: #888;">Cookies</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../javascript/script.js"></script>
+</body>
+</html>

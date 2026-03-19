@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings | My Retro Room</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../style/style.css">
+    <style>
+        :root {
+            --accent-purple: #9D50BB;
+            --verified-color: #1DA1F2;
+        }
+
+        .settings-page-wrapper { padding: 0 5%; margin: 40px auto; max-width: 1000px; }
+
+        .settings-header { margin-bottom: 30px; }
+        .settings-header h1 { font-size: 2.5rem; margin: 0; color: #fff; }
+        .settings-header p { color: #888; margin-top: 5px; }
+
+        /* Card de Definições */
+        .settings-card {
+            background: #121212;
+            border: 1px solid #222;
+            border-radius: 24px;
+            padding: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Edição de Imagem */
+        .avatar-edit-container { display: flex; align-items: center; gap: 30px; margin-bottom: 40px; padding-bottom: 30px; border-bottom: 1px solid #222; }
+        .avatar-preview { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid var(--accent-purple); box-shadow: 0 0 20px rgba(157, 80, 187, 0.4); }
+        .avatar-actions { display: flex; flex-direction: column; gap: 10px; }
+        .btn-upload { background: transparent; border: 1px solid var(--accent-purple); color: var(--accent-purple); padding: 10px 25px; border-radius: 50px; cursor: pointer; transition: 0.3s; font-weight: bold; }
+        .btn-upload:hover { background: var(--accent-purple); color: white; }
+        .btn-remove { background: transparent; border: none; color: #ff4444; cursor: pointer; font-size: 0.9rem; text-align: left; padding: 0 10px; }
+        .btn-remove:hover { text-decoration: underline; }
+        input[type="file"] { display: none; }
+
+        /* Formulários */
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        .form-group { margin-bottom: 25px; }
+        .form-group.full-width { grid-column: 1 / -1; }
+        
+        .form-group label { display: block; color: #aaa; margin-bottom: 10px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid #333;
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .form-control:focus { border-color: var(--accent-purple); outline: none; box-shadow: 0 0 15px rgba(157, 80, 187, 0.2); background: rgba(255,255,255,0.05); }
+        textarea.form-control { resize: vertical; min-height: 120px; }
+
+        /* Select personalizado */
+        select.form-control { appearance: none; background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239D50BB' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 15px center; background-size: 15px; cursor: pointer; }
+        select.form-control option { background: #121212; color: white; }
+
+        /* Botão Salvar */
+        .btn-save { background: var(--accent-purple); color: white; border: none; padding: 16px 40px; border-radius: 50px; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: 0.3s; width: 100%; margin-top: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-save:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(157, 80, 187, 0.5); }
+
+        @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } .avatar-edit-container { flex-direction: column; text-align: center; } .btn-remove { text-align: center; } }
+
+        /* =========================================
+   CORREÇÃO PARA O LIGHT MODE (TEMA CLARO)
+   ========================================= */
+[data-theme="light"] .settings-header h1,
+[data-theme="light"] .form-control {
+    color: #121212 !important; /* Texto escuro para sobressair no fundo claro */
+}
+
+[data-theme="light"] .settings-header p,
+[data-theme="light"] .form-group label {
+    color: #555555 !important; /* Cinza escuro elegante para os títulos/labels */
+}
+
+[data-theme="light"] .settings-card {
+    background: #ffffff !important;
+    border-color: #e0e0e0 !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important;
+}
+
+[data-theme="light"] .form-control {
+    background: #f8f9fa !important;
+    border-color: #cccccc !important;
+}
+
+[data-theme="light"] .form-control:focus {
+    background: #ffffff !important;
+}
+
+[data-theme="light"] select.form-control option {
+    background: #ffffff;
+    color: #121212;
+}
+
+[data-theme="light"] .avatar-edit-container {
+    border-bottom-color: #e0e0e0 !important;
+}
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-main">
+            <div class="logo">
+                <a href="../html/index.html"><img src="../images/logo-removebg-preview.png" class="logopic" alt="My Retro Room"></a>
+            </div>
+            <div class="user-menu">
+                <div class="profile-container" id="userProfile">
+                    <div class="profile-chip" id="profileTrigger">
+                        <img src="../images/profilepic.jpg" class="avatar" alt="User">
+                        <span id="userName">Ricardo C.</span>
+                        <i class="fa-solid fa-chevron-down arrow-id"></i>
+                    </div>
+                    <ul class="dropdown-menu" id="profileDropdown">
+                        <li><a href="../html/profile.html"><i class="fa-solid fa-user-ninja"></i> Profile</a></li>
+                        <li><a href="../html/settings.html"><i class="fa-solid fa-gears"></i> Settings</a></li>
+                        <li><a href="#"><i class="fa-solid fa-user-plus"></i> Invite Friends</a></li>
+                        <li><a href="../html/messages.html"><i class="fa-solid fa-message"></i> Messages</a></li>
+                        <li><a href="#"><i class="fa-solid fa-khanda"></i> My Orders</a></li>
+                        <li><a href="#"><i class="fa-solid fa-gem"></i> Donations</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#" class="logout" id="logoutBtn"><i class="fa-solid fa-power-off"></i> Log Out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <nav class="category-bar">
+            <div class="nav-links">
+                <a href="../index.html">MARKET</a>
+                <a href="../html/sell.html">SELL</a>
+                <a href="#">CONSOLES</a>
+                <a href="#">GAMES</a>
+                <a href="#">COLLECTIBLES</a>
+                <a href="#">ARCADE</a>
+                <a href="#">COMMUNITY</a>
+                <a href="#">BLOG</a>
+                <a href="#">AUCTION</a>
+            </div>
+            <div class="theme-switch-container">
+                <label class="switch"><input type="checkbox" id="theme-toggle"><span class="slider round"></span></label>
+            </div>
+        </nav>
+    </header>
+
+    <aside class="sidebar">
+        <a href="../html/index.html" class="side-item"><i class="fas fa-home"></i></a>
+        <a href="../html/sell.html" class="side-item"><i class="fa-solid fa-plus"></i></a>   <!-- corrigido -->
+        <a href="../html/profile.html" class="side-item"><i class="fa-solid fa-user"></i></a>
+    </aside>
+
+    <div class="main-content">
+        <div class="settings-page-wrapper">
+            
+            <a href="profile.html" style="color: #888; text-decoration: none; margin-bottom: 20px; display: inline-block; font-weight: bold; transition: 0.3s;" onmouseover="this.style.color='#1DA1F2'" onmouseout="this.style.color='#888'">
+                <i class="fa-solid fa-arrow-left"></i> Back to Profile
+            </a>
+
+            <div class="settings-header">
+                <h1>Account Settings</h1>
+                <p>Manage your profile details and preferences.</p>
+            </div>
+
+            <div class="settings-card">
+                <form id="settingsForm">
+                    
+                    <div class="avatar-edit-container">
+                        <img src="../images/profilepic.jpg" alt="Current Avatar" class="avatar-preview" id="avatarPreview">
+                        <div class="avatar-actions">
+                            <label for="avatarUpload" class="btn-upload"><i class="fa-solid fa-camera"></i> Change Avatar</label>
+                            <input type="file" id="avatarUpload" accept="image/png, image/jpeg, image/jpg">
+                            <button type="button" class="btn-remove">Remove current photo</button>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="inputUsername">Username</label>
+                            <input type="text" id="inputUsername" class="form-control" value="Ricardo C." required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputLocation">My Location</label>
+                            <input type="text" id="inputLocation" class="form-control" value="Porto, Portugal" placeholder="City, Country">
+                        </div>
+
+                         <div class="form-group">
+                            <label for="selectLanguage">Language</label>
+                            <select id="selectLanguage" class="form-control">
+                                <option value="pt">Português (PT)</option>
+                                <option value="en">English (US)</option>
+                                <option value="es">Español</option>
+                                <option value="fr">Français</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="inputAbout">About You</label>
+                            <textarea id="inputAbout" class="form-control" placeholder="Tell the retro community a bit about your collection and favorite consoles..."></textarea>
+                        </div>
+
+                       
+                    </div>
+
+                    <button type="submit" class="btn-save">Save Changes</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+        <div class="main-content">
+        <div class="settings-page-wrapper">
+            <!-- TODO o conteúdo da página, igual já está -->
+        </div>
+<!-- FOOTER DENTRO DA MAIN-CONTENT -->
+        <footer class="main-footer">
+            <div class="footer-container">
+                <div class="footer-brand">
+                    <h2 class="footer-logo">MY RETRO ROOM</h2>
+                    <p class="footer-subtext">My Retro Room</p>
+                    <div class="brand-socials">
+                        <i class="fab fa-discord"></i>
+                        <i class="fab fa-twitch"></i>
+                    </div>
+                </div>
+
+                <div class="footer-nav">
+                    <div class="nav-col">
+                        <a href="#">Buy</a>
+                        <a href="../html/sell.html">Sell</a>
+                        <a href="#">Consoles</a>
+                        <a href="#">Games</a>
+                    </div>
+                    <div class="nav-col">
+                        <a href="#">Links</a>
+                        <a href="#">Consoles</a>
+                        <a href="#">Arcade</a>
+                        <a href="#">Community</a>
+                    </div>
+                </div>
+
+                <div class="footer-end">
+                    <div class="social-row">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    
+                    <div class="payment-row">
+                        <div class="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="Apple Pay"></div>
+                        <div class="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa"></div>
+                        <div class="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"></div>
+                        <div class="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg" alt="Amex"></div>
+                    </div>
+                    <p class="copyright">Copyright © 2026</p>
+                </div>
+            </div>
+        </footer>
+    </div> <!-- fim main-content -->
+
+    <script src="../javascript/script.js"></script>
+</body>
+</html>
+
+
+
+    <script src="../javascript/script.js"></script>
+    <script>
+        // Lógica simples para pré-visualizar a imagem ao fazer upload
+        document.getElementById('avatarUpload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('avatarPreview').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Previne o reload da página ao clicar em Save
+        document.getElementById('settingsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Aqui podes adicionar animações de sucesso ou gravar no LocalStorage mais tarde
+            const btn = document.querySelector('.btn-save');
+            btn.innerHTML = '<i class="fa-solid fa-check"></i> Saved Successfully!';
+            btn.style.background = '#00C851';
+            setTimeout(() => {
+                btn.innerHTML = 'Save Changes';
+                btn.style.background = 'var(--accent-purple)';
+            }, 3000);
+        });
+        // Função para converter a imagem em string e salvar
+function saveSettings(e) {
+    e.preventDefault();
+
+    const settings = {
+        username: document.getElementById('inputUsername').value,
+        location: document.getElementById('inputLocation').value,
+        about: document.getElementById('inputAbout').value,
+        language: document.getElementById('selectLanguage').value,
+        // Guardamos a imagem da pré-visualização (que já mudou quando fizeste upload)
+        avatar: document.getElementById('avatarPreview').src
+    };
+
+    // Salva no LocalStorage
+    localStorage.setItem('userSettings', JSON.stringify(settings));
+
+    // Feedback visual de sucesso
+    const btn = document.querySelector('.btn-save');
+    btn.innerHTML = '<i class="fa-solid fa-check"></i> Alterações Guardadas!';
+    btn.style.background = '#00C851';
+    
+    setTimeout(() => {
+        btn.innerHTML = 'Save Changes';
+        btn.style.background = 'var(--accent-purple)';
+    }, 3000);
+}
+
+// Função para carregar os dados ao abrir a página
+function loadSettings() {
+    const savedData = localStorage.getItem('userSettings');
+    
+    if (savedData) {
+        const settings = JSON.parse(savedData);
+        
+        document.getElementById('inputUsername').value = settings.username || '';
+        document.getElementById('inputLocation').value = settings.location || '';
+        document.getElementById('inputAbout').value = settings.about || '';
+        document.getElementById('selectLanguage').value = settings.language || 'pt';
+        
+        if (settings.avatar) {
+            document.getElementById('avatarPreview').src = settings.avatar;
+            // Atualiza também o avatar pequeno no header se ele existir
+            const headerAvatar = document.querySelector('.profile-chip img');
+            if (headerAvatar) headerAvatar.src = settings.avatar;
+        }
+    }
+}
+
+// Evento para pré-visualizar a foto quando escolhes o ficheiro
+document.getElementById('avatarUpload').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('avatarPreview').src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+    }
+});
+
+// Listener para o formulário
+document.getElementById('settingsForm').addEventListener('submit', saveSettings);
+
+// Carrega os dados assim que a página inicia
+document.addEventListener('DOMContentLoaded', loadSettings);
+    </script>
+</body>
+</html>

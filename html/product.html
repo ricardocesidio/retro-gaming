@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | My Retro Room</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../style/style.css">
+    <style>
+        .product-detail-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 20px;
+            background: var(--card-bg, #1e1e1e);
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        .image-gallery-sector {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        #main-product-img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: contain;
+            background: #000;
+            border-radius: 8px;
+            border: 2px solid #333;
+        }
+        .thumb-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+        .thumb-grid img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            cursor: pointer;
+            border-radius: 4px;
+            opacity: 0.6;
+            transition: 0.3s;
+            object-fit: cover;
+        }
+        .thumb-grid img:hover, .thumb-grid img.active {
+            opacity: 1;
+            border: 2px solid var(--highlight, #ffcc00);
+        }
+        .info-sector {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .product-price-tag {
+            font-size: 2.5rem;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .meta-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .description-box {
+            line-height: 1.6;
+            color: #ccc;
+            white-space: pre-wrap; /* Mantém as quebras de linha que o usuário digitou */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-main">
+            <div class="logo"><img src="../images/logo-removebg-preview.png" class="logopic"></div>
+            <nav class="nav-links"><a href="index.html">BACK TO MARKET</a></nav>
+        </div>
+    </header>
+    <aside class="sidebar">
+        <a href="../html/index.html" class="side-item"><i class="fas fa-home"></i></a>
+        <a href="../html/sell.html" class="side-item"><i class="fa-solid fa-plus"></i></a>   <!-- corrigido -->
+        <a href="../html/profile.html" class="side-item"><i class="fa-solid fa-user"></i></a>
+    </aside>
+
+    <main class="main-content">
+        <div id="loading">Loading gear info...</div>
+        
+        <div class="product-detail-container" id="product-content" style="display: none;">
+            <div class="image-gallery-sector">
+                <img id="main-product-img" src="" alt="Main Image">
+                <div class="thumb-grid" id="thumb-grid"></div>
+            </div>
+
+            <div class="info-sector">
+                <h1 id="prod-title" class="highlight">Product Title</h1>
+                <div class="product-price-tag" id="prod-price">$0,00</div>
+                
+                <div class="meta-info">
+                    <div><strong>Category:</strong> <span id="prod-cat">---</span></div>
+                    <div><strong>Platform:</strong> <span id="prod-sub">---</span></div>
+                    <div><strong>Condition:</strong> <span id="prod-cond">---</span></div>
+                </div>
+
+                <h3>Description</h3>
+                <div class="description-box" id="prod-desc"></div>
+                
+                <button class="btn-primary" style="margin-top: auto;">CONTACT SELLER</button>
+            </div>
+        </div>
+    </main>
+
+    <div style="text-align: center; margin-top: 30px;">
+                <a href="../html/sell.html" class="btn-primary" style="padding: 15px 30px; text-decoration: none; display: inline-block;">Publicar Agora</a>   <!-- corrigido -->
+            </div>
+        </main>
+
+        <footer class="main-footer">
+            <div class="footer-container">
+                <div class="footer-brand">
+                    <h2 class="footer-logo">MY RETRO ROOM</h2>
+                    <p class="footer-subtext">My Retro Room</p>
+                    <div class="brand-socials">
+                        <i class="fab fa-discord"></i>
+                        <i class="fab fa-twitch"></i>
+                    </div>
+                </div>
+
+                <div class="footer-nav">
+                    <div class="nav-col">
+                        <a href="../index.html">MARKET</a>
+                <a href="../html/sell.html">SELL</a>
+                <a href="#">CONSOLES</a>
+                <a href="#">GAMES</a>
+                <a href="#">COLLECTIBLES</a>
+                <a href="#">ARCADE</a>
+                <a href="#">COMMUNITY</a>
+                <a href="#">BLOG</a>
+                <a href="#">AUCTION</a>
+                </div>
+
+                <div class="footer-end">
+                    <div class="social-row">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    
+                    <div class="payment-row">
+                        <div class="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="Apple Pay"></div>
+                        <div class="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa"></div>
+                        <div class="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"></div>
+                        <div class="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg" alt="Amex"></div>
+                    </div>
+                    <p class="copyright">Copyright © 2026</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+
+    <script src="../javascript/script.js"></script>
+</body>
+</html>
+
+    <script>
+        // Lógica simples para pegar o ID da URL e carregar os dados
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+
+            if (!productId) {
+                alert("Product not found!");
+                window.location.href = "index.html";
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:3000/products/${productId}`);
+                const product = await response.json();
+
+                // Preencher os campos
+                document.getElementById('prod-title').innerText = product.name;
+                document.getElementById('prod-price').innerText = product.price;
+                document.getElementById('prod-cat').innerText = product.category;
+                document.getElementById('prod-sub').innerText = product.subcategory || "N/A";
+                document.getElementById('prod-cond').innerText = product.condition;
+                document.getElementById('prod-desc').innerText = product.description || "No description provided.";
+                
+                // Galeria
+                const mainImg = document.getElementById('main-product-img');
+                mainImg.src = product.img;
+
+                const thumbGrid = document.getElementById('thumb-grid');
+                if (product.gallery && product.gallery.length > 0) {
+                    product.gallery.forEach((pic, index) => {
+                        const img = document.createElement('img');
+                        img.src = pic;
+                        if(index === 0) img.className = 'active';
+                        img.onclick = () => {
+                            mainImg.src = pic;
+                            document.querySelectorAll('.thumb-grid img').forEach(t => t.classList.remove('active'));
+                            img.classList.add('active');
+                        };
+                        thumbGrid.appendChild(img);
+                    });
+                }
+
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('product-content').style.display = 'grid';
+
+            } catch (err) {
+                console.error(err);
+                document.getElementById('loading').innerText = "Error loading product.";
+            }
+        });
+    </script>
+</body>
+</html>

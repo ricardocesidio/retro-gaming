@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificações | My Retro Room</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../style/style.css">
+   
+</head>
+<body>
+
+    <header>
+        <div class="header-main">
+            <div class="logo">
+                <a href="../html/index.html">
+                    <img src="../images/logo-removebg-preview.png" class="logopic" alt="My Retro Room">
+                </a>
+            </div>
+            
+            <div class="user-menu">
+                <a href="../html/login.html">
+                    <button class="btn-login-header" id="loginBtn">LOGIN</button>
+                </a>
+                <div class="profile-container" id="userProfile" style="display: none;">
+                    <div class="profile-chip" id="profileTrigger">
+                        <img src="../images/profilepic.jpg" class="avatar" alt="User">
+                        <span id="userName">Ricardo C.</span>
+                        <i class="fa-solid fa-chevron-down arrow-id"></i>
+                    </div>
+                    <ul class="dropdown-menu" id="profileDropdown">
+                        <li><a href="../html/profile.html"><i class="fa-solid fa-user-ninja"></i> Profile</a></li>
+                        <li><a href="../html/settings.html"><i class="fa-solid fa-gears"></i> Settings</a></li>
+                        <li><a href="#"><i class="fa-solid fa-user-plus"></i> Invite Friends</a></li>
+                        <li><a href="../html/messages.html"><i class="fa-solid fa-ghost"></i> Messages</a></li>
+                        <li><a href="#"><i class="fa-solid fa-receipt"></i> My Orders</a></li>
+                        <li><a href="#"><i class="fa-solid fa-gem"></i> Donations</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#" class="logout" id="logoutBtn"><i class="fa-solid fa-power-off"></i> Log Out</a></li>
+                    </ul>
+                </div>
+                
+                <a href="../html/messages.html" class="icon-btn" title="Mensagens">
+                    <i class="fa-solid fa-message"></i>
+                    <span class="notification-badge" style="display: none;">3</span>
+                </a>
+                <a href="../html/notifications.html" class="icon-btn active" title="Notificações">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="notification-badge">5</span>
+                </a>
+                <a href="../html/cart.html" class="icon-btn" title="Carrinho">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-badge" style="display: none;">2</span>
+                </a>
+            </div>
+        </div>
+        
+        <nav class="category-bar">
+            <div class="nav-links">
+                <a href="../index.html">MARKET</a>
+                <a href="../html/sell.html">SELL</a>
+                <a href="#">CONSOLES</a>
+                <a href="#">GAMES</a>
+                <a href="#">COLLECTIBLES</a>
+                <a href="#">ARCADE</a>
+                <a href="#">COMMUNITY</a>
+                <a href="#">BLOG</a>
+                <a href="#">AUCTION</a>
+            
+            <div class="theme-switch-container">
+                <span>LIGHT MODE / DARK MODE</span>
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </nav>
+    </header>
+
+    <aside class="sidebar">
+        <a href="../html/index.html" class="side-item" title="Home">
+            <i class="fas fa-home"></i>
+        </a>
+        <a href="../html/sell.html" class="side-item" title="Vender">
+            <i class="fa-solid fa-plus"></i>
+        </a>
+        <a href="../html/profile.html" class="side-item" title="Perfil">
+            <i class="fa-solid fa-user"></i>
+        </a>
+        <a href="../html/notifications.html" class="side-item active" title="Notificações">
+            <i class="fa-solid fa-bell"></i>
+        </a>
+        <a href="../html/messages.html" class="side-item" title="Mensagens">
+            <i class="fa-solid fa-message"></i>
+        </a>
+        <a href="../html/orders.html" class="side-item" title="Pedidos">
+            <i class="fa-solid fa-receipt"></i>
+        </a>
+    </aside>
+
+    <div class="main-content">
+        <main>
+            <div class="notifications-wrapper">
+                <div class="notif-header">
+                    <h2>Notificações <span style="font-size: 0.8em;">(5 novas)</span></h2>
+                    <span id="notifClear">
+                        Marcar todas como lidas
+                    </span>
+                </div>
+                
+                <div class="notif-list" id="notifList">
+                    <div class="notif-item" data-notif-id="1">
+                        <img class="notif-avatar" src="https://i.pravatar.cc/150?img=11" alt="Miguel Silva">
+                        <div class="notif-text">
+                            <strong>Miguel Silva</strong>
+                            começou a te seguir no My Retro Room!
+                        </div>
+                        <div class="notif-time">Há 1h</div>
+                    </div>
+                    
+                    <div class="notif-item unread" data-notif-id="2">
+                        <img class="notif-avatar" src="https://i.pravatar.cc/150?img=32" alt="Ana Retro">
+                        <div class="notif-text">
+                            <strong>Ana Retro</strong>
+                            enviou uma mensagem privada.
+                        </div>
+                        <div class="notif-time">Há 2h</div>
+                    </div>
+                    
+                    <div class="notif-item" data-notif-id="3">
+                        <img class="notif-avatar" src="https://i.pravatar.cc/150?img=68" alt="João Gamer">
+                        <div class="notif-text">
+                            <strong>João Gamer</strong>
+                            favoritou seu NES Super Mario Bros.
+                        </div>
+                        <div class="notif-time">Há 3h</div>
+                    </div>
+                    
+                    <div class="notif-item unread" data-notif-id="4">
+                        <img class="notif-avatar" src="https://i.pravatar.cc/150?img=45" alt="Pedro Arcade">
+                        <div class="notif-text">
+                            <strong>Pedro Arcade</strong>
+                            fez uma oferta de €85 pelo seu arcade.
+                        </div>
+                        <div class="notif-time">Há 5h</div>
+                    </div>
+                    
+                    <div class="notif-item" data-notif-id="5">
+                        <img class="notif-avatar" src="https://i.pravatar.cc/150?img=23" alt="Maria Consoles">
+                        <div class="notif-text">
+                            <strong>Maria Consoles</strong>
+                            comprou seu Mega Drive por €120!
+                        </div>
+                        <div class="notif-time">Ontem</div>
+                    </div>
+                    
+                    <div class="notif-item" data-notif-id="6">
+                        <img class="notif-avatar" src="https://i.pravatar.cc/150?img=56" alt="Carlos Retro">
+                        <div class="notif-text">
+                            <strong>Carlos Retro</strong>
+                            deixou uma avaliação 5 estrelas.
+                        </div>
+                        <div class="notif-time">2 dias</div>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </main>
+
+        <footer class="main-footer">
+            <div class="footer-container">
+                <div class="footer-brand">
+                    <h2 class="footer-logo">MY RETRO ROOM</h2>
+                    <p class="footer-subtext">O maior marketplace de retro gaming da Europa</p>
+                    <div class="brand-socials">
+                        <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="#" title="Twitch"><i class="fab fa-twitch"></i></a>
+                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-nav">
+                    <div class="nav-col">
+                        <h4>Comprar</h4>
+                        <a href="#">Consoles</a>
+                        <a href="#">Jogos</a>
+                        <a href="#">Arcade</a>
+                        <a href="#">Acessórios</a>
+                    </div>
+                    <div class="nav-col">
+                        <h4>Vender</h4>
+                        <a href="../html/sell.html">Publicar Anúncio</a>
+                        <a href="#">Taxas</a>
+                        <a href="#">Envios</a>
+                        <a href="#">Segurança</a>
+                    </div>
+                </div>
+                
+                <div class="footer-end">
+                    <div class="social-row">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    
+                    <div class="payment-row">
+                        <div class="pay-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="Apple Pay" loading="lazy">
+                        </div>
+                        <div class="pay-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" loading="lazy">
+                        </div>
+                        <div class="pay-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" loading="lazy">
+                        </div>
+                        <div class="pay-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg" alt="Amex" loading="lazy">
+                        </div>
+                        <div class="pay-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/PayPal_accept.svg" alt="PayPal" loading="lazy">
+                        </div>
+                    </div>
+                    
+                    <p class="copyright">
+                        © 2026 My Retro Room. Todos os direitos reservados. 
+                        <a href="#" style="color: #888;">Termos de Uso</a> | 
+                        <a href="#" style="color: #888;">Privacidade</a> | 
+                        <a href="#" style="color: #888;">Cookies</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // MARK NOTIFICAÇÕES COMO LIDAS
+        document.getElementById('notifClear').addEventListener('click', function() {
+            const unreadNotifs = document.querySelectorAll('.notif-item.unread');
+            unreadNotifs.forEach(notif => {
+                notif.classList.remove('unread');
+            });
+            
+            // ANIMAÇÃO DE CONFIRMAÇÃO
+            this.style.background = '#00ff88';
+            this.style.color = '#000';
+            setTimeout(() => {
+                this.style.background = '';
+                this.style.color = '';
+            }, 300);
+        });
+        
+        // CLICK EM NOTIFICAÇÃO
+        document.querySelectorAll('.notif-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+                
+                // REMOVE A CLASSE UNREAD SE TIVER
+                this.classList.remove('unread');
+            });
+        });
+        
+        // EFEITO DE HOVER NO BOTÃO
+        document.querySelector('.btn-primary').addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-4px)';
+        });
+        document.querySelector('.btn-primary').addEventListener('mouseleave', function() {
+            this.style.transform = '';
+        });
+        
+        // MOSTRAR/OCULTAR SIDEBAR MOBILE
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.style.transform = sidebar.style.transform === 'translateX(-100%)' ? 'translateX(0)' : 'translateX(-100%)';
+        }
+        
+        // PERFUMARIA
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🔔 My Retro Room - Notificações carregadas!');
+            
+            // SIMULAR NOVAS NOTIFICAÇÕES
+            setTimeout(() => {
+                const newNotif = document.createElement('div');
+                newNotif.className = 'notif-item unread';
+                newNotif.innerHTML = `
+                    <img class="notif-avatar" src="https://i.pravatar.cc/150?img=12" alt="Novo Usuário">
+                    <div class="notif-text">
+                        <strong>Novo Usuário</strong>
+                        curtiu sua publicação!
+                    </div>
+                    <div class="notif-time">Agora</div>
+                `;
+                document.getElementById('notifList').prepend(newNotif);
+                
+                newNotif.style.background = '#00ff88';
+                setTimeout(() => {
+                    newNotif.style.background = '';
+                }, 1000);
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

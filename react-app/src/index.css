@@ -1,0 +1,437 @@
+/* =========================================
+   1. VARIÁVEIS DE TEMA (DARK / LIGHT)
+   ========================================= */
+:root[data-theme="dark"] {
+    --bg-body: #0d0d0d;
+    --bg-card: #1a1a1a;
+    --text-main: #ffffff;
+    --text-muted: #a0a0a0;
+    --accent-purple: #9d50bb;
+    --accent-glow: rgba(157, 80, 187, 0.4);
+    --border-color: #333;
+    --nav-purple: #2d0a4e;
+}
+
+:root[data-theme="light"] {
+    --bg-body: #f8f9fa;
+    --bg-card: #ffffff;
+    --text-main: #1a1a1a;
+    --text-muted: #666666;
+    --accent-purple: #6e2da8;
+    --accent-glow: rgba(110, 45, 168, 0.2);
+    --border-color: #e0e0e0;
+    --nav-purple: #4a148c;
+}
+
+/* =========================================
+   2. RESET E CONFIGURAÇÕES GERAIS
+   ========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* =========================================
+   3. HEADER E NAVEGAÇÃO
+   ========================================= */
+header {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    flex-shrink: 0;
+    z-index: 1001;
+}
+
+main {
+    flex: 1;
+}
+
+.header-main {
+    background: #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5%;
+}
+
+.logopic {
+    height: 50px;
+    width: auto;
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-purple);
+}
+
+.profile-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding-right: 30px;
+}
+
+.category-bar {
+    background: var(--nav-purple);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 5%;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.nav-links a:hover {
+    color: var(--accent-purple);
+}
+
+/* =========================================
+   4. DARK MODE SWITCH
+   ========================================= */
+.theme-switch-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+}
+
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #555;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px; width: 14px;
+    left: 3px; bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider { background-color: var(--accent-purple); }
+input:checked + .slider:before { transform: translateX(14px); }
+
+/* =========================================
+   5. SIDEBAR E LAYOUT PRINCIPAL
+   ========================================= */
+.sidebar {
+    position: fixed;
+    margin-top: 135px;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 70px;
+    height: 100vh;
+    background: #60298e1c;
+    border-right: 3px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    z-index: 1000;
+    text-decoration: none;
+    color: inherit;
+}
+
+.side-item {
+    margin-top: 50px;
+    font-size: 2.0rem;
+    margin-bottom: 40px;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: 0.2s;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.side-item:hover, .side-item.active {
+    color: var(--accent-purple);
+    text-decoration: none;
+    color: var(--accent-purple);
+}
+
+.side-item.active {
+    border-left: 3px solid var(--accent-purple);
+}
+
+.main-content {
+    flex: 1;
+    margin-left: 70px;
+    min-height: calc(100vh - 300px);
+}
+
+/* =========================================
+   6. BARRA DE PESQUISA
+   ========================================= */
+#inteiro {
+    background-color: #121212;
+    background-image: radial-gradient(#2d0a4e 0.5px, transparent 0.5px);
+    background-size: 15px 15px;
+    padding: 25px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.search-container {
+    display: flex;
+    justify-items: center;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2px 15px;
+    width: 80vw;
+}
+
+.search-container:focus-within {
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+#site-search {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    padding: 10px;
+    width: 100%;
+    outline: none;
+}
+
+.search-btn {
+    width: 35px;
+    background-color: #252525;
+    border-radius: 20px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* =========================================
+   7. HERO E BANNER SLIDER
+   ========================================= */
+.hero {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(transparent 100%);
+}
+
+.banner-slider {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    height: 50vh;
+}
+
+.banner-slides {
+    display: flex;
+    width: 300%;
+    animation: slideAnimation 10s infinite;
+}
+
+.banner-slides img {
+    width: 33.333%;
+    height: auto;
+    display: block;
+}
+
+.banner-click-area {
+    position: absolute;
+    bottom: 11%;       
+    left: 50%;         
+    transform: translateX(-50%);
+    width: 355px;      
+    height: 67px;
+    background: rgba(157, 80, 187, 0.9);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    z-index: 1002; 
+    cursor: pointer;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: 0.3s ease;
+}
+
+.banner-click-area:hover {
+    background: #b366d1;
+    transform: translateX(-50%) scale(1.05);
+}
+
+@keyframes slideAnimation {
+    0%, 30% { transform: translateX(0); }
+    35%, 65% { transform: translateX(-33.333%); }
+    70%, 95% { transform: translateX(-66.666%); }
+    100% { transform: translateX(0); }
+}
+
+/* =========================================
+   8. GRID DE PRODUTOS E CARDS
+   ========================================= */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr ));
+    gap: 25px;
+    padding: 30px 5%;
+}
+
+.card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.highlight {
+    color: #8347ba;
+    text-shadow: 0px 0px 5px #7b39b5;
+}
+
+.card:hover {
+    border-color: var(--accent-purple);
+    transform: translateY(-5px);
+}
+
+.card > img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.card > p {
+    color: #d2a1fc;
+    font-size: 1.3em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 0 15px;
+}
+
+.btn-view {
+    background: var(--accent-purple);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 15px;
+    width: calc(100% - 30px);
+}
+
+/* =========================================
+   9. BOTÃO PUBLICAR AGORA
+   ========================================= */
+.btn-primary {
+    background: linear-gradient(135deg, #9D50BB, #00d4ff);
+    color: white !important;
+    border: none;
+    padding: 16px 40px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none !important;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 8px 25px rgba(157,80,187,0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(157,80,187,0.6);
+    background: linear-gradient(135deg, #00d4ff, #9D50BB);
+}
+
+/* =========================================
+   10. FOOTER
+   ========================================= */
+.main-footer {
+    background-color: #000;
+    border-top: 1px solid #1a1a1a;
+    padding: 60px 8% 30px 8%;
+    font-family: 'Inter', sans-serif;
+    margin-top: auto;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 1.5fr;
+    margin-bottom: 20px;
+}
+
+/* ... (adicione o resto do seu footer CSS aqui se quiser, mas já está no seu original) ... */
+
+/* =========================================
+   11. RESPONSIVIDADE (copie do seu original)
+   ========================================= */
+@media (max-width: 900px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
+    .footer-nav { justify-content: center; gap: 40px; }
+    .footer-end { align-items: center; }
+}
