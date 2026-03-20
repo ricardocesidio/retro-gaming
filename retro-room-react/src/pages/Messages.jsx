@@ -1,55 +1,60 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import '../pages/messages.css'; 
 
 export default function Messages() {
   // --- STATES ---
   const [activeChatId, setActiveChatId] = useState(1);
   const [newMessage, setNewMessage] = useState('');
+  const [selectedMedia, setSelectedMedia] = useState(null);
+  const [mediaFile, setMediaFile] = useState(null);
+
   const [showMenu, setShowMenu] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   
   const [blockedUsers, setBlockedUsers] = useState([]); 
   const [reportData, setReportData] = useState({ reason: '', description: '' });
-
+  
   const menuRef = useRef(null);
+  const fileInputRef = useRef(null);
+
+  
 
   // --- FULL DATASET ---
   const [conversations, setConversations] = useState([
     {
       id: 1,
-      name: "Miguel Silva",
+      name: "@yantravelling",
       avatar: "https://i.pravatar.cc/150?img=11",
-      lastMsg: "Is the Gameboy still available?",
+      lastMsg: "Final Fantasy still available?",
       time: "14:30",
       unread: 1,
       product: {
-        name: "GameBoy Color - Berry",
-        price: "85€",
-        img: "https://m.media-amazon.com/images/I/81s7-YfS9EL._SL1500_.jpg"
+        name: "Final Fantasy - PS1",
+        price: "25€",
+        img: "./images/ff12.JPG"
       },
       history: [
-        { type: 'received', text: "Hi! Does the screen have scratches?", time: "14:10" },
-        { type: 'sent', text: "It's flawless! New lens.", time: "14:15" },
-        { type: 'received', text: "Do you ship via MBWay?", time: "14:20" }
+        { type: 'received', content: "Hi! Does the screen have scratches?", time: "14:10" },
+        { type: 'sent', content: "It's flawless! New lens.", time: "14:15" },
+        { type: 'received', content: "Do you ship via MBWay?", time: "14:20" }
       ]
     },
     {
       id: 2,
-      name: "Ana Retro",
+      name: "@anaretro",
       avatar: "https://i.pravatar.cc/150?img=32",
       lastMsg: "The package arrived perfectly!",
       time: "Yesterday",
       unread: 0,
       product: null,
-      history: [{ type: 'received', text: "The package arrived perfectly!", time: "Yesterday" }]
+      history: [{ type: 'received', content: "The package arrived perfectly!", time: "Yesterday" }]
     }
   ]);
 
-  // --- LOGIC ---
+  
 
-  // Handle clicking outside the menu to close it
+  // --- LOGIC ---
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -63,11 +68,10 @@ export default function Messages() {
   const activeChat = conversations.find(c => c.id === activeChatId);
   const isBlocked = blockedUsers.includes(activeChatId);
 
-  // Validation: Reason selected AND Description is not empty
   const isFormValid = reportData.reason !== '' && reportData.description.trim().length > 0;
 
+  
   // --- HANDLERS ---
-
   const handleDeleteChat = (id) => {
     const updated = conversations.filter(c => c.id !== id);
     setConversations(updated);
@@ -82,6 +86,11 @@ export default function Messages() {
     setShowMenu(false);
   };
 
+  const handleUnblockUser = (id) => {
+    setBlockedUsers(blockedUsers.filter(userId => userId !== id));
+    setShowMenu(false);
+  };
+
   const submitReport = (e) => {
     e.preventDefault();
     setShowReportModal(false);
@@ -90,20 +99,44 @@ export default function Messages() {
     setTimeout(() => setShowSuccessToast(false), 4000);
   };
 
+  const handleMediaSelect = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    if (!file.type.startsWith('image/') && !file.type.startsWith('video/')) {
+      alert("Só é permitido enviar imagem ou vídeo.");
+      return;
+    }
+    setMediaFile(file);
+    setSelectedMedia(URL.createObjectURL(file));
+    e.target.value = '';
+  };
+
   const handleSendMessage = (e) => {
     e.preventDefault();
-    if (!newMessage.trim() || isBlocked || !activeChatId) return;
+    if (isBlocked || !activeChatId) return;
+    if (!newMessage.trim() && !mediaFile) return;
+
+    const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    let messageContent;
+    let lastMsgText = newMessage.trim() || "📷 Mídia enviada";
+
+    if (mediaFile) {
+      messageContent = mediaFile.type.startsWith('image/') ? (
+        <img src={URL.createObjectURL(mediaFile)} alt="Enviada" style={{ maxWidth: '100%', borderRadius: '12px' }} />
+      ) : (
+        <video src={URL.createObjectURL(mediaFile)} controls style={{ maxWidth: '100%', borderRadius: '12px' }} />
+      );
+    } else {
+      messageContent = newMessage;
+    }
 
     const updatedChats = conversations.map(chat => {
       if (chat.id === activeChatId) {
         return {
           ...chat,
-          history: [...chat.history, { 
-            type: 'sent', 
-            text: newMessage, 
-            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) 
-          }],
-          lastMsg: newMessage
+          history: [...chat.history, { type: 'sent', content: messageContent, time }],
+          lastMsg: lastMsgText
         };
       }
       return chat;
@@ -111,6 +144,8 @@ export default function Messages() {
 
     setConversations(updatedChats);
     setNewMessage('');
+    setSelectedMedia(null);
+    setMediaFile(null);
   };
 
   return (
@@ -118,31 +153,25 @@ export default function Messages() {
       <main className="main-content">
         <div className="messages-wrapper">
           
-          {/* SIDEBAR (INBOX) */}
+          {/* SIDEBAR */}
           <div className="inbox-sidebar">
-            <div className="inbox-header">
-              <h2>Inbox</h2>
-            </div>
+            <div className="inbox-header"><h2>Inbox</h2></div>
             <div className="conversation-list">
-              {conversations.length > 0 ? (
-                conversations.map((chat) => (
-                  <div 
-                    key={chat.id} 
-                    className={`chat-item ${activeChatId === chat.id ? 'active' : ''}`}
-                    onClick={() => { setActiveChatId(chat.id); setShowMenu(false); }}
-                  >
-                    <img src={chat.avatar} className="chat-avatar" alt={chat.name} />
-                    <div className="chat-preview">
-                      <h4 className="chat-name">
-                        {chat.name} {blockedUsers.includes(chat.id) && <span className="blocked-tag">🚫</span>}
-                      </h4>
-                      <p className="chat-snippet">{chat.lastMsg}</p>
-                    </div>
+              {conversations.map((chat) => (
+                <div 
+                  key={chat.id} 
+                  className={`chat-item ${activeChatId === chat.id ? 'active' : ''}`}
+                  onClick={() => { setActiveChatId(chat.id); setShowMenu(false); }}
+                >
+                  <img src={chat.avatar} className="chat-avatar" alt={chat.name} />
+                  <div className="chat-preview">
+                    <h4 className="chat-name">
+                      {chat.name} {blockedUsers.includes(chat.id) && <span className="blocked-tag">🚫</span>}
+                    </h4>
+                    <p className="chat-snippet">{chat.lastMsg}</p>
                   </div>
-                ))
-              ) : (
-                <p className="no-chats-msg">No conversations yet.</p>
-              )}
+                </div>
+              ))}
             </div>
           </div>
 
@@ -160,14 +189,11 @@ export default function Messages() {
                       </div>
                     </div>
                   ) : (
-                    <div className="chat-product-info">
-                       <h3>{activeChat.name}</h3>
-                    </div>
+                    <div className="chat-product-info"><h3>{activeChat.name}</h3></div>
                   )}
 
-                  {/* INFO MENU */}
                   <div className="info-menu-container" ref={menuRef}>
-                    <button className="info-trigger-btn" onClick={(e) => { e.stopPropagation(); setShowMenu(!showMenu); }}>
+                    <button className="info-trigger-btn" onClick={() => setShowMenu(!showMenu)}>
                       <i className="fa-solid fa-circle-info info-btn-blue"></i>
                     </button>
 
@@ -176,9 +202,17 @@ export default function Messages() {
                         <button className="drop-item" onClick={() => { setShowMenu(false); setShowReportModal(true); }}>
                           <i className="fa-solid fa-flag"></i> Report User
                         </button>
-                        <button className="drop-item" onClick={() => handleBlockUser(activeChat.id)}>
-                          <i className="fa-solid fa-ban"></i> Block User
-                        </button>
+
+                        {isBlocked ? (
+                          <button className="drop-item" onClick={() => handleUnblockUser(activeChat.id)}>
+                            <i className="fa-solid fa-unlock"></i> Unblock User
+                          </button>
+                        ) : (
+                          <button className="drop-item" onClick={() => handleBlockUser(activeChat.id)}>
+                            <i className="fa-solid fa-ban"></i> Block User
+                          </button>
+                        )}
+
                         <div className="drop-divider"></div>
                         <button className="drop-item delete-text" onClick={() => handleDeleteChat(activeChat.id)}>
                           <i className="fa-solid fa-trash"></i> Delete Chat
@@ -188,35 +222,61 @@ export default function Messages() {
                   </div>
                 </div>
 
-                {/* MESSAGES HISTORY */}
                 <div className="chat-history">
                   {activeChat.history.map((msg, index) => (
                     <div key={index} className={`message-bubble message-${msg.type}`}>
-                      {msg.text}
+                      {msg.content}
                       <span className="msg-time">{msg.time}</span>
                     </div>
                   ))}
                 </div>
 
-                {/* INPUT AREA OR BLOCKED NOTICE */}
                 {isBlocked ? (
                   <div className="blocked-notice">
                     <i className="fa-solid fa-ban"></i>
                     <p>This user has been blocked. You can no longer send messages.</p>
                   </div>
                 ) : (
-                  <form className="chat-input-area" onSubmit={handleSendMessage}>
-                    <input 
-                      type="text" 
-                      className="chat-input" 
-                      placeholder="Type a message..." 
-                      value={newMessage}
-                      onChange={(e) => setNewMessage(e.target.value)}
-                    />
-                    <button type="submit" className="btn-send">
-                      <i className="fa-solid fa-paper-plane"></i>
-                    </button>
-                  </form>
+                  <>
+                    <form className="chat-input-area" onSubmit={handleSendMessage}>
+                      <input 
+                        type="text" 
+                        className="chat-input" 
+                        placeholder="Type a message..." 
+                        value={newMessage}
+                        onChange={(e) => setNewMessage(e.target.value)}
+                      />
+
+                      <button type="button" className="btn-media" onClick={() => fileInputRef.current?.click()}>
+                        <i className="fa-solid fa-camera"></i>
+                      </button>
+
+                      <input
+                        type="file"
+                        accept="image/*,video/*"
+                        ref={fileInputRef}
+                        style={{ display: 'none' }}
+                        onChange={handleMediaSelect}
+                      />
+
+                      <button type="submit" className="btn-send">
+                        <i className="fa-solid fa-paper-plane"></i>
+                      </button>
+                    </form>
+
+                    {selectedMedia && (
+                      <div className="media-preview">
+                        {mediaFile.type.startsWith('image/') ? (
+                          <img src={selectedMedia} alt="preview" className="preview-media" />
+                        ) : (
+                          <video src={selectedMedia} controls className="preview-media" />
+                        )}
+                        <button className="remove-media-btn" onClick={() => { setSelectedMedia(null); setMediaFile(null); }}>
+                          ×
+                        </button>
+                      </div>
+                    )}
+                  </>
                 )}
               </>
             ) : (
