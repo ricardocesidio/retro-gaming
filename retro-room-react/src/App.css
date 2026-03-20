@@ -16,6 +16,7 @@
     --accent-glow: rgba(157, 80, 187, 0.4);
     --border-color: #333;
     --nav-purple: #2d0a4e;
+    --search-container: white;
 }
 
 :root[data-theme="light"] {
@@ -60,6 +61,92 @@ body {
     flex-direction: column;
 }
 
+
+/* =========================================
+   6. BARRA DE PESQUISA – VISUAL MINIMALISTA
+   ========================================= */
+section#inteiro, 
+#inteiro .search-wrapper {
+    width: 100% !important;
+    max-width: none !important; /* Remove limites do pai */
+    padding: 0 !important;
+    display: flex;
+    justify-content: center;
+}
+
+#inteiro .search-container {
+    display: flex;
+    align-items: center;
+    background: var(--bg-card); 
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    padding: 10px 25px;
+    
+    /* AQUI É ONDE VOCÊ CONTROLA A LARGURA REAL */
+    width: 95% !important;   /* Ocupa 95% da largura da tela disponível */
+    max-width: 1200px !important; /* Um limite bem alto para monitores UltraWide */
+    
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    margin: 20px auto; /* Centraliza */
+}
+.search-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* Reduzi o padding lateral para a barra poder crescer mais */
+    padding: 20px 2%; 
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    background: var(--bg-card); 
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    padding: 8px 25px;
+    
+    /* MUDANÇA AQUI: */
+    width: 95%; /* Ocupa quase todo o espaço disponível na main-content */
+    max-width: 1400px; /* Aumentei o limite máximo para telas grandes */
+    
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.search-container:focus-within {
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+#site-search {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    padding: 12px 15px;
+    width: 100%;
+    outline: none;
+    /* Aumentei um pouco a fonte para acompanhar a barra maior */
+    font-size: 1.1rem; 
+}
+
+.search-btn {
+    background: var(--accent-purple);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.search-btn:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
 /* =========================================
    3. HEADER E NAVEGAÇÃO
    ========================================= */
@@ -224,59 +311,52 @@ input:checked + .slider:before { transform: translateX(14px); }
     border-left: 3px solid var(--accent-purple);
 }
 
-.main-content {
-    flex: 1;
-    margin-left: 70px;
-    width: calc(100% - 70px);
-    min-height: calc(100vh - 70px);
-    display: flex;
-    flex-direction: column;
-}
 
 /* =========================================
    6. BARRA DE PESQUISA – TOTALMENTE CENTRALIZADA E COM BACKGROUND
    ========================================= */
+/* =========================================
+   6. BARRA DE PESQUISA – FUNDO ESCURO (PITCH BLACK)
+   ========================================= */
 #inteiro {
-    background-color: #121212;
-    background-image: radial-gradient(#2d0a4e 0.5px, transparent 0.5px);
-    background-size: 15px 15px;
-    height: 100px;
-    padding: 35px 5%;
+    background-color: var(--inteiro) !important; 
+    width: 100%;
+    min-height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
     position: relative;
+    /* Linha roxa fina em baixo para dar o toque moderno sem poluir */
+    /* Removemos qualquer imagem de fundo anterior */
+    background-image: none !important;
+}
+
+.search-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0 5%;
 }
 
 .search-container {
     display: flex;
     align-items: center;
-    background: var(--bg-card);           /* ← RESTAURADO */
-    border: 1px solid var(--border-color);
+    background: #151515; /* Um cinza quase preto para o campo de busca */
+    border: 1px solid #333;
     border-radius: 50px;
-    padding: 8px 20px;
-    width: 90vw;
-    max-width: 1190px;
-    margin: 0 auto;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-.search-container:focus-within {
-    border-color: var(--accent-purple);
-    box-shadow: 0 0 15px var(--accent-glow);
+    padding: 8px 25px;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 #site-search {
     background: transparent;
     border: none;
-    color: var(--text-main);
-    padding: 12px 15px;
+    color: white;
+    padding: 12px;
     width: 100%;
     outline: none;
-    font-size: 1.05rem;
 }
 
 .search-btn {
@@ -294,7 +374,7 @@ input:checked + .slider:before { transform: translateX(14px); }
 }
 
 .search-btn:hover {
-    background-color: #bc13fe;
+    background-color: #2f1a38;
     transform: scale(1.08);
 }
 /* =========================================
@@ -917,60 +997,6 @@ input::-webkit-inner-spin-button {
     display: none;
 }
 
-/* =========================================
-   FOLLOW SYSTEM
-   ========================================= */
-.btn-follow {
-    background: var(--accent-purple);
-    color: white;
-    border: none;
-    padding: 12px 32px;
-    border-radius: 50px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-size: 1rem;
-}
-
-.btn-follow:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px var(--accent-glow);
-}
-
-.btn-follow.following {
-    background: #00c853;
-    color: white;
-}
-
-.btn-follow.edit {
-    background: #555;
-    color: white;
-}
-
-.follow-section {
-    margin-top: 30px;
-    padding: 20px;
-    background: var(--bg-card);
-    border-radius: 16px;
-    border: 1px solid var(--border-color);
-}
-
-.follow-list {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-top: 15px;
-}
-
-.follow-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(255,255,255,0.05);
-    padding: 8px 16px;
-    border-radius: 30px;
-    font-size: 0.9rem;
-}
 
 /* =========================================
    NOTIFICATIONS PAGE

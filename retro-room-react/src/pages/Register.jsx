@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
+
 export default function Register() {
   const [step, setStep] = useState('form');
   const [showModal, setShowModal] = useState(false);

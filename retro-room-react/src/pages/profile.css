@@ -259,24 +259,36 @@
             50% { transform: scale(1.15); filter: brightness(1.4) drop-shadow(0 0 8px #00d4ff); }
         }
 
-        .btn-follow {
-            background: #9D50BB;
-            color: white;
-            border: none;
-            display: flex;
-            margin-left: 800px;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: 800;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: 0.3s;
-            text-transform: uppercase;
-        }
-        .btn-follow:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(157, 80, 187, 0.4);
-        }
+       .btn-follow {
+    /* MUDANÇA PRINCIPAL: Deixa de ser fixed para ficar preso ao conteúdo */
+    position: relative; 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* REMOVA o margin-left negativo e use valores reais */
+    margin: 20px 0; 
+    
+    background: #9D50BB;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+    
+    /* Remove qualquer interferência de camadas */
+    z-index: 10;
+}
+
+.btn-follow:hover {
+    background: #8b3fa3;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(157, 80, 187, 0.3);
+}
 
         .tier-bronze { 
             border-color: #CD7F32 !important; 

@@ -13,7 +13,7 @@ import Login from './pages/Login.jsx';
 // COMPONENTS
 import Header from './components/Header.jsx';
 import Sidebar from './components/Sidebar.jsx';
-import Footer from './components/Footer.jsx';
+import Footer from './components/footer.jsx';
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

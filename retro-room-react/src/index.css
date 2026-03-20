@@ -220,51 +220,6 @@ input:checked + .slider:before { transform: translateX(14px); }
     min-height: calc(100vh - 300px);
 }
 
-/* =========================================
-   6. BARRA DE PESQUISA
-   ========================================= */
-#inteiro {
-    background-color: #121212;
-    background-image: radial-gradient(#2d0a4e 0.5px, transparent 0.5px);
-    background-size: 15px 15px;
-    padding: 25px 0%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.search-container {
-    display: flex;
-    justify-items: center;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 2px 15px;
-    width: 80vw;
-}
-
-.search-container:focus-within {
-    border-color: var(--accent-purple);
-    box-shadow: 0 0 10px var(--accent-glow);
-}
-
-#site-search {
-    background: transparent;
-    border: none;
-    color: var(--text-main);
-    padding: 10px;
-    width: 100%;
-    outline: none;
-}
-
-.search-btn {
-    width: 35px;
-    background-color: #252525;
-    border-radius: 20px;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
 
 /* =========================================
    7. HERO E BANNER SLIDER

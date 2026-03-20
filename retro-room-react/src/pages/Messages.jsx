@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../pages/messages.css'; 
 
+
 export default function Messages() {
   // --- STATES ---
   const [activeChatId, setActiveChatId] = useState(1);

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 
+
 export default function Home() {
   return (
     <>
@@ -16,7 +17,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+      
       <div className="banner-outer-wrapper">
         <div className="banner-wrapper">
           <div className="banner-slider">

@@ -2,21 +2,20 @@
    1. CONTAINER DA SIDEBAR - INTEGRADO E SÓLIDO
    ========================================= */
 .sidebar {
-    position: fixed;
+    position: fixed !important; /* Força a fixação na tela */
     left: 0;
-    /* Alinhamento perfeito: começa exatamente onde o Header termina */
-    /* O cálculo abaixo garante que ela termine exatamente no fim do ecrã, sem sobrar nem faltar */
-    height: calc(100vh - 135px);
+    top: -16%; /* Começa no topo absoluto para evitar cortes */
+    bottom: 0; /* Estica até o chão da tela */
     width: 80px;
-    /* Fundo escuro sólido para destacar o roxo */
     background: #080808; 
     border-right: 1px solid #222;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 30px 0;
+    justify-content: space-evenly; /* Alinha os ícones no topo */
+    padding-top: 105px; /* EMPURRA os ícones para baixo do Header, mas mantém o fundo fixo */
     z-index: 1000;
-    /* Removemos o !important para o CSS fluir melhor */
+    height: 100vh; /* Altura total da tela sempre */
 }
 
 /* =========================================
@@ -79,19 +78,6 @@
     box-shadow: 0 0 8px #00ff88;
 }
 
-/* =========================================
-   6. COMPENSAÇÃO DO CONTEÚDO PRINCIPAL
-   ========================================= */
-.main-content {
-    flex: 1;
-    margin-left: 80px; /* Dá espaço exato para a sidebar */
-    width: calc(100% - 80px);
-    background-color: var(--bg-body);
-    /* Garante que o conteúdo tenha pelo menos a altura do ecrã menos o header */
-    min-height: calc(100vh - 135px); 
-    display: flex;
-    flex-direction: column;
-}
 
 /* =========================================
    7. RESPONSIVIDADE - BARRA INFERIOR NO MOBILE
