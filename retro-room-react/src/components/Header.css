@@ -1,0 +1,297 @@
+
+
+/* --- Cores dos Ícones --- */
+.fav-icon { color: #9d50bb; }      /* Roxo */
+.follow-icon { color: #4CAF50; }   /* Verde */
+.comment-icon { color: #00d4ff; }  /* Azul */
+.offer-icon { color: #FFD700; }    /* Amarelo/Gold */
+.info-icon { color: #00f2ff; }     /* Ciano */
+.alert-icon { color: #ff8c00; }    /* Laranja */
+
+/* Glow suave nos ícones ao passar o rato no item */
+.notif-item:hover i {
+    filter: drop-shadow(0 0 5px currentColor);
+}
+
+/* --- Controle de Limite e Espaçamento --- */
+.notif-list {
+    margin-left: 3px;
+    max-height: 420px; /* Altura ideal para aproximadamente 6 itens */
+    overflow-y: auto;
+    margin-bottom: 10px; /* O margin-bottom que pediste antes do Read All */
+}
+
+/* Estilo do botão Read All para destacar da lista */
+.read-all-link {
+    display: block;
+    padding: 12px;
+    text-align: center;
+    color: #9d50bb;
+    font-weight: bold;
+    text-decoration: none;
+    background: #050505;
+    border-top: 1px solid #222;
+    transition: 0.3s;
+}
+
+.read-all-link:hover {
+    background: #111;
+    color: #FFD700; /* Fica amarelo no hover seguindo o teu padrão */
+}
+
+/* Scrollbar personalizada para manter o estilo retro */
+.notif-list::-webkit-scrollbar {
+    width: 5px;
+}
+.notif-list::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 10px;
+}
+
+
+/* =========================================
+   FUNCIONALIDADES DE LOGIN E PERFIL + USER MENU
+   ========================================= */
+.btn-login-submit, .btn-login-header {
+    background: transparent;
+    border: 2px solid #cc7fff;
+    color: #ffffff;
+    padding: 15px 28px;
+    border-radius: 100px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 0.8rem;
+    
+    
+}
+
+.btn-login-header:hover {
+    background: #f0d7ff;
+    color: #000;
+    box-shadow: 0 0 10px #8926ec;
+    
+    
+}
+
+.logout-btn {
+    background: transparent;
+    border: 2px solid #cc7fff;
+    color: #ffffff;
+    display: flex;
+    margin: auto;
+    padding: 15px 28px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 0.8rem;
+    
+}
+
+.profile-container {
+    height: 60px;
+    width: 250px;
+    border-radius: 100%;
+    border: 100px;
+}
+
+
+.is-visible { display: flex !important; }
+.is-hidden { display: none !important; }
+
+.dropdown-menu,
+.nav-dropdown-menu,
+.retro-dropdown {
+    position: absolute;
+    top: 5px;
+    right: 0;
+    background: #151515;
+    border: 2px solid #333;
+    border-radius: 8px;
+    width: 220px;
+    list-style: none;
+    padding: 10px 0;
+    display: none;
+    z-index: 2000;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    
+}
+
+/* Configuração Base do Header */
+.header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5%;
+    background: #0a0a0a;
+    border-bottom: 1px solid #222;
+    position: relative;
+    overflow: visible !important; /* CRITICAL: Permite que o dropdown "escape" para fora */
+}
+
+/* ÍCONES: Estados de Cor */
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: #888; /* Cor padrão: Cinza */
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+}
+
+/* HOVER: Amarelo */
+.icon-btn:hover {
+  color: #FFD700 !important; 
+  transform: translateY(-2px);
+  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+}
+
+/* ACTIVE: Roxo (Quando está na página ou menu aberto) */
+.icon-btn.active {
+  color: #9d50bb !important;
+  filter: drop-shadow(0 0 8px rgba(157, 80, 187, 0.6));
+}
+
+/* DROPDOWN: Visual Premium */
+.retro-dropdown {
+  position: absolute;
+  top: 130%;
+  right: 0;
+  background: rgba(15, 15, 15, 0.98);
+  backdrop-filter: blur(12px);
+  border: 1px solid #333;
+  border-top: 3px solid #9d50bb;
+  border-radius: 8px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.9);
+  min-width: 220px;
+  z-index: 99999 !important; /* Valor extremo para ganhar de qualquer banner */
+  animation: dropdownAnim 0.25s ease-out;
+  overflow: hidden;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Estilo específico das notificações no dropdown */
+.notif-dropdown { width: 300px; padding: 0; overflow: hidden; }
+.notif-header { padding: 12px; background: #111; font-weight: bold; border-bottom: 1px solid #222; }
+.notif-item { 
+  display: flex; gap: 12px; padding: 12px; border-bottom: 1px solid #1a1a1a; 
+  font-size: 0.85rem; align-items: center; transition: 0.2s;
+}
+.notif-item:hover { background: rgba(255,255,255,0.05); }
+.fav-icon { color: #9d50bb; }
+.follow-icon { color: #4CAF50; }
+
+.read-all-link {
+  display: block; padding: 12px; text-align: center; 
+  color: #9d50bb; font-weight: bold; text-decoration: none;
+  background: #050505; transition: 0.3s;
+}
+.read-all-link:hover { background: #9d50bb; color: white; }
+
+/* Rotação da seta do perfil */
+.arrow-id.rotate { transform: rotate(180deg); transition: 0.3s; }
+
+.dropdown-menu,
+.nav-dropdown-menu,
+.retro-dropdown {
+    top: 72px;   /* ← corrigido */
+    /* resto igual */
+}
+.dropdown-menu.active,
+.dropdown-menu.show-menu,
+.nav-dropdown-menu,
+.retro-dropdown {
+    display: block;
+    animation: slideDown 0.2s ease-out;
+    
+}
+
+.dropdown-menu li a,
+.nav-dropdown-menu a,
+.logout-link,
+.retro-dropdown a {
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #eee;
+    text-decoration: none;
+    transition: 0.2s;
+    font-size: 0.9rem;
+    width: 100%;
+    cursor: pointer;
+    background: none;
+    border: none;
+    
+    
+}
+
+.dropdown-menu li a:hover,
+.nav-dropdown-menu a:hover,
+.retro-dropdown a:hover {
+    background: #252525;
+    color: var(--accent-purple);
+    
+}
+
+.dropdown-menu li a i,
+.nav-dropdown-menu a i {
+    width: 20px;
+    text-align: center;
+    
+}
+
+/* O DIVIDER: Agora como uma linha controlada */
+.divider {
+    height: 1px;
+    background: #444; /* Cor da linha (ajusta para cinza mais claro se quiseres) */
+    width: 100%;
+    margin-top: 15px; /* Espaço entre o último item (Retro Rules) e a linha */
+    border: none;
+}
+
+/* O BOTÃO DE LOGOUT: Onde aplicamos a margem que pediste */
+.logout-btn {
+    display: flex;
+    margin: 25px auto 15px auto !important; /* 25px acima para criar o espaço da imagem */
+    background: transparent;
+    border: 2px solid #cc7fff;
+    color: #ffffff;
+    padding: 12px 35px;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 0.9rem;
+}
+
+.logout-btn:hover {
+    background: rgba(204, 127, 255, 0.1);
+    box-shadow: 0 0 15px rgba(204, 127, 255, 0.4);
+}
+
+
+
+.notif-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ef4444;
+    color: white;
+    font-size: 0.65rem;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 50%;
+    
+}

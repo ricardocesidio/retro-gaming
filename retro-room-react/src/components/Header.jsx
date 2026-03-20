@@ -1,37 +1,38 @@
-import { useState, useEffect, useRef } from 'react'; // Adicionado useRef e useEffect
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import './Header.css';
 
 export default function Header({ isLoggedIn, currentUser, theme, toggleTheme }) {
   const [showDropdown, setShowDropdown] = useState(false);
-  const dropdownRef = useRef(null); // Referência para o contentor do menu
+  const [showNotifDropdown, setShowNotifDropdown] = useState(false);
+  
+  const dropdownRef = useRef(null); 
+  const notifRef = useRef(null); 
   const navigate = useNavigate();
+  const location = useLocation(); // Hook para saber em que página estamos
 
   const handleLogout = () => {
     sessionStorage.clear();
     window.location.href = "/login";
   };
 
-  // Lógica para fechar ao clicar fora
+  // Fechar menus ao clicar fora
   useEffect(() => {
     function handleClickOutside(event) {
-      // Se o clique não foi dentro do dropdownRef, fecha o menu
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setShowDropdown(false);
       }
+      if (notifRef.current && !notifRef.current.contains(event.target)) {
+        setShowNotifDropdown(false);
+      }
     }
-
-    // Adiciona o detetor de cliques no documento
     document.addEventListener("mousedown", handleClickOutside);
-    
-    // Limpa o detetor quando o componente é destruído
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [dropdownRef]);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
-    <header>
+    <header className="main-header-container">
       <div className="header-main">
         <div className="logo">
           <Link to="/">
@@ -45,7 +46,6 @@ export default function Header({ isLoggedIn, currentUser, theme, toggleTheme }) 
               <button className="btn-login-header">LOGIN</button>
             </Link>
           ) : (
-            /* Adicionada a ref={dropdownRef} para controlar a área de clique */
             <div className="profile-container is-visible" ref={dropdownRef} style={{ position: 'relative' }}>
               <div 
                 className="profile-chip" 
@@ -58,7 +58,7 @@ export default function Header({ isLoggedIn, currentUser, theme, toggleTheme }) 
               </div>
 
               {showDropdown && (
-                <div className="retro-dropdown">
+                <div className="retro-dropdown profile-menu">
                   <Link to="/profile" onClick={() => setShowDropdown(false)}>Profile</Link>
                   <Link to="/messages" onClick={() => setShowDropdown(false)}>Messages</Link>
                   <Link to="/notifications" onClick={() => setShowDropdown(false)}>Notifications</Link>
@@ -67,21 +67,87 @@ export default function Header({ isLoggedIn, currentUser, theme, toggleTheme }) 
                   <Link to="/donations" onClick={() => setShowDropdown(false)}>Donations</Link>
                   <Link to="/orders" onClick={() => setShowDropdown(false)}>My orders</Link>
                   <Link to="/rules" onClick={() => setShowDropdown(false)}>Retro Rules</Link>
-                  <hr />
                   <button onClick={handleLogout} className="logout-btn">Log out</button>
                 </div>
               )}
             </div>
           )}
 
-          <Link to="/messages" className="icon-btn" title="Messages">
+          {/* 1. NOTIFICAÇÕES (PRIMEIRO) */}
+          <div className="icon-wrapper" ref={notifRef} style={{ position: 'relative' }}>
+            <button 
+              className={`icon-btn ${location.pathname === '/notifications' || showNotifDropdown ? 'active' : ''}`}
+              onClick={() => setShowNotifDropdown(!showNotifDropdown)}
+              title="Notifications"
+            >
+              <i className="fa-solid fa-bell"></i>
+            </button>
+
+            {showNotifDropdown && (
+              <div className="retro-dropdown notif-dropdown">
+  <div className="notif-header">Recent Activity</div>
+  
+  <div className="notif-list">
+    {/* Item 1 - Favorito (Roxo) */}
+    <div className="notif-item">
+      <i className="fa-solid fa-heart fav-icon"></i>
+      <span><strong>MariaGamer</strong> favorited your item.</span>
+    </div>
+
+    {/* Item 2 - Seguidor (Verde) */}
+    <div className="notif-item">
+      <i className="fa-solid fa-user-plus follow-icon"></i>
+      <span><strong>RetroKing</strong> is following you.</span>
+    </div>
+
+    {/* Item 3 - Comentário (Azul) */}
+    <div className="notif-item">
+      <i className="fa-solid fa-comment comment-icon"></i>
+      <span><strong>PixelArt</strong> commented on your post.</span>
+    </div>
+
+    {/* Item 4 - Venda/Oferta (Amarelo) */}
+    <div className="notif-item">
+      <i className="fa-solid fa-tag offer-icon"></i>
+      <span>New offer from <strong>Collector99</strong>.</span>
+    </div>
+
+    {/* Item 5 - Sistema (Ciano) */}
+    <div className="notif-item">
+      <i className="fa-solid fa-circle-info info-icon"></i>
+      <span>Your listing was approved!</span>
+    </div>
+
+    {/* Item 6 - Alerta (Laranja) */}
+    <div className="notif-item">
+      <i className="fa-solid fa-triangle-exclamation alert-icon"></i>
+      <span>Complete your profile to sell faster.</span>
+    </div>
+  </div>
+
+  <Link to="/notifications" className="read-all-link" onClick={() => setShowNotifDropdown(false)}>
+    Read all
+  </Link>
+              </div>
+            )}
+          </div>
+
+          {/* 2. MENSAGENS (SEGUNDO) */}
+          <Link 
+            to="/messages" 
+            className={`icon-btn ${location.pathname === '/messages' ? 'active' : ''}`} 
+            title="Messages"
+          >
             <i className="fa-solid fa-message"></i>
           </Link>
-          <Link to="/notifications" className="icon-btn" title="Notifications">
-            <i className="fa-solid fa-bell"></i>
-          </Link>
-          <Link to="/cart" className="icon-btn" title="Cart">
-            <i className="fa-solid fa-cart-shopping"></i>
+
+          {/* 3. FAVORITOS (TERCEIRO) */}
+          <Link 
+            to="/favorites" 
+            className={`icon-btn ${location.pathname === '/favorites' ? 'active' : ''}`} 
+            title="My Favorites"
+          >
+            <i className="fa-solid fa-heart"></i>
           </Link>
         </div>
       </div>
@@ -94,12 +160,12 @@ export default function Header({ isLoggedIn, currentUser, theme, toggleTheme }) 
           <Link to="#">GAMES</Link>
           <Link to="#">COLLECTIBLES</Link>
           <Link to="#">ARCADE</Link>
-          <Link to="#">COMMUNITY</Link>
-          <Link to="#">BLOG</Link>
+          <Link to="/community">COMMUNITY</Link>
+          <Link to="/blog">BLOG</Link>
         </div>
 
         <div className="theme-switch-container">
-          <span>LIGHT MODE / DARK MODE</span>
+          <span>LIGHT / DARK</span>
           <label className="switch">
             <input type="checkbox" checked={theme === 'light'} onChange={toggleTheme} />
             <span className="slider round"></span>

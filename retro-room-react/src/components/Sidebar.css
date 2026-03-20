@@ -1,0 +1,127 @@
+/* =========================================
+   1. CONTAINER DA SIDEBAR - INTEGRADO E SÓLIDO
+   ========================================= */
+.sidebar {
+    position: fixed;
+    left: 0;
+    /* Alinhamento perfeito: começa exatamente onde o Header termina */
+    /* O cálculo abaixo garante que ela termine exatamente no fim do ecrã, sem sobrar nem faltar */
+    height: calc(100vh - 135px);
+    width: 80px;
+    /* Fundo escuro sólido para destacar o roxo */
+    background: #080808; 
+    border-right: 1px solid #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0;
+    z-index: 1000;
+    /* Removemos o !important para o CSS fluir melhor */
+}
+
+/* =========================================
+   2. ITENS DA SIDEBAR (ÍCONES)
+   ========================================= */
+.side-item {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px; /* Cantos arredondados suaves */
+    color: #666; /* Cor padrão mais escura */
+    font-size: 1.6rem;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* =========================================
+   3. HOVER - BRILHO AMARELO (Seguindo o teu padrão do Header)
+   ========================================= */
+.side-item:hover {
+    background: rgba(255, 215, 0, 0.05); /* Fundo dourado muito suave */
+    color: #FFD700; /* Amarelo/Ouro no hover */
+    transform: translateX(5px); /* Pequeno movimento para a direita */
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+}
+
+/* =========================================
+   4. ESTADO ATIVO - O REGRESSO DO ROXO VIBRANTE!
+   ========================================= */
+.side-item.active {
+    /* O fundo roxo sólido que querias de volta */
+    background: var(--accent-purple); 
+    color: #fff; /* Ícone branco para contraste */
+    /* Efeito de brilho neon roxo (glow) */
+    box-shadow: 0 0 20px rgba(157, 80, 187, 0.6), 0 0 10px rgba(157, 80, 187, 0.4);
+}
+
+/* Removemos a borda lateral e o gradiente, focando no bloco sólido roxo */
+.side-item.active i {
+    filter: none; /* O brilho agora vem do box-shadow do botão inteiro */
+}
+
+/* =========================================
+   5. O PONTO INDICADOR (STATUS) - MAIS DISCRETO
+   ========================================= */
+.side-item.active::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 8px;
+    height: 8px;
+    background: #00ff88; /* Ponto verde de status */
+    border-radius: 50%;
+    border: 2px solid var(--accent-purple); /* Borda da cor do botão */
+    box-shadow: 0 0 8px #00ff88;
+}
+
+/* =========================================
+   6. COMPENSAÇÃO DO CONTEÚDO PRINCIPAL
+   ========================================= */
+.main-content {
+    flex: 1;
+    margin-left: 80px; /* Dá espaço exato para a sidebar */
+    width: calc(100% - 80px);
+    background-color: var(--bg-body);
+    /* Garante que o conteúdo tenha pelo menos a altura do ecrã menos o header */
+    min-height: calc(100vh - 135px); 
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================================
+   7. RESPONSIVIDADE - BARRA INFERIOR NO MOBILE
+   ========================================= */
+@media (max-width: 768px) {
+    .sidebar {
+        top: auto;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 0;
+        border-right: none;
+        border-top: 1px solid #222;
+        background: #0a0a0a; /* Fundo ligeiramente diferente para destacar */
+    }
+
+    .side-item {
+        margin-bottom: 0;
+        width: 60px;
+        height: 50px;
+        border-radius: 12px;
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        /* Espaço no fundo para a barra não tapar o conteúdo */
+        padding-bottom: 80px; 
+    }
+}

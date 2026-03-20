@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import './Sidebar.css';
 
 export default function Sidebar() {
   return (

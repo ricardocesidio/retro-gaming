@@ -11,7 +11,7 @@
     --bg-body: #0d0d0d;
     --bg-card: #1a1a1a;
     --text-main: #ffffff;
-    --text-muted: #a0a0a0;
+    --text-muted: #7e7e7e;
     --accent-purple: #9d50bb;
     --accent-glow: rgba(157, 80, 187, 0.4);
     --border-color: #333;
@@ -21,7 +21,7 @@
 :root[data-theme="light"] {
     --bg-body: #f8f9fa;
     --bg-card: #ffffff;
-    --text-main: #1a1a1a;
+    --text-main: #6b6b6b;
     --text-muted: #666666;
     --accent-purple: #6e2da8;
     --accent-glow: rgba(110, 45, 168, 0.2);
@@ -65,23 +65,16 @@ body {
    ========================================= */
 header {
     width: 100%;
-    position: sticky;
-    top: 0;
-    flex-shrink: 0;
-    z-index: 2000;
+    position: relative; /* Mantém o fluxo, mas permite z-index */
+    z-index: 9999 !important; /* Maior que qualquer banner ou card */
+    background: #0a0a0a;
 }
 
 main {
     flex: 1;
 }
 
-.header-main {
-    background: #000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 5%;
-}
+
 
 .logopic {
     height: 50px;
@@ -122,7 +115,7 @@ main {
 .category-bar {
     position: sticky;
     top: 0;
-    z-index: 1000 !important;
+    z-index: 9998 !important;
     background: var(--nav-purple);
     display: flex;
     justify-content: space-between;
@@ -235,7 +228,7 @@ input:checked + .slider:before { transform: translateX(14px); }
     flex: 1;
     margin-left: 70px;
     width: calc(100% - 70px);
-    min-height: calc(100vh - 135px);
+    min-height: calc(100vh - 70px);
     display: flex;
     flex-direction: column;
 }
@@ -925,158 +918,6 @@ input::-webkit-inner-spin-button {
 }
 
 /* =========================================
-   FUNCIONALIDADES DE LOGIN E PERFIL + USER MENU
-   ========================================= */
-.btn-login-submit, .btn-login-header {
-    background: transparent;
-    border: 2px solid #cc7fff;
-    color: #ffffff;
-    padding: 15px 28px;
-    border-radius: 100px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 0.8rem;
-    
-    
-}
-
-.btn-login-header:hover {
-    background: #f0d7ff;
-    color: #000;
-    box-shadow: 0 0 10px #8926ec;
-    
-    
-}
-
-.logout-btn {
-    background: transparent;
-    border: 2px solid #cc7fff;
-    color: #ffffff;
-    display: flex;
-    margin: auto;
-    padding: 15px 28px;
-    border-radius: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 0.8rem;
-    
-}
-
-.profile-container { display: none; }
-.is-visible { display: flex !important; }
-.is-hidden { display: none !important; }
-
-.dropdown-menu,
-.nav-dropdown-menu,
-.retro-dropdown {
-    position: absolute;
-    top: 5px;
-    right: 0;
-    background: #151515;
-    border: 2px solid #333;
-    border-radius: 8px;
-    width: 220px;
-    list-style: none;
-    padding: 10px 0;
-    display: none;
-    z-index: 2000;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-    
-}
-.dropdown-menu,
-.nav-dropdown-menu,
-.retro-dropdown {
-    top: 72px;   /* ← corrigido */
-    /* resto igual */
-}
-.dropdown-menu.active,
-.dropdown-menu.show-menu,
-.nav-dropdown-menu,
-.retro-dropdown {
-    display: block;
-    animation: slideDown 0.2s ease-out;
-    
-}
-
-.dropdown-menu li a,
-.nav-dropdown-menu a,
-.logout-link,
-.retro-dropdown a {
-    padding: 12px 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: #eee;
-    text-decoration: none;
-    transition: 0.2s;
-    font-size: 0.9rem;
-    width: 100%;
-    cursor: pointer;
-    background: none;
-    border: none;
-    
-    
-}
-
-.dropdown-menu li a:hover,
-.nav-dropdown-menu a:hover,
-.retro-dropdown a:hover {
-    background: #252525;
-    color: var(--accent-purple);
-    
-}
-
-.dropdown-menu li a i,
-.nav-dropdown-menu a i {
-    width: 20px;
-    text-align: center;
-}
-
-.divider {
-    height: 1px;
-    background: #333;
-    margin: 8px 0;
-    
-}
-
-.logout {
-    color: #ff4444 !important;
-}
-
-.icon-btn {
-    position: relative;
-    display: inline-block;
-    font-size: 1.2rem;
-    cursor: pointer;
-    color: #ccc;
-    transition: 0.3s;
-    
-}
-
-.icon-btn:hover {
-    color: #ffcc00;
-    transform: scale(1.1);
-    
-}
-
-.notif-badge {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background: #ef4444;
-    color: white;
-    font-size: 0.65rem;
-    font-weight: bold;
-    padding: 2px 5px;
-    border-radius: 50%;
-    
-}
-
-/* =========================================
    FOLLOW SYSTEM
    ========================================= */
 .btn-follow {
@@ -1233,132 +1074,6 @@ input::-webkit-inner-spin-button {
     white-space: nowrap;
 }
 
-/* =========================================
-   CORREÇÕES DE TAMANHO E PROPORÇÃO + PARCEL SIZE SECTION
-   ========================================= */
-.sidebar {
-    width: 70px !important;
-    margin-top: 120px !important;
-    padding: 60px 1 !important;
-    height: 100vh;
-}
-
-.side-item {
-    margin-top: 0px !important;
-    margin-bottom: 40px !important;
-    font-size: 1.5rem !important;
-    height: 280px !important;
-    line-height: 30px !important;
-    display: flex;
-    align-items: start;
-    justify-content: space-evenly;
-}
-
-.side-item.active {
-    background: linear-gradient(135deg, #9D50BB, #00d4ff) !important;
-    color: white !important;
-    box-shadow: 0 4px 15px rgba(157, 80, 187, 0.5);
-}
-
-.side-item.active::after {
-    content: '';
-    position: absolute;
-    top: -4px;
-    right: -4px;
-    width: 12px;
-    height: 12px;
-    background: #00ff88;
-    border-radius: 50%;
-    border: 2px solid var(--bg-body);
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(0,255,136,0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(0,255,136,0); }
-    100% { box-shadow: 0 0 0 0 rgba(0,255,136,0); }
-}
-
-/* Parcel Size Section */
-.parcel-size-section {
-    margin: 40px 0;
-    padding: 30px;
-    background: rgba(157, 80, 187, 0.05);
-    border: 2px solid var(--border-color);
-    border-radius: 20px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-}
-
-.parcel-size-section h2 {
-    font-size: 1.6rem;
-    font-weight: 800;
-    margin-bottom: 10px;
-    background: linear-gradient(135deg, var(--accent-purple), #a370c6);
-    -webkit-text-fill-color: transparent;
-}
-
-.parcel-recommended {
-    display: inline-block;
-    background: var(--accent-purple);
-    color: white;
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    margin-bottom: 25px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 12px var(--accent-glow);
-}
-
-.parcel-options {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.parcel-card {
-    background: var(--bg-card);
-    border: 2px solid var(--border-color);
-    border-radius: 16px;
-    padding: 25px 20px;
-    transition: all 0.3s ease;
-    position: relative;
-    cursor: default !important;
-    overflow: hidden;
-    animation: parcelCardSlide 0.4s ease-out forwards;
-}
-
-.parcel-card:hover {
-    border-color: var(--accent-purple);
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px var(--accent-glow);
-}
-
-.parcel-card h3 {
-    font-size: 1.5em;
-    font-weight: 900;
-    color: var(--accent-purple);
-    margin-bottom: 12px;
-    text-shadow: 0 2px 8px rgba(157, 80, 187, 0.3);
-}
-
-.parcel-card p {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    line-height: 1.5;
-    margin: 0;
-}
-
-@keyframes parcelCardSlide {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
 
 /* =========================================
    MODAL + POLÍTICAS + CHECKBOX
