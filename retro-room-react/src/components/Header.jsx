@@ -144,7 +144,7 @@ export default function Header({ isLoggedIn, currentUser, theme, toggleTheme }) 
 
           {/* 3. FAVORITOS (TERCEIRO) */}
           <Link 
-            to="/favorites" 
+            to="/Wishlist" 
             className={`icon-btn ${location.pathname === '/favorites' ? 'active' : ''}`} 
             title="My Favorites"
           >
@@ -161,7 +161,7 @@ export default function Header({ isLoggedIn, currentUser, theme, toggleTheme }) 
           <Link to="#">GAMES</Link>
           <Link to="#">COLLECTIBLES</Link>
           <Link to="#">ARCADE</Link>
-          <Link to="/community">COMMUNITY</Link>
+          <Link to="/Wishlist">Wishlist</Link>
           <Link to="/blog">BLOG</Link>
         </div>
 

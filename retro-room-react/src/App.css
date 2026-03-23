@@ -724,7 +724,7 @@ input::-webkit-inner-spin-button {
     display: flex;
     align-items: start;
     justify-content: start;
-    gap: 8px;                    /* GAP PEQUENO */
+    gap: 10px;                    /* GAP PEQUENO */
     color: #666;
     font-size: 1.1rem;
 }
@@ -764,7 +764,7 @@ input::-webkit-inner-spin-button {
 
 .social-row {
     display: flex;
-    gap: 8px;                    /* GAP PEQUENO */
+    gap: 15px;                    /* GAP PEQUENO */
 }
 
 /* ==================== TODAS AS REDES SOCIAIS EM ROXO ==================== */
