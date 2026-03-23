@@ -338,46 +338,7 @@ input:checked + .slider:before { transform: translateX(14px); }
     width: calc(100% - 30px);
 }
 
-/* =========================================
-   9. BOTÃO PUBLICAR AGORA
-   ========================================= */
-.btn-primary {
-    background: linear-gradient(135deg, #9D50BB, #00d4ff);
-    color: white !important;
-    border: none;
-    padding: 16px 40px;
-    border-radius: 50px;
-    font-weight: 700;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none !important;
-    display: inline-block;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 8px 25px rgba(157,80,187,0.4);
-}
 
-.btn-primary:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 35px rgba(157,80,187,0.6);
-    background: linear-gradient(135deg, #00d4ff, #9D50BB);
-}
-
-/* =========================================
-   10. FOOTER
-   =================================
-
-.footer-container {
-    display: grid;
-    grid-template-columns: 1.5fr 2fr 1.5fr;
-}
-
-/* ... (adicione o resto do seu footer CSS aqui se quiser, mas já está no seu original) ... */
-
-/* =========================================
-   11. RESPONSIVIDADE (copie do seu original)
-   ========================================= */
 @media (max-width: 900px) {
     .footer-container {
         grid-template-columns: 1fr;
@@ -386,4 +347,9 @@ input:checked + .slider:before { transform: translateX(14px); }
     }
     .footer-nav { justify-content: center; gap: 40px; }
     .footer-end { align-items: center; }
+}
+
+@font-face {
+  font-family: 'Font Awesome 6 Free';
+  src: url('/fonts/fa-solid-900.woff2') format('woff2');
 }

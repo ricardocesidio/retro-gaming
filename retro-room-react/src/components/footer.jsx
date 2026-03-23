@@ -46,7 +46,7 @@ export default function Footer() {
             <div className="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" /></div>
             <div className="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" /></div>
             <div className="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg" alt="Amex" /></div>
-            <div className="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/1/11/PayPal_accept.svg" alt="PayPal" /></div>
+            <div className="pay-card"><img src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom.svg" alt="PayPal" /></div>
           </div>
 
           <p className="copyright">© 2026 My Retro Room. All rights reserved.</p>

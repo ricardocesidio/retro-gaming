@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../pages/messages.css'; 
 
-
 export default function Messages() {
   // --- STATES ---
   const [activeChatId, setActiveChatId] = useState(1);
@@ -12,20 +11,18 @@ export default function Messages() {
   const [showMenu, setShowMenu] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
-  
+
   const [blockedUsers, setBlockedUsers] = useState([]); 
   const [reportData, setReportData] = useState({ reason: '', description: '' });
-  
+
   const menuRef = useRef(null);
   const fileInputRef = useRef(null);
-
-  
 
   // --- FULL DATASET ---
   const [conversations, setConversations] = useState([
     {
       id: 1,
-      name: "@yantravelling",
+      name: "yantravelling",
       avatar: "https://i.pravatar.cc/150?img=11",
       lastMsg: "Final Fantasy still available?",
       time: "14:30",
@@ -43,19 +40,23 @@ export default function Messages() {
     },
     {
       id: 2,
-      name: "@anaretro",
+      name: "anaretro",
       avatar: "https://i.pravatar.cc/150?img=32",
       lastMsg: "The package arrived perfectly!",
       time: "Yesterday",
       unread: 0,
-      product: null,
+      product: {
+        name: "Gameboy Color Green",
+        price: "80€",
+        img: "https://via.placeholder.com/50"
+      },
       history: [{ type: 'received', content: "The package arrived perfectly!", time: "Yesterday" }]
     }
   ]);
 
-  
-
   // --- LOGIC ---
+
+  // fechar menu ao clicar fora
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -69,9 +70,22 @@ export default function Messages() {
   const activeChat = conversations.find(c => c.id === activeChatId);
   const isBlocked = blockedUsers.includes(activeChatId);
 
-  const isFormValid = reportData.reason !== '' && reportData.description.trim().length > 0;
+  // --- VALIDAÇÃO: mínimo 10 LETRAS (caracteres) ---
+const MIN_CHARS = 10;
 
-  
+const descriptionCharCount = reportData.description.trim().length;
+
+const isFormValid =
+  reportData.reason !== '' &&
+  descriptionCharCount >= MIN_CHARS;
+
+
+  // garantir @ no username
+  const formatUsername = (name) => {
+    if (!name) return "";
+    return name.startsWith('@') ? name : `@${name}`;
+  };
+
   // --- HANDLERS ---
   const handleDeleteChat = (id) => {
     const updated = conversations.filter(c => c.id !== id);
@@ -94,6 +108,7 @@ export default function Messages() {
 
   const submitReport = (e) => {
     e.preventDefault();
+    // só é chamado se isFormValid === true
     setShowReportModal(false);
     setShowSuccessToast(true);
     setReportData({ reason: '', description: '' });
@@ -104,7 +119,7 @@ export default function Messages() {
     const file = e.target.files[0];
     if (!file) return;
     if (!file.type.startsWith('image/') && !file.type.startsWith('video/')) {
-      alert("Só é permitido enviar imagem ou vídeo.");
+      alert("Only images or videos are allowed.");
       return;
     }
     setMediaFile(file);
@@ -120,13 +135,14 @@ export default function Messages() {
     const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
     let messageContent;
-    let lastMsgText = newMessage.trim() || "📷 Mídia enviada";
+    let lastMsgText = newMessage.trim() || "📷 Media sent";
 
     if (mediaFile) {
+      const url = URL.createObjectURL(mediaFile);
       messageContent = mediaFile.type.startsWith('image/') ? (
-        <img src={URL.createObjectURL(mediaFile)} alt="Enviada" style={{ maxWidth: '100%', borderRadius: '12px' }} />
+        <img src={url} alt="Sent" style={{ maxWidth: '100%', borderRadius: '12px' }} />
       ) : (
-        <video src={URL.createObjectURL(mediaFile)} controls style={{ maxWidth: '100%', borderRadius: '12px' }} />
+        <video src={url} controls style={{ maxWidth: '100%', borderRadius: '12px' }} />
       );
     } else {
       messageContent = newMessage;
@@ -164,10 +180,15 @@ export default function Messages() {
                   className={`chat-item ${activeChatId === chat.id ? 'active' : ''}`}
                   onClick={() => { setActiveChatId(chat.id); setShowMenu(false); }}
                 >
-                  <img src={chat.avatar} className="chat-avatar" alt={chat.name} />
+                  <img
+                    src={chat.avatar}
+                    className="chat-avatar"
+                    alt={chat.name}
+                    style={{ width: '45px', height: '45px', borderRadius: '50%', objectFit: 'cover' }}
+                  />
                   <div className="chat-preview">
                     <h4 className="chat-name">
-                      {chat.name} {blockedUsers.includes(chat.id) && <span className="blocked-tag">🚫</span>}
+                      {formatUsername(chat.name)} {blockedUsers.includes(chat.id) && <span className="blocked-tag">🚫</span>}
                     </h4>
                     <p className="chat-snippet">{chat.lastMsg}</p>
                   </div>
@@ -181,17 +202,23 @@ export default function Messages() {
             {activeChat ? (
               <>
                 <div className="chat-window-header">
-                  {activeChat.product ? (
-                    <div className="chat-product-info">
-                      <img src={activeChat.product.img} className="chat-product-img" alt="Product" />
-                      <div className="chat-product-details">
-                        <h3>{activeChat.product.name}</h3>
-                        <p>{activeChat.product.price}</p>
-                      </div>
+                  {/* FOTO E USERNAME LADO A LADO */}
+                  <div className="header-user-row" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <img
+                      src={activeChat.avatar}
+                      alt="User"
+                      style={{ width: '45px', height: '45px', borderRadius: '50%', objectFit: 'cover' }}
+                    />
+                    <div className="header-info-column">
+                      <h3 style={{ margin: 0, fontSize: '1.1rem' }}>{formatUsername(activeChat.name)}</h3>
+                      <p
+                        className="article-header-title"
+                        style={{ color: '#9D50BB', fontWeight: 'bold', fontSize: '12px', marginTop: '2px' }}
+                      >
+                        ITEM: "{activeChat.product?.name.toUpperCase()}"
+                      </p>
                     </div>
-                  ) : (
-                    <div className="chat-product-info"><h3>{activeChat.name}</h3></div>
-                  )}
+                  </div>
 
                   <div className="info-menu-container" ref={menuRef}>
                     <button className="info-trigger-btn" onClick={() => setShowMenu(!showMenu)}>
@@ -200,19 +227,25 @@ export default function Messages() {
 
                     {showMenu && (
                       <div className="info-dropdown-box">
-                        <button className="drop-item" onClick={() => { setShowMenu(false); setShowReportModal(true); }}>
+                        <button
+                          className="drop-item"
+                          onClick={() => {
+                            setShowMenu(false);
+                            setShowReportModal(true);
+                          }}
+                        >
                           <i className="fa-solid fa-flag"></i> Report User
                         </button>
 
-                        {isBlocked ? (
-                          <button className="drop-item" onClick={() => handleUnblockUser(activeChat.id)}>
-                            <i className="fa-solid fa-unlock"></i> Unblock User
-                          </button>
-                        ) : (
-                          <button className="drop-item" onClick={() => handleBlockUser(activeChat.id)}>
-                            <i className="fa-solid fa-ban"></i> Block User
-                          </button>
-                        )}
+                          {isBlocked ? (
+                            <button className="drop-item" onClick={() => handleUnblockUser(activeChat.id)}>
+                              <i className="fa-solid fa-unlock"></i> Unblock User
+                            </button>
+                          ) : (
+                            <button className="drop-item" onClick={() => handleBlockUser(activeChat.id)}>
+                              <i className="fa-solid fa-ban"></i> Block User
+                            </button>
+                          )}
 
                         <div className="drop-divider"></div>
                         <button className="drop-item delete-text" onClick={() => handleDeleteChat(activeChat.id)}>
@@ -240,15 +273,19 @@ export default function Messages() {
                 ) : (
                   <>
                     <form className="chat-input-area" onSubmit={handleSendMessage}>
-                      <input 
-                        type="text" 
-                        className="chat-input" 
-                        placeholder="Type a message..." 
+                      <input
+                        type="text"
+                        className="chat-input"
+                        placeholder="Type a message..."
                         value={newMessage}
                         onChange={(e) => setNewMessage(e.target.value)}
                       />
 
-                      <button type="button" className="btn-media" onClick={() => fileInputRef.current?.click()}>
+                      <button
+                        type="button"
+                        className="btn-media"
+                        onClick={() => fileInputRef.current?.click()}
+                      >
                         <i className="fa-solid fa-camera"></i>
                       </button>
 
@@ -272,7 +309,13 @@ export default function Messages() {
                         ) : (
                           <video src={selectedMedia} controls className="preview-media" />
                         )}
-                        <button className="remove-media-btn" onClick={() => { setSelectedMedia(null); setMediaFile(null); }}>
+                        <button
+                          className="remove-media-btn"
+                          onClick={() => {
+                            setSelectedMedia(null);
+                            setMediaFile(null);
+                          }}
+                        >
                           ×
                         </button>
                       </div>
@@ -295,18 +338,18 @@ export default function Messages() {
         <div className="modal-overlay">
           <div className="report-modal">
             <div className="modal-header">
-              <h3>Report {activeChat?.name}</h3>
+              <h3>Report {formatUsername(activeChat?.name)}</h3>
               <button className="close-modal" onClick={() => setShowReportModal(false)}>
                 <i className="fa-solid fa-xmark"></i>
               </button>
             </div>
             <form onSubmit={submitReport}>
               <label className="report-label">Reason for reporting:</label>
-              <select 
-                required 
+              <select
+                required
                 className="report-select"
                 value={reportData.reason}
-                onChange={(e) => setReportData({...reportData, reason: e.target.value})}
+                onChange={(e) => setReportData({ ...reportData, reason: e.target.value })}
               >
                 <option value="">Select a reason...</option>
                 <option value="harassment">Harassment</option>
@@ -316,31 +359,55 @@ export default function Messages() {
                 <option value="other">Other</option>
               </select>
 
-              <h2 className="report-h2-instruction">MINIMUM 10 LINES DESCRIPTION</h2>
+              <h2
+                className="report-h2-instruction"
+                style={{ color: '#ff4b4b', fontSize: '14px', margin: '15px 0' }}
+              >
+                MINIMUM 10 CHARACTERS DESCRIPTION
 
-              <textarea 
-                required 
-                rows="10" 
-                className="report-textarea" 
+              </h2>
+
+              <textarea
+                required
+                rows="10"
+                className="report-textarea"
                 placeholder="Describe the incident in detail..."
                 value={reportData.description}
-                onChange={(e) => setReportData({...reportData, description: e.target.value})}
+                onChange={(e) => setReportData({ ...reportData, description: e.target.value })}
               ></textarea>
 
+              <p
+  style={{
+    fontSize: '12px',
+    marginTop: '4px',
+    color: descriptionCharCount < MIN_CHARS ? '#ff4b4b' : '#4ade80'
+  }}
+>
+  {descriptionCharCount} / {MIN_CHARS} characters
+</p>
+
+
               <div className="modal-actions">
-                <button type="button" className="btn-cancel" onClick={() => setShowReportModal(false)}>Cancel</button>
-                <button 
-                  type="submit" 
-                  className="btn-submit-report" 
-                  disabled={!isFormValid}
-                  style={{ 
-                    background: isFormValid ? '#ff4b4b' : '#333', 
-                    cursor: isFormValid ? 'pointer' : 'not-allowed',
-                    opacity: isFormValid ? 1 : 0.6
-                  }}
+                <button
+                  type="button"
+                  className="btn-cancel"
+                  onClick={() => setShowReportModal(false)}
                 >
-                  Submit Report
+                  Cancel
                 </button>
+                <button
+  type="submit"
+  className="btn-submit-report"
+  disabled={!isFormValid}
+  style={{
+    background: isFormValid ? '#ff4b4b' : '#333',
+    cursor: isFormValid ? 'pointer' : 'not-allowed',
+    opacity: isFormValid ? 1 : 0.6
+  }}
+>
+  Submit Report
+</button>
+
               </div>
             </form>
           </div>
@@ -349,11 +416,31 @@ export default function Messages() {
 
       {/* SUCCESS TOAST */}
       {showSuccessToast && (
-        <div className="success-toast">
-          <div className="toast-icon"><i className="fa-solid fa-circle-check"></i></div>
+        <div
+          className="success-toast"
+          style={{
+            position: 'fixed',
+            bottom: '20px',
+            right: '20px',
+            background: '#22c55e',
+            color: 'white',
+            padding: '12px 18px',
+            borderRadius: '8px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px',
+            zIndex: 9999,
+            boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+          }}
+        >
+          <div className="toast-icon">
+            <i className="fa-solid fa-circle-check"></i>
+          </div>
           <div className="toast-content">
-            <h4>Report Submitted</h4>
-            <p>Thank you for reporting. Our team will investigate.</p>
+            <h4 style={{ margin: 0, fontSize: '14px' }}>Report Submitted</h4>
+            <p style={{ margin: 0, fontSize: '12px' }}>
+              Thank you for reporting. Our team will investigate.
+            </p>
           </div>
         </div>
       )}

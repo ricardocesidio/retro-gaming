@@ -44,9 +44,6 @@ export default function Home() {
           <p>Loading products... (fetch soon)</p>
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: '30px' }}>
-          <Link to="/sell" className="btn-primary">Post Now</Link>
-        </div>
       </main>
     </>
   );

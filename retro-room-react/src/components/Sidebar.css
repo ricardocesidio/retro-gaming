@@ -111,3 +111,8 @@
         padding-bottom: 80px; 
     }
 }
+
+@font-face {
+  font-family: 'Font Awesome 6 Free';
+  src: url('/fonts/fa-solid-900.woff2') format('woff2');
+}

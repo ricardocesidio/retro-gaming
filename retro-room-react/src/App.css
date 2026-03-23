@@ -220,7 +220,7 @@ main {
 }
 
 .nav-links a:hover {
-    color: var(--accent-purple);
+    color: yellow
 }
 
 /* =========================================
@@ -752,7 +752,7 @@ input::-webkit-inner-spin-button {
 }
 
 .nav-col a:hover {
-    color: var(--accent-purple);
+    color: yellow;
 }
 
 .footer-end {
@@ -778,7 +778,7 @@ input::-webkit-inner-spin-button {
 
 .brand-socials a:hover,
 .social-row a:hover {
-    color: #bc13fe !important;               /* Roxo neon mais vivo no hover */
+    color: yellow !important;               /* Roxo neon mais vivo no hover */
     transform: translateY(-3px) scale(1.15);
     filter: drop-shadow(0 0 8px var(--accent-purple));
 }
@@ -809,6 +809,7 @@ input::-webkit-inner-spin-button {
     max-height: 14px;
     width: auto;
 }
+
 
 .copyright {
     color: #444;
@@ -1265,4 +1266,9 @@ input::-webkit-inner-spin-button {
     .main-content { margin-left: 60px !important; }
     .form-split-layout { flex-direction: column; }
     .parcel-options { grid-template-columns: 1fr; }
+}
+
+@font-face {
+  font-family: 'Font Awesome 6 Free';
+  src: url('/fonts/fa-solid-900.woff2') format('woff2');
 }

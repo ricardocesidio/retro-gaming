@@ -39,7 +39,7 @@ body.messages-page {
    2. SIDEBAR DO CHAT (LISTA DE CONTACTOS)
    ========================================= */
 .inbox-sidebar {
-    width: 340px;
+    width: 330px;
     background: #1a1a1a;
     display: flex;
     flex-direction: column;
@@ -48,7 +48,7 @@ body.messages-page {
 }
 
 .inbox-header {
-    padding: 20px 16px;
+    padding: 26px 16px;
     border-bottom: 1px solid #333;
     color: white;
     box-sizing: border-box;

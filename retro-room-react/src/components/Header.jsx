@@ -155,7 +155,7 @@ export default function Header({ isLoggedIn, currentUser, theme, toggleTheme }) 
 
       <nav className="category-bar">
         <div className="nav-links">
-          <Link to="#">MARKET</Link>
+          <Link to="./Home">MARKET</Link>
           <Link to="/sell">SELL</Link>
           <Link to="#">CONSOLES</Link>
           <Link to="#">GAMES</Link>

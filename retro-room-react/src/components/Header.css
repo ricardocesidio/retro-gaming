@@ -176,6 +176,17 @@
   overflow: hidden;
 }
 
+.nav-menu a {
+  color: #eee;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav-menu a:hover {
+  color: #FFD700;
+}
+
+
 @keyframes slideDown {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -198,6 +209,7 @@
   background: #050505; transition: 0.3s;
 }
 .read-all-link:hover { background: #9d50bb; color: white; }
+
 
 /* Rotação da seta do perfil */
 .arrow-id.rotate { transform: rotate(180deg); transition: 0.3s; }
@@ -294,4 +306,10 @@
     padding: 2px 5px;
     border-radius: 50%;
     
+}
+
+
+@font-face {
+  font-family: 'Font Awesome 6 Free';
+  src: url('/fonts/fa-solid-900.woff2') format('woff2');
 }
