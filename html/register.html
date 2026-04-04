@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join the Vault | My Retro Room</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../style/style.css">
+    
+    <style>
+        .login-card { max-width: 480px; margin: 20px auto; padding: 30px; }
+
+        /* Guidelines Box Styling */
+        .rules-container {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            height: 120px;
+            overflow-y: scroll;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        .rules-container::-webkit-scrollbar { width: 5px; }
+        .rules-container::-webkit-scrollbar-thumb { background: var(--accent-purple); border-radius: 10px; }
+
+        .rules-container h4 { color: var(--accent-purple); margin-bottom: 10px; text-transform: uppercase; font-size: 0.85rem; }
+
+        /* Large and Responsive Accept Button */
+        .custom-accept-box {
+            display: flex;
+            align-items: center;
+            background: rgba(157, 80, 187, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-bottom: 25px;
+        }
+
+        .custom-accept-box:hover { border-color: var(--accent-purple); background: rgba(157, 80, 187, 0.1); }
+
+        .custom-accept-box input {
+            width: 22px;
+            height: 22px;
+            accent-color: var(--accent-purple);
+            cursor: pointer;
+        }
+
+        .accept-text { margin-left: 15px; font-size: 0.85rem; font-weight: 500; }
+
+        /* Success Message (Hidden by default) */
+        #success-state {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        #success-state i { font-size: 4rem; color: #00e676; margin-bottom: 20px; filter: drop-shadow(0 0 10px rgba(0, 230, 118, 0.5)); }
+        #success-state h2 { color: #fff; margin-bottom: 15px; }
+        #success-state p { color: var(--text-muted); line-height: 1.6; }
+        .email-highlight { color: var(--accent-purple); font-weight: bold; }
+
+        /* Password Utilities */
+        .password-container { position: relative; width: 100%; }
+        .toggle-password { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: var(--text-muted); }
+        .strength-meter { height: 4px; background: #252525; border-radius: 2px; margin-top: 10px; }
+        .strength-bar { height: 100%; width: 0%; transition: 0.3s ease; }
+        .strength-text { font-size: 0.7rem; margin-top: 5px; text-align: right; }
+        .input-valid { border-color: #00e676 !important; }
+        .input-invalid { border-color: #ff4444 !important; }
+        .feedback-msg { font-size: 0.75rem; color: #ff4444; display: none; margin-top: 5px; }
+        .feedback-msg.error { display: block; }
+    </style>
+</head>
+<body>
+
+    <div class="login-wrapper">
+        <div class="login-card" id="form-state">
+            <h2>NEW COLLECTOR</h2>
+            <p>Join the most exclusive geek vault</p>
+
+            <form class="login-form" id="registerForm" novalidate>
+                <div class="form-group">
+                    <label><i class="fa-solid fa-at"></i> Username</label>
+                    <input type="text" id="regUser" placeholder="Min. 7 characters" required autocomplete="off">
+                    <div id="userFeedback" class="feedback-msg">Minimum of 7 characters and no spaces.</div>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fa-solid fa-envelope"></i> Email</label>
+                    <input type="email" id="regEmail" placeholder="your@email.com" required>
+                    <div id="emailFeedback" class="feedback-msg">Enter a valid email address.</div>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fa-solid fa-lock"></i> Password</label>
+                    <div class="password-container">
+                        <input type="password" id="regPass" placeholder="Min. 10 characters" required>
+                        <i class="fa-solid fa-eye toggle-password" onclick="toggleVisibility('regPass', this)"></i>
+                    </div>
+                    <div class="strength-meter"><div class="strength-bar" id="strengthBar"></div></div>
+                    <div id="strengthText" class="strength-text">Password too short</div>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fa-solid fa-shield-halved"></i> Confirm Password</label>
+                    <div class="password-container">
+                        <input type="password" id="regConfirm" placeholder="Repeat your password" required>
+                        <i class="fa-solid fa-eye toggle-password" onclick="toggleVisibility('regConfirm', this)"></i>
+                    </div>
+                    <div id="confirmFeedback" class="feedback-msg">Passwords do not match.</div>
+                </div>
+
+                <div class="rules-container">
+                    <h4>Community Guidelines</h4>
+                    1. <b>Anti-Fake Policy:</b> Fake profiles or bots will be permanently banned. <br>
+                    2. <b>Fair Trade:</b> Item descriptions must be 100% accurate.<br>
+                    3. <b>Respect:</b> Harassment or toxicity is not allowed in the "Room".<br>
+                    4. <b>Security:</b> Never share your password or payment data outside the platform.<br>
+                    5. <b>Originality:</b> Counterfeit items must be mandatory flagged.
+                </div>
+
+                <label class="custom-accept-box" for="regTerms">
+                    <input type="checkbox" id="regTerms" required>
+                    <span class="accept-text">I have read and I accept the Community Guidelines and Privacy Policy.</span>
+                </label>
+
+                <button type="submit" class="btn-login-submit" id="btnSubmit" disabled style="opacity: 0.5; cursor: not-allowed;">CREATE ACCOUNT</button>
+            </form>
+
+            <div class="login-footer-links">
+                Already a collector? <a href="login.html">Access Vault</a>
+            </div>
+        </div>
+
+        <div class="login-card" id="success-state">
+            <i class="fa-solid fa-envelope-circle-check"></i>
+            <h2>WELCOME TO THE ROOM!</h2>
+            <p>Your profile was successfully created, <span id="display-user" class="email-highlight">Collector</span>.</p>
+            <p>We sent an activation link to your email. Please check your inbox (and spam) to <b>activate your account</b> and start trading.</p>
+            <br>
+            <button class="btn-login-submit" onclick="window.location.href='login.html'">GO TO LOGIN</button>
+        </div>
+    </div>
+
+    <script>
+        const regUser = document.getElementById('regUser');
+        const regEmail = document.getElementById('regEmail');
+        const regPass = document.getElementById('regPass');
+        const regConfirm = document.getElementById('regConfirm');
+        const regTerms = document.getElementById('regTerms');
+        const btnSubmit = document.getElementById('btnSubmit');
+        const strengthBar = document.getElementById('strengthBar');
+        const strengthText = document.getElementById('strengthText');
+
+        function toggleVisibility(inputId, icon) {
+            const input = document.getElementById(inputId);
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.replace("fa-eye", "fa-eye-slash");
+            } else {
+                input.type = "password";
+                icon.classList.replace("fa-eye-slash", "fa-eye");
+            }
+        }
+
+        function checkFormValidity() {
+            const isUserValid = regUser.value.length >= 7 && !regUser.value.includes(' ');
+            const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(regEmail.value);
+            const isPassValid = regPass.value.length >= 10;
+            const isConfirmValid = regConfirm.value.length > 0 && regConfirm.value === regPass.value;
+            const isTermsAccepted = regTerms.checked;
+
+            if (isUserValid && isEmailValid && isPassValid && isConfirmValid && isTermsAccepted) {
+                btnSubmit.disabled = false;
+                btnSubmit.style.opacity = '1';
+                btnSubmit.style.cursor = 'pointer';
+            } else {
+                btnSubmit.disabled = true;
+                btnSubmit.style.opacity = '0.5';
+                btnSubmit.style.cursor = 'not-allowed';
+            }
+        }
+
+        // Input Events
+        regUser.addEventListener('input', () => {
+            const isValid = regUser.value.length >= 7 && !regUser.value.includes(' ');
+            regUser.className = regUser.value.length === 0 ? '' : (isValid ? 'input-valid' : 'input-invalid');
+            document.getElementById('userFeedback').classList.toggle('error', regUser.value.length > 0 && !isValid);
+            checkFormValidity();
+        });
+
+        regEmail.addEventListener('input', () => {
+            const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(regEmail.value);
+            regEmail.className = regEmail.value.length === 0 ? '' : (isValid ? 'input-valid' : 'input-invalid');
+            document.getElementById('emailFeedback').classList.toggle('error', regEmail.value.length > 0 && !isValid);
+            checkFormValidity();
+        });
+
+        regPass.addEventListener('input', () => {
+            const val = regPass.value;
+            let strength = 0;
+            if (val.length >= 10) strength = 1;
+            if (val.length >= 10 && /[A-Z]/.test(val) && /[0-9]/.test(val)) strength = 2;
+            if (val.length >= 10 && strength === 2 && /[^A-Za-z0-9]/.test(val)) strength = 3;
+
+            if (val.length === 0) {
+                strengthBar.style.width = '0%';
+                strengthText.innerText = 'Password too short';
+                regPass.className = '';
+            } else if (val.length < 10) {
+                strengthBar.style.width = '30%'; strengthBar.style.background = '#ff4444';
+                strengthText.innerText = 'Weak (Min. 10)';
+                regPass.className = 'input-invalid';
+            } else {
+                regPass.className = 'input-valid';
+                if (strength === 1) { strengthBar.style.width = '50%'; strengthBar.style.background = '#ffcc00'; strengthText.innerText = 'Fair'; }
+                else if (strength === 2) { strengthBar.style.width = '75%'; strengthBar.style.background = '#00e676'; strengthText.innerText = 'Strong'; }
+                else { strengthBar.style.width = '100%'; strengthBar.style.background = '#9d50bb'; strengthText.innerText = 'Legendary'; }
+            }
+            regConfirm.dispatchEvent(new Event('input'));
+            checkFormValidity();
+        });
+
+        regConfirm.addEventListener('input', () => {
+            const isValid = regConfirm.value.length > 0 && regConfirm.value === regPass.value;
+            regConfirm.className = regConfirm.value.length === 0 ? '' : (isValid ? 'input-valid' : 'input-invalid');
+            document.getElementById('confirmFeedback').classList.toggle('error', regConfirm.value.length > 0 && !isValid);
+            checkFormValidity();
+        });
+
+        regTerms.addEventListener('change', checkFormValidity);
+
+        // Submission Logic with State Switch
+        document.getElementById('registerForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // Criamos um objeto com os dados do novo colecionador
+    const userData = {
+        username: regUser.value,
+        email: regEmail.value,
+        password: regPass.value // Em um sistema real, isso seria criptografado
+    };
+
+    // Salvamos no navegador (convertendo o objeto para texto JSON)
+    localStorage.setItem('registeredUser', JSON.stringify(userData));
+
+    // Exibe a mensagem de sucesso que já criamos
+    document.getElementById('display-user').innerText = regUser.value;
+    document.getElementById('form-state').style.display = 'none';
+    document.getElementById('success-state').style.display = 'block';
+});
+    </script>
+</body>
+</html>

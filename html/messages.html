@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Messages | My Retro Room</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../style/style.css">
+<link rel="stylesheet" href="../style/messages.css">
+
+</head>
+
+<body class="messages-page">
+
+<header>
+
+<div class="header-main">
+
+<div class="logo">
+<a href="index.html">
+<img src="../images/logo-removebg-preview.png" class="logopic">
+</a>
+</div>
+
+<div class="user-menu">
+
+<a href="../html/login.html">
+<button class="btn-login-header">LOGIN</button>
+</a>
+
+<a href="messages.html" class="icon-btn">
+<i class="fa-solid fa-message"></i>
+</a>
+
+<a href="notifications.html" class="icon-btn">
+<i class="fa-solid fa-bell"></i>
+</a>
+
+<a href="cart.html" class="icon-btn">
+<i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+</div>
+
+</div>
+
+<nav class="category-bar">
+
+<div class="nav-links">
+ <a href="../index.html">MARKET</a>
+                <a href="../html/sell.html">SELL</a>
+                <a href="#">CONSOLES</a>
+                <a href="#">GAMES</a>
+                <a href="#">COLLECTIBLES</a>
+                <a href="#">ARCADE</a>
+                <a href="#">COMMUNITY</a>
+                <a href="#">BLOG</a>
+                <a href="#">AUCTION</a>
+</div>
+
+</nav>
+
+</header>
+
+
+<!-- SIDEBAR -->
+
+ <aside class="sidebar">
+    <a href="../html/index.html" class="side-item" title="Home">
+        <i class="fas fa-home"></i>
+    </a>
+    <a href="../html/sell.html" class="side-item" title="Vender">
+        <i class="fa-solid fa-plus"></i>
+    </a>
+    <a href="../html/profile.html" class="side-item" title="Perfil">
+        <i class="fa-solid fa-user"></i>
+    </a>
+
+    <!-- ANTES: class="icon-btn" id="notifBtn" -->
+    <a href="../html/notifications.html" class="side-item" title="Notificações">
+        <i class="fa-solid fa-bell"></i>
+    </a>
+
+    <a href="../html/messages.html" class="side-item" title="Mensagens">
+        <i class="fa-solid fa-message"></i>
+    </a>
+    <a href="../html/orders.html" class="side-item" title="Pedidos">
+        <i class="fa-solid fa-receipt"></i>
+    </a>
+
+    
+</aside>
+
+
+
+<main class="main-content">
+
+<div class="messages-wrapper">
+
+<!-- LISTA DE CONVERSAS -->
+
+<div class="inbox-sidebar">
+
+<div class="inbox-header">
+<h2>Inbox</h2>
+</div>
+
+<div class="conversation-list">
+
+
+<div class="chat-item active">
+
+<img src="https://i.pravatar.cc/150?img=11" class="chat-avatar">
+
+<div class="chat-preview">
+
+<h4 class="chat-name">Miguel Silva</h4>
+
+<p class="chat-snippet">
+Ainda tens o Gameboy disponível?
+</p>
+
+</div>
+
+<div class="chat-meta">
+
+<span>14:30</span>
+
+<span class="unread-badge">1</span>
+
+</div>
+
+</div>
+
+
+<div class="chat-item">
+
+<img src="https://i.pravatar.cc/150?img=32" class="chat-avatar">
+
+<div class="chat-preview">
+
+<h4 class="chat-name">Ana Retro</h4>
+
+<p class="chat-snippet">
+A encomenda chegou perfeita!
+</p>
+
+</div>
+
+<div class="chat-meta">
+<span>Ontem</span>
+</div>
+
+</div>
+
+
+<div class="chat-item">
+
+<img src="https://i.pravatar.cc/150?img=68" class="chat-avatar">
+
+<div class="chat-preview">
+
+<h4 class="chat-name">João Gamer</h4>
+
+<p class="chat-snippet">
+Aceitas 35€ pelo Mario 64?
+</p>
+
+</div>
+
+<div class="chat-meta">
+<span>2 Mar</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- CHAT -->
+
+<div class="chat-window">
+
+<div class="chat-window-header">
+
+<div class="chat-product-info">
+
+<img src="https://m.media-amazon.com/images/I/81s7-YfS9EL._SL1500_.jpg" class="chat-product-img">
+
+<div class="chat-product-details">
+
+<h3>GameBoy Color - Berry</h3>
+
+<p>85€</p>
+
+</div>
+
+</div>
+
+<div class="chat-menu">
+
+<i class="fa-solid fa-circle-info info-button"></i>
+
+<div class="chat-dropdown">
+
+<div class="chat-option">⚠️ Report User</div>
+
+<div class="chat-option">🚫 Block User</div>
+
+<div class="chat-option">🗑 Delete Chat</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="chat-history">
+
+<div class="message-bubble message-received">
+Olá! O ecrã tem riscos?
+<span class="msg-time">14:10</span>
+</div>
+
+<div class="message-bubble message-sent">
+Está impecável! lente nova.
+<span class="msg-time">14:15</span>
+</div>
+
+<div class="message-bubble message-received">
+Envias por MBWay?
+<span class="msg-time">14:20</span>
+</div>
+
+</div>
+
+
+
+<div class="chat-input-area">
+
+<i class="fa-solid fa-camera camera-btn"></i>
+
+<input type="file" accept="image/*" hidden>
+
+<input type="text" class="chat-input" placeholder="Escreve uma mensagem...">
+
+<button class="btn-send">
+<i class="fa-solid fa-paper-plane"></i>
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+
+ <footer class="main-footer">
+            <div class="footer-container">
+                <div class="footer-brand">
+                    <h2 class="footer-logo">MY RETRO ROOM</h2>
+                    <p class="footer-subtext">O maior marketplace de retro gaming da Europa</p>
+                    <div class="brand-socials">
+                        <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="#" title="Twitch"><i class="fab fa-twitch"></i></a>
+                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-nav">
+                    <div class="nav-col">
+                        <h4>Comprar</h4>
+                        <a href="#">Consoles</a>
+                        <a href="#">Jogos</a>
+                        <a href="#">Arcade</a>
+                        <a href="#">Acessórios</a>
+                    </div>
+                    <div class="nav-col">
+                        <h4>Vender</h4>
+                        <a href="../html/sell.html">Publicar Anúncio</a>
+                        <a href="#">Taxas</a>
+                        <a href="#">Envios</a>
+                        <a href="#">Segurança</a>
+                    </div>
+                </div>
+                
+                <div class="footer-end">
+                    <div class="social-row">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    
+                    <div class="payment-row">
+                        <div class="pay-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="Apple Pay" loading="lazy">
+                        </div>
+                        <div class="pay-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" loading="lazy">
+                        </div>
+                        <div class="pay-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" loading="lazy">
+                        </div>
+                        <div class="pay-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg" alt="Amex" loading="lazy">
+                        </div>
+                        <div class="pay-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/PayPal_accept.svg" alt="PayPal" loading="lazy">
+                        </div>
+                    </div>
+                    
+                    <p class="copyright">
+                        © 2026 My Retro Room. Todos os direitos reservados. 
+                        <a href="#" style="color: #888;">Termos de Uso</a> | 
+                        <a href="#" style="color: #888;">Privacidade</a> | 
+                        <a href="#" style="color: #888;">Cookies</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+<script src="../javascript/script.js"></script>
+
+</body>
+</html>

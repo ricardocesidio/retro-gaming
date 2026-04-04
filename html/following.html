@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quem eu sigo | My Retro Room</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+
+    <!-- ==================== HEADER (EXATAMENTE IGUAL AO INDEX) ==================== -->
+    <header>
+        <div class="header-main">
+            <div class="logo">
+                <a href="../index.html"><img src="../images/logo-removebg-preview.png" class="logopic" alt="My Retro Room"></a>
+            </div>
+            
+            <div class="user-menu">
+                <button class="btn-login-header" id="loginBtn">LOGIN</button>
+
+                <div class="profile-container" id="userProfile" style="display: none;">
+                    <div class="profile-chip" id="profileTrigger">
+                        <img src="../images/profilepic.jpg" class="avatar" alt="User">
+                        <span id="userName">Ricardo C.</span>
+                        <i class="fa-solid fa-chevron-down arrow-id"></i>
+                    </div>
+
+                    <ul class="dropdown-menu" id="profileDropdown">
+                        <li><a href="../html/profile.html"><i class="fa-solid fa-user-ninja"></i> Profile</a></li>
+                        <li><a href="#"><i class="fa-solid fa-gears"></i> Settings</a></li>
+                        <li><a href="#"><i class="fa-solid fa-user-plus"></i> Invite a Friends</a></li>
+                        <li><a href="../html/messages.html"><i class="fa-solid fa-message"></i> Messages</a></li>
+                        <li><a href="#"><i class="fa-solid fa-khanda"></i> My Orders</a></li>
+                        <li><a href="#"><i class="fa-solid fa-gem"></i> Donations</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#" class="logout" id="logoutBtn"><i class="fa-solid fa-power-off"></i> Log Out</a></li>
+                    </ul>
+                </div>
+
+                <span class="icon-btn"><i class="fa-solid fa-bell"></i></span>
+                <span class="icon-btn"><i class="fa-solid fa-cart-shopping"></i></span>
+            </div>
+        </div>
+
+        <nav class="category-bar">
+            <div class="nav-links">
+                <a href="../index.html">MARKET</a>
+                <a href="../html/sell.html">SELL</a>
+                <a href="#">CONSOLES</a>
+                <a href="#">GAMES</a>
+                <a href="#">COLLECTIBLES</a>
+                <a href="#">ARCADE</a>
+                <a href="#">COMMUNITY</a>
+                <a href="#">BLOG</a>
+                <a href="#">AUCTION</a>
+            </div>
+            <div class="theme-switch-container">
+                <span>LIGHT MODE / DARK MODE</span>
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </nav>
+    </header>
+
+   <aside class="sidebar">
+        <a href="../html/index.html" class="side-item"><i class="fas fa-home"></i></a>
+        <a href="../html/sell.html" class="side-item"><i class="fa-solid fa-plus"></i></a>   <!-- corrigido -->
+        <a href="../html/profile.html" class="side-item"><i class="fa-solid fa-user"></i></a>
+    </aside>
+
+    <div class="main-content">
+        <div style="max-width: 1200px; margin: 40px auto; padding: 0 5%;">
+            <a href="../html/profile.html" style="color: var(--text-muted); text-decoration: none; margin-bottom: 30px; display: inline-block; font-size: 1.1rem;">
+                <i class="fa-solid fa-arrow-left"></i> Voltar ao Perfil
+            </a>
+
+            <h1 style="margin-bottom: 30px; font-size: 2.2rem;">Pessoas que eu sigo</h1>
+
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <!-- Exemplo de pessoa seguida -->
+                <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px; display: flex; align-items: center; gap: 16px;">
+                    <img src="../images/profilepic.jpg" alt="Avatar" style="width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--accent-purple);">
+                    <div style="flex: 1;">
+                        <strong style="font-size: 1.2rem;">Pedro Arcade</strong>
+                        <p style="color: var(--text-muted); margin: 4px 0;">Você segue desde 15/02/2026</p>
+                    </div>
+                    <button class="btn-primary" style="padding: 8px 16px; font-size: 0.9rem;">Ver Perfil</button>
+                </div>
+
+                <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px; display: flex; align-items: center; gap: 16px;">
+                    <img src="../images/profilepic.jpg" alt="Avatar" style="width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--accent-purple);">
+                    <div style="flex: 1;">
+                        <strong style="font-size: 1.2rem;">Ana Pixel</strong>
+                        <p style="color: var(--text-muted); margin: 4px 0;">Você segue desde 03/01/2026</p>
+                    </div>
+                    <button class="btn-primary" style="padding: 8px 16px; font-size: 0.9rem;">Ver Perfil</button>
+                </div>
+
+                <!-- Adicione mais conforme precisar -->
+            </div>
+
+            <p style="text-align: center; margin-top: 40px; color: var(--text-muted);">Você segue 850 pessoas no total.</p>
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 30px;">
+                <a href="../html/sell.html" class="btn-primary" style="padding: 15px 30px; text-decoration: none; display: inline-block;">Publicar Agora</a>   <!-- corrigido -->
+            </div>
+        </main>
+
+        <footer class="main-footer">
+            <div class="footer-container">
+                <div class="footer-brand">
+                    <h2 class="footer-logo">MY RETRO ROOM</h2>
+                    <p class="footer-subtext">My Retro Room</p>
+                    <div class="brand-socials">
+                        <i class="fab fa-discord"></i>
+                        <i class="fab fa-twitch"></i>
+                    </div>
+                </div>
+
+                <div class="footer-nav">
+                    <div class="nav-col">
+                        <a href="#">Buy</a>
+                        <a href="../html/sell.html">Sell</a>   <!-- corrigido -->
+                        <a href="#">Consoles</a>
+                        <a href="#">Games</a>
+                    </div>
+                    <div class="nav-col">
+                        <a href="#">Links</a>
+                        <a href="#">Consoles</a>
+                        <a href="#">Arcade</a>
+                        <a href="#">Community</a>
+                    </div>
+                </div>
+
+                <div class="footer-end">
+                    <div class="social-row">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    
+                    <div class="payment-row">
+                        <div class="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="Apple Pay"></div>
+                        <div class="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa"></div>
+                        <div class="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"></div>
+                        <div class="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg" alt="Amex"></div>
+                    </div>
+                    <p class="copyright">Copyright © 2026</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+
+    <script src="../javascript/script.js"></script>
+</body>
+</html>

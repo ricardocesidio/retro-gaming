@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile | My Retro Room</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/profile.css">
+    
+</head>
+<body>
+
+    <header>
+        <div class="header-main">
+            <div class="logo">
+                <a href="../html/index.html"><img src="../images/logo-removebg-preview.png" class="logopic" alt="My Retro Room"></a>
+            </div>
+            <div class="user-menu">
+                <a href="../html/login.html"><button class="btn-login-header" id="loginBtn">LOGIN</button></a>
+                <div class="profile-container" id="userProfile" style="display: none;">
+                    <div class="profile-chip" id="profileTrigger">
+                        <img src="../images/profilepic.jpg" class="avatar" alt="User">
+                        <span id="userName">Ricardo C.</span>
+                        <i class="fa-solid fa-chevron-down arrow-id"></i>
+                    </div>
+                    <ul class="dropdown-menu" id="profileDropdown">
+                        <li><a href="../html/profile.html"><i class="fa-solid fa-user-ninja"></i> Profile</a></li>
+                        <li><a href="../html/settings.html"><i class="fa-solid fa-gears"></i> Settings</a></li>
+                        <li><a href="#"><i class="fa-solid fa-user-plus"></i> Invite Friends</a></li>
+                        <li><a href="../html/messages.html"><i class="fa-solid fa-message"></i> Messages</a></li>
+                        <li><a href="#"><i class="fa-solid fa-khanda"></i> My Orders</a></li>
+                        <li><a href="#"><i class="fa-solid fa-gem"></i> Donations</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#" class="logout" id="logoutBtn"><i class="fa-solid fa-power-off"></i> Log Out</a></li>
+                    </ul>
+                </div>
+                <span class="icon-btn"><i class="fa-solid fa-bell"></i></span>
+                <span class="icon-btn"><i class="fa-solid fa-cart-shopping"></i></span>
+            </div>
+        </div>
+        <nav class="category-bar">
+            <div class="nav-links">
+                <a href="../index.html">MARKET</a>
+                <a href="../html/sell.html">SELL</a>
+                <a href="#">CONSOLES</a>
+                <a href="#">GAMES</a>
+                <a href="#">COLLECTIBLES</a>
+                <a href="#">ARCADE</a>
+                <a href="#">COMMUNITY</a>
+                <a href="#">BLOG</a>
+                <a href="#">AUCTION</a>
+            </div>
+            <div class="theme-switch-container">
+                <span>LIGHT MODE / DARK MODE</span>
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </nav>
+    </header>
+
+   <aside class="sidebar">
+        <a href="../html/index.html" class="side-item" title="Home">
+            <i class="fas fa-home"></i>
+        </a>
+        <a href="../html/sell.html" class="side-item" title="Vender">
+            <i class="fa-solid fa-plus"></i>
+        </a>
+        <a href="../html/profile.html" class="side-item" title="Perfil">
+            <i class="fa-solid fa-user"></i>
+        </a>
+        <a href="../html/notifications.html" class="side-item active" title="Notificações">
+            <i class="fa-solid fa-bell"></i>
+        </a>
+        <a href="../html/messages.html" class="side-item" title="Mensagens">
+            <i class="fa-solid fa-message"></i>
+        </a>
+        <a href="../html/orders.html" class="side-item" title="Pedidos">
+            <i class="fa-solid fa-receipt"></i>
+        </a>
+    </aside>
+        
+        <section id="inteiro">
+            <div class="search-wrapper">
+                <div class="search-container">
+                    <input type="text" placeholder="Search for retro games, consoles, gear..." id="site-search">
+                    <button type="submit" class="search-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    <!-- main-content engloba TUDO: profile + botão + footer -->
+    <div class="main-content">
+        <main>
+            <div class="profile-page-wrapper">
+                
+                <section class="profile-header-card">
+                    <img src="../images/profilepic.jpg" alt="Ricardo C." class="profile-main-img" id="displayAvatar">
+                    
+                    <div class="profile-info">
+                        <h1>
+                            <span id="displayUsername">Ricardo C.</span>
+                            <i class="fa-solid fa-circle-check verified-badge" title="Perfil Autêntico"></i>
+                        </h1>
+                        
+                        <div class="reviews-diamonds">
+                            <i class="fa-solid fa-gem filled"></i>
+                            <i class="fa-solid fa-gem filled"></i>
+                            <i class="fa-solid fa-gem filled"></i>
+                            <i class="fa-solid fa-gem filled"></i>
+                            <i class="fa-solid fa-gem filled"></i>
+                            <span class="diamond-count" id="reviewScoreText">(50 <a href="../html/reviews.html">Reviews</a>) </span>
+                        </div>
+
+                        <div class="profile-stats">
+                            <a href="../html/followers.html" class="stat-link">
+                                <span class="stat-value">1.2k</span>
+                                <span class="stat-label">Followers</span>
+                            </a>
+                            
+                            <a href="following.html" class="stat-link">
+                                <span class="stat-value">850</span>
+                                <span class="stat-label">Following</span>
+                            </a>
+
+                            <div class="stat-link">
+                                <span class="stat-value">42</span>
+                                <span class="stat-label">Items Sold</span>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="profile-bio">
+                            <h3 class="bio-title">About Me</h3>
+                            <p id="displayAbout">
+                                Este utilizador ainda não escreveu uma biografia...
+                            </p>
+                            
+                            <div class="profile-location">
+                                <i class="fa-solid fa-location-dot"></i> 
+                                <span id="displayLocation">Localização não definida</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-left: auto;">
+                        <button class="btn-follow" id="actionBtn">Follow User</button>
+                    </div>
+                </section>
+
+                <section class="reviews-slider">
+                    <h2>Reviews da Comunidade</h2>
+                    <div class="slider-container" id="sliderContainer">
+                        <div class="review-card">
+                            <div class="reviewer-info">
+                                <img src="../images/imgreview.avif" class="reviewer-img">
+                                <a href="profile.html?user=joaogamer" class="reviewer-name">João Gamer</a>
+                            </div>
+                            <p>"Produto impecável, chegou antes do prazo!"</p>
+                        </div>
+                        <div class="review-card">
+                            <div class="reviewer-info">
+                                <img src="../images/imgreview1.jpg" class="reviewer-img">
+                                <a href="profile.html?user=anaretro" class="reviewer-name">Ana Retro</a>
+                            </div>
+                            <p>"Vendedor muito atencioso, recomendo a todos."</p>      
+                        </div>
+                        <div class="review-card">
+                            <div class="reviewer-info">
+                                <img src="../images/imgreview.avif" class="reviewer-img">
+                                <a href="profile.html?user=joaogamer" class="reviewer-name">João Gamer</a>
+                            </div>
+                            <p>"Produto impecável, chegou antes do prazo!"</p>
+                        </div>
+                    </div>
+                    <div class="slider-controls">
+                        <button class="slider-btn" onclick="moveSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="slider-btn" id="pauseBtn"><i class="fa-solid fa-pause"></i></button>
+                        <button class="slider-btn" onclick="moveSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </section>
+
+                <div class="inventory-header">
+                    <h2>Minha lista</h2>
+                    <button id="btnViewSold" class="btn-sold-history">Ver o que já vendi</button>
+                </div>
+
+                <div class="product-grid">
+                    <!-- produtos carregados via JS -->
+                </div>
+
+                <div class="sold-items-wrapper" id="soldItemsHistory">
+                    <h3>Vendas Concluídas</h3>
+                    <div class="product-grid"></div>
+                </div>
+
+            </div> <!-- fim profile-page-wrapper -->
+
+            
+        </main>
+
+        <!-- FOOTER DENTRO DA MAIN-CONTENT -->
+         <footer class="main-footer">
+            <div class="footer-container">
+                <div class="footer-brand">
+                    <h2 class="footer-logo">MY RETRO ROOM</h2>
+                    <p class="footer-subtext">O maior marketplace de retro gaming da Europa</p>
+                    <div class="brand-socials">
+                        <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="#" title="Twitch"><i class="fab fa-twitch"></i></a>
+                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-nav">
+                    <div class="nav-col">
+                        <h4>Comprar</h4>
+                        <a href="#">Consoles</a>
+                        <a href="#">Jogos</a>
+                        <a href="#">Arcade</a>
+                        <a href="#">Acessórios</a>
+                    </div>
+                    <div class="nav-col">
+                        <h4>Vender</h4>
+                        <a href="../html/sell.html">Publicar Anúncio</a>
+                        <a href="#">Taxas</a>
+                        <a href="#">Envios</a>
+                        <a href="#">Segurança</a>
+                    </div>
+                </div>
+                
+                <div class="footer-end">
+                    <div class="social-row">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    
+                    <div class="payment-row">
+                        <div class="pay-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="Apple Pay" loading="lazy">
+                        </div>
+                        <div class="pay-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" loading="lazy">
+                        </div>
+                        <div class="pay-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" loading="lazy">
+                        </div>
+                        <div class="pay-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg" alt="Amex" loading="lazy">
+                        </div>
+                        <div class="pay-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/PayPal_accept.svg" alt="PayPal" loading="lazy">
+                        </div>
+                    </div>
+                    
+                    <p class="copyright">
+                        © 2026 My Retro Room. Todos os direitos reservados. 
+                        <a href="#" style="color: #888;">Termos de Uso</a> | 
+                        <a href="#" style="color: #888;">Privacidade</a> | 
+                        <a href="#" style="color: #888;">Cookies</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div> <!-- fim main-content -->
+
+    <script src="../javascript/script.js"></script>
+</body>
+</html>

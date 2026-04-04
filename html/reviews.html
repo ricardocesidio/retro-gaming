@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews Recebidas - Ricardo C. | My Retro Room</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../style/style.css">
+    <style>
+
+        /* ====================== FIXAR FOOTER NO FINAL DA PÁGINA ====================== */
+html, body {
+    height: 100%;           /* Garante que o body ocupe 100% da altura da tela */
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column; /* Empilha header + conteúdo + footer verticalmente */
+    min-height: 100vh;      /* Altura mínima = viewport */
+}
+
+.main-content {
+    flex: 1;                /* O conteúdo principal cresce e empurra o footer para baixo */
+}
+
+.main-footer {
+    margin-top: auto;       /* Empurra o footer para o final */
+    width: 100%;
+}
+    .reviews-page {
+        padding: 40px 5%;
+        max-width: none;
+    }
+    .review-card-full {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 25px;
+        margin-bottom: 25px;
+        display: flex;
+        gap: 20px;
+        transition: 0.3s;
+    }
+    .review-card-full:hover {
+        border-color: var(--accent-purple);
+        transform: translateY(-5px);
+    }
+
+    /* Gems nesta página voltam para o azul padrão */
+    .review-card-full .review-gems .fa-gem {
+        color: #00d4ff !important;           /* Azul padrão */
+    }
+    .review-card-full .review-gems .fa-gem.filled {
+        color: #00d4ff !important;           /* Azul forte quando preenchido */
+        text-shadow: 0 0 8px rgba(0, 212, 255, 0.7); /* brilho azul */
+    }
+
+    .review-card-full p {
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: var(--text-main);
+    }
+    .review-filter {
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+    .gem-filter {
+        cursor: pointer;
+        padding: 6px 12px;
+        border-radius: 20px;
+        background: rgba(157, 80, 187, 0.1);
+        border: 1px solid var(--accent-purple);
+        transition: 0.3s;
+        color: var(--text-main);
+    }
+    .gem-filter:hover, .gem-filter.active {
+        background: var(--accent-purple);
+        color: white;
+    }
+</style>
+</head>
+<body>
+
+    <!-- HEADER (igual ao perfil) -->
+    <header>
+        <div class="header-main">
+            <div class="logo">
+                <a href="../html/index.html"><img src="../images/logo-removebg-preview.png" class="logopic" alt="My Retro Room"></a>
+            </div>
+            <div class="user-menu">
+                <a href="../html/login.html"><button class="btn-login-header" id="loginBtn">LOGIN</button></a>
+                <div class="profile-container" id="userProfile" style="display: none;">
+                    <div class="profile-chip" id="profileTrigger">
+                        <img src="../images/profilepic.jpg" class="avatar" alt="User">
+                        <span id="userName">Ricardo C.</span>
+                        <i class="fa-solid fa-chevron-down arrow-id"></i>
+                    </div>
+                    <ul class="dropdown-menu" id="profileDropdown">
+                        <li><a href="../html/profile.html"><i class="fa-solid fa-user-ninja"></i> Profile</a></li>
+                        <li><a href="../html/settings.html"><i class="fa-solid fa-gears"></i> Settings</a></li>
+                        <li><a href="#"><i class="fa-solid fa-user-plus"></i> Invite Friends</a></li>
+                        <li><a href="../html/messages.html"><i class="fa-solid fa-message"></i> Messages</a></li>
+                        <li><a href="#"><i class="fa-solid fa-khanda"></i> My Orders</a></li>
+                        <li><a href="#"><i class="fa-solid fa-gem"></i> Donations</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#" class="logout" id="logoutBtn"><i class="fa-solid fa-power-off"></i> Log Out</a></li>
+                    </ul>
+                </div>
+                <span class="icon-btn"><i class="fa-solid fa-bell"></i></span>
+                <span class="icon-btn"><i class="fa-solid fa-cart-shopping"></i></span>
+            </div>
+        </div>
+        <nav class="category-bar">
+            <div class="nav-links">
+                <a href="../index.html">MARKET</a>
+                <a href="../html/sell.html">SELL</a>
+                <a href="#">CONSOLES</a>
+                <a href="#">GAMES</a>
+                <a href="#">COLLECTIBLES</a>
+                <a href="#">ARCADE</a>
+                <a href="#">COMMUNITY</a>
+                <a href="#">BLOG</a>
+                <a href="#">AUCTION</a>
+            </div>
+            <div class="theme-switch-container">
+                <label class="switch"><input type="checkbox" id="theme-toggle"><span class="slider round"></span></label>
+            </div>
+        </nav>
+    </header>
+
+   <aside class="sidebar">
+        <a href="../html/index.html" class="side-item"><i class="fas fa-home"></i></a>
+        <a href="../html/sell.html" class="side-item"><i class="fa-solid fa-plus"></i></a>   <!-- corrigido -->
+        <a href="../html/profile.html" class="side-item"><i class="fa-solid fa-user"></i></a>
+    </aside>
+
+    <!-- CONTEÚDO -->
+    <div class="main-content">
+        <div class="reviews-page">
+            <a href="../html/profile.html" style="color:var(--text-muted); text-decoration:none; margin-bottom:30px; display:inline-block;">
+                ← Voltar ao Perfil
+            </a>
+
+            <h1 style="font-size:2.5rem; margin-bottom:10px;">Reviews Recebidas</h1>
+            <p style="color:var(--text-muted); margin-bottom:40px;">Veja todas as avaliações que compradores deixaram para Ricardo C.</p>
+
+            <!-- Filtro por nota (igual ao perfil, mas maior) -->
+            <div class="review-filter">
+                <span style="font-weight:bold;">Filtrar por nota:</span>
+                <div class="gem-filter active" data-rating="all">Todas</div>
+                <div class="gem-filter" data-rating="1">1 Gem</div>
+                <div class="gem-filter" data-rating="2">2 Gems</div>
+                <div class="gem-filter" data-rating="3">3 Gems</div>
+                <div class="gem-filter" data-rating="4">4 Gems</div>
+                <div class="gem-filter" data-rating="5">5 Gems</div>
+            </div>
+
+            <!-- Lista completa de reviews -->
+            <div id="reviewsList">
+                <!-- Cards gerados aqui pelo JS ou manualmente -->
+                <div class="review-card-full" data-rating="5">
+                    <img src="../images/imgreview.avif" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid var(--accent-purple);">
+                    <div>
+                        <div class="review-gems">
+                            <i class="fa-solid fa-gem filled"></i>
+                            <i class="fa-solid fa-gem filled"></i>
+                            <i class="fa-solid fa-gem filled"></i>
+                            <i class="fa-solid fa-gem filled"></i>
+                            <i class="fa-solid fa-gem filled"></i>
+                        </div>
+                        <p>"Produto impecável, chegou antes do prazo! Recomendo 100%."</p>
+                        <small style="color:var(--text-muted);">João Gamer • 12/02/2026</small>
+                    </div>
+                </div>
+
+                <div class="review-card-full" data-rating="4">
+                    <img src="../images/imgreview1.jpg" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid var(--accent-purple);">
+                    <div>
+                        <div class="review-gems">
+                            <i class="fa-solid fa-gem filled"></i>
+                            <i class="fa-solid fa-gem filled"></i>
+                            <i class="fa-solid fa-gem filled"></i>
+                            <i class="fa-solid fa-gem filled"></i>
+                            <i class="fa-solid fa-gem"></i>
+                        </div>
+                        <p>"Vendedor muito atencioso, só veio com um arranhãozinho pequeno. Ainda assim, ótimo negócio."</p>
+                        <small style="color:var(--text-muted);">Ana Retro • 05/01/2026</small>
+                    </div>
+                </div>
+
+                <!-- Adicione mais reviews aqui conforme precisar -->
+            </div>
+        </div>
+    </div>
+<div style="text-align: center; margin-top: 30px;">
+                <a href="../html/sell.html" class="btn-primary" style="padding: 15px 30px; text-decoration: none; display: inline-block;">Publicar Agora</a>   <!-- corrigido -->
+            </div>
+        </main>
+
+        <footer class="main-footer">
+            <div class="footer-container">
+                <div class="footer-brand">
+                    <h2 class="footer-logo">MY RETRO ROOM</h2>
+                    <p class="footer-subtext">My Retro Room</p>
+                    <div class="brand-socials">
+                        <i class="fab fa-discord"></i>
+                        <i class="fab fa-twitch"></i>
+                    </div>
+                </div>
+
+                <div class="footer-nav">
+                    <div class="nav-col">
+                        <a href="#">Buy</a>
+                        <a href="../html/sell.html">Sell</a>   <!-- corrigido -->
+                        <a href="#">Consoles</a>
+                        <a href="#">Games</a>
+                    </div>
+                    <div class="nav-col">
+                        <a href="#">Links</a>
+                        <a href="#">Consoles</a>
+                        <a href="#">Arcade</a>
+                        <a href="#">Community</a>
+                    </div>
+                </div>
+
+                <div class="footer-end">
+                    <div class="social-row">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    
+                    <div class="payment-row">
+                        <div class="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="Apple Pay"></div>
+                        <div class="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa"></div>
+                        <div class="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"></div>
+                        <div class="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg" alt="Amex"></div>
+                    </div>
+                    <p class="copyright">Copyright © 2026</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+
+    <script src="../javascript/script.js"></script>
+</body>
+</html>
+
+    <script src="../javascript/script.js"></script>
+    <script>
+        // Filtro por nota na página de reviews recebidas
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterBtns = document.querySelectorAll('.gem-filter');
+            const reviews = document.querySelectorAll('.review-card-full');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const rating = btn.dataset.rating;
+                    reviews.forEach(review => {
+                        if (rating === 'all' || review.dataset.rating === rating) {
+                            review.style.display = 'flex';
+                        } else {
+                            review.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
