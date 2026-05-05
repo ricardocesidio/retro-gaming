@@ -1,0 +1,972 @@
+:root {
+  --elite-bg: #090912;
+  --elite-bg-2: #11111f;
+  --elite-surface: rgba(17, 17, 31, 0.82);
+  --elite-surface-strong: rgba(20, 20, 36, 0.94);
+  --elite-stroke: rgba(255, 255, 255, 0.08);
+  --elite-stroke-strong: rgba(157, 80, 187, 0.28);
+  --elite-text: #f7f7ff;
+  --elite-muted: #afafd3;
+  --elite-purple: #9d50bb;
+  --elite-purple-2: #6e48aa;
+  --elite-cyan: #00d4ff;
+  --elite-gold: #ffd700;
+  --elite-success: #2ee59d;
+  --elite-danger: #ff647c;
+  --elite-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+  --elite-shadow-strong: 0 24px 60px rgba(0, 0, 0, 0.36), 0 0 0 1px rgba(157, 80, 187, 0.12);
+  --elite-radius-xl: 28px;
+  --elite-radius-lg: 22px;
+  --elite-radius-md: 18px;
+  --elite-radius-sm: 12px;
+  --elite-radius-pill: 999px;
+  --elite-transition: 180ms ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(157, 80, 187, 0.14), transparent 24%),
+    radial-gradient(circle at top right, rgba(0, 212, 255, 0.08), transparent 20%),
+    linear-gradient(180deg, var(--elite-bg), var(--elite-bg-2));
+  color: var(--elite-text);
+}
+
+::selection {
+  background: rgba(157, 80, 187, 0.28);
+  color: var(--elite-text);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(157, 80, 187, 0.45) transparent;
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(157, 80, 187, 0.72), rgba(110, 72, 170, 0.72));
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-track { background: transparent; }
+
+#root, .app {
+  background:
+    radial-gradient(circle at top left, rgba(157, 80, 187, 0.1), transparent 26%),
+    radial-gradient(circle at bottom right, rgba(0, 212, 255, 0.06), transparent 22%),
+    var(--bg-body);
+}
+
+.main-content {
+  padding-bottom: 22px;
+}
+
+.main-content > :not(.main-footer) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Shared page shells */
+.page-shell,
+.market-page,
+.product-detail-page,
+.messages-page,
+.notifications-page,
+.settings-wrapper,
+.wishlist-page,
+.myorders-wrapper,
+.sell-wrapper,
+.donations-wrapper,
+.login-page,
+.register-page,
+.profile-page-wrapper,
+.not-found-page {
+  position: relative;
+}
+
+.market-page,
+.product-detail-page,
+.messages-page,
+.notifications-page,
+.settings-wrapper,
+.wishlist-page,
+.myorders-wrapper,
+.sell-wrapper,
+.donations-wrapper,
+.profile-page-wrapper {
+  width: min(1400px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.market-page,
+.product-detail-page,
+.messages-page,
+.notifications-page,
+.settings-wrapper,
+.wishlist-page,
+.myorders-wrapper,
+.sell-wrapper,
+.donations-wrapper,
+.profile-page-wrapper,
+.not-found-page {
+  padding-top: 24px;
+}
+
+.card,
+.product-card,
+.review-card,
+.notifications-page .notification-item,
+.messages-page .chat-item,
+.settings-glass-card,
+.myorders-glass-card,
+.profile-header-card,
+.inventory-empty,
+.detail-card,
+.seller-card,
+.buy-modal,
+.report-modal,
+.footer-shell,
+.market-filters,
+.no-results,
+.no-notifications,
+.login-card,
+.donations-glass-card,
+.success-card,
+.search-suggestions,
+.dropdown-scroll-area a,
+.logout-btn,
+.see-more-btn {
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.025));
+  border: 1px solid var(--border-color);
+  border-radius: var(--elite-radius-lg);
+  box-shadow: var(--elite-shadow);
+  backdrop-filter: blur(18px);
+}
+
+.card:hover,
+.product-card:hover,
+.review-card:hover,
+.notifications-page .notification-item:hover,
+.messages-page .chat-item:hover,
+.inventory-empty:hover,
+.detail-card:hover,
+.seller-card:hover,
+.login-card:hover,
+.donations-glass-card:hover {
+  box-shadow: var(--elite-shadow-strong);
+}
+
+.hero,
+.section,
+.reviews-slider,
+.donations-glass-card,
+.settings-glass-card,
+.myorders-glass-card,
+.profile-header-card,
+.product-info-panel,
+.search-suggestions,
+.market-filters,
+.no-results,
+.no-notifications,
+.inventory-empty,
+.detail-card,
+.sell-panel,
+.login-card,
+.register-card,
+.success-card {
+  border: 1px solid var(--border-color);
+}
+
+.hero h1,
+.login-header h2,
+.myorders-hero h1,
+.section-title,
+.reviews-slider h2,
+.notifications-header h1,
+.profile-info h1,
+.pd-title,
+.not-found-page h1,
+.donations-hero h1 {
+  letter-spacing: -0.04em;
+}
+
+.hero h1,
+.myorders-hero h1,
+.profile-info h1,
+.donations-hero h1,
+.not-found-page h1 {
+  text-shadow: 0 10px 30px rgba(0,0,0,0.32);
+}
+
+.highlight,
+.btn-primary,
+.btn-view,
+.btn-follow,
+.btn-buy-now,
+.btn-buy-confirm,
+.btn-send,
+.btn-submit-report,
+.mark-all-read-btn,
+.btn-back,
+.btn-clear-filters,
+.sell-highlight,
+.btn-login-header,
+.btn-login-submit,
+.btn-submit-login,
+.tab-item.active,
+.slider-btn,
+.category-pill.active,
+.search-suggestion:hover,
+.amount-btn.selected,
+.guidelines-btn.completed,
+.btn-close-success,
+.btn-elite.primary {
+  background: linear-gradient(135deg, var(--elite-purple), var(--elite-purple-2));
+  color: #fff;
+}
+
+.btn-primary,
+.btn-view,
+.btn-follow,
+.btn-buy-now,
+.btn-buy-confirm,
+.btn-send,
+.btn-submit-report,
+.mark-all-read-btn,
+.btn-back,
+.btn-clear-filters,
+.sell-highlight,
+.btn-login-header,
+.btn-login-submit,
+.btn-submit-login,
+.tab-item,
+.slider-btn,
+.category-pill,
+.search-suggestion,
+.amount-btn,
+.guidelines-btn,
+.btn-close-success,
+.btn-elite.primary,
+.icon-btn,
+.profile-chip,
+.logout-btn,
+.see-more-btn,
+.password-toggle-btn,
+.guidelines-btn,
+.info-trigger-btn,
+.mobile-back-btn,
+.filter-btn,
+.btn-remove-icon,
+.btn-heart,
+.btn-view-details {
+  transition: transform var(--elite-transition), box-shadow var(--elite-transition), background var(--elite-transition), color var(--elite-transition), border-color var(--elite-transition), filter var(--elite-transition), opacity var(--elite-transition);
+}
+
+.btn-primary:hover,
+.btn-view:hover,
+.btn-follow:hover,
+.btn-buy-now:hover,
+.btn-buy-confirm:hover,
+.btn-send:hover,
+.btn-submit-report:hover,
+.mark-all-read-btn:hover,
+.btn-back:hover,
+.btn-clear-filters:hover,
+.sell-highlight:hover,
+.btn-login-header:hover,
+.btn-login-submit:hover,
+.btn-submit-login:hover,
+.tab-item:hover,
+.slider-btn:hover,
+.category-pill:hover,
+.search-suggestion:hover,
+.amount-btn:hover,
+.guidelines-btn:hover,
+.btn-close-success:hover,
+.btn-elite.primary:hover,
+.icon-btn:hover,
+.profile-chip:hover,
+.logout-btn:hover,
+.see-more-btn:hover,
+.password-toggle-btn:hover,
+.info-trigger-btn:hover,
+.mobile-back-btn:hover,
+.filter-btn:hover,
+.btn-remove-icon:hover,
+.btn-heart:hover,
+.btn-view-details:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+}
+
+.btn-login-submit:hover,
+.btn-submit-login:hover,
+.btn-buy-confirm:hover,
+.btn-buy-now:hover,
+.btn-send:hover,
+.btn-submit-report:hover,
+.btn-elite.primary:hover {
+  box-shadow: 0 18px 34px rgba(157, 80, 187, 0.22);
+}
+
+.btn-view:hover,
+.btn-follow:hover,
+.btn-back:hover,
+.btn-clear-filters:hover,
+.mark-all-read-btn:hover,
+.sell-highlight:hover,
+.btn-login-header:hover,
+.tab-item:hover,
+.slider-btn:hover,
+.category-pill.active:hover,
+.search-suggestion:hover,
+.amount-btn.selected:hover,
+.guidelines-btn.completed:hover,
+.btn-close-success:hover {
+  box-shadow: 0 18px 34px rgba(157, 80, 187, 0.18);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid rgba(255, 215, 0, 0.72);
+  outline-offset: 2px;
+}
+
+/* Override yellow hover chaos from old styles */
+.card:hover,
+.btn-view:hover,
+.btn-follow:hover,
+.btn-login-submit:hover,
+.btn-submit-login:hover,
+.slider-btn:hover,
+.btn-sold-history:hover,
+.btn-clear-filters:hover,
+.tab-item:hover,
+.btn-elite.primary:hover {
+  background: linear-gradient(135deg, var(--elite-purple), var(--elite-purple-2)) !important;
+  color: #fff !important;
+}
+
+.login-page .login-wrapper,
+.register-page .login-wrapper,
+.register-page .login-page,
+.sell-wrapper,
+.donations-wrapper,
+.settings-wrapper,
+.myorders-wrapper,
+.messages-page,
+.notifications-page,
+.profile-page-wrapper,
+.product-detail-page,
+.market-page {
+  background: transparent;
+}
+
+.login-page .login-wrapper,
+.register-page .login-wrapper,
+.sell-wrapper,
+.donations-wrapper,
+.settings-wrapper,
+.myorders-wrapper {
+  min-height: calc(100vh - 170px);
+  display: grid;
+  place-items: center;
+  padding: 26px 16px 56px;
+}
+
+.login-page .login-card,
+.register-page .login-card,
+.donations-glass-card,
+.settings-glass-card,
+.myorders-glass-card,
+.sell-panel {
+  width: min(980px, 100%);
+  border-radius: 30px;
+  padding: 32px;
+}
+
+.login-page .login-card,
+.register-page .login-card {
+  max-width: 1040px;
+}
+
+.login-page .login-card,
+.register-page .login-card {
+  background: linear-gradient(180deg, rgba(16,16,28,0.92), rgba(14,14,24,0.88));
+}
+
+.login-page .login-header h2,
+.login-header h2 {
+  margin: 0 0 8px;
+  font-weight: 900;
+  color: var(--elite-text);
+}
+
+.login-page .login-header p,
+.login-header p,
+.hero-subtitle,
+.section-text,
+.hero p,
+.notification-time,
+.chat-snippet,
+.chat-time,
+.copyright,
+.footer-subtext,
+.no-notifications p,
+.inventory-empty p,
+.pd-meta,
+.detail-card p,
+.profile-bio p,
+.donations-hero p,
+.myorders-hero p {
+  color: var(--elite-muted);
+}
+
+.login-page .login-input,
+.register-page .login-input,
+.search-input,
+.filter-group select,
+.price-input,
+textarea,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+  background: rgba(255,255,255,0.05) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  color: var(--elite-text) !important;
+  border-radius: 16px !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+}
+
+.login-page .login-input::placeholder,
+.register-page .login-input::placeholder,
+.search-input::placeholder,
+.price-input::placeholder,
+textarea::placeholder,
+input::placeholder {
+  color: rgba(183, 183, 217, 0.55) !important;
+}
+
+.login-page .login-input:focus,
+.register-page .login-input:focus,
+.search-input:focus,
+.filter-group select:focus,
+.price-input:focus,
+textarea:focus,
+input:focus {
+  background: rgba(157,80,187,0.10) !important;
+  border-color: rgba(157,80,187,0.5) !important;
+  box-shadow: 0 0 0 4px rgba(157,80,187,0.14) !important;
+}
+
+.login-page .btn-login-submit,
+.login-page .btn-submit-login,
+.register-page .btn-login-submit,
+.register-page .btn-submit-login,
+.btn-buy-now,
+.btn-buy-confirm,
+.btn-send,
+.btn-submit-report,
+.btn-elite.primary {
+  border: 0 !important;
+  border-radius: var(--elite-radius-pill) !important;
+}
+
+.login-page .btn-login-submit:hover,
+.login-page .btn-submit-login:hover,
+.register-page .btn-login-submit:hover,
+.register-page .btn-submit-login:hover {
+  background: linear-gradient(135deg, var(--elite-purple), var(--elite-purple-2)) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+
+.btn-follow,
+.btn-view,
+.btn-buy-now,
+.btn-buy-confirm,
+.btn-send,
+.btn-submit-report,
+.btn-login-header,
+.btn-login-submit,
+.btn-submit-login,
+.btn-clear-filters,
+.btn-back,
+.mark-all-read-btn,
+.sell-highlight,
+.btn-close-success,
+.btn-elite.primary,
+.btn-sold-history,
+.tab-item,
+.slider-btn,
+.category-pill,
+.search-suggestion,
+.amount-btn,
+.guidelines-btn,
+.btn-view-details {
+  border: 1px solid rgba(157,80,187,0.28);
+}
+
+.btn-view,
+.btn-follow,
+.btn-buy-now,
+.btn-buy-confirm,
+.btn-send,
+.btn-submit-report,
+.mark-all-read-btn,
+.btn-back,
+.btn-clear-filters,
+.btn-sold-history,
+.btn-elite.primary,
+.tab-item,
+.category-pill,
+.search-suggestion,
+.amount-btn,
+.guidelines-btn,
+.btn-view-details {
+  background: rgba(255,255,255,0.05);
+  color: var(--elite-text);
+}
+
+.btn-view-details:hover,
+.btn-heart:hover,
+.btn-remove-icon:hover,
+.icon-btn:hover,
+.profile-chip:hover,
+.logout-btn:hover,
+.see-more-btn:hover {
+  border-color: rgba(255,215,0,0.28);
+}
+
+.hero,
+.reviews-slider,
+.market-filters,
+.product-info-panel,
+.detail-card,
+.notifications-page .notification-item,
+.messages-page .chat-item,
+.inventory-empty,
+.no-results,
+.no-notifications,
+.seller-card,
+.buy-modal,
+.report-modal,
+.footer-shell,
+.search-suggestions,
+.login-card,
+.settings-glass-card,
+.myorders-glass-card,
+.donations-glass-card,
+.profile-header-card {
+  box-shadow: var(--elite-shadow);
+}
+
+
+.section-gap {
+  margin-top: 40px;
+}
+
+.hero {
+  margin: 18px auto 0;
+  width: min(1400px, calc(100% - 32px));
+  border-radius: var(--elite-radius-xl);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+  padding: 28px 20px 18px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 900;
+}
+
+.section,
+.reviews-slider,
+.market-filters,
+.product-info-panel,
+.notifications-page .notification-item,
+.messages-page .chat-item,
+.detail-card,
+.inventory-empty,
+.no-results,
+.no-notifications,
+.profile-header-card,
+.myorders-glass-card,
+.settings-glass-card,
+.donations-glass-card,
+.sell-panel {
+  background: linear-gradient(180deg, rgba(16,16,28,0.84), rgba(12,12,22,0.88));
+}
+
+.banner-slider {
+  border: 1px solid rgba(157,80,187,0.18);
+}
+
+.banner-click-area {
+  backdrop-filter: blur(14px);
+}
+
+.search-suggestions {
+  overflow: hidden;
+}
+
+.search-suggestion {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  text-align: left;
+  border: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.search-suggestion:last-child { border-bottom: 0; }
+
+.search-suggestion small,
+.search-suggestion span,
+.review-card h4,
+.review-card p,
+.donations-hero .hero-badge,
+.stat-label,
+.reviews-link,
+.btn-sold-history,
+.banner-click-area {
+  color: var(--elite-text);
+}
+
+.search-suggestion:hover { color: #fff !important; }
+
+.market-filters,
+.no-results,
+.no-notifications,
+.inventory-empty,
+.detail-card,
+.myorders-glass-card,
+.settings-glass-card,
+.donations-glass-card,
+.profile-header-card,
+.product-info-panel,
+.reviews-slider,
+.messages-page .chat-item,
+.notifications-page .notification-item {
+  border-radius: var(--elite-radius-xl);
+}
+
+.product-card,
+.review-card,
+.card,
+.notifications-page .notification-item,
+.messages-page .chat-item {
+  overflow: hidden;
+}
+
+.product-card .seller-pill {
+  background: rgba(10,10,18,0.78);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.seller-pill,
+.offer-badge,
+.sold-badge,
+.product-condition,
+.category-pill,
+.filter-btn.active,
+.tag-pill,
+.status-pill,
+.hero-badge,
+.stat-link,
+.reviews-link,
+.meta-divider,
+.location-group,
+.notification-count,
+.unread-indicator,
+.type-tag,
+.price-pill,
+.summary-pill,
+.rating-pill,
+.verification-badge {
+  border-radius: var(--elite-radius-pill);
+}
+
+.offer-badge,
+.sold-badge,
+.product-condition,
+.hero-badge,
+.category-pill.active,
+.filter-btn.active,
+.status-pill,
+.tag-pill,
+.price-pill,
+.summary-pill,
+.rating-pill,
+.verification-badge {
+  background: rgba(157,80,187,0.12);
+  border: 1px solid rgba(157,80,187,0.24);
+  color: #e5ccff;
+}
+
+.sold-badge {
+  background: rgba(255,215,0,0.14);
+  color: #ffe89b;
+}
+
+/* Profile-specific polish */
+.profile-page-wrapper {
+  padding-bottom: 40px;
+}
+
+.profile-header-card {
+  padding: 28px;
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+}
+
+.profile-main-img {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 6px solid rgba(157,80,187,0.65);
+  box-shadow: 0 0 0 10px rgba(157,80,187,0.08), 0 18px 40px rgba(0,0,0,0.28);
+}
+
+.profile-info h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 8px;
+}
+
+.profile-meta-info,
+.reviews-group,
+.location-group,
+.profile-stats,
+.profile-action-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.profile-stats {
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.stat-link {
+  min-width: 140px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--elite-text);
+}
+
+.stat-label {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--elite-muted);
+}
+
+.profile-bio {
+  margin-top: 18px;
+  padding: 18px 20px;
+  border-radius: var(--elite-radius-lg);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.profile-bio h3,
+.review-card h4,
+.detail-card h3,
+.notifications-header h1,
+.section-title,
+.myorders-hero h1,
+.donations-hero h1,
+.login-header h2,
+.not-found-page h2 {
+  margin-top: 0;
+}
+
+.reviews-slider {
+  padding: 24px;
+  margin: 24px 0;
+}
+
+.review-card {
+  padding: 20px;
+}
+
+.reviewer-info { display: flex; align-items: center; gap: 12px; }
+.reviewer-img,
+.chat-avatar,
+.chat-contact-avatar,
+.footer-avatar,
+.seller-pill-avatar {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.tier-bronze { border-color: #c47a3a !important; }
+.tier-silver { border-color: #cfcfd8 !important; }
+.tier-gold { border-color: #e5b800 !important; }
+.tier-platinum { border-color: #e6e6e6 !important; }
+.tier-master { border-color: #9d50bb !important; }
+.tier-supreme {
+  border: 1px solid transparent !important;
+  background: linear-gradient(var(--elite-surface-strong), var(--elite-surface-strong)) padding-box,
+              linear-gradient(135deg, #00d4ff, #9d50bb, #ff4d7d, #ffd700) border-box !important;
+}
+
+.inventory-header {
+  padding: 0;
+  margin: 22px 0 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.inventory-empty {
+  padding: 30px;
+  text-align: center;
+}
+
+.inventory-empty i,
+.no-notifications i,
+.not-found-page i {
+  font-size: 2.25rem;
+  color: var(--elite-purple);
+}
+
+.not-found-page {
+  min-height: calc(100vh - 180px);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 56px 16px;
+}
+
+.not-found-page .card,
+.not-found-page .review-card {
+  max-width: 620px;
+  padding: 32px;
+}
+
+/* Utility classes */
+.glass-morphism,
+.glass-card,
+.page-card {
+  backdrop-filter: blur(18px);
+}
+
+.loading-shell,
+.pd-loading,
+.loader-shell {
+  min-height: 52vh;
+  display: grid;
+  place-items: center;
+  gap: 12px;
+  color: var(--elite-muted);
+}
+
+.loading-spinner,
+.pd-loading-spinner,
+.spinner {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 4px solid rgba(255,255,255,0.1);
+  border-top-color: var(--elite-gold);
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 1100px) {
+  .profile-header-card {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .profile-info h1,
+  .profile-meta-info,
+  .profile-stats,
+  .profile-action-btns {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 900px) {
+  .main-content {
+    padding-bottom: 94px;
+  }
+
+  .hero,
+  .reviews-slider,
+  .market-filters,
+  .product-info-panel,
+  .detail-card,
+  .inventory-empty,
+  .no-results,
+  .no-notifications,
+  .profile-header-card,
+  .myorders-glass-card,
+  .settings-glass-card,
+  .donations-glass-card,
+  .sell-panel,
+  .login-card,
+  .register-card {
+    border-radius: 22px;
+  }
+}
+
+@media (max-width: 640px) {
+  .market-page,
+  .product-detail-page,
+  .messages-page,
+  .notifications-page,
+  .settings-wrapper,
+  .wishlist-page,
+  .myorders-wrapper,
+  .sell-wrapper,
+  .donations-wrapper,
+  .profile-page-wrapper {
+    width: min(100%, calc(100% - 18px));
+  }
+
+  .profile-main-img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .login-page .login-card,
+  .register-page .login-card,
+  .donations-glass-card,
+  .settings-glass-card,
+  .myorders-glass-card,
+  .sell-panel {
+    padding: 22px 18px;
+  }
+}
