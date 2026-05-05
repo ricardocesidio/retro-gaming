@@ -1,0 +1,144 @@
+/* ==========================================================
+   MENU — Icon Navigation Bar
+   ========================================================== */
+
+.category-bar {
+  position: sticky;
+  top: calc(var(--header-height) - 4px);
+  z-index: calc(var(--z-sticky) - 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 10px var(--space-5);
+  background: #000000;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: visible;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 4px 0;
+}
+
+.nav-links::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-links a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  transition: background var(--transition-base), color var(--transition-base), transform var(--transition-base);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  background: rgba(157, 80, 187, 0.25);
+  color: var(--accent-purple);
+  transform: translateY(-1px);
+}
+
+.nav-links a:first-child {
+  color: #ffffff;
+}
+
+.gray-icon {
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+.gray-icon:hover {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.sell-highlight {
+  background: rgba(157, 80, 187, 0.3);
+  border: 1px solid rgba(157, 80, 187, 0.5);
+  color: #9d50bb !important;
+}
+
+.auction-icon {
+  color: #ffd700 !important;
+}
+
+/* ==========================================================
+   TABLET (769px - 1024px)
+   ========================================================== */
+@media (max-width: 1024px) {
+  .category-bar {
+    padding: 8px var(--space-4);
+  }
+
+  .nav-links {
+    gap: var(--space-2);
+  }
+
+  .nav-links a {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+}
+
+/* ==========================================================
+   TABLET (641px - 768px)
+   ========================================================== */
+@media (max-width: 768px) {
+  .category-bar {
+    top: calc(var(--header-height-mobile) - 4px);
+    padding: 8px var(--space-4);
+    gap: var(--space-2);
+  }
+
+  .nav-links a {
+    width: 36px;
+    height: 36px;
+    font-size: 0.95rem;
+  }
+}
+
+/* ==========================================================
+   MOBILE LARGE (481px - 640px)
+   ========================================================== */
+@media (max-width: 640px) {
+  .category-bar {
+    padding: 8px var(--space-3);
+    gap: var(--space-2);
+  }
+
+  .nav-links a {
+    width: 34px;
+    height: 34px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ==========================================================
+   MOBILE (up to 480px)
+   ========================================================== */
+@media (max-width: 480px) {
+  .category-bar {
+    top: calc(var(--header-height-mobile) - 8px);
+    padding: 6px var(--space-2);
+    gap: var(--space-1);
+  }
+
+  .nav-links a {
+    width: 32px;
+    height: 32px;
+    font-size: 0.85rem;
+  }
+}

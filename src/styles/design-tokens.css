@@ -1,0 +1,246 @@
+/* ==========================================================
+   RETRO GAMING MARKETPLACE — DESIGN TOKENS
+   Centralized CSS custom properties for 2026 premium marketplace
+   BLACK THEME ONLY — NO LIGHT MODE
+   ========================================================== */
+
+:root {
+  /* ════════════════════════════════════════════════
+     COLORS — Black Theme Only
+     ════════════════════════════════════════════════ */
+  --bg-body: #0a0a0f;
+  --bg-surface: #12121f;
+  --bg-elevated: #1a1a2e;
+  --bg-card: #151528;
+  --bg-soft: rgba(255, 255, 255, 0.04);
+  --bg-glass: rgba(18, 18, 31, 0.9);
+  
+  --text-main: #f5f5ff;
+  --text-secondary: #d4d6f0;
+  --text-muted: #8a8dc2;
+  --text-subtle: #6366a8;
+  
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-light: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  
+  /* Brand Colors */
+  --accent-purple: #9d50bb;
+  --accent-purple-2: #6e2da8;
+  --accent-purple-3: #8a42c9;
+  --accent-glow: rgba(157, 80, 187, 0.32);
+  --accent-glow-strong: rgba(157, 80, 187, 0.45);
+  
+  --nav-purple: #33124f;
+  --nav-purple-light: #4a1f70;
+  
+  /* Semantic Colors */
+  --success: #22c55e;
+  --success-bg: rgba(34, 197, 94, 0.15);
+  --success-light: #4ade80;
+  
+  --warning: #fbbf24;
+  --warning-bg: rgba(251, 191, 36, 0.15);
+  --warning-light: #fcd34d;
+  
+  --danger: #ef4444;
+  --danger-bg: rgba(239, 68, 68, 0.15);
+  --danger-light: #f87171;
+  
+  --info: #3b82f6;
+  --info-bg: rgba(59, 130, 246, 0.15);
+  
+  /* Metallic Tiers */
+  --tier-bronze: #cd7f32;
+  --tier-silver: #c0c0c0;
+  --tier-gold: #ffd700;
+  --tier-platinum: #e5e4e2;
+  --tier-supreme: #9f7aea;
+  
+  /* Shadows */
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.3);
+  --shadow-elevated: 0 20px 50px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 0 1px rgba(157, 80, 187, 0.18), 0 12px 34px rgba(157, 80, 187, 0.18);
+  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.3);
+  
+  /* ════════════════════════════════════════════════
+     TYPOGRAPHY
+     ════════════════════════════════════════════════ */
+  --font-primary: 'Google Sans', 'Kanit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.9375rem;
+  --text-lg: 1.0625rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.5rem;
+  --text-5xl: 3.25rem;
+  
+  --leading-tight: 1.2;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;
+  
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+  
+  /* ════════════════════════════════════════════════
+     SPACING (4px base unit)
+     ════════════════════════════════════════════════ */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  
+  /* ════════════════════════════════════════════════
+     BORDERS & RADIUS
+     ════════════════════════════════════════════════ */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-3xl: 32px;
+  --radius-full: 9999px;
+  
+  --border-width: 1px;
+  --border-width-2: 2px;
+  
+  /* ════════════════════════════════════════════════
+     LAYOUT
+     ════════════════════════════════════════════════ */
+  --header-height: 72px;
+  --header-height-mobile: 64px;
+  --container-max: 1420px;
+  --container-narrow: 960px;
+  
+  /* ════════════════════════════════════════════════
+     TRANSITIONS & ANIMATIONS
+     ════════════════════════════════════════════════ */
+  --transition-fast: 120ms ease;
+  --transition-base: 180ms ease;
+  --transition-slow: 280ms ease;
+  --transition-slower: 400ms ease;
+  
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  
+  --duration-instant: 0ms;
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+  --duration-slower: 600ms;
+  
+  /* ════════════════════════════════════════════════
+     Z-INDEX SCALE
+     ════════════════════════════════════════════════ */
+  --z-base: 1;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+  --z-tooltip: 600;
+  
+  /* Color scheme indicator */
+  color-scheme: dark;
+}
+
+/* ════════════════════════════════════════════════
+   BREAKPOINTS — Desktop First
+   ════════════════════════════════════════════════ */
+:root {
+  --bp-sm: 480px;
+  --bp-md: 640px;
+  --bp-lg: 768px;
+  --bp-xl: 900px;
+  --bp-2xl: 1024px;
+  --bp-3xl: 1280px;
+  --bp-4xl: 1536px;
+}
+
+/* ════════════════════════════════════════════════
+   UTILITY CLASSES — Design Tokens Ready
+   ════════════════════════════════════════════════ */
+:root {
+  /* Grid helpers */
+  --grid-gap: 24px;
+  --grid-gap-sm: 16px;
+  --grid-gap-xs: 12px;
+  
+  /* Flex helpers */
+  --flex-gap: 16px;
+  --flex-gap-sm: 8px;
+  --flex-gap-xs: 4px;
+  
+  /* Content padding */
+  --content-padding: 24px;
+  --content-padding-sm: 16px;
+  --content-padding-xs: 12px;
+}
+
+/* ==========================================================
+   BACKWARD COMPATIBILITY — Legacy CSS Variables
+   Kept for existing components that reference old names
+   ========================================================== */
+:root {
+  /* Fallback mappings */
+  --radius-pill: var(--radius-full);
+  --space-7: 28px;
+  --space-9: 36px;
+  --space-11: 44px;
+  
+  /* Success color alias */
+  --neon-yellow: var(--tier-gold);
+  --elite-purple: var(--accent-purple);
+}
+
+/* ==========================================================
+   REDUCED MOTION PREFERENCE
+   ========================================================== */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0ms;
+    --transition-base: 0ms;
+    --transition-slow: 0ms;
+    --transition-slower: 0ms;
+    --duration-instant: 0ms;
+    --duration-fast: 0ms;
+    --duration-normal: 0ms;
+    --duration-slow: 0ms;
+    --duration-slower: 0ms;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ==========================================================
+   HIGH CONTRAST MODE
+   ========================================================== */
+@media (prefers-contrast: high) {
+  :root {
+    --border-color: rgba(255, 255, 255, 0.3);
+    --text-muted: #a0a0c0;
+  }
+}

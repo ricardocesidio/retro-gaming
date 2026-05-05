@@ -1,0 +1,34 @@
+/* ==========================================================
+   APP LAYOUT — Black Theme Only
+   ========================================================== */
+
+main {
+  flex: 1;
+  min-width: 0;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  background: #000000;
+  color: #f4f5ff;
+}
+
+.main-content {
+  flex: 1;
+  padding-bottom: 0;
+  transition: background var(--transition-base), color var(--transition-base);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .main-content {
+    padding-bottom: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding-bottom: 0;
+  }
+}

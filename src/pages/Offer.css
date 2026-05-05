@@ -1,0 +1,165 @@
+/* ==============================
+   OFFER PAGE — PREMIUM STYLE
+   ============================== */
+
+.offer-page {
+  width: min(600px, calc(100% - 32px));
+  margin: 40px auto;
+  color: var(--text-main);
+}
+
+.offer-page .btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
+  padding: 11px 18px;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  margin-bottom: 24px;
+  backdrop-filter: blur(12px);
+}
+
+.offer-page .btn-back:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 215, 0, 0.45);
+  color: #ffd700;
+}
+
+.offer-card {
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.offer-card h2 {
+  margin: 0 0 24px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.offer-product {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 24px;
+}
+
+.offer-product-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.offer-product h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.offer-product-price {
+  color: var(--accent-purple);
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.offer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  color: var(--text-main);
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--accent-purple);
+  box-shadow: 0 0 0 4px rgba(157, 80, 187, 0.15);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.btn-submit-offer {
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #9d50bb, #6e48aa);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-submit-offer:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(157, 80, 187, 0.3);
+}
+
+/* SUCCESS STATE */
+.offer-success {
+  text-align: center;
+  padding: 60px 24px;
+}
+
+.offer-success i {
+  font-size: 4rem;
+  color: var(--success);
+  margin-bottom: 16px;
+}
+
+.offer-success h2 {
+  margin: 0 0 8px;
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.offer-success p {
+  color: var(--text-muted);
+  margin: 0;
+}

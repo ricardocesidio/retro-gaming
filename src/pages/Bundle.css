@@ -1,0 +1,221 @@
+/* ==============================
+   BUNDLE PAGE — PREMIUM STYLE
+   ============================== */
+
+.bundle-page {
+  width: min(1200px, calc(100% - 32px));
+  margin: 40px auto;
+  color: var(--text-main);
+}
+
+.bundle-page .btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
+  padding: 11px 18px;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  margin-bottom: 24px;
+  backdrop-filter: blur(12px);
+}
+
+.bundle-page .btn-back:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 215, 0, 0.45);
+  color: #ffd700;
+}
+
+.bundle-step {
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.bundle-step h2 {
+  margin: 0 0 8px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.bundle-subtitle {
+  color: var(--text-muted);
+  margin: 0 0 24px;
+  font-size: 0.95rem;
+}
+
+/* FIRST ITEM / BUNDLE ITEMS */
+.bundle-first-item {
+  margin-bottom: 24px;
+}
+
+.bundle-first-item h3,
+.bundle-selected-items h3 {
+  margin: 0 0 16px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.bundle-item-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.bundle-item-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.bundle-item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.bundle-item-info h4 {
+  margin: 0 0 4px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.bundle-item-price {
+  color: var(--accent-purple);
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.bundle-check {
+  color: var(--success);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.btn-remove-item {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 77, 77, 0.15);
+  color: #ef4444;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.btn-remove-item:hover {
+  background: rgba(255, 77, 77, 0.3);
+  transform: scale(1.1);
+}
+
+/* BUTTONS */
+.btn-next-step,
+.btn-send-bundle,
+.btn-browse-market {
+  padding: 14px 24px;
+  border: none;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-next-step {
+  background: linear-gradient(135deg, #9d50bb, #6e48aa);
+  color: #fff;
+  margin-top: 24px;
+}
+
+.btn-next-step:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(157, 80, 187, 0.3);
+}
+
+.btn-send-bundle {
+  background: linear-gradient(135deg, #9d50bb, #6e48aa);
+  color: #fff;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.btn-send-bundle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(157, 80, 187, 0.3);
+}
+
+.btn-send-bundle:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.btn-browse-market {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
+  text-decoration: none;
+  margin-top: 16px;
+  display: inline-flex;
+}
+
+.btn-browse-market:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 215, 0, 0.45);
+}
+
+.bundle-total {
+  padding: 16px;
+  background: rgba(157, 80, 187, 0.08);
+  border: 1px solid rgba(157, 80, 187, 0.15);
+  border-radius: 16px;
+  margin: 16px 0;
+  text-align: center;
+}
+
+.bundle-total strong {
+  font-size: 1.3rem;
+  color: var(--accent-purple);
+}
+
+.bundle-selected-items {
+  margin: 24px 0;
+}
+
+.bundle-actions {
+  margin-top: 24px;
+}
+
+.bundle-market-link {
+  text-align: center;
+  margin-top: 16px;
+}

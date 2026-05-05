@@ -1,0 +1,34 @@
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.hero h1 {
+  font-size: 2em;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.text-shadow-gray {
+  color: #ffffff;
+  text-shadow: 2px 2px 8px rgba(128, 128, 128, 0.8);
+}
+
+.text-purple-shadow {
+  color: #9b59f5;
+  text-shadow: 2px 2px 12px rgba(155, 89, 245, 0.8);
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+}

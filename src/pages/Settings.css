@@ -1,0 +1,458 @@
+/* ==========================================================
+   SETTINGS PAGE — Desktop First, Premium Black Theme
+   ========================================================== */
+
+/* WRAPPER GERAL */
+.settings-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  min-height: calc(100vh - 120px);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* CARTÃO PRINCIPAL */
+.settings-glass-card {
+  width: 100%;
+  max-width: 750px;
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(157, 80, 187, 0.2);
+  border-radius: 24px;
+  padding: 50px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* HEADER SETTINGS */
+.settings-v2-header {
+  text-align: center;
+  margin-bottom: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  background: rgba(157, 80, 187, 0.1);
+  color: #9d50bb;
+  font-size: 10px;
+  font-weight: 800;
+  border-radius: 50px;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
+
+.settings-v2-header h1 {
+  margin: 0;
+  font-size: 2em;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 0.5px;
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+
+.settings-v2-header p {
+  color: #888;
+  margin-top: 8px;
+  text-align: left;
+}
+
+/* AVATAR V2 */
+.avatar-section-v2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.avatar-hint {
+  font-size: 0.82rem;
+  color: #888;
+  text-align: center;
+  margin: 0;
+}
+
+.avatar-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.avatar-container img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  object-fit: cover;
+  border: 3px solid #9d50bb;
+  transition: 0.4s;
+}
+
+.avatar-container img:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+.edit-overlay {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  background: #ffd700;
+  width: 35px;
+  height: 35px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+  border: none;
+  color: #000;
+}
+
+.edit-overlay:hover {
+  transform: scale(1.1);
+}
+
+/* FORM V2 */
+.settings-v2-form {
+  width: 100%;
+}
+
+.form-grid-v2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.input-box-v2 {
+  width: 100%;
+  max-width: 100%;
+}
+
+.input-box-v2.full-width {
+  grid-column: 1 / -1;
+}
+
+.input-label-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  text-align: left;
+}
+
+.input-label-group label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #ccc;
+  text-align: left;
+}
+
+.username-info-button {
+  background: none;
+  border: none;
+  color: var(--accent-purple, #9d50bb);
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 50%;
+  transition: background 0.18s ease, transform 0.18s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.username-info-button:hover {
+  background: rgba(157, 80, 187, 0.15);
+  transform: scale(1.1);
+}
+
+.username-info-button i {
+  font-size: 0.9rem;
+}
+
+.username-info-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-align: left;
+}
+
+.username-info-box span {
+  font-size: 0.75rem;
+  color: #8a8dc2;
+}
+
+.username-error-text {
+  color: #ef4444;
+  font-size: 0.75rem;
+  margin: 0;
+  text-align: left;
+}
+
+.input-box-v2 input,
+.input-box-v2 select,
+.input-box-v2 textarea {
+  width: 100%;
+  padding: 12px 15px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  color: #fff;
+  font-size: 0.95rem;
+  outline: none;
+  transition: 0.2s;
+  box-sizing: border-box;
+}
+
+.input-box-v2 input:focus,
+.input-box-v2 select:focus,
+.input-box-v2 textarea:focus {
+  border-color: #9d50bb;
+  box-shadow: 0 0 0 4px rgba(157, 80, 187, 0.15);
+}
+
+.input-box-v2 textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.char-count {
+  display: block;
+  text-align: right;
+  font-size: 0.75rem;
+  color: #8a8dc2;
+  margin-top: 4px;
+}
+
+/* BUTTONS */
+.btn-v2-save {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #9d50bb, #6e2da8);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-top: 10px;
+}
+
+.btn-v2-save:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(157, 80, 187, 0.3);
+}
+
+.btn-v2-save:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* BANNER */
+.settings-banner {
+  background: linear-gradient(135deg, rgba(157, 80, 187, 0.12), rgba(110, 45, 168, 0.08));
+  border: 1px solid rgba(157, 80, 187, 0.2);
+  border-radius: 18px;
+  padding: 24px;
+  margin-top: 32px;
+  text-align: left;
+}
+
+.settings-banner h3 {
+  margin: 0 0 8px;
+  color: #fff;
+  font-size: 1.05rem;
+}
+
+.settings-banner p {
+  margin: 0;
+  color: #888;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+/* ==========================================================
+   TABLET LARGE (769px - 1024px)
+   ========================================================== */
+@media (max-width: 1024px) {
+  .settings-wrapper {
+    padding: 120px 24px 60px;
+  }
+
+  .settings-glass-card {
+    max-width: 780px;
+  }
+
+  .form-grid-v2 {
+    gap: 28px;
+  }
+}
+
+/* ==========================================================
+   TABLET (641px - 768px)
+   ========================================================== */
+@media (max-width: 768px) {
+  .settings-wrapper {
+    padding: 120px 20px 60px;
+  }
+
+  .settings-glass-card {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 40px 30px;
+  }
+
+  .form-grid-v2 {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+/* ==========================================================
+   MOBILE LARGE (481px - 640px)
+   ========================================================== */
+@media (max-width: 640px) {
+  .settings-wrapper {
+    padding: 110px 16px 50px;
+  }
+
+  .settings-glass-card {
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 30px 20px;
+  }
+
+  .settings-v2-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .form-grid-v2 {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .input-box-v2 input,
+  .input-box-v2 select,
+  .input-box-v2 textarea {
+    padding: 11px 13px;
+    font-size: 0.93rem;
+    padding-right: 5px;
+  }
+
+  .avatar-container {
+    width: 90px;
+    height: 90px;
+  }
+
+  .btn-v2-save {
+    width: 100%;
+    padding: 13px 20px;
+    font-size: 0.93rem;
+  }
+}
+
+/* ==========================================================
+   MOBILE (up to 480px)
+   ========================================================== */
+@media (max-width: 480px) {
+  .settings-wrapper {
+    padding: 100px 12px 50px;
+    margin-top: -80px;
+  }
+
+  .settings-glass-card {
+    max-width: 380px;
+    margin: 0 auto;
+    padding: 20px 16px;
+  }
+
+  .settings-v2-header h1 {
+    font-size: 1.55rem;
+    letter-spacing: -0.8px;
+  }
+
+  .form-grid-v2 {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .input-box-v2.full-width {
+    grid-column: auto;
+  }
+
+  .input-box-v2 input,
+  .input-box-v2 select,
+  .input-box-v2 textarea {
+    padding: 11px 13px;
+    font-size: 0.93rem;
+    padding-right: 5px;
+  }
+
+  .avatar-container {
+    width: 82px;
+    height: 82px;
+    margin: 0 auto;
+  }
+
+  .btn-v2-save {
+    width: 100%;
+    padding: 13px 20px;
+    font-size: 0.93rem;
+  }
+}
+
+.settings-v2-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* LANDSCAPE MOBILE */
+@media (max-height: 500px) and (orientation: landscape) and (max-width: 768px) {
+  .settings-wrapper {
+    padding: 70px 12px 30px;
+  }
+
+  .settings-glass-card {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .form-grid-v2 {
+    gap: 16px;
+  }
+}
+
+/* LEFT ALIGNED ELEMENTS */
+.settings-v2-header p,
+.input-label-group,
+.input-box-v2 label,
+.username-error-text,
+.username-info-box,
+.settings-banner {
+  text-align: left !important;
+}
