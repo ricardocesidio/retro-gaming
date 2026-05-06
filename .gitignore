@@ -4,6 +4,7 @@ package-lock.json
 
 # Build output
 dist/
+dist 2/
 build/
 
 # IDE
@@ -45,7 +46,6 @@ style/
 javascript/
 html/
 images/
-vite.config 2.js
 
 # Retro room (old project)
 retro-room-react/
