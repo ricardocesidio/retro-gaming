@@ -5,6 +5,16 @@ import { readConversations, writeConversations } from '../utils/uiState';
 
 const nowTime = () => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
+// Convert image file to base64
+const fileToBase64 = (file) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
+};
+
 export default function Messages() {
   const location = useLocation();
   const [activeChatId, setActiveChatId] = useState(null);
@@ -16,8 +26,11 @@ export default function Messages() {
   const [reportData, setReportData] = useState({ reason: '', description: '' });
   const [mobileShowChat, setMobileShowChat] = useState(false);
   const [conversations, setConversations] = useState(() => readConversations());
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState('');
   const menuRef = useRef(null);
   const chatEndRef = useRef(null);
+  const fileInputRef = useRef(null);
 
   const handleImgError = (e) => {
     e.target.style.display = 'none';
@@ -117,23 +130,50 @@ export default function Messages() {
     setTimeout(() => setShowSuccessToast(false), 4000);
   };
 
-  const handleSendMessage = (e) => {
+  const handleImageSelect = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    // Check file type
+    if (!file.type.startsWith('image/')) {
+      alert('Please select an image file');
+      return;
+    }
+    
+    // Check file size (limit to 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      alert('Image must be smaller than 5MB');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      setSelectedImage(event.target.result);
+      setImagePreview(event.target.result);
+    };
+    reader.readAsDataURL(file);
+    e.target.value = '';
+  };
+
+  const handleSendMessage = async (e) => {
     e.preventDefault();
-    if (!newMessage.trim() || isBlocked || !activeChatId) return;
+    if ((!newMessage.trim() && !selectedImage) || isBlocked || !activeChatId) return;
 
     const message = {
       type: 'sent',
       text: newMessage,
       time: nowTime(),
+      image: selectedImage || null,
     };
 
     const updatedChats = conversations.map((chat) => {
       if (String(chat.id) !== String(activeChatId)) return chat;
       const history = [...(Array.isArray(chat.history) ? chat.history : []), message];
+      const lastMsg = selectedImage ? '📷 Image' : newMessage;
       return {
         ...chat,
         history,
-        lastMsg: newMessage,
+        lastMsg,
         time: message.time,
       };
     });
@@ -141,6 +181,8 @@ export default function Messages() {
     setConversations(updatedChats);
     writeConversations(updatedChats);
     setNewMessage('');
+    setSelectedImage(null);
+    setImagePreview('');
   };
 
   const openChat = (id) => {
@@ -292,7 +334,15 @@ export default function Messages() {
               <div className="chat-history">
                 {activeChat.history.map((msg, i) => (
                   <div key={i} className={`message-bubble message-${msg.type}`}>
-                    <span className="msg-text">{msg.text}</span>
+                    {msg.image && (
+                      <img 
+                        src={msg.image} 
+                        alt="Sent image" 
+                        className="message-image"
+                        onError={(e) => { e.target.style.display = 'none'; }}
+                      />
+                    )}
+                    {msg.text && <span className="msg-text">{msg.text}</span>}
                     <span className="msg-time">{msg.time}</span>
                   </div>
                 ))}
@@ -306,6 +356,34 @@ export default function Messages() {
                 </div>
               ) : (
                 <form className="chat-input-area" onSubmit={handleSendMessage}>
+                  {imagePreview && (
+                    <div className="image-preview-container">
+                      <img src={imagePreview} alt="Preview" className="image-preview" />
+                      <button 
+                        type="button" 
+                        className="remove-image-btn"
+                        onClick={() => { setSelectedImage(null); setImagePreview(''); }}
+                        aria-label="Remove image"
+                      >
+                        <i className="fa-solid fa-xmark" />
+                      </button>
+                    </div>
+                  )}
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    accept="image/*"
+                    style={{ display: 'none' }}
+                    onChange={handleImageSelect}
+                  />
+                  <button 
+                    type="button" 
+                    className="btn-attach"
+                    onClick={() => fileInputRef.current?.click()}
+                    aria-label="Attach image"
+                  >
+                    <i className="fa-solid fa-paperclip" />
+                  </button>
                   <input
                     type="text"
                     className="chat-input"
@@ -314,7 +392,7 @@ export default function Messages() {
                     onChange={(e) => setNewMessage(e.target.value)}
                     aria-label="Message input"
                   />
-                  <button type="submit" className="btn-send" aria-label="Send message">
+                  <button type="submit" className="btn-send" aria-label="Send message" disabled={!newMessage.trim() && !selectedImage}>
                     <i className="fa-solid fa-paper-plane" />
                   </button>
                 </form>
