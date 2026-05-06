@@ -59,7 +59,10 @@ export default function Bundle() {
       ? [firstItem, ...bundleItems.filter((i) => String(i.id) !== String(firstItem.id))]
       : bundleItems;
 
-    if (allItems.length === 0) return;
+    if (allItems.length === 0) {
+      alert("Please add at least one item to the bundle.");
+      return;
+    }
 
     // Read existing conversations
     const raw = localStorage.getItem("retroConversations");
@@ -126,8 +129,8 @@ export default function Bundle() {
         <div className="bundle-step">
           <h2>Create Your Bundle</h2>
           <p className="bundle-subtitle">Select additional items to bundle with this product</p>
-
-          {firstItem && (
+          
+          {firstItem ? (
             <div className="bundle-first-item">
               <h3>Selected Item</h3>
               <div className="bundle-item-card">
@@ -142,6 +145,14 @@ export default function Bundle() {
                 </div>
                 <i className="fa-solid fa-check bundle-check" />
               </div>
+            </div>
+          ) : (
+            <div className="bundle-empty">
+              <i className="fa-solid fa-box-open" />
+              <p>No item selected. Please go back and select a product to bundle.</p>
+              <button className="btn-back" onClick={() => navigate(-1)}>
+                <i className="fa-solid fa-chevron-left" /> Back to Market
+              </button>
             </div>
           )}
 

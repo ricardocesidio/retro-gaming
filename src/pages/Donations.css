@@ -47,7 +47,7 @@
   display: inline-block;
   padding: 6px 16px;
   background: rgba(157, 80, 187, 0.12);
-  color: #9d50bb;
+  color: var(--accent-purple);
   font-size: 11px;
   font-weight: 800;
   border-radius: 50px;
@@ -226,7 +226,7 @@
   left: 14px;
   top: 50%;
   transform: translateY(-50%);
-  color: #ffd700;
+  color: var(--tier-gold);
   font-size: 1.1rem;
   font-weight: 800;
   pointer-events: none;
@@ -244,7 +244,7 @@
 .custom-amount input:focus,
 .message-section textarea:focus {
   outline: none;
-  border-color: #9d50bb;
+  border-color: var(--accent-purple);
   background: rgba(157, 80, 187, 0.05);
   box-shadow: 0 0 0 3px rgba(157, 80, 187, 0.12);
 }
@@ -280,7 +280,7 @@
 .btn-donate {
   width: 100%;
   padding: 20px;
-  background: linear-gradient(135deg, #9d50bb, #6e48aa);
+  background: linear-gradient(135deg, var(--accent-purple), #6e48aa);
   color: #fff;
   border: none;
   border-radius: 16px;
@@ -295,7 +295,7 @@
   gap: 10px;
 }
 .btn-donate:hover {
-  background: linear-gradient(135deg, #ffd700, #ffca28);
+  background: linear-gradient(135deg, var(--tier-gold), #ffca28);
   color: #000;
 }
 
@@ -360,7 +360,7 @@
 
 .transparency-card.help-platform { border-color: rgba(157, 80, 187, 0.22); }
 .transparency-card.help-platform .card-icon-wrap,
-.transparency-card.help-platform i { color: #9d50bb; }
+.transparency-card.help-platform i { color: var(--accent-purple); }
 .transparency-card.help-platform .card-icon-wrap { background: rgba(157, 80, 187, 0.12); }
 
 .transparency-card.help-security { border-color: rgba(0, 180, 216, 0.22); }
@@ -370,7 +370,7 @@
 
 .transparency-card.help-community { border-color: rgba(255, 215, 0, 0.22); }
 .transparency-card.help-community .card-icon-wrap,
-.transparency-card.help-community i { color: #ffd700; }
+.transparency-card.help-community i { color: var(--tier-gold); }
 .transparency-card.help-community .card-icon-wrap { background: rgba(255, 215, 0, 0.12); }
 
 .transparency-card.help-future { border-color: rgba(255, 105, 180, 0.22); }
@@ -477,7 +477,7 @@
 
 .impact-gold { border-color: rgba(255, 215, 0, 0.38); }
 .impact-gold .impact-level { color: #ffe16f; background: rgba(255, 215, 0, 0.12); }
-.impact-gold .impact-price { color: #ffd700; }
+.impact-gold .impact-price { color: var(--tier-gold); }
 .impact-gold.active { box-shadow: 0 0 10px rgba(255, 215, 0, 0.22); }
 
 .impact-master { border-color: rgba(157, 80, 187, 0.38); }
@@ -525,7 +525,7 @@
 .badge.gold {
   background: linear-gradient(145deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.08));
   border-color: rgba(255, 215, 0, 0.4);
-  color: #ffd700;
+  color: var(--tier-gold);
 }
 .badge.master {
   background: linear-gradient(145deg, rgba(157, 80, 187, 0.22), rgba(157, 80, 187, 0.08));
@@ -645,8 +645,8 @@
 
 /* Cores específicas para cada ícone (mais profissional e variado) */
 .trust-points span:nth-child(1) i { color: #00e676 !important} /* Secure processing - verde */
-.trust-points span:nth-child(2) i { color: #9d50bb !important} /* Clear reporting - roxo brand */
-.trust-points span:nth-child(3) i { color: #ffd700 !important } /* Trusted workflow - ouro */
+.trust-points span:nth-child(2) i { color: var(--accent-purple) !important} /* Clear reporting - roxo brand */
+.trust-points span:nth-child(3) i { color: var(--tier-gold) !important } /* Trusted workflow - ouro */
 
 /* ANIMATION */
 @keyframes slideUp {
@@ -794,7 +794,7 @@
 }
 
 .btn-close-success {
-  background: linear-gradient(135deg, #9d50bb, #6e2da8);
+  background: linear-gradient(135deg, var(--accent-purple), #6e2da8);
   color: #fff;
   border: none;
   padding: 16px 40px;

@@ -42,12 +42,20 @@ export default function Profile() {
   const soldListings = userListings.filter(item => item.status === "sold");
   const displayListings = showSold ? soldListings : activeListings;
 
-  // Get seller stats with fake numbers
+  // Get seller stats with stable mock numbers (based on username hash)
+  const getStableNumber = (str, min, max) => {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      hash = ((hash << 5) - hash + str.charCodeAt(i)) | 0;
+    }
+    return Math.abs(hash % (max - min + 1)) + min;
+  };
+
   const stats = useMemo(() => {
     const base = getSellerStats(activeProfileName);
     return {
       ...base,
-      itemsSold: base.soldItems || Math.floor(Math.random() * 50) + 10,
+      itemsSold: base.soldItems || getStableNumber(activeProfileName, 15, 60),
     };
   }, [activeProfileName]);
 
@@ -58,9 +66,9 @@ export default function Profile() {
     { id: 3, name: "NostalgiaHunter", text: "Item arrived in perfect condition. Recommended!" },
   ], []);
 
-  // Fake followers/following counts
-  const followersCount = getFollowersCount(profileUserId) || (Math.floor(Math.random() * 500) + 50);
-  const followingCount = getFollowingCount(profileUserId) || (Math.floor(Math.random() * 200) + 20);
+  // Stable mock followers/following counts (based on username)
+  const followersCount = getFollowersCount(profileUserId) || getStableNumber(activeProfileName, 80, 550);
+  const followingCount = getFollowingCount(profileUserId) || getStableNumber(activeProfileName + '_f', 30, 230);
   const followingState = !isOwnProfile && isFollowing(profileUserId);
 
   const getTierClass = () => {

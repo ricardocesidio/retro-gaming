@@ -1,16 +1,6 @@
-:root {
-    --diamond-color: #00d4ff;
-    --verified-color: #1DA1F2;
-    --tier-master: #9D50BB;
-    --bg-card: #121212;
-    --border-color: #333;
-    --accent-purple: #8347ba;
-    --glass-bg: rgba(255, 255, 255, 0.03);
-}
-
 /* =========================================
    WRAPPERS & LAYOUT
-========================================= */
+   ========================================= */
 .profile-page-wrapper { 
     padding: 0 5%; 
     margin: 40px auto; 
@@ -134,10 +124,9 @@
     pointer-events: none;
 }
 
+/* Profile info H1 - uses global standard (2em, 0.5px letter-spacing) */
 .elite-tech .profile-info h1 {
-    font-size: 2em;
     font-weight: 900;
-    letter-spacing: 0.5px;
     color: #ffffff;
     text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
     margin-bottom: 20px;
@@ -828,8 +817,8 @@
     min-width: 0; /* Previne overflow de flexbox */
 }
 
+/* Profile info H1 - uses global standard */
 .profile-info h1 {
-    font-size: 2em;
     font-weight: 800;
     margin: 0 0 10px 0;
     display: flex;
@@ -837,7 +826,6 @@
     flex-wrap: wrap;
     gap: 12px;
     color: #ffffff;
-    letter-spacing: 0.5px;
 }
 
 .profile-meta-info {
@@ -1084,32 +1072,6 @@
     padding: 8px 16px;
     margin: 12px auto 0;
     display: block;
-}
-
-.inventory-empty i {
-    font-size: 42px;
-    color: rgba(157, 80, 187, 0.6);
-    margin-bottom: 16px;
-    opacity: 0.8;
-}
-
-.inventory-empty p {
-    font-size: 1.1em;
-    color: #aaa;
-    margin: 0 0 16px 0;
-    font-weight: 500;
-}
-
-.inventory-empty i {
-    font-size: 48px;
-    color: rgba(157, 80, 187, 0.5);
-    margin-bottom: 20px;
-}
-
-.inventory-empty p {
-    font-size: 1.2em;
-    color: #888;
-    margin: 0 0 20px 0;
 }
 
 /* =========================================

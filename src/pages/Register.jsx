@@ -12,11 +12,11 @@ const getPasswordMetrics = (password) => {
   return [
     { width: '50%',  color: '#ffcc00', label: 'Fair' },
     { width: '75%',  color: '#00e676', label: 'Strong' },
-    { width: '100%', color: '#9d50bb', label: 'Legendary' },
+    { width: '100%', color: 'var(--accent-purple)', label: 'Legendary' },
   ][score - 1];
 };
 
-const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+const isValidEmail = (email) => /^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/.test(email);
 
 export default function Register() {
   const navigate      = useNavigate();

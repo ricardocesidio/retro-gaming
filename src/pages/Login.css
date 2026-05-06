@@ -7,7 +7,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #080808;
+  background: var(--bg-body);
   padding: 20px;
   box-sizing: border-box;
   overflow: hidden;
@@ -22,7 +22,7 @@
 }
 
 .login-page .glass-morphism {
-  background: rgba(18, 18, 18, 0.9);
+  background: var(--bg-glass);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(157, 80, 187, 0.2);
   box-shadow: 
@@ -37,14 +37,14 @@
 }
 
 .login-page .login-header h2 {
-  color: #ffffff;
+  color: var(--text-main);
   font-size: 1.6rem;
   margin: 0 0 8px;
   letter-spacing: 0.05em;
 }
 
 .login-page .login-header p {
-  color: #b8b8b8;
+  color: var(--text-muted);
   font-size: 0.92rem;
   margin: 0;
 }
@@ -65,13 +65,13 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 8px;
-  color: #e0e0e0;
+  color: var(--text-secondary);
   font-weight: 500;
   font-size: 0.92rem;
 }
 
 .login-page .form-group label i {
-  color: #9d50bb;
+  color: var(--accent-purple);
   font-size: 1.05rem;
   width: 18px;
 }
@@ -79,21 +79,20 @@
 .login-page .login-input {
   width: 100%;
   padding: 14px 16px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
-  color: #ffffff;
+  background: var(--bg-soft);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
   font-size: 0.95rem;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .login-page .login-input::placeholder {
-  color: #7a7a7a;
+  color: var(--text-muted);
 }
 
 .login-page .login-input:focus {
-  border-color: #9d50bb;
-  background: rgba(157, 80, 187, 0.1);
+  border-color: var(--accent-purple);
+  background: var(--accent-glow);
   outline: none;
 }
 
@@ -113,13 +112,13 @@
   transform: translateY(-50%);
   background: none;
   border: none;
-  color: #888;
+  color: var(--text-muted);
   cursor: pointer;
   padding: 4px;
 }
 
 .login-page .password-toggle-btn:hover {
-  color: #9d50bb;
+  color: var(--accent-purple);
 }
 
 /* Checkbox */
@@ -132,7 +131,7 @@
   align-items: flex-start;
   gap: 10px;
   cursor: pointer;
-  color: #888;
+  color: var(--text-muted);
   font-size: 0.88rem;
 }
 
@@ -140,7 +139,7 @@
   width: 18px;
   height: 18px;
   margin-top: 1px;
-  accent-color: #9d50bb;
+  accent-color: var(--accent-purple);
 }
 
 .login-page .checkbox-label {
@@ -152,11 +151,11 @@
 .login-page .btn-submit-login {
   width: 100%;
   padding: 14px;
-  background: linear-gradient(135deg, #131213 0%, #000000 100%);
+  background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-body) 100%);
   border: 3px solid transparent;
   border-radius: 12px;
-  border-color: #9d50bb;
-  color: #ffffff;
+  border-color: var(--accent-purple);
+  color: var(--text-main);
   font-weight: 700;
   font-size: 0.95rem;
   cursor: pointer;
@@ -169,9 +168,9 @@
 
 .login-page .btn-login-submit:hover,
 .login-page .btn-submit-login:hover {
-  background: yellow !important;
-  color: black !important;
-  border-color: white !important;
+  background: var(--tier-gold) !important;
+  color: var(--bg-body) !important;
+  border-color: var(--text-main) !important;
   box-shadow: 0 0 12px rgba(255, 242, 0, 0.35) !important;
   transform: translateY(-1px);
 }
@@ -193,7 +192,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #ff6b6b;
+  color: var(--danger);
   animation: slideDown 0.3s ease-out;
 }
 
@@ -210,11 +209,11 @@
   margin-top: 24px;
   text-align: center;
   font-size: 0.9rem;
-  color: #a8a8a8;
+  color: var(--text-muted);
 }
 
 .login-page .register-link {
-  color: #ffd700;
+  color: var(--tier-gold);
   text-decoration: none;
   font-weight: 600;
   margin-left: 4px;

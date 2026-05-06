@@ -340,8 +340,10 @@ export default function Settings() {
 
             {/* ABOUT */}
             <div className="input-box-v2 full-width">
-              <label>
-                ABOUT YOU
+              <label className="input-label-group">
+                <span className="label-left-side">
+                  <span>ABOUT YOU</span>
+                </span>
                 <span className={`counter ${charCount > MAX_ABOUT_CHARS ? "limit-error" : ""}`}>
                   {charCount}/{MAX_ABOUT_CHARS} characters
                 </span>

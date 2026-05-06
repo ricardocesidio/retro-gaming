@@ -29,7 +29,7 @@
 .bundle-page .btn-back:hover {
   transform: translateY(-1px);
   border-color: rgba(255, 215, 0, 0.45);
-  color: #ffd700;
+  color: var(--tier-gold);
 }
 
 .bundle-step {
@@ -51,6 +51,33 @@
   color: var(--text-muted);
   margin: 0 0 24px;
   font-size: 0.95rem;
+}
+
+.bundle-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 30px;
+  text-align: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  gap: 12px;
+}
+
+.bundle-empty i {
+  font-size: 42px;
+  color: var(--accent-purple);
+  opacity: 0.6;
+}
+
+.bundle-empty p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0;
 }
 
 /* FIRST ITEM / BUNDLE ITEMS */
@@ -120,7 +147,7 @@
   border: none;
   border-radius: 50%;
   background: rgba(255, 77, 77, 0.15);
-  color: #ef4444;
+  color: var(--danger);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -151,7 +178,7 @@
 }
 
 .btn-next-step {
-  background: linear-gradient(135deg, #9d50bb, #6e48aa);
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-2));
   color: #fff;
   margin-top: 24px;
 }
@@ -162,7 +189,7 @@
 }
 
 .btn-send-bundle {
-  background: linear-gradient(135deg, #9d50bb, #6e48aa);
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-2));
   color: #fff;
   width: 100%;
   margin-top: 16px;

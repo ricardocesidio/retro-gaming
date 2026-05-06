@@ -13,13 +13,13 @@ export default function Footer() {
             Buy, sell and discover rare finds.
           </p>
           <div className="brand-socials">
-            <a href="https://twitter.com" target="_blank" rel="noreferrer" aria-label="Twitter">
+            <a href="#" onClick={(e) => e.preventDefault()} className="social-placeholder" aria-label="Twitter">
               <i className="fab fa-x-twitter" />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram">
+            <a href="#" onClick={(e) => e.preventDefault()} className="social-placeholder" aria-label="Instagram">
               <i className="fab fa-instagram" />
             </a>
-            <a href="https://discord.com" target="_blank" rel="noreferrer" aria-label="Discord">
+            <a href="#" onClick={(e) => e.preventDefault()} className="social-placeholder" aria-label="Discord">
               <i className="fab fa-discord" />
             </a>
           </div>
@@ -55,12 +55,13 @@ export default function Footer() {
         {/* Right column */}
         <div className="footer-end">
           <div className="social-row">
-            <a href="https://twitter.com" target="_blank" rel="noreferrer" aria-label="Twitter"><i className="fab fa-x-twitter" /></a>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"><i className="fab fa-instagram" /></a>
-            <a href="https://youtube.com" target="_blank" rel="noreferrer" aria-label="YouTube"><i className="fab fa-youtube" /></a>
-            <a href="https://twitch.tv" target="_blank" rel="noreferrer" aria-label="Twitch"><i className="fab fa-twitch" /></a>
+            <a href="#" onClick={(e) => e.preventDefault()} className="social-placeholder" aria-label="Twitter"><i className="fab fa-x-twitter" /></a>
+            <a href="#" onClick={(e) => e.preventDefault()} className="social-placeholder" aria-label="Instagram"><i className="fab fa-instagram" /></a>
+            <a href="#" onClick={(e) => e.preventDefault()} className="social-placeholder" aria-label="YouTube"><i className="fab fa-youtube" /></a>
+            <a href="#" onClick={(e) => e.preventDefault()} className="social-placeholder" aria-label="Twitch"><i className="fab fa-twitch" /></a>
           </div>
           <p className="copyright">© 2026 My Retro Room. All rights reserved.</p>
+          <p className="demo-mode-label">Demo Mode — Frontend Simulation</p>
         </div>
       </div>
     </footer>

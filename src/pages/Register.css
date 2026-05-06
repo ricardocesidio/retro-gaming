@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #080808;
+  background-color: var(--bg-body);
   padding: 20px;
   box-sizing: border-box;
   overflow: hidden;
@@ -45,14 +45,14 @@
 }
 
 .login-header h2 {
-  color: #ffffff;
+  color: var(--text-main);
   font-size: 1.8rem;
   margin-bottom: 6px;
   letter-spacing: 0.08em;
 }
 
 .login-header p {
-  color: #b3b3b3;
+  color: var(--text-muted);
   font-size: 0.95rem;
 }
 
@@ -93,7 +93,7 @@
 .form-group label i {
   width: 20px;
   text-align: center;
-  color: #9d50bb;
+  color: var(--accent-purple);
   font-size: 1.1rem;
 }
 
@@ -103,23 +103,23 @@
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 14px;
-  color: #ffffff;
+  color: var(--text-main);
   font-size: 0.95rem;
   transition: all 0.25s ease;
 }
 
 .login-input::placeholder {
-  color: #777777;
+  color: var(--text-muted);
 }
 
 .login-input:focus {
-  border-color: #9d50bb;
+  border-color: var(--accent-purple);
   background: rgba(157, 80, 187, 0.09);
   outline: none;
 }
 
 .login-input[aria-invalid="true"] {
-  border-color: #ff4444;
+  border-color: var(--danger);
 }
 
 /* Campo de password + toggle */
@@ -134,7 +134,7 @@
   transform: translateY(-50%);
   background: none;
   border: none;
-  color: #888888;
+  color: var(--text-muted);
   cursor: pointer;
   padding: 4px;
   display: inline-flex;
@@ -143,7 +143,7 @@
 }
 
 .password-toggle-btn:hover {
-  color: #ffffff;
+  color: var(--text-main);
 }
 
 /* ========== 4. LADO DIREITO (SIDE PANEL) ========== */
@@ -167,7 +167,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #9d50bb;
+  color: var(--accent-purple);
   margin-bottom: 10px;
   font-size: 1.05rem;
 }
@@ -177,7 +177,7 @@
 }
 
 .policy-box .policy-info {
-  color: #cccccc;
+  color: var(--text-muted);
   font-size: 0.9rem;
   line-height: 1.4;
 }
@@ -190,7 +190,7 @@
   background: rgba(255, 255, 255, 0.03);
   border: 1px dashed rgba(157, 80, 187, 0.5);
   border-radius: 14px;
-  color: #dddddd;
+  color: var(--text-subtle);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -202,7 +202,7 @@
 }
 
 .guidelines-btn i {
-  color: #9d50bb;
+  color: var(--accent-purple);
 }
 
 .guidelines-btn:hover {
@@ -213,11 +213,11 @@
 .guidelines-btn.completed {
   background: rgba(0, 230, 118, 0.08);
   border: 1px solid #00e676;
-  color: #00e676;
+  color: var(--success);
 }
 
 .guidelines-btn.completed i {
-  color: #00e676;
+  color: var(--success);
 }
 
 /* Checkbox termos */
@@ -237,7 +237,7 @@
 .checkbox-container input[type="checkbox"] {
   width: 16px;
   height: 16px;
-  accent-color: #9d50bb;
+  accent-color: var(--accent-purple);
 }
 
 .checkbox-label {
@@ -250,14 +250,14 @@
 .login-footer-links {
   margin-top: 10px;
   font-size: 0.9rem;
-  color: #b5b5b5;
+  color: var(--text-muted);
   display: flex;
   gap: 6px;
   align-items: center;
 }
 
 .register-link {
-  color: #ffd700;
+  color: var(--tier-gold);
   text-decoration: none;
   font-weight: 600;
   text-decoration: none !important;
@@ -341,32 +341,32 @@
 
 .header-icon-title i {
   font-size: 2rem;
-  color: #9d50bb;
+  color: var(--accent-purple);
 }
 
 .header-icon-title h3 {
   margin: 0;
-  color: #ffffff;
+  color: var(--text-main);
   font-size: 1.15rem;
 }
 
 .header-icon-title span {
   display: block;
-  color: #999999;
+  color: var(--text-muted);
   font-size: 0.78rem;
 }
 
 .close-modal-x {
   background: transparent;
   border: none;
-  color: #aaaaaa;
+  color: var(--text-subtle);
   font-size: 1.6rem;
   cursor: pointer;
   padding: 4px 6px;
 }
 
 .close-modal-x:hover {
-  color: #ffffff;
+  color: var(--text-main);
 }
 
 /* Corpo modal */
@@ -379,7 +379,7 @@
 /* Custom scrollbar se quiseres */
 .custom-scroll {
   scrollbar-width: thin;
-  scrollbar-color: #444444 transparent;
+  scrollbar-color: var(--text-muted) transparent;
 }
 
 .custom-scroll::-webkit-scrollbar {
@@ -387,7 +387,7 @@
 }
 
 .custom-scroll::-webkit-scrollbar-thumb {
-  background: #444444;
+  background: var(--text-muted);
   border-radius: 999px;
 }
 
@@ -403,7 +403,7 @@
 }
 
 .guideline-card.warning {
-  border-left: 4px solid #ffcc00;
+  border-left: 4px solid var(--warning);
 }
 
 .g-icon {
@@ -414,7 +414,7 @@
   align-items: center;
   justify-content: center;
   background: rgba(157, 80, 187, 0.18);
-  color: #ffffff;
+  color: var(--text-main);
   flex-shrink: 0;
 }
 
@@ -424,13 +424,13 @@
 
 .g-content h4 {
   margin: 0 0 4px;
-  color: #ffffff;
+  color: var(--text-main);
   font-size: 0.98rem;
 }
 
 .g-content p {
   margin: 0;
-  color: #c7c7c7;
+  color: var(--text-muted);
   font-size: 0.84rem;
   line-height: 1.45;
 }
@@ -445,22 +445,22 @@
 
 .scroll-indicator {
   font-size: 0.8rem;
-  color: #bbbbbb;
+  color: var(--text-muted);
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
 .scroll-indicator i {
-  color: #ffd700;
+  color: var(--tier-gold);
 }
 
 .scroll-indicator.success {
-  color: #00e676;
+  color: var(--success);
 }
 
 .scroll-indicator.success i {
-  color: #00e676;
+  color: var(--success);
 }
 
 .btn-modal-close {
@@ -487,8 +487,8 @@
 }
 
 .btn-login-submit:hover {
-  background: rgba(255, 242, 0, 0.907) !important;
-    color: #000 !important;
+  background: var(--tier-gold);
+    color: var(--bg-body) !important;
     box-shadow: 0 0 10px rgb(234, 234, 234);
    
 }
@@ -500,8 +500,8 @@
 }
 
 .btn-modal-close.active {
-  background: #9d50bb;
-  color: #ffffff;
+  background: var(--accent-purple);
+  color: var(--text-main);
   cursor: pointer;
 }
 
@@ -543,7 +543,7 @@
 
 .shake-success {
   font-size: 4.5rem;
-  color: #00e676;
+  color: var(--success);
   margin-bottom: 14px;
   animation: pop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }

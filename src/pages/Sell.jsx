@@ -1063,34 +1063,35 @@ export default function Sell() {
               {errors.parcelSize && <span className="error-text">{errors.parcelSize}</span>}
             </div>
 
-            <div className="form-actions-container">
-              <button type="button" onClick={handleSaveDraft} className="btn-save-draft">
-                Save Draft
-              </button>
+              <div className="form-actions-container">
+                <button type="button" onClick={handleSaveDraft} className="btn-save-draft">
+                  Save Draft
+                </button>
 
-              <button
-                type="submit"
-                className={`btn-publish-ad ${!isFormValid ? "btn-publish-disabled" : ""}`}
-                disabled={isSubmitting}
-                aria-disabled={!isFormValid || isSubmitting}
-                onMouseEnter={() => setPublishHover(true)}
-                onMouseLeave={() => setPublishHover(false)}
-                style={
-                  publishHover && isFormValid && !isSubmitting
-                    ? { background: "#FFD700", color: "#000", borderColor: "#FFD700" }
-                    : undefined
-                }
-                aria-label="Publish your ad to the marketplace"
-              >
-                {isSubmitting ? (
-                  <>
-                    <i className="fa-solid fa-spinner fa-spin" style={{ marginRight: 8 }} />
-                    <span>Publishing…</span>
-                  </>
-                ) : (
-                  <span>Publish Ad</span>
-                )}
-              </button>
+                <button
+                  type="submit"
+                  className={`btn-publish-ad ${!isFormValid ? "btn-publish-disabled" : ""}`}
+                  disabled={isSubmitting}
+                  aria-disabled={!isFormValid || isSubmitting}
+                  onMouseEnter={() => setPublishHover(true)}
+                  onMouseLeave={() => setPublishHover(false)}
+                  style={
+                    publishHover && isFormValid && !isSubmitting
+                      ? { background: "#FFD700", color: "#000", borderColor: "#FFD700" }
+                      : undefined
+                  }
+                  aria-label="Publish your ad to the marketplace"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <i className="fa-solid fa-spinner fa-spin" style={{ marginRight: 8 }} />
+                      <span>Publishing…</span>
+                    </>
+                  ) : (
+                    <span>Publish Ad</span>
+                  )}
+                </button>
+              </div>
 
               {!isFormValid && publishAttempted && (
                 <div className="publish-hint publish-hint-warning" role="status" aria-live="polite">
@@ -1098,7 +1099,13 @@ export default function Sell() {
                   Fill in all required fields to publish the listing.
                 </div>
               )}
-            </div>
+
+              {isFormValid && !isSubmitting && (
+                <div className="publish-hint" role="status" aria-live="polite" style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: -8 }}>
+                  <i className="fa-solid fa-circle-check" style={{ marginRight: 6, color: 'var(--success)' }} />
+                  All fields complete — ready to publish!
+                </div>
+              )}
           </form>
 
           {drafts.length > 0 && (

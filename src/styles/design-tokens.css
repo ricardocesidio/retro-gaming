@@ -208,6 +208,12 @@
   /* Success color alias */
   --neon-yellow: var(--tier-gold);
   --elite-purple: var(--accent-purple);
+  
+  /* Missing variables used in components */
+  --diamond-color: var(--accent-purple);
+  --verified-color: var(--success);
+  --tier-master: var(--accent-purple);
+  --text-dim: var(--text-muted);
 }
 
 /* ==========================================================

@@ -212,7 +212,7 @@
   transform: translateY(-1px);
   background: rgba(255, 215, 0, 0.12);
   border-color: rgba(255, 215, 0, 0.45);
-  color: #ffd700;
+  color: var(--tier-gold);
 }
 
 /* RESULTS */
@@ -386,7 +386,6 @@
 @media (max-width: 480px) {
   .market-page {
     padding: 110px 10px 40px;
-    margin-top: -150px;
   }
 
   .market-filters {

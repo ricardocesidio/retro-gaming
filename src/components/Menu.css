@@ -67,11 +67,11 @@
 .sell-highlight {
   background: rgba(157, 80, 187, 0.3);
   border: 1px solid rgba(157, 80, 187, 0.5);
-  color: #9d50bb !important;
+  color: var(--accent-purple) !important;
 }
 
 .auction-icon {
-  color: #ffd700 !important;
+  color: var(--tier-gold) !important;
 }
 
 /* ==========================================================

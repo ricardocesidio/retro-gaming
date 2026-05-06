@@ -48,7 +48,7 @@
   display: inline-block;
   padding: 5px 12px;
   background: rgba(157, 80, 187, 0.1);
-  color: #9d50bb;
+  color: var(--accent-purple);
   font-size: 10px;
   font-weight: 800;
   border-radius: 50px;
@@ -100,7 +100,7 @@
   height: 100%;
   border-radius: 50px;
   object-fit: cover;
-  border: 3px solid #9d50bb;
+  border: 3px solid var(--accent-purple);
   transition: 0.4s;
 }
 
@@ -113,7 +113,7 @@
   position: absolute;
   bottom: -5px;
   right: -5px;
-  background: #ffd700;
+  background: var(--tier-gold);
   width: 35px;
   height: 35px;
   border-radius: 12px;
@@ -170,7 +170,7 @@
 .username-info-button {
   background: none;
   border: none;
-  color: var(--accent-purple, #9d50bb);
+  color: var(--accent-purple);
   cursor: pointer;
   padding: 4px 6px;
   border-radius: 50%;
@@ -198,11 +198,11 @@
 
 .username-info-box span {
   font-size: 0.75rem;
-  color: #8a8dc2;
+  color: var(--text-muted);
 }
 
 .username-error-text {
-  color: #ef4444;
+  color: var(--danger);
   font-size: 0.75rem;
   margin: 0;
   text-align: left;
@@ -226,7 +226,7 @@
 .input-box-v2 input:focus,
 .input-box-v2 select:focus,
 .input-box-v2 textarea:focus {
-  border-color: #9d50bb;
+  border-color: var(--accent-purple);
   box-shadow: 0 0 0 4px rgba(157, 80, 187, 0.15);
 }
 
@@ -239,65 +239,10 @@
   display: block;
   text-align: right;
   font-size: 0.75rem;
-  color: #8a8dc2;
-  margin-top: 4px;
-}
-
-/* BUTTONS */
-.btn-v2-save {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 14px 32px;
-  background: linear-gradient(135deg, #9d50bb, #6e2da8);
-  color: #fff;
-  border: none;
-  border-radius: 999px;
-  font-weight: 800;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: 0.2s;
-  margin-top: 10px;
-}
-
-.btn-v2-save:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(157, 80, 187, 0.3);
-}
-
-.btn-v2-save:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none;
-}
-
-/* BANNER */
-.settings-banner {
-  background: linear-gradient(135deg, rgba(157, 80, 187, 0.12), rgba(110, 45, 168, 0.08));
-  border: 1px solid rgba(157, 80, 187, 0.2);
-  border-radius: 18px;
-  padding: 24px;
-  margin-top: 32px;
-  text-align: left;
-}
-
-.settings-banner h3 {
-  margin: 0 0 8px;
-  color: #fff;
-  font-size: 1.05rem;
-}
-
-.settings-banner p {
+  color: var(--text-muted);
   margin: 0;
-  color: #888;
-  font-size: 0.88rem;
-  line-height: 1.6;
 }
 
-/* ==========================================================
-   TABLET LARGE (769px - 1024px)
-   ========================================================== */
 @media (max-width: 1024px) {
   .settings-wrapper {
     padding: 120px 24px 60px;
@@ -381,7 +326,6 @@
 @media (max-width: 480px) {
   .settings-wrapper {
     padding: 100px 12px 50px;
-    margin-top: -80px;
   }
 
   .settings-glass-card {

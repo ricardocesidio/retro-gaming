@@ -29,7 +29,7 @@
 .offer-page .btn-back:hover {
   transform: translateY(-1px);
   border-color: rgba(255, 215, 0, 0.45);
-  color: #ffd700;
+  color: var(--tier-gold);
 }
 
 .offer-card {
@@ -122,7 +122,7 @@
 
 .btn-submit-offer {
   padding: 14px 24px;
-  background: linear-gradient(135deg, #9d50bb, #6e48aa);
+  background: linear-gradient(135deg, var(--accent-purple), #6e48aa);
   color: #fff;
   border: none;
   border-radius: 14px;

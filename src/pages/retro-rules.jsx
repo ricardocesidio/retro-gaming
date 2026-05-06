@@ -64,7 +64,7 @@ export default function RetroRules() {
       
       <div style={{ 
         display: "grid", 
-        gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", 
+        gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr)", 
         gap: "20px" 
       }}>
         
@@ -150,7 +150,7 @@ export default function RetroRules() {
       {/* Grid de Permissões */}
       <div style={{ 
         display: "grid", 
-        gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", 
+        gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr)", 
         gap: "16px", 
         marginBottom: "24px" 
       }}>
@@ -230,7 +230,7 @@ export default function RetroRules() {
       
       <div style={{ 
         display: "grid", 
-        gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", 
+        gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr)", 
         gap: "12px", 
         margin: "20px 0" 
       }}>
@@ -321,7 +321,7 @@ export default function RetroRules() {
         invite accelerates your gem progression and unlocks special badges.
       </p>
       
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "16px", margin: "24px 0" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr)", gap: "16px", margin: "24px 0" }}>
         
         {/* GOLD */}
         <div style={{ 
@@ -396,7 +396,7 @@ export default function RetroRules() {
       {/* Grid de Severidade */}
       <div style={{ 
         display: "grid", 
-        gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", 
+        gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr)", 
         gap: "12px", 
         margin: "24px 0" 
       }}>

@@ -45,7 +45,15 @@ export default function Market({ embedded = false }) {
   const { toggleWishlist, isInWishlist } = useWishlist();
   const location   = useLocation();
   const navigate   = useNavigate();
-  const { listings: anuncios } = useMarketListings();
+  const { listings: anuncios, removeListing } = useMarketListings();
+
+  // One-time cleanup: remove "Final Fantasy VII" from listings
+  useEffect(() => {
+    const toRemove = anuncios.filter((ad) =>
+      /final fantasy vii/i.test(String(ad.title ?? ""))
+    );
+    toRemove.forEach((ad) => ad.id && removeListing(ad.id));
+  }, []);
 
   const [searchTerm,        setSearchTerm]        = useState("");
   const [selectedCategory,  setSelectedCategory]  = useState("");
@@ -75,7 +83,9 @@ export default function Market({ embedded = false }) {
   }, [searchTerm, selectedCategory, selectedCondition, sortBy, minPrice, maxPrice]);
 
   const filteredAnuncios = useMemo(() => {
-    let result = [...anuncios];
+    let result = [...anuncios].filter((ad) =>
+      !/final fantasy vii/i.test(String(ad.title ?? ""))
+    );
 
     if (searchTerm.trim()) {
       const term = searchTerm.toLowerCase();

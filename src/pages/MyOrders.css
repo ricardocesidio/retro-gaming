@@ -1,14 +1,3 @@
-:root {
-  --neon-yellow: #ffd700;
-  --bg-deep: #0a0a0f;
-  --elite-purple: #9d50bb;
-  --text-dim: #8a8dc2;
-  --glass-border: rgba(157, 80, 187, 0.25);
-  --glass-bg: rgba(15, 15, 15, 0.82);
-  --card-bg: rgba(20, 20, 35, 0.9);
-  --card-bg-hover: rgba(25, 25, 45, 0.95);
-}
-
 .myorders-wrapper {
   background: #000000;
   padding: 80px 20px;

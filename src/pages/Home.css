@@ -31,4 +31,9 @@
   .hero h1 {
     font-size: 1.8rem;
   }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    margin: 0 0 20px;
+  }
 }

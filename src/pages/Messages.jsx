@@ -5,16 +5,6 @@ import { readConversations, writeConversations } from '../utils/uiState';
 
 const nowTime = () => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-// Convert image file to base64
-const fileToBase64 = (file) => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = (error) => reject(error);
-  });
-};
-
 export default function Messages() {
   const location = useLocation();
   const [activeChatId, setActiveChatId] = useState(null);
@@ -27,7 +17,6 @@ export default function Messages() {
   const [mobileShowChat, setMobileShowChat] = useState(false);
   const [conversations, setConversations] = useState(() => readConversations());
   const [selectedImage, setSelectedImage] = useState(null);
-  const [imagePreview, setImagePreview] = useState('');
   const menuRef = useRef(null);
   const chatEndRef = useRef(null);
   const fileInputRef = useRef(null);
@@ -133,23 +122,25 @@ export default function Messages() {
   const handleImageSelect = (e) => {
     const file = e.target.files[0];
     if (!file) return;
-    
-    // Check file type
+
     if (!file.type.startsWith('image/')) {
       alert('Please select an image file');
+      e.target.value = '';
       return;
     }
-    
-    // Check file size (limit to 5MB)
+
     if (file.size > 5 * 1024 * 1024) {
       alert('Image must be smaller than 5MB');
+      e.target.value = '';
       return;
     }
 
     const reader = new FileReader();
     reader.onload = (event) => {
       setSelectedImage(event.target.result);
-      setImagePreview(event.target.result);
+    };
+    reader.onerror = () => {
+      e.target.value = '';
     };
     reader.readAsDataURL(file);
     e.target.value = '';
@@ -182,7 +173,6 @@ export default function Messages() {
     writeConversations(updatedChats);
     setNewMessage('');
     setSelectedImage(null);
-    setImagePreview('');
   };
 
   const openChat = (id) => {
@@ -356,13 +346,16 @@ export default function Messages() {
                 </div>
               ) : (
                 <form className="chat-input-area" onSubmit={handleSendMessage}>
-                  {imagePreview && (
+                  {selectedImage && (
                     <div className="image-preview-container">
-                      <img src={imagePreview} alt="Preview" className="image-preview" />
-                      <button 
-                        type="button" 
+                      <img src={selectedImage} alt="Preview" className="image-preview" />
+                      <button
+                        type="button"
                         className="remove-image-btn"
-                        onClick={() => { setSelectedImage(null); setImagePreview(''); }}
+                        onClick={() => {
+                          setSelectedImage(null);
+                          if (fileInputRef.current) fileInputRef.current.value = '';
+                        }}
                         aria-label="Remove image"
                       >
                         <i className="fa-solid fa-xmark" />

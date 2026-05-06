@@ -41,9 +41,13 @@ export default function Home() {
         <h1>
           <span className="text-shadow-gray">SELL YOUR</span> <span className="text-purple-shadow">GEEK STUFF</span>
         </h1>
+        <p className="hero-subtitle">Buy, sell, and trade retro games in a premium marketplace.</p>
       </section>
 
-      <div style={{ marginTop: "40px" }}>
+      <p style={{ textAlign: "center", color: "var(--text-muted)", fontSize: "0.88rem", marginTop: -20, marginBottom: 32 }}>
+        Start by browsing the market or listing your first item.
+      </p>
+      <div style={{ marginTop: "20px" }}>
         <MarketplaceSection embedded />
       </div>
     </>
