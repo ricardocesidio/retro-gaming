@@ -1,228 +1,168 @@
-# 🎮 Retro Gaming Marketplace
+# Retro Gaming Marketplace
 
-A modern, full-featured frontend marketplace for retro gaming enthusiasts. Built as a single-page application with React, featuring user profiles, real-time messaging, offers, bundles, and a responsive dark-themed UI.
+A modern frontend marketplace for buying, selling, and trading retro games and collectibles. Built as a complete UI/UX simulation with real interaction flows, localStorage-based state management, and premium visual design.
 
-![Retro Gaming Banner](./public/retro-banner.png)
+## Live Demo
 
-## 🚀 Live Demo
+Demo available locally via development server. See [Getting Started](#getting-started) below.
 
-Since this is a frontend-only demo using localStorage, you can run it locally to experience all features.
+## Purpose
 
-## 📋 Table of Contents
+This is a frontend-only project built for portfolio demonstration. It focuses on frontend architecture, user experience design, and interface polish rather than backend integration. The project simulates marketplace behavior using browser localStorage to demonstrate:
 
-- [Tech Stack](#tech-stack)
-- [Features](#features)
-- [Page Documentation](#page-documentation)
-- [Installation](#installation)
-- [Project Structure](#project-structure)
-- [Key Implementations](#key-implementations)
-- [Future Enhancements](#future-enhancements)
+- Complex state management without a backend
+- Multi-page user flows
+- Form validation and error handling
+- Responsive design across breakpoints
+- Component architecture and reusability
 
-## 🛠 Tech Stack
+## Features
 
-- **Framework**: React 18+ with Vite
-- **Routing**: React Router DOM v6
-- **Styling**: CSS3 with CSS Variables, Flexbox/Grid
-- **Fonts**: Google Sans & Kanit (Google Fonts)
-- **Icons**: Font Awesome 6
-- **State**: React Context API, useState, useEffect, useMemo
-- **Storage**: localStorage (frontend-only demo)
-- **Build Tool**: Vite 8.x
+- User authentication simulation (frontend only)
+- Create, preview, and publish marketplace listings
+- Marketplace browsing with category, price, and keyword filters
+- Product detail pages with image galleries
+- Make Offer system with message integration
+- Bundle system (select multiple items across sellers)
+- Real-time messaging simulation between users
+- Wishlist functionality with persistence
+- User profiles with stats and inventory
+- Responsive design (desktop, tablet, mobile)
+- Toast notifications and form feedback
+- Image upload with compression and fallback handling
+- Draft saving for incomplete listings
 
-## ✨ Features
+## Pages & Functionality
 
-### Core Marketplace
-- **Product Listings** - Browse retro games, consoles, and accessories
-- **Advanced Search & Filters** - Category, price range, condition filters
-- **Product Detail Pages** - Images, descriptions, shipping options
-- **Responsive Grid** - 5-column layout with max-width 1600px
+### Home
+Entry point with hero section, banner slider, and embedded marketplace preview. Guides users toward browsing or selling.
 
-### User System
-- **Authentication** - Login/Register with session management
-- **User Profiles** - Customizable profiles with avatars, bio, location
-- **Follow System** - Follow/unfollow users, track followers/following
-- **User Tiers** - Bronze, Silver, Gold, Platinum, Master, Supreme based on gems/reviews
+### Market
+Browse all listings with advanced filters (category, condition, price range, search). Includes load-more pagination and responsive product grid.
 
-### Commerce Features
-- **Make an Offer** - Negotiate prices with sellers (`/offer/:id`)
-- **Create Bundles** - Bundle multiple items from any seller (`/bundle/:id`)
-- **Sell Items** - Post new listings with images and details
-- **Orders Management** - View active and sold items
+### Product Detail
+Full item view with image gallery, seller information, description, and action buttons (Buy, Make Offer, Add to Bundle).
 
-### Communication
-- **Messaging System** - Real-time chat interface with conversations
-- **Offer Notifications** - Automated messages for offers and bundles
-- **Unread Indicators** - Yellow dots for new messages
+### Sell
+Create new listings with comprehensive form validation:
+- Title, category, subcategory, condition, price
+- Description with character counter
+- Image upload with compression and draft saving
+- Parcel size selector with visual tier cards (bronze, silver, gold, pink)
+- localStorage quota handling
 
-### UI/UX Highlights
-- **Dark Theme** - Premium black (#000000) background with purple accents
-- **Elite-Tech Profile Cards** - Animated gradient borders and glow effects
-- **Smooth Scrolling** - Auto-scroll to top on page navigation
-- **Responsive Design** - Works on desktop, tablet, and mobile
-- **Glass-morphism** - Frosted glass effects on cards
+### Profile
+User profile page displaying:
+- Avatar and seller stats
+- Active listings inventory
+- Reviews section (mock data)
+- Edit functionality
 
-## 📄 Page Documentation
+### Messages
+Chat system simulation between users:
+- Conversation list with unread indicators
+- Image attachment support
+- Report user functionality
+- Block/unblock users
 
-### 1. **Home (`/`)**
-Landing page with hero section, featured products, and call-to-action sections.
-- Animated banner slider
-- Featured retro gaming products
-- Quick navigation to marketplace
+### Bundle
+Multi-seller bundle flow:
+- Select primary item from any listing
+- Browse marketplace to add additional items
+- Send bundled offer as a single message
+- Visual bundle summary with total calculation
 
-### 2. **Market (`/market`)**
-Main marketplace with product grid.
-- **Grid Layout**: 5 columns, max-width 1600px
-- **Filters**: Category (Games, Consoles, Accessories), price range, condition
-- **Product Cards**: Image, title, price, condition, seller info
-- **Responsive**: Adapts from 5 columns to 1 column on mobile
+### Wishlist
+Saved items with:
+- Add/remove from any product card
+- Persistent storage across sessions
+- Empty state with clear guidance
 
-### 3. **Product Detail (`/product/:id`)**
-Individual product page with full details.
-- **Image Gallery**: Product images with fallback placeholders
-- **Seller Info**: Clickable seller row navigates to `/profile/:username`
-- **Shipping Tabs**: "Shipping" and "In-person Sale" with toggle
-- **Protected Shipping**: Green shield icon for secure transactions
-- **Action Buttons**: 
-  - **Make Your Offer** - Navigates to `/offer/:id`
-  - **Make a Bundle** - Navigates to `/bundle/:id`
-- **Heart Button**: Purple hover with white heart animation
-- **Username Button**: Circular hover effect with purple color
+### Settings
+User settings page (UI simulation):
+- Profile picture upload
+- Username, email, about section
+- Country and language selection
+- Email change limit simulation
 
-### 4. **Profile (`/profile/:username`)**
-User profile page displaying user info and listings.
-- **Profile Header Card** (`.elite-tech`):
-  - Animated gradient border with glow
-  - User avatar, name, verification badge
-  - Reviews (gem ratings), location, followers/following stats
-  - Bio section
-- **Stats Display**: Followers, Following, Items Sold
-- **User Listings**:
-  - Grid of user's active items with images
-  - Toggle between "Listings" and "Sold Items"
-  - Empty state with centered "Start Selling" button
-  - Only shows items with images
-- **Community Reviews Slider**: Carousel of user reviews
-- **Action Buttons**: Follow, Message, Edit Profile (own profile)
+### Auction
+Placeholder page indicating "Coming Soon" for future auction functionality.
 
-### 5. **Messages (`/messages`)**
-Full messaging system with chat interface.
-- **Black Theme**: All components black background
-  - `.messages-page`: #000000
-  - `.chat-window`: #000000
-  - `.chat-history`: #000000
-  - `.chat-input-area`: #000000
-- **Inbox Sidebar** (`.inbox-sidebar`): #111111
-- **Messages Layout** (`.messages-layout`): #1a1a1a
-- **Conversation List**: Seller avatars, last message preview, unread dots
-- **Chat Window**: 
-  - Product context card at top
-  - Sent/Received message bubbles
-  - Auto-scroll disabled (stays at top)
-  - Unread yellow dot disappears when chat opens
-- **Offer/Bundle Messages**: 
-  - 📩 Emoji prefix for offers
-  - 📦 Emoji prefix for bundles
-  - Stored in localStorage `retroConversations`
+### Notifications
+User notifications with:
+- Support/donation prompts
+- Invite friends functionality
+- Clear all and management options
 
-### 6. **Make an Offer (`/offer/:id`)**
-Dedicated page for submitting offers.
-- Pre-filled product info (image, title, current price)
-- Input for offer amount (€)
-- Optional message to seller
-- Sends "📩 Offer: €amount" message to seller's conversation
-- Creates conversation if it doesn't exist
+### Login / Register
+Authentication pages (frontend simulation):
+- Form validation with password strength meter
+- Email format validation
+- Character limits and error feedback
 
-### 7. **Create Bundle (`/bundle/:id`)**
-Multi-step bundle creation flow.
-- **Step 1**: Confirm first item (from Product Detail page)
-- **Step 2**: Add more items
-  - Browse marketplace items
-  - Add items from ANY seller (not just one)
-  - Remove items from bundle
-  - Live total calculation
-- **Send Bundle**: Creates "📦 Bundle Offer: €total (items)" message
-- Uses `onClickOverride` prop in ProductCard to prevent navigation during selection
+## How It Works
 
-### 8. **Sell (`/sell`)**
-Page for posting new listings.
-- **Gradient Title**: White → Purple → Gold gradient text
-- **Form Fields**: Title, price, category, condition, description, shipping options
-- **Image Upload**: Supports multiple images (stored as base64/data URLs)
-- **Storage**: Saves to localStorage `meusAnunciosRetro`
-- **Normalization**: `normalizeProduct()` ensures consistent data structure
+This project uses **localStorage** to simulate backend behavior. No real backend or database is used.
 
-### 9. **My Orders (`/my-orders`)**
-User's order history.
-- **Black Background**: #000000
-- **H1 Styling**: 2em font-size, 0.5px letter-spacing, Google Sans
-- **Order Cards**: Glass-morphism effect with order details
-- **Filter**: Active vs Sold orders
+**Simulated flows:**
+- **Publishing listings**: Stored in `localStorage` under `meusAnunciosRetro`
+- **Messaging**: Conversations stored in `localStorage` under `retroConversations`
+- **Wishlist**: Persisted in `localStorage` via WishlistContext
+- **User sessions**: Simulated via `localStorage` with auth context
+- **Drafts**: Auto-saved to `localStorage` with quota management
 
-### 10. **Wishlist (`/wishlist`)**
-Saved/favorited items.
-- **H1 Styling**: 2em, 0.5px letter-spacing
-- **Remove Button**: Trash icon to remove from wishlist
-- **Product Cards**: Same as marketplace with heart animation
+**Important:** Data resets when localStorage is cleared. This project focuses on frontend architecture and user experience rather than backend integration.
 
-### 11. **Settings (`/settings`)**
-User settings and preferences.
-- **H1**: "USER SETTINGS" - 2em, 0.5px letter-spacing
-- **Sections**: Profile info, password, notifications, privacy
-- **Avatar Upload**: Update profile picture
-- **Bio/Location**: Edit personal information
+## Tech Stack
 
-### 12. **Notifications (`/notifications`)**
-User notifications center.
-- **H1 Styling**: 2em, 0.5px letter-spacing
-- **Notification Cards**: Unread indicators, timestamp
-- **Mark All Read**: Bulk action button
-- **Types**: Offers, messages, followers, system alerts
+- **React** (with React Router DOM for routing)
+- **JavaScript (ES6+)**
+- **CSS3** (custom styling with design tokens)
+- **localStorage** (data persistence simulation)
+- **Vite** (build tool and dev server)
 
-### 13. **Donations (`/donations`)**
-Support the platform.
-- **H1 Styling**: 2em, 0.5px letter-spacing
-- **Donation Tiers**: Visual selection with amounts
-- **Gradient Cards**: Purple-themed donation options
+## Project Structure
 
-### 14. **Login (`/login`) & Register (`/register`)**
-Authentication pages.
-- **Form Validation**: Email, username, password
-- **Session Management**: localStorage `activeSession`
-- **User Registry**: localStorage `userRegistry`
-- **Redirect**: Authenticated users redirected to home/market
+```
+retro-gaming/
+├── src/
+│   ├── components/        # Reusable UI (Header, Footer, Menu, ProductCard)
+│   ├── pages/             # Main views (Home, Market, Sell, Profile, etc.)
+│   ├── hooks/             # Custom hooks (useMarketListings)
+│   ├── utils/              # Helpers (storage, auth, image handling)
+│   ├── styles/            # Global styles & design tokens
+│   ├── context/           # React contexts (Auth, Wishlist)
+│   ├── images/            # Static assets
+│   ├── App.jsx            # Root component with routes
+│   └── main.jsx           # Entry point
+├── public/
+├── index.html
+└── package.json
+```
 
-### 15. **Invite Friends (`/invite-friends`)**
-Referral system page.
-- **Elite-Tech Card**: Same styling as profile header
-- **Referral Link**: Copy to clipboard functionality
-- **Share Options**: Social media sharing placeholders
+## Design System
 
-### 16. **Retro Rules (`/retro-rules`)**
-Platform rules and guidelines.
-- **Elite-Tech Card**: Purple gradient header
-- **Rules List**: Community guidelines
-- **Enforcement**: Violation consequences
+The project uses a centralized **design-tokens.css** file with:
+- 130+ CSS custom properties
+- Consistent color palette (black theme)
+- Typography scale (--text-xs through --text-5xl)
+- Spacing system (--space-1 through --space-24)
+- Responsive breakpoint variables (--bp-sm through --bp-4xl)
+- Z-index scale and transition tokens
 
-### 17. **404 Not Found (`/*`)**
-Custom 404 page.
-- Retro-themed design
-- Navigation back to home
-
-## 📦 Installation
+## Getting Started
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/retro-gaming-marketplace.git
-
-# Navigate to project directory
-cd retro-gaming-marketplace
-
 # Install dependencies
 npm install
 
 # Start development server
 npm run dev
+```
 
+Then open: `http://localhost:5173`
+
+```bash
 # Build for production
 npm run build
 
@@ -230,151 +170,32 @@ npm run build
 npm run preview
 ```
 
-## 📂 Project Structure
+## Limitations
 
-```
-retro-gaming/
-├── public/
-│   ├── images/              # Static images (gameboy.jpg, ps2.jpg, etc.)
-│   ├── favicon.svg
-│   └── index.html          # Entry HTML with Google Fonts
-├── src/
-│   ├── components/
-│   │   ├── Header.jsx      # Navigation header
-│   │   ├── Footer.jsx
-│   │   ├── ProductCard.jsx  # Reusable product card
-│   │   ├── ScrollToTop.jsx  # Auto-scroll to top on route change
-│   │   └── ErrorBoundary.jsx
-│   ├── pages/
-│   │   ├── Home.jsx
-│   │   ├── Market.jsx
-│   │   ├── ProductDetail.jsx
-│   │   ├── Profile.jsx      # With user listings & elite-tech card
-│   │   ├── Messages.jsx
-│   │   ├── Offer.jsx        # Make an offer page
-│   │   ├── Bundle.jsx       # Create bundle page
-│   │   ├── Sell.jsx
-│   │   ├── MyOrders.jsx
-│   │   ├── Wishlist.jsx
-│   │   ├── Settings.jsx
-│   │   ├── Notifications.jsx
-│   │   ├── Donations.jsx
-│   │   ├── Login.jsx
-│   │   ├── Register.jsx
-│   │   └── ...
-│   ├── utils/
-│   │   ├── auth.js         # Authentication utilities
-│   │   ├── marketStorage.js # Marketplace localStorage
-│   │   ├── userListings.js  # User listings management
-│   │   ├── normalizeProduct.js
-│   │   ├── fallbackImage.js
-│   │   └── shared.js
-│   ├── context/
-│   │   └── WishlistContext.jsx
-│   ├── hooks/
-│   │   └── useMarketListings.js
-│   ├── styles/
-│   │   ├── design-tokens.css  # CSS variables & fonts
-│   │   └── utilities.css
-│   ├── App.jsx             # Main app with routes
-│   ├── App.css
-│   ├── index.css
-│   └── main.jsx
-├── package.json
-└── README.md
-```
-
-## 🔧 Key Implementations
-
-### Scroll Management
-```jsx
-// ScrollToTop.jsx - Resets scroll position on route change
-export default function ScrollToTop() {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
-}
-```
-
-### Offer/Bundle Flow
-1. User clicks "Make Your Offer" on ProductDetail
-2. Navigates to `/offer/:id` with product context
-3. Submits offer → Creates message in Messages with 📩 emoji
-4. Seller receives notification in inbox
-
-### localStorage Data Keys
-- `activeSession` - Current user session
-- `userRegistry` - All registered users
-- `meusAnunciosRetro` - Marketplace listings
-- `userListings` - User-specific listings
-- `retroConversations` - Message conversations
-- `socialGraph` - Followers/following relationships
-- `wishlist_[username]` - User wishlists
-
-### CSS Architecture
-- **Design Tokens**: CSS variables in `design-tokens.css`
-- **Font Stack**: `'Google Sans', 'Kanit', -apple-system, sans-serif`
-- **H1 Standard**: `font-size: 2em; letter-spacing: 0.5px;`
-- **Color Palette**:
-  - Background: `#000000`
-  - Purple Accent: `#9d50bb`
-  - Yellow: `#ffd700`
-  - Text: `#f5f5ff`
-
-## 🚧 Future Enhancements
-
-Since this is a frontend-only demo, here's what would be needed for production:
-
-- [ ] **Backend Integration**: Node.js/Express or similar
-- [ ] **Database**: MongoDB/PostgreSQL for persistent storage
-- [ ] **Real Authentication**: JWT tokens, password hashing (bcrypt)
-- [ ] **Image Upload**: Cloud storage (AWS S3, Cloudinary)
-- [ ] **Real-time Messaging**: WebSockets (Socket.io)
-- [ ] **Payment Processing**: Stripe/PayPal integration
-- [ ] **Search Engine**: Elasticsearch or Algolia
-- [ ] **User Verification**: Email verification, KYC
-- [ ] **Admin Dashboard**: User management, reporting
-- [ ] **Unit Tests**: Jest + React Testing Library
-- [ ] **E2E Tests**: Cypress or Playwright
-
-## 📸 Screenshots
-
-(Add screenshots/GIFs of key flows here)
-
-- Home page with banner
-- Marketplace grid view
-- Product detail with offer/bundle buttons
-- Profile page with elite-tech card
-- Messages interface (dark theme)
-- Offer submission flow
-- Bundle creation steps
-
-## ⚠️ Important Notes
-
-**This is a FRONTEND-ONLY demo.** All data is stored in the browser's localStorage:
-- Data persists only in the current browser
-- Clearing localStorage will reset all data
 - No real backend or database
-- No real user authentication
-- Images uploaded are converted to base64 (not suitable for production)
+- Data resets if localStorage is cleared
+- No real payments or transaction processing
+- Authentication is simulated (frontend only)
+- Reviews and some stats use mock data
+- Auction page is a placeholder ("Coming Soon")
 
-This project is intended to demonstrate frontend development skills, UI/UX design, and React proficiency.
+## Future Improvements
 
-## 👤 Author
+- Backend integration with REST API or GraphQL
+- Real user authentication with JWT
+- Database storage (PostgreSQL, MongoDB)
+- Real-time messaging with WebSockets
+- Payment processing integration
+- Image storage with cloud provider (AWS S3, Cloudinary)
+- Auction system implementation
+- Admin dashboard
 
-**Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Portfolio: [yourportfolio.com](https://yourportfolio.com)
-- LinkedIn: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)
+## Author
 
-## 📄 License
+Natalia Windelboth
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+GitHub: [github.com/nataliawindelboth](https://github.com/nataliawindelboth)
 
 ---
 
-⭐ **Star this repo if you found it useful for learning React!**
-
-Built with ❤️ and lots of ☕ by a passionate frontend developer.
+**Note:** This project is a frontend portfolio piece demonstrating UI/UX skills, React architecture, and CSS design systems. It is not intended for production use without backend integration.
