@@ -29,10 +29,23 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-# Misc
+# Temp/Trash
 .openclaude-profile.json
 *.zip
-retro-room-react/
+*.tar.gz
+*.rar
+*backup*/
+*archive*/
+*old*/
+*bak/
+*copy*/
+react-app/
+src_unpacked/
+style/
+javascript/
+html/
+images/
+vite.config 2.js
 
-# Images in public (optional - remove if you want them included)
-# public/images/
+# Retro room (old project)
+retro-room-react/
