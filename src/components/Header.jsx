@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./Header.css";
 import "./Menu.css";
 import Menu from "./Menu";

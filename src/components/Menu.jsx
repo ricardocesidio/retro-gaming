@@ -11,6 +11,7 @@ export default function Menu() {
         <Link to="/collectibles" title="Collectibles" className="gray-icon"><i className="fa-solid fa-star" /></Link>
         <Link to="/arcade" title="Arcade" className="gray-icon"><i className="fa-solid fa-rocket" /></Link>
         <Link to="/auction" className="auction-icon" title="Auction"><i className="fa-solid fa-gavel" /></Link>
+        <Link to="/wallet" className="gray-icon" title="Wallet"><i className="fa-solid fa-wallet" /></Link>
       </div>
     </nav>
   );

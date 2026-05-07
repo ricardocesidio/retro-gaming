@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useMarketListings } from "../hooks/useMarketListings";
-import { normalizeProduct } from "../utils/normalizeProduct";
+import { resolveProductImage } from "../utils/shared";
+import { readConversations, upsertConversation, appendConversationMessage } from "../utils/uiState";
+import { DEFAULT_AVATAR_FALLBACK } from "../utils/fallbackImage";
 import "./Offer.css";
 
 export default function Offer() {
@@ -18,20 +20,24 @@ export default function Offer() {
     e.preventDefault();
     if (!offerAmount) return;
 
-    // Read existing conversations
-    const raw = localStorage.getItem("retroConversations");
-    const conversations = raw ? JSON.parse(raw) : [];
+    const offerMsg = {
+      type: "sent",
+      text: `📩 Offer: €${offerAmount}${message ? ` - ${message}` : ""}`,
+      time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+    };
 
-    // Find or create conversation with seller
-    let conversation = conversations.find(
+    const conversations = readConversations();
+    const existing = conversations.find(
       (c) => c.product?.id === id || String(c.product?.id) === String(id)
     );
 
-    if (!conversation) {
-      conversation = {
+    if (existing) {
+      appendConversationMessage(existing.id, offerMsg);
+    } else {
+      upsertConversation({
         id: Date.now(),
         name: product?.seller || "Seller",
-        avatar: product?.sellerAvatar || "https://i.pravatar.cc/150?img=11",
+        avatar: product?.sellerAvatar || DEFAULT_AVATAR_FALLBACK,
         lastMsg: `Offer: €${offerAmount}`,
         time: "Just now",
         unread: 0,
@@ -39,25 +45,12 @@ export default function Offer() {
           id: product?.id,
           name: product?.title,
           price: product?.price,
-          img: product?.image || product?.images?.[0] || "",
+          img: resolveProductImage(product),
         },
-        history: [],
-      };
-      conversations.push(conversation);
+        history: [offerMsg],
+      });
     }
 
-    // Add offer message to history
-    const offerMsg = {
-      type: "sent",
-      text: `📩 Offer: €${offerAmount}${message ? ` - ${message}` : ""}`,
-      time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-    };
-
-    conversation.history.push(offerMsg);
-    conversation.lastMsg = `Offer: €${offerAmount}`;
-    conversation.time = "Just now";
-
-    localStorage.setItem("retroConversations", JSON.stringify(conversations));
     setSent(true);
 
     setTimeout(() => {
@@ -89,7 +82,7 @@ export default function Offer() {
         {product && (
           <div className="offer-product">
             <img
-              src={product.image || product.images?.[0] || ""}
+              src={resolveProductImage(product)}
               alt={product.title}
               className="offer-product-img"
             />

@@ -91,7 +91,7 @@
   padding: 0 16px;
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.045);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-color);
   transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
   box-sizing: border-box;
 }
@@ -194,7 +194,7 @@
   position: relative;
   flex: 0 0 auto;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-color);
 }
 
 .img-container img {

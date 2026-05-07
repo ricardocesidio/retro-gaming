@@ -30,8 +30,8 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-soft);
+  border: 1px solid var(--border-color);
   color: var(--text-main);
   padding: 11px 18px;
   border-radius: 999px;
@@ -42,6 +42,7 @@
   transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   margin-bottom: 24px;
   backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-soft);
 }
 
 .btn-back:hover {
@@ -74,7 +75,7 @@
   overflow: hidden;
   background:
     linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-color);
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
   position: relative;
 }
@@ -263,8 +264,8 @@
   align-items: center;
   gap: 8px;
   width: fit-content;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-soft);
+  border: 1px solid var(--border-color);
   border-radius: 999px;
   padding: 8px 14px;
   font-size: 0.82rem;
@@ -308,8 +309,8 @@
 
 .btn-wishlist {
   flex: 0 0 auto;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-soft);
+  border: 1px solid var(--border-color);
   color: var(--text-main);
   padding: 13px 18px;
   border-radius: 999px;
@@ -387,8 +388,8 @@
 }
 
 .btn-contact {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-soft);
+  border: 1px solid var(--border-color);
   color: #fff;
   padding: 9px 16px;
   border-radius: 999px;
@@ -533,9 +534,10 @@
   padding: 20px;
 }
 
+/* Modal content */
 .buy-modal {
   background: rgba(18, 18, 20, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-color);
   border-radius: 28px;
   padding: 30px;
   width: 100%;
@@ -556,6 +558,7 @@
   }
 }
 
+/* Header */
 .buy-modal-header {
   display: flex;
   justify-content: space-between;
@@ -586,11 +589,12 @@
   transform: rotate(6deg);
 }
 
+/* Modal item */
 .buy-modal-item {
   display: flex;
   align-items: center;
   gap: 14px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--bg-soft);
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 22px;
   padding: 14px;
@@ -603,7 +607,7 @@
   object-fit: cover;
   border-radius: 18px;
   flex-shrink: 0;
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid var(--border-color);
 }
 
 .buy-modal-title {
@@ -620,6 +624,7 @@
   text-transform: capitalize;
 }
 
+/* Price breakdown */
 .buy-modal-breakdown {
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 20px;
@@ -661,8 +666,8 @@
 
 .btn-buy-cancel {
   flex: 1;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-soft);
+  border: 1px solid var(--border-color);
   color: var(--text-main);
   padding: 12px;
   border-radius: 999px;
@@ -698,6 +703,7 @@
   box-shadow: 0 14px 28px rgba(255, 215, 0, 0.14);
 }
 
+/* Success state */
 .buy-success {
   text-align: center;
   padding: 20px 0 6px;
@@ -775,7 +781,8 @@
     border-radius: 16px;
   }
 
-  .buy-modal-actions {
+/* Modal actions */
+.buy-modal-actions {
     flex-direction: column;
   }
 

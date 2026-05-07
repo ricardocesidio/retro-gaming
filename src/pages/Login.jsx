@@ -140,7 +140,7 @@ export default function Login() {
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
                 />
-                <span className="checkbox-label">Remember me</span>
+                <span className="checkbox-label">Remember my username/email</span>
               </label>
             </div>
 

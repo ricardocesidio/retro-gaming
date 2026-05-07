@@ -25,7 +25,7 @@
 /* ====================== FLEXIBLE TIER CARD ====================== */
 .amount-btn.tier-flex {
   border-color: rgba(0, 247, 200, 0.55);
-  background: linear-gradient(145deg, rgba(0, 247, 200, 0.18), rgba(255, 255, 255, 0.04));
+  background: linear-gradient(145deg, rgba(0, 247, 200, 0.18), var(--bg-soft));
   cursor: default;
   box-shadow: none;
 }
@@ -161,7 +161,7 @@
 /* TIER COLORS - identidade visual forte e premium */
 .amount-btn.tier-bronze {
   border-color: rgba(205, 127, 50, 0.5);
-  background: linear-gradient(145deg, rgba(205, 127, 50, 0.18), rgba(255, 255, 255, 0.04));
+  background: linear-gradient(145deg, rgba(205, 127, 50, 0.18), var(--bg-soft));
 }
 .amount-btn.tier-bronze.selected {
   box-shadow: 0 0 0 2px rgba(205, 127, 50, 0.45), 0 18px 20px rgba(205, 127, 50, 0.15);
@@ -170,7 +170,7 @@
 
 .amount-btn.tier-silver {
   border-color: rgba(192, 192, 192, 0.5);
-  background: linear-gradient(145deg, rgba(192, 192, 192, 0.16), rgba(255, 255, 255, 0.04));
+  background: linear-gradient(145deg, rgba(192, 192, 192, 0.16), var(--bg-soft));
 }
 .amount-btn.tier-silver.selected {
   box-shadow: 0 0 0 2px rgba(192, 192, 192, 0.45), 0 18px 20px rgba(192, 192, 192, 0.12);
@@ -179,7 +179,7 @@
 
 .amount-btn.tier-gold {
   border-color: rgba(255, 215, 0, 0.55);
-  background: linear-gradient(145deg, rgba(255, 215, 0, 0.17), rgba(255, 255, 255, 0.04));
+  background: linear-gradient(145deg, rgba(255, 215, 0, 0.17), var(--bg-soft));
 }
 .amount-btn.tier-gold.selected {
   box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.45), 0 18px 20px rgba(255, 215, 0, 0.12);
@@ -188,7 +188,7 @@
 
 .amount-btn.tier-master {
   border-color: rgba(157, 80, 187, 0.65);
-  background: linear-gradient(145deg, rgba(157, 80, 187, 0.22), rgba(255, 255, 255, 0.04));
+  background: linear-gradient(145deg, rgba(157, 80, 187, 0.22), var(--bg-soft));
 }
 .amount-btn.tier-master.selected {
   box-shadow: 0 0 0 2px rgba(157, 80, 187, 0.45), 0 18px 10px rgba(157, 80, 187, 0.18);
@@ -197,7 +197,7 @@
 
 .amount-btn.tier-supreme {
   border-color: rgba(255, 105, 180, 0.65);
-  background: linear-gradient(145deg, rgba(255, 105, 180, 0.22), rgba(255, 255, 255, 0.04));
+  background: linear-gradient(145deg, rgba(255, 105, 180, 0.22), var(--bg-soft));
 }
 .amount-btn.tier-supreme.selected {
   box-shadow: 0 0 0 2px rgba(255, 105, 180, 0.45), 0 18px 20px rgba(255, 105, 180, 0.18);
@@ -307,7 +307,7 @@
 }
 .transparency-card {
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-color);
   border-radius: 18px;
   padding: 18px;
   text-align: left;
@@ -320,7 +320,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.08), transparent 60%);
+  background: radial-gradient(circle at top right, var(--border-color), transparent 60%);
   pointer-events: none;
 }
 .transparency-card:hover {
@@ -335,7 +335,7 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-color);
 }
 .transparency-card i {
   font-size: 1.1rem;
@@ -436,7 +436,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.08), transparent 60%);
+  background: radial-gradient(circle at top right, var(--border-color), transparent 60%);
   pointer-events: none;
 }
 .impact-card:hover {
@@ -623,7 +623,7 @@
   gap: 8px;
   padding: 12px 18px;
   border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--bg-soft);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: #ddd;
   font-size: 0.9rem;
@@ -690,7 +690,7 @@
 /* ====================== CUSTOM IMPACT CARD ====================== */
 .impact-card.impact-flex {
   border-color: rgba(0, 247, 200, 0.45);
-  background: linear-gradient(145deg, rgba(0, 247, 200, 0.16), rgba(255, 255, 255, 0.04));
+  background: linear-gradient(145deg, rgba(0, 247, 200, 0.16), var(--bg-soft));
   cursor: default;
   box-shadow: 0 0 25px -8px rgba(0, 247, 200, 0.35);
 }

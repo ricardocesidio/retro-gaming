@@ -50,7 +50,7 @@
   padding: 6px;
   margin-bottom: 18px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--bg-soft);
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
@@ -149,7 +149,7 @@
   padding: 56px 18px;
   text-align: center;
   color: var(--text-muted);
-  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border: 1px dashed var(--glass-border);
   border-radius: 22px;
   background: rgba(255, 255, 255, 0.02);
 }

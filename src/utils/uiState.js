@@ -3,6 +3,7 @@ import { safeStorageGet, safeStorageSet } from "./marketStorage";
 export const NOTIFICATIONS_KEY = "retroNotifications";
 export const CONVERSATIONS_KEY = "retroConversations";
 export const RECENTLY_VIEWED_KEY = "retroRecentlyViewed";
+export const CONVERSATIONS_UPDATED_EVENT = "retroConversationsUpdated";
 
 const safeParse = (value, fallback) => {
   try {
@@ -210,6 +211,9 @@ export const readConversations = () => {
 export const writeConversations = (conversations) => {
   const next = Array.isArray(conversations) ? conversations.map(normalizeConversation) : [];
   safeStorageSet(CONVERSATIONS_KEY, next);
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new Event(CONVERSATIONS_UPDATED_EVENT));
+  }
   return next;
 };
 

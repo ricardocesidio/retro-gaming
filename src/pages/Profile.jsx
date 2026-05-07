@@ -64,6 +64,12 @@ export default function Profile() {
     { id: 1, name: "RetroCollector",  text: "Great seller, fast shipping and item exactly as described!" },
     { id: 2, name: "GameEnthusiast",   text: "Very professional. Would buy again." },
     { id: 3, name: "NostalgiaHunter", text: "Item arrived in perfect condition. Recommended!" },
+    { id: 4, name: "PixelWizard",     text: "Amazing communication! The controller was even better than the photos." },
+    { id: 5, name: "LevelUp99",       text: "Packaged with care. The console looks brand new. 10/10 experience." },
+    { id: 6, name: "RetroGamer88",    text: "Fair price and quick delivery. Would definitely buy from again." },
+    { id: 7, name: "ClassicCartridge",text: "Shipped internationally and arrived in just 4 days. Impressive!" },
+    { id: 8, name: "MarioFanatic",    text: "Exactly what I was looking for. Great condition, honest seller." },
+    { id: 9, name: "DigitalDreamer",  text: "Smooth transaction from start to finish. Highly recommended seller." },
   ], []);
 
   // Stable mock followers/following counts (based on username)

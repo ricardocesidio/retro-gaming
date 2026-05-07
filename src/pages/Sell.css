@@ -33,7 +33,7 @@
     overflow: visible;
 }
 
-/* FIX: pointer-events: none prevents shimmer overlay from eating clicks */
+/* pointer-events: none prevents shimmer overlay from eating clicks */
 .sell-card::before {
     content: "";
     position: absolute;
@@ -73,10 +73,7 @@
 
 .sell-header h1 {
     font-size: 2em;
-    background: linear-gradient(90deg, #ffffff 0%, #d8b4fe 50%, var(--tier-gold) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: #ffffff;
     margin-bottom: 15px;
     font-weight: 900;
     letter-spacing: 0.5px;
@@ -168,7 +165,7 @@
     color: #7b7b7b;
 }
 
-/* FIX: remove number input spinner arrows */
+/* remove number input spinner arrows */
 .form-group input[type="number"]::-webkit-inner-spin-button,
 .form-group input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -233,7 +230,7 @@
     min-width: 0;
 }
 
-/* FIX: fully responsive textarea */
+/* fully responsive textarea */
 .desc-group textarea {
     flex: 1;
     min-height: 360px;
@@ -412,7 +409,7 @@
     overflow: hidden;
 }
 
-/* FIX: pointer-events: none so section overlay never blocks parcel cards */
+/* pointer-events: none so section overlay never blocks parcel cards */
 .parcel-size-section::before {
     content: "";
     position: absolute;
@@ -432,6 +429,7 @@
     margin-bottom: 12px;
     font-weight: 800;
     color: #ffffff;
+    background: #000000;
 }
 
 .parcel-subtitle {

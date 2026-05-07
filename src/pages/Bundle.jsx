@@ -2,6 +2,9 @@ import React, { useState, useMemo } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useMarketListings } from "../hooks/useMarketListings";
 import { normalizeProduct } from "../utils/normalizeProduct";
+import { resolveProductImage } from "../utils/shared";
+import { readConversations, upsertConversation, appendConversationMessage } from "../utils/uiState";
+import { DEFAULT_AVATAR_FALLBACK } from "../utils/fallbackImage";
 import ProductCard from "../components/ProductCard";
 import "./Bundle.css";
 
@@ -64,33 +67,6 @@ export default function Bundle() {
       return;
     }
 
-    // Read existing conversations
-    const raw = localStorage.getItem("retroConversations");
-    const conversations = raw ? JSON.parse(raw) : [];
-
-    // Find or create conversation with seller
-    let conversation = conversations.find((c) => c.name === sellerName);
-
-    if (!conversation) {
-      conversation = {
-        id: Date.now(),
-        name: sellerName,
-        avatar: firstItem?.sellerAvatar || "https://i.pravatar.cc/150?img=1",
-        lastMsg: `Bundle offer: €${total}`,
-        time: "Just now",
-        unread: 0,
-        product: {
-          id: firstItem?.id,
-          name: firstItem?.title,
-          price: `€${total}`,
-          img: firstItem?.image || firstItem?.images?.[0] || "",
-        },
-        history: [],
-      };
-      conversations.push(conversation);
-    }
-
-    // Add bundle message
     const itemNames = allItems.map((i) => i.title).join(", ");
     const bundleMsg = {
       type: "sent",
@@ -98,11 +74,28 @@ export default function Bundle() {
       time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
     };
 
-    conversation.history.push(bundleMsg);
-    conversation.lastMsg = `Bundle offer: €${total}`;
-    conversation.time = "Just now";
+    const conversations = readConversations();
+    const existing = conversations.find((c) => c.name === sellerName);
 
-    localStorage.setItem("retroConversations", JSON.stringify(conversations));
+    if (existing) {
+      appendConversationMessage(existing.id, bundleMsg);
+    } else {
+      upsertConversation({
+        id: Date.now(),
+        name: sellerName,
+        avatar: firstItem?.sellerAvatar || DEFAULT_AVATAR_FALLBACK,
+        lastMsg: `Bundle offer: €${total}`,
+        time: "Just now",
+        unread: 0,
+        product: {
+          id: firstItem?.id,
+          name: firstItem?.title,
+          price: `€${total}`,
+          img: resolveProductImage(firstItem),
+        },
+        history: [bundleMsg],
+      });
+    }
 
     // Navigate to messages
     setTimeout(() => {
@@ -135,7 +128,7 @@ export default function Bundle() {
               <h3>Selected Item</h3>
               <div className="bundle-item-card">
                 <img 
-                  src={firstItem.image || firstItem.images?.[0] || ""}
+                  src={resolveProductImage(firstItem)}
                   alt={firstItem.title}
                   className="bundle-item-img"
                 />
@@ -170,28 +163,28 @@ export default function Bundle() {
 
           <div className="bundle-selected-items">
             <h3>Bundle Items ({bundleItems.length + 1})</h3>
-            {firstItem && (
-              <div className="bundle-item-card">
-                <img 
-                  src={firstItem.image || firstItem.images?.[0] || ""}
-                  alt={firstItem.title}
-                  className="bundle-item-img"
-                />
-                <div className="bundle-item-info">
-                  <h4>{firstItem.title}</h4>
-                  <p className="bundle-item-price">€{firstItem.price}</p>
+              {firstItem && (
+                <div className="bundle-item-card">
+                  <img 
+                    src={resolveProductImage(firstItem)}
+                    alt={firstItem.title}
+                    className="bundle-item-img"
+                  />
+                  <div className="bundle-item-info">
+                    <h4>{firstItem.title}</h4>
+                    <p className="bundle-item-price">€{firstItem.price}</p>
+                  </div>
+                  <i className="fa-solid fa-check bundle-check" />
                 </div>
-                <i className="fa-solid fa-check bundle-check" />
-              </div>
-            )}
+              )}
 
-            {bundleItems.map((item) => (
-              <div key={item.id} className="bundle-item-card">
-                <img 
-                  src={item.image || item.images?.[0] || ""}
-                  alt={item.title}
-                  className="bundle-item-img"
-                />
+              {bundleItems.map((item) => (
+                <div key={item.id} className="bundle-item-card">
+                  <img 
+                    src={resolveProductImage(item)}
+                    alt={item.title}
+                    className="bundle-item-img"
+                  />
                 <div className="bundle-item-info">
                   <h4>{item.title}</h4>
                   <p className="bundle-item-price">€{item.price}</p>

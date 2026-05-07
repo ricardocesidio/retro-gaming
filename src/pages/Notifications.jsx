@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from "react";
-import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./Notifications.css";
 import {
   markAllNotificationsRead,

@@ -62,7 +62,7 @@ export default function InviteFriends() {
           </h1>
 
           <div className="profile-meta-info">
-            <div className="reviews-group">
+            <div className="reviews-group" style={{ justifyContent: 'center' }}>
               <div className="reviews-diamonds">
                 {[...Array(5)].map((_, i) => (
                   <i key={i} className={`fa-solid fa-gem ${i < 4 ? "filled" : ""}`}></i>

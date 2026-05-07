@@ -44,7 +44,7 @@ export default function Home() {
         <p className="hero-subtitle">Buy, sell, and trade retro games in a premium marketplace.</p>
       </section>
 
-      <p style={{ textAlign: "center", color: "var(--text-muted)", fontSize: "0.88rem", marginTop: -20, marginBottom: 32 }}>
+      <p style={{ textAlign: "center", color: "var(--text-muted)", fontSize: "0.88rem", margin: "0 0 32px" }}>
         Start by browsing the market or listing your first item.
       </p>
       <div style={{ marginTop: "20px" }}>

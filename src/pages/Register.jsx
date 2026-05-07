@@ -221,6 +221,11 @@ export default function Register() {
             {errors.confirmPassword && <span className="field-error">{errors.confirmPassword}</span>}
           </div>
 
+          <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)', textAlign: 'center', margin: '4px 0 0' }}>
+            <i className="fa-solid fa-shield-halved" style={{ marginRight: 6 }} />
+            Demo environment — password stored locally for demo purposes only.
+          </p>
+
           {/* Vault Protocols */}
           <div className="form-group">
             <button

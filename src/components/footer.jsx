@@ -38,7 +38,6 @@ export default function Footer() {
             <strong style={{ color: "var(--text-main)", marginBottom: 6, display: "block", fontSize: "0.8rem", letterSpacing: "1px" }}>INFO</strong>
             <Link to="/retro-rules">Rules</Link>
             <Link to="/donations">Support Us</Link>
-            <Link to="/auction">Auction</Link>
           </div>
         </nav>
 

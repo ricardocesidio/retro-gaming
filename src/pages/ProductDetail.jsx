@@ -12,6 +12,9 @@ import "./ProductDetail.css";
 
 const PLACEHOLDER = MARKET_PLACEHOLDER_FALLBACK;
 
+// Demo mock — rating and deal count are hardcoded for a polished demo look
+const DEMO_SELLER_RATING = "⭐ 4.9 · 120 deals";
+
 const readFromWishlist = (id) => {
   try {
     const raw = localStorage.getItem("marketplaceWishlist");
@@ -290,7 +293,7 @@ export default function ProductDetail() {
               />
               <div className="seller-info">
                 <p className="seller-name">{sellerName}</p>
-                <p className="seller-rating">⭐ 4.9 · 120 deals</p>
+                <p className="seller-rating">{DEMO_SELLER_RATING}</p>
               </div>
               <button className="btn-contact" type="button" onClick={(e) => { e.stopPropagation(); handleContactSeller(); }}>
                 <i className="fa-solid fa-message" />

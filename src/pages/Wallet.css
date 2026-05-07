@@ -1,3 +1,7 @@
+/* =========================================
+   WALLET PAGE — Premium Black Theme
+   ========================================= */
+
 .wallet-wrapper {
   display: flex;
   justify-content: center;
@@ -19,6 +23,7 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Header */
 .wallet-header {
   text-align: center;
   margin-bottom: 32px;
@@ -52,10 +57,14 @@
   margin: 0;
 }
 
+/* =========================================
+   TABS
+   ========================================= */
+
 .wallet-tabs {
   display: flex;
   gap: 4px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--bg-soft);
   border-radius: var(--radius-lg);
   padding: 4px;
   margin-bottom: 28px;
@@ -93,6 +102,10 @@
   background: rgba(157, 80, 187, 0.2);
   color: var(--accent-purple);
 }
+
+/* =========================================
+   BALANCE CARDS
+   ========================================= */
 
 .balance-grid {
   display: grid;
@@ -152,6 +165,10 @@
   color: var(--text-subtle);
   margin-top: 4px;
 }
+
+/* =========================================
+   ACTION BUTTONS
+   ========================================= */
 
 .wallet-actions {
   display: flex;
@@ -256,6 +273,10 @@
   background: rgba(157, 80, 187, 0.1);
 }
 
+/* =========================================
+   BANK CARD
+   ========================================= */
+
 .bank-card {
   display: flex;
   align-items: center;
@@ -343,6 +364,10 @@
   flex-shrink: 0;
 }
 
+/* =========================================
+   TRANSACTIONS
+   ========================================= */
+
 .transaction-list {
   display: flex;
   flex-direction: column;
@@ -355,7 +380,7 @@
   justify-content: space-between;
   padding: 14px 16px;
   background: rgba(18, 18, 31, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--bg-soft);
   border-radius: var(--radius-md);
   transition: all var(--transition-fast);
   gap: 12px;
@@ -363,7 +388,7 @@
 
 .transaction-row:hover {
   background: rgba(18, 18, 31, 0.9);
-  border-color: rgba(255, 255, 255, 0.08);
+  border-color: var(--border-color);
 }
 
 .transaction-left {
@@ -490,6 +515,10 @@
   transform: translateX(3px);
 }
 
+/* =========================================
+   SECURITY
+   ========================================= */
+
 .wallet-security {
   display: flex;
   align-items: flex-start;
@@ -547,6 +576,10 @@
   max-width: 360px;
 }
 
+/* =========================================
+   MODAL / WITHDRAW
+   ========================================= */
+
 .wallet-modal-overlay {
   position: fixed;
   inset: 0;
@@ -561,7 +594,7 @@
 
 .wallet-modal {
   background: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius-xl);
   padding: 32px;
   width: 100%;
@@ -596,7 +629,7 @@
 }
 
 .wallet-modal-close:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--glass-border);
   color: #fff;
 }
 
@@ -613,6 +646,7 @@
   margin: 0 0 24px;
 }
 
+/* Withdraw info */
 .withdraw-info {
   display: flex;
   flex-direction: column;
@@ -654,7 +688,7 @@
 .withdraw-form select {
   width: 100%;
   padding: 12px 14px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--bg-soft);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-md);
   color: #fff;
@@ -719,6 +753,10 @@
   from { opacity: 0; transform: translateX(-50%) translateY(16px); }
   to { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
 
 @media (max-width: 1024px) {
   .wallet-wrapper {
