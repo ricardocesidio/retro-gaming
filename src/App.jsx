@@ -43,6 +43,7 @@ const InviteFriends = lazy(() => import("./pages/Invite-friends.jsx"));
 const Donations = lazy(() => import("./pages/Donations.jsx"));
 const MyOrders = lazy(() => import("./pages/MyOrders.jsx"));
 const OrderDetails = lazy(() => import("./pages/OrderDetails.jsx"));
+const Wallet = lazy(() => import("./pages/Wallet.jsx"));
 const NotFound = lazy(() => import("./components/NotFound.jsx"));
 
 // COMPONENTS
@@ -337,6 +338,7 @@ function AppContent() {
                 <Route path="/my-orders"     element={user ? <MyOrders />     : <Navigate to="/login" replace />} />
                 <Route path="/order-details/:id" element={user ? <OrderDetails /> : <Navigate to="/login" replace />} />
                 <Route path="/donations"     element={user ? <Donations />    : <Navigate to="/login" replace />} />
+                <Route path="/wallet"        element={user ? <Wallet />       : <Navigate to="/login" replace />} />
 
                 {["/cart", "/rules", "/community", "/blog"].map((path) => (
                   <Route

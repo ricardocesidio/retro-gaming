@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../App";
 import "./profile.css";
+import "./Invite-friends.css";
 
 export default function InviteFriends() {
   const { user, getUserId } = useAuth();

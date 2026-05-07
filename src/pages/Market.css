@@ -61,6 +61,7 @@
 
 .search-input-wrapper {
   position: relative;
+  margin-bottom: 20px;
 }
 
 .search-input {
@@ -73,7 +74,6 @@
   color: var(--text-main);
   font-size: 0.95rem;
   outline: none;
-  margin-bottom: 20px;
 }
 
 .search-input::placeholder {

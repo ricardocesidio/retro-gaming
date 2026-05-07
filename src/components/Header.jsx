@@ -65,6 +65,7 @@ export default function Header({
     { to: "/my-orders", label: "My Orders", icon: "fa-box" },
     { to: "/invite", label: "Invite Friends", icon: "fa-user-plus" },
     { to: "/settings", label: "Settings", icon: "fa-gear" },
+    { to: "/wallet", label: "Wallet", icon: "fa-wallet" },
     { to: "/donations", label: "Donations", icon: "fa-heart" },
     { to: "/retro-rules", label: "Retro Rules", icon: "fa-shield-halved" },
   ];

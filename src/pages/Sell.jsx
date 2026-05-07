@@ -1091,6 +1091,17 @@ export default function Sell() {
                     <span>Publish Ad</span>
                   )}
                 </button>
+
+                <button
+                  type="button"
+                  className="btn-publish-auction"
+                  disabled={!isFormValid || isSubmitting}
+                  onClick={() => navigate("/auction")}
+                  aria-label="Publish in Auction"
+                >
+                  <i className="fa-solid fa-gavel" style={{ marginRight: 8 }} />
+                  <span>Publish in Auction</span>
+                </button>
               </div>
 
               {!isFormValid && publishAttempted && (

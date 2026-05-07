@@ -227,10 +227,6 @@
   width: 340px;
 }
 
-.notifications-dropdown {
-  width: 340px;
-}
-
 .dropdown-scroll-area {
   overflow: visible;
   padding: var(--space-2) 0;

@@ -17,13 +17,22 @@
   display: grid;
   grid-template-columns: 1.1fr 2fr 1fr;
   gap: 28px;
-  align-items: start;
+  align-items: stretch;
 }
 
 .footer-brand,
 .footer-end,
 .footer-nav {
   min-width: 0;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
 }
 
 .footer-logo {

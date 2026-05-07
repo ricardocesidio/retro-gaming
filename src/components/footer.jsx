@@ -12,17 +12,6 @@ export default function Footer() {
             The premium marketplace for retro gaming collectors.
             Buy, sell and discover rare finds.
           </p>
-          <div className="brand-socials">
-            <a href="#" onClick={(e) => e.preventDefault()} className="social-placeholder" aria-label="Twitter">
-              <i className="fab fa-x-twitter" />
-            </a>
-            <a href="#" onClick={(e) => e.preventDefault()} className="social-placeholder" aria-label="Instagram">
-              <i className="fab fa-instagram" />
-            </a>
-            <a href="#" onClick={(e) => e.preventDefault()} className="social-placeholder" aria-label="Discord">
-              <i className="fab fa-discord" />
-            </a>
-          </div>
         </div>
 
         {/* Nav columns */}
@@ -39,6 +28,7 @@ export default function Footer() {
           <div className="nav-col">
             <strong style={{ color: "var(--text-main)", marginBottom: 6, display: "block", fontSize: "0.8rem", letterSpacing: "1px" }}>ACCOUNT</strong>
             <Link to="/profile">Profile</Link>
+            <Link to="/wallet">Wallet</Link>
             <Link to="/my-orders">My Orders</Link>
             <Link to="/wishlist">Wishlist</Link>
             <Link to="/settings">Settings</Link>
