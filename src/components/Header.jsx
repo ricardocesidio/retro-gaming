@@ -21,6 +21,11 @@ export default function Header({
   const [notifications, setNotifications] = useState(() => readNotifications());
   const [unreadCount, setUnreadCount] = useState(() => unreadNotificationsCount());
 
+  const showDropdownRef = useRef(showDropdown);
+  const showNotificationsRef = useRef(showNotifications);
+  useEffect(() => { showDropdownRef.current = showDropdown; }, [showDropdown]);
+  useEffect(() => { showNotificationsRef.current = showNotifications; }, [showNotifications]);
+
   useEffect(() => {
     const sync = () => {
       setNotifications(readNotifications());
@@ -37,7 +42,7 @@ export default function Header({
         setShowDropdown(false);
         setShowNotifications(false);
       }
-      if ((e.key === "ArrowDown" || e.key === "ArrowUp") && showDropdown) {
+      if ((e.key === "ArrowDown" || e.key === "ArrowUp") && showDropdownRef.current) {
         e.preventDefault();
         const items = dropdownRef.current?.querySelectorAll('[role="menuitem"]');
         if (items?.length) {
@@ -45,7 +50,7 @@ export default function Header({
           else items[items.length - 1].focus();
         }
       }
-      if ((e.key === "ArrowDown" || e.key === "ArrowUp") && showNotifications) {
+      if ((e.key === "ArrowDown" || e.key === "ArrowUp") && showNotificationsRef.current) {
         e.preventDefault();
         const items = notificationsRef.current?.querySelectorAll('[role="menuitem"]');
         if (items?.length) {
@@ -171,15 +176,15 @@ export default function Header({
                 <i className="fa-solid fa-message" />
               </Link>
 
-              <div className="notifications-container" ref={notificationsRef}>
-                <button
-                  type="button"
-                  className="icon-btn notifications-btn"
-                  onClick={() => setShowNotifications((p) => !p)}
-                  aria-haspopup="menu"
-                  aria-expanded={showNotifications}
-                  title="Notifications"
-                >
+<div className="notifications-container" ref={notificationsRef}>
+                  <button
+                    type="button"
+                    className="icon-btn notifications-btn"
+                    onClick={() => setShowNotifications((p) => !p)}
+                    aria-haspopup="menu"
+                    aria-expanded={showNotifications}
+                    aria-label="Notifications"
+                  >
                   <i className="fa-solid fa-bell" />
                   {unreadCount > 0 && <span className="notification-count" aria-label={`${unreadCount} unread notifications`}>{unreadCount}</span>}
                 </button>

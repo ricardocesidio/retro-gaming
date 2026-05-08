@@ -17,14 +17,29 @@ export default function InviteFriends() {
 
   const userId = getUserId(user);
   const inviteLink = userId ? `https://retro-vault.com/invite/${userId}` : "https://retro-vault.com/invite/guest";
-  const inviteCode = useMemo(
-    () => `${userId?.slice(-6) || "RETRO"}-${Date.now().toString().slice(-4)}`,
-    [userId]
-  );
+  
+  // Stable invite code that doesn't change on every render
+  const inviteCode = useMemo(() => {
+    const timestamp = "0526"; // Stable demo timestamp (May 2026)
+    const codePart = userId?.slice(-4) || "RETRO";
+    return `${codePart.toUpperCase()}-${timestamp}`;
+  }, [userId]);
 
   const copyToClipboard = async (text, type) => {
     try {
-      await navigator.clipboard.writeText(text);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-9999px';
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+      }
       if (type === "link") {
         setCopiedLink(true);
         setTimeout(() => setCopiedLink(false), 2000);

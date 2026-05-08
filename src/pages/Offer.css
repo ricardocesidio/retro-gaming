@@ -122,7 +122,7 @@
 
 .btn-submit-offer {
   padding: 14px 24px;
-  background: linear-gradient(135deg, var(--accent-purple), #6e48aa);
+  background: var(--gradient-accent);
   color: #fff;
   border: none;
   border-radius: 14px;

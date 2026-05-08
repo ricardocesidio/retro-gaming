@@ -472,25 +472,24 @@
   transition: 0.25s ease;
 }
 
-.btn-login-submit {
+.register-page .btn-login-submit {
   background: var(--accent-purple);
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 10px;
-    cursor: pointer;
-    margin: 10px 15px;
-    width: calc(100% - 30px);
-    height: 50px;
-     font-size: 1em;
-    font-weight: var(--font-bold);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 10px 15px;
+  width: calc(100% - 30px);
+  height: 50px;
+  font-size: 1em;
+  font-weight: var(--font-bold);
 }
 
-.btn-login-submit:hover {
+.register-page .btn-login-submit:hover {
   background: var(--tier-gold);
-    color: var(--bg-body) !important;
-    box-shadow: 0 0 10px rgb(234, 234, 234);
-   
+  color: var(--bg-body) !important;
+  box-shadow: 0 0 10px rgb(234, 234, 234);
 }
 
 .btn-modal-close.disabled {

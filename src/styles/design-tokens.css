@@ -33,6 +33,7 @@
 
   /* Shared Gradients */
   --gradient-cta: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-2));
+  --gradient-accent: linear-gradient(135deg, var(--accent-purple), #6e48aa);
   
   --nav-purple: #33124f;
   --nav-purple-light: #4a1f70;

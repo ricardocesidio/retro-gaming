@@ -280,7 +280,7 @@
 .btn-donate {
   width: 100%;
   padding: 20px;
-  background: linear-gradient(135deg, var(--accent-purple), #6e48aa);
+  background: var(--gradient-accent);
   color: #fff;
   border: none;
   border-radius: var(--radius-lg);
@@ -768,15 +768,15 @@
   color: #00f7c8 !important;
 }
 
-.fa-shield-halved {
+.donations-page .fa-shield-halved {
   color: #00d8b8 !important;
 }
 
-.fa-file-lines {
+.donations-page .fa-file-lines {
   color: wheat;
 }
 
-.fa-circle-check {
+.donations-page .fa-circle-check {
   color: #00b4d8;
 }
 

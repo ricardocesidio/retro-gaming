@@ -17,6 +17,22 @@
 .profile-name-row {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.profile-name-row h1 {
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.profile-action-btns {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    margin-left: auto;
 }
 
 .profile-name-row .verified-badge { color: #00D4FF !important; }
@@ -152,7 +168,7 @@
     padding: 12px 20px;
     border-radius: var(--radius-md);
     width: fit-content;
-    margin: 0 auto;
+    margin: 0;
     backdrop-filter: blur(10px);
 }
 
@@ -733,6 +749,8 @@
 .reviewer-img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--accent-purple); object-fit: cover; }
 .reviewer-name { color: var(--verified-color); text-decoration: none; font-weight: var(--font-bold); font-size: 1.1rem; }
 .reviewer-name:hover { color: #fff200 !important; text-decoration: none; }
+.reviewer-gems { display: flex; align-items: center; gap: 4px; }
+.reviewer-gems .fa-gem.filled { font-size: 0.85rem; }
 .slider-controls { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
 
 .slider-btn { 

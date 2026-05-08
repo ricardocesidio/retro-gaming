@@ -280,7 +280,7 @@ export default function ProductDetail() {
 
           <div className="seller-card">
             <h3>Seller</h3>
-            <div className="seller-row" onClick={() => navigate(`/profile/${sellerName}`)} style={{ cursor: 'pointer' }}>
+            <div className="seller-row" onClick={() => navigate(`/profile/${encodeURIComponent(sellerName)}`)} style={{ cursor: 'pointer' }}>
               <img
                 src={sellerAvatar}
                 alt={sellerName}

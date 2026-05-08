@@ -70,7 +70,7 @@
   margin: 0;
 }
 
-.btn-browse-market {
+.auction-page .btn-browse-market {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -87,7 +87,7 @@
   transition: background 0.18s ease, transform 0.18s ease;
 }
 
-.btn-browse-market:hover {
+.auction-page .btn-browse-market:hover {
   background: var(--accent-purple-2);
   transform: translateY(-1px);
 }

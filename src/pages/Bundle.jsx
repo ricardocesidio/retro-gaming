@@ -35,6 +35,7 @@ export default function Bundle() {
 
   // Add item to bundle
   const addToBundle = (item) => {
+    if (!item?.id) return;
     const itemId = String(item.id);
     // Don't add if already in bundle or is the first item
     if (itemId === String(id)) return;
@@ -49,8 +50,8 @@ export default function Bundle() {
 
   // Calculate total
   const total = useMemo(() => {
-    const firstPrice = firstItem?.price || 0;
-    const bundleTotal = bundleItems.reduce((sum, item) => sum + (item.price || 0), 0);
+    const firstPrice = Number(firstItem?.price) || 0;
+    const bundleTotal = bundleItems.reduce((sum, item) => sum + (Number(item.price) || 0), 0);
     return (firstPrice + bundleTotal).toFixed(2);
   }, [firstItem, bundleItems]);
 

@@ -243,6 +243,30 @@
   margin: 0;
 }
 
+.btn-v2-save {
+  background: var(--gradient-cta);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: var(--font-bold);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-v2-save:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(157, 80, 187, 0.35);
+}
+
+.btn-v2-save:active {
+  transform: translateY(0);
+}
+
+.btn-v2-save.success {
+  background: var(--success);
+}
+
 @media (max-width: 1024px) {
   .settings-wrapper {
     padding: 120px 24px 60px;

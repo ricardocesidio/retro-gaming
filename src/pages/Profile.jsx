@@ -53,21 +53,21 @@ export default function Profile() {
     const base = getSellerStats(activeProfileName);
     return {
       ...base,
-      itemsSold: base.soldItems || getStableNumber(activeProfileName, 15, 60),
+      itemsSold: base.soldItems !== undefined ? base.soldItems : getStableNumber(activeProfileName, 15, 60),
     };
   }, [activeProfileName]);
 
   // Mock reviews for demo display
   const reviews = useMemo(() => [
-    { id: 1, name: "RetroCollector",  text: "Great seller, fast shipping and item exactly as described!" },
-    { id: 2, name: "GameEnthusiast",   text: "Very professional. Would buy again." },
-    { id: 3, name: "NostalgiaHunter", text: "Item arrived in perfect condition. Recommended!" },
-    { id: 4, name: "PixelWizard",     text: "Amazing communication! The controller was even better than the photos." },
-    { id: 5, name: "LevelUp99",       text: "Packaged with care. The console looks brand new. 10/10 experience." },
-    { id: 6, name: "RetroGamer88",    text: "Fair price and quick delivery. Would definitely buy from again." },
-    { id: 7, name: "ClassicCartridge",text: "Shipped internationally and arrived in just 4 days. Impressive!" },
-    { id: 8, name: "MarioFanatic",    text: "Exactly what I was looking for. Great condition, honest seller." },
-    { id: 9, name: "DigitalDreamer",  text: "Smooth transaction from start to finish. Highly recommended seller." },
+    { id: 1, name: "RetroCollector",  text: "Great seller, fast shipping and item exactly as described!", gems: 5 },
+    { id: 2, name: "GameEnthusiast",   text: "Very professional. Would buy again.", gems: 5 },
+    { id: 3, name: "NostalgiaHunter", text: "Item arrived in perfect condition. Recommended!", gems: 5 },
+    { id: 4, name: "PixelWizard",     text: "Amazing communication! The controller was even better than the photos.", gems: 5 },
+    { id: 5, name: "LevelUp99",       text: "Packaged with care. The console looks brand new. 10/10 experience.", gems: 5 },
+    { id: 6, name: "RetroGamer88",    text: "Fair price and quick delivery. Would definitely buy from again.", gems: 4 },
+    { id: 7, name: "ClassicCartridge",text: "Shipped internationally and arrived in just 4 days. Impressive!", gems: 5 },
+    { id: 8, name: "MarioFanatic",    text: "Exactly what I was looking for. Great condition, honest seller.", gems: 5 },
+    { id: 9, name: "DigitalDreamer",  text: "Smooth transaction from start to finish. Highly recommended seller.", gems: 5 },
   ], []);
 
   // Stable mock followers/following counts (based on username)
@@ -76,12 +76,12 @@ export default function Profile() {
   const followingState = !isOwnProfile && isFollowing(profileUserId);
 
   const getTierClass = () => {
-    const { gems, reviewsCount } = stats;
-    if (gems >= 4.5 && reviewsCount >= 100)              return "tier-supreme";
-    if (gems >= 4.5 && reviewsCount >= 50)               return "tier-master";
-    if (gems === 5  && reviewsCount >= 20)               return "tier-platinum";
-    if (gems > 3)                                         return "tier-gold";
-    if (gems > 1)                                         return "tier-silver";
+    const { rating, reviewsCount } = stats;
+    if (rating >= 4.5 && reviewsCount >= 100)              return "tier-supreme";
+    if (rating >= 4.5 && reviewsCount >= 50)               return "tier-master";
+    if (rating === 5  && reviewsCount >= 20)               return "tier-platinum";
+    if (rating > 3)                                         return "tier-gold";
+    if (rating > 1)                                         return "tier-silver";
     return "tier-bronze";
   };
 
@@ -206,6 +206,11 @@ export default function Profile() {
                 loading="lazy"
               />
               <span className="reviewer-name">{reviews[currentSlide].name}</span>
+              <div className="reviewer-gems">
+                {[...Array(reviews[currentSlide].gems || 5)].map((_, i) => (
+                  <i key={i} className="fa-solid fa-gem filled" />
+                ))}
+              </div>
             </div>
             <p>"{reviews[currentSlide].text}"</p>
           </div>

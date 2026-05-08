@@ -330,24 +330,6 @@
    RESPONSIVE BREAKPOINTS — DESKTOP FIRST
    ========================================================== */
 
-/* --bp-2xl (1024px) */
-@media (max-width: 1024px) {
-  .category-bar {
-    gap: var(--space-3);
-    padding: 8px var(--space-4);
-  }
-
-  .nav-links {
-    gap: var(--space-3);
-  }
-
-  .nav-links a {
-    width: 38px;
-    height: 38px;
-    font-size: 1rem;
-  }
-}
-
 /* Tablets */
 @media (max-width: 900px) {
   .header-main,
@@ -412,22 +394,10 @@
     height: 34px;
   }
 
-  .category-bar {
-    top: calc(var(--header-height-mobile) - 8px);
-    padding: 8px var(--space-4);
-    gap: var(--space-2);
-  }
-
   .nav-links {
     flex: 1;
     justify-content: flex-start;
     padding-right: var(--space-2);
-  }
-
-  .nav-links a {
-    width: 34px;
-    height: 34px;
-    font-size: 0.9rem;
   }
 
   .notifications-dropdown {
@@ -456,12 +426,7 @@
     font-size: 0.65rem;
   }
 
-  .category-bar {
-    top: calc(var(--header-height-mobile) - 12px);
-  }
-
   .nav-links a {
-    font-size: 0.6rem;
     padding: 5px 6px;
   }
 

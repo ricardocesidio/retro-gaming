@@ -308,9 +308,9 @@ export default function Wallet() {
               <label className="withdraw-label">Amount (€)</label>
               <div className="withdraw-input-wrap">
                 <input
-                  type="number"
-                  step="0.01"
-                  min="0.01"
+                  type="text"
+                  inputMode="decimal"
+                  pattern="[0-9]*\.?[0-9]{0,2}"
                   max={wallet.withdrawable}
                   value={withdrawAmount}
                   onChange={(e) => setWithdrawAmount(e.target.value)}

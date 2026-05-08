@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import './Messages.css';
 import { readConversations, writeConversations } from '../utils/uiState';
+import { DEFAULT_AVATAR_FALLBACK } from '../utils/fallbackImage';
 
 const nowTime = () => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
@@ -65,7 +66,20 @@ export default function Messages() {
     }) || null;
   }, [conversations]);
 
+  const prevSearchRef = useRef(location.search);
+
+  // Reset active chat when URL params change (new navigation into Messages)
   useEffect(() => {
+    if (location.search !== prevSearchRef.current) {
+      prevSearchRef.current = location.search;
+      setActiveChatId(null);
+    }
+  }, [location.search]);
+
+  useEffect(() => {
+    // Only auto-select when no chat is active (prevents overriding manual selection)
+    if (activeChatId !== null) return;
+
     const matched = findConversationFromParams(location.search);
     if (matched) {
       setActiveChatId(String(matched.id));
@@ -73,7 +87,7 @@ export default function Messages() {
       return;
     }
 
-    if (conversations.length > 0 && activeChatId === null) {
+    if (conversations.length > 0) {
       setActiveChatId(String(conversations[0].id));
     }
   }, [activeChatId, conversations, findConversationFromParams, location.search]);
@@ -107,14 +121,7 @@ export default function Messages() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [showMenu]);
 
-  useEffect(() => {
-    if (chatEndRef.current) {
-      chatEndRef.current.scrollIntoView({
-        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
-      });
-    }
-  }, [activeChatId, conversations]);
-
+  // Remove auto-scroll — chat stays stable on click, no unwanted jump
   const activeChat = conversations.find((c) => String(c.id) === String(activeChatId)) || conversations[0] || null;
   const isBlocked = activeChat ? blockedUsers.map(String).includes(String(activeChat.name).toLowerCase()) : false;
   const isFormValid = reportData.reason !== '' && reportData.description.trim().length > 0;
@@ -206,15 +213,13 @@ export default function Messages() {
     setMobileShowChat(window.innerWidth < 769);
     setShowMenu(false);
     
-    // Clear unread count when opening chat
-    setConversations(prev => {
-      const updated = prev.map(chat => 
-        String(chat.id) === chatId ? { ...chat, unread: 0 } : chat
-      );
-      writeConversations(updated);
-      return updated;
-    });
+    const updated = conversations.map(chat => 
+      String(chat.id) === chatId ? { ...chat, unread: 0 } : chat
+    );
+    setConversations(updated);
+    writeConversations(updated);
   };
+
 
   return (
     <div className="messages-page">
@@ -237,7 +242,13 @@ export default function Messages() {
                   onKeyDown={(e) => e.key === 'Enter' && openChat(chat.id)}
                 >
                   <div className="chat-avatar-wrap">
-                    <img src={chat.avatar} className="chat-avatar" alt={chat.name} loading="lazy" />
+                    <img 
+                      src={chat.avatar} 
+                      className="chat-avatar" 
+                      alt={chat.name} 
+                      loading="lazy"
+                      onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = DEFAULT_AVATAR_FALLBACK; }}
+                    />
                     {chat.unread > 0 && <span className="chat-unread-dot" />}
                   </div>
                   <div className="chat-preview">
@@ -313,7 +324,12 @@ export default function Messages() {
                 ) : (
                   <div className="chat-product-info">
                     <div className="chat-contact-avatar">
-                      <img src={activeChat.avatar} alt={activeChat.name} loading="lazy" />
+                      <img 
+                        src={activeChat.avatar} 
+                        alt={activeChat.name} 
+                        loading="lazy"
+                        onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = DEFAULT_AVATAR_FALLBACK; }}
+                      />
                     </div>
                     <h3>{activeChat.name}</h3>
                   </div>
@@ -348,7 +364,7 @@ export default function Messages() {
 
               <div className="chat-history">
                 {activeChat.history.map((msg, i) => (
-                  <div key={`msg-${msg.time}-${msg.type}`} className={`message-bubble message-${msg.type}`}>
+                  <div key={`msg-${msg.time}-${msg.type}-${i}`} className={`message-bubble message-${msg.type}`}>
                     {msg.image && (
                       <img 
                         src={msg.image} 

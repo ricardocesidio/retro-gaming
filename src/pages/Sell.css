@@ -400,7 +400,7 @@
 .parcel-size-section {
     margin: 60px 0;
     padding: 50px;
-    background: linear-gradient(145deg, rgba(39, 8, 52, 0.06) 0%, rgba(157, 80, 187, 0.12) 100%);
+    background: #000000;
     border: 2px solid rgba(157, 80, 187, 0.2);
     border-radius: var(--radius-2xl);
     text-align: center;
@@ -409,15 +409,7 @@
     overflow: hidden;
 }
 
-/* pointer-events: none so section overlay never blocks parcel cards */
-.parcel-size-section::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at top, rgba(157, 80, 187, 0.12), transparent 55%);
-    pointer-events: none;
-    z-index: 0;
-}
+/* ::before overlay removed — section uses solid black background */
 
 .parcel-size-section > * {
     position: relative;

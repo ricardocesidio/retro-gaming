@@ -6,7 +6,7 @@
 .messages-page {
   min-height: calc(100vh - 170px);
   padding: 24px 24px 36px;
-  background: var(--bg-body);
+  background: #000000;
 }
 
 .messages-layout {
@@ -385,7 +385,7 @@
   height: 50px;
   border: 0;
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, var(--accent-purple), #6e48aa);
+  background: var(--gradient-accent);
   color: #fff;
   cursor: pointer;
   transition: transform 0.18s ease, filter 0.18s ease;
@@ -482,7 +482,7 @@
 }
 
 .btn-cancel { background: rgba(255, 255, 255, 0.07); color: #fff; }
-.btn-submit-report { background: linear-gradient(135deg, var(--accent-purple), #6e48aa); color: #fff; }
+.btn-submit-report { background: var(--gradient-accent); color: #fff; }
 
 .success-toast {
   position: fixed;

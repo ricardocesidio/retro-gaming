@@ -12,6 +12,9 @@ import { safeJsonParse as safeParse } from "../utils/shared.js";
 const SESSION_KEY = "activeSession";
 const SOCIAL_GRAPH_KEY = "socialGraph";
 
+// SSR-safe guard for browser globals
+const isBrowser = typeof window !== "undefined" && typeof localStorage !== "undefined";
+
 const normalizeId = (value) => String(value ?? "").trim();
 
 const uniq = (arr) =>
@@ -38,10 +41,14 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [socialGraph, setSocialGraph] = useState(() =>
-    safeParse(localStorage.getItem(SOCIAL_GRAPH_KEY), {})
+    isBrowser ? safeParse(localStorage.getItem(SOCIAL_GRAPH_KEY), {}) : {}
   );
 
   useEffect(() => {
+    if (!isBrowser) {
+      setLoading(false);
+      return;
+    }
     try {
       const session = sessionStorage.getItem(SESSION_KEY);
       if (session) setUser(JSON.parse(session));
@@ -54,10 +61,16 @@ export function AuthProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(SOCIAL_GRAPH_KEY, JSON.stringify(socialGraph));
+    if (!isBrowser) return;
+    try {
+      localStorage.setItem(SOCIAL_GRAPH_KEY, JSON.stringify(socialGraph));
+    } catch (err) {
+      if (import.meta.env.DEV) console.error("Failed to persist social graph:", err);
+    }
   }, [socialGraph]);
 
   useEffect(() => {
+    if (!isBrowser) return;
     const onStorage = (e) => {
       if (e.key === SOCIAL_GRAPH_KEY) setSocialGraph(safeParse(e.newValue, {}));
       if (e.key === SESSION_KEY) setUser(safeParse(e.newValue, null));
@@ -102,7 +115,6 @@ export function AuthProvider({ children }) {
       persistSession(normalized);
       upsertUser(normalized);
       setUser(normalized);
-      window.dispatchEvent(new Event("authChange"));
     },
     [persistSession]
   );
@@ -110,7 +122,6 @@ export function AuthProvider({ children }) {
   const logout = useCallback(() => {
     persistSession(null);
     setUser(null);
-    window.dispatchEvent(new Event("authChange"));
   }, [persistSession]);
 
   const getFollowData = useCallback(
