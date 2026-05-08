@@ -713,13 +713,14 @@
 .fa-gem.filled { 
     color: var(--diamond-color); 
     font-size: 1.2rem;
-    animation: gemPulse 2.5s infinite ease-in-out;
 }
 
-@keyframes gemPulse {
-    0%, 100% { transform: scale(1); filter: brightness(1) drop-shadow(0 0 5px var(--diamond-color)); }
-    50% { transform: scale(1.15); filter: brightness(1.4) drop-shadow(0 0 15px var(--diamond-color)); }
+.fa-gem.empty {
+    color: #3a3a4a;
+    font-size: 1.2rem;
 }
+
+/* Gem pulse animation removed — gems are static */
 
 .diamond-count { color: #ccc; font-size: 1em; margin-left: 10px; font-weight: 900; }
 .reviews-link { text-decoration: none; color: var(--accent-purple); font-weight: 700; cursor: pointer; transition: 0.3s; }
@@ -751,6 +752,7 @@
 .reviewer-name:hover { color: #fff200 !important; text-decoration: underline; }
 .reviewer-gems { display: flex; align-items: center; gap: 4px; }
 .reviewer-gems .fa-gem.filled { font-size: 0.85rem; }
+.reviewer-gems .fa-gem.empty { font-size: 0.85rem; color: #3a3a4a; }
 .slider-controls { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
 
 .slider-btn { 

@@ -1,11 +1,14 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import "./Sell.css";
 import {
   publishMarketListing,
   readDraftListings,
   writeDraftListings,
   isStorageQuotaError,
+  readMarketListings,
+  updateMarketListing,
+  removeMarketListing,
 } from "../utils/marketStorage";
 import { useAuth } from "../context/AuthContext";
 
@@ -200,6 +203,30 @@ export default function Sell() {
   const descriptionRef = useRef(null);
   const imagesRef = useRef(null);
   const parcelSizeRef = useRef(null);
+
+  const [searchParams] = useSearchParams();
+  const editId = searchParams.get("edit") || "";
+  const isEditing = !!editId;
+
+  // Load existing listing data when editing
+  useEffect(() => {
+    if (!isEditing) return;
+    const all = readMarketListings();
+    const existing = all.find((item) => String(item.id) === String(editId));
+    if (!existing) return;
+
+    setTitle(existing.title || "");
+    setCategory(existing.category || "");
+    setSubCategory(existing.subCategory || "");
+    setCondition(existing.condition || "");
+    setPrice(existing.price != null ? String(existing.price) : "");
+    setDescription(existing.description || "");
+    setImages(
+      (Array.isArray(existing.images) ? existing.images.filter(Boolean) : [])
+        .map((src) => (typeof src === "string" ? { preview: src } : src))
+    );
+    setParcelSize(existing.parcelSize || "");
+  }, [isEditing, editId]);
 
   const subCategories = {
     Consoles: [
@@ -698,7 +725,7 @@ export default function Sell() {
         price: price.trim(),
         description: description.trim(),
         parcelSize: parcelSize.trim(),
-        images: images.map((i) => i.preview),
+        images: images.map((i) => i.preview || i),
       });
 
       const existing = loadStoredDrafts();
@@ -733,8 +760,7 @@ export default function Sell() {
       const sellerName = user?.username || user?.name || "Anonymous";
       const sellerAvatar = user?.avatar || user?.profilePic || user?.profileImage || "";
 
-      const newListing = {
-        id: String(now),
+      const listingData = {
         title: title.trim(),
         category: category.trim(),
         subCategory: subCategory.trim(),
@@ -743,39 +769,55 @@ export default function Sell() {
         description: description.trim(),
         parcelSize: parcelSize.trim(),
         weightRange: shippingTiers.find((t) => t.id === parcelSize)?.weightRange || "",
-        image: images[0]?.preview || "",
-        images: images.map((i) => i.preview),
-        date: new Date(now).toISOString(),
-        createdAt: now,
-        publishedAt: now,
+        image: images[0]?.preview || images[0] || "",
+        images: images.map((i) => i.preview || i),
         status: "active",
         seller: sellerName,
         sellerAvatar,
         sellerId: user?.id || user?._id || user?.username || "",
       };
 
-      const result = await publishMarketListing(newListing);
-      if (!result?.ok) {
-        if (isStorageQuotaError(result?.error)) {
-          const trimmedDrafts = loadStoredDrafts()
-            .map((draft) => ({
-              ...draft,
-              images: Array.isArray(draft.images) ? draft.images.slice(0, 1) : [],
-              image: draft.image || draft.images?.[0] || "",
-            }))
-            .slice(0, 3);
+      if (isEditing) {
+        // Update existing listing — preserve ID, dates, seller
+        const result = updateMarketListing(editId, {
+          ...listingData,
+          updatedAt: now,
+        });
+        if (!result) throw new Error("Listing not found.");
+        showToast("Listing updated!");
+      } else {
+        // Create new listing
+        const newListing = {
+          ...listingData,
+          id: String(now),
+          date: new Date(now).toISOString(),
+          createdAt: now,
+          publishedAt: now,
+        };
 
-          saveDraftsSafely(trimmedDrafts);
-          const retry = await publishMarketListing(newListing);
-          if (!retry?.ok) throw retry?.error || result?.error || new Error("Unable to persist the listing.");
-        } else {
-          throw result?.error || new Error("Unable to persist the listing.");
+        const result = await publishMarketListing(newListing);
+        if (!result?.ok) {
+          if (isStorageQuotaError(result?.error)) {
+            const trimmedDrafts = loadStoredDrafts()
+              .map((draft) => ({
+                ...draft,
+                images: Array.isArray(draft.images) ? draft.images.slice(0, 1) : [],
+                image: draft.image || draft.images?.[0] || "",
+              }))
+              .slice(0, 3);
+
+            saveDraftsSafely(trimmedDrafts);
+            const retry = await publishMarketListing(newListing);
+            if (!retry?.ok) throw retry?.error || result?.error || new Error("Unable to persist the listing.");
+          } else {
+            throw result?.error || new Error("Unable to persist the listing.");
+          }
         }
+        showToast("Ad published to the Market!");
       }
 
-      showToast("Ad published to the Market!");
       await new Promise((resolve) => setTimeout(resolve, 900));
-      navigate("/market", { replace: true, state: { publishedAt: now } });
+      navigate(isEditing ? "/profile" : "/market", { replace: true, state: { publishedAt: now } });
     } catch (err) {
       const message =
         /quota|storage/i.test(String(err?.message || err?.cause?.message || ""))
@@ -799,8 +841,23 @@ export default function Sell() {
       <div className="sell-container">
         <div className="sell-card">
           <header className="sell-header">
-            <h1>Post Ad</h1>
-            <p>List your items in the premium geek marketplace.</p>
+            <h1>{isEditing ? "Edit Ad" : "Post Ad"}</h1>
+            <p>{isEditing ? "Update your listing details." : "List your items in the premium geek marketplace."}</p>
+            {isEditing && (
+              <button
+                type="button"
+                className="btn-delete-listing"
+                onClick={() => {
+                  if (window.confirm("Delete this listing?")) {
+                    removeMarketListing(editId);
+                    navigate("/profile", { replace: true });
+                  }
+                }}
+              >
+                <i className="fa-solid fa-trash" style={{ marginRight: 6 }} />
+                Delete Listing
+              </button>
+            )}
           </header>
 
           <form className="sell-form" onSubmit={handleSubmit} noValidate>
@@ -960,7 +1017,7 @@ export default function Sell() {
               <div className="upload-grid">
                 {images.map((img, index) => (
                   <div key={index} className="preview-item">
-                    <img src={img.preview} alt={`Preview ${index + 1}`} />
+                    <img src={img.preview || img} alt={`Preview ${index + 1}`} />
                     <button
                       type="button"
                       className="remove-btn"
@@ -1084,10 +1141,10 @@ export default function Sell() {
                   {isSubmitting ? (
                     <>
                       <i className="fa-solid fa-spinner fa-spin" style={{ marginRight: 8 }} />
-                      <span>Publishing…</span>
+                      <span>{isEditing ? "Updating…" : "Publishing…"}</span>
                     </>
                   ) : (
-                    <span>Publish Ad</span>
+                    <span>{isEditing ? "Save Changes" : "Publish Ad"}</span>
                   )}
                 </button>
 

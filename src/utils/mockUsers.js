@@ -1,5 +1,5 @@
 // Mock user data generator — deterministic per username
-// Provides unique avatars, bios, reviews, listings for every user
+// Provides unique realistic avatars, bios, European locations, reviews, listings
 
 const hashStr = (str, seed = 0) => {
   let h = seed;
@@ -12,20 +12,53 @@ const hashStr = (str, seed = 0) => {
 const pick = (arr, index) => arr[index % arr.length];
 
 const pool = {
-  countries: ["Portugal", "Spain", "France", "Italy", "Germany", "United Kingdom", "Netherlands", "Sweden", "Brazil", "Japan"],
-  bios: [
-    "Retro collector since 1998. Specializing in Nintendo handhelds and rare cartridges.",
-    "Passionate about vintage gaming. I restore and sell authentic retro consoles.",
-    "PS2 and GameCube era enthusiast. All items tested and cleaned before shipping.",
-    "Retro gaming is my life. Fast shipping, honest descriptions, no reproductions.",
-    "Collecting since childhood. Now sharing the joy with other retro fans worldwide.",
-    "Console modder and restorer. Every item gets a full clean and test before listing.",
-    "SEGA fanatic since the Genesis days. Authentic hardware only, no clones.",
-    "Vintage game cartridge specialist. All items are original and in great condition.",
-    "Gaming nostalgia curator. I find, restore, and sell the best retro gems.",
-    "Retro marketplace veteran. Hundreds of happy buyers. Quality guaranteed.",
+  // European cities — "City, Country" format
+  locations: [
+    "Lisbon, Portugal",       "Porto, Portugal",         "Braga, Portugal",
+    "Madrid, Spain",          "Barcelona, Spain",         "Valencia, Spain",
+    "Paris, France",          "Lyon, France",             "Marseille, France",
+    "Berlin, Germany",        "Hamburg, Germany",         "Munich, Germany",
+    "Milan, Italy",           "Rome, Italy",              "Florence, Italy",
+    "Amsterdam, Netherlands", "Rotterdam, Netherlands",   "Utrecht, Netherlands",
+    "Brussels, Belgium",      "Antwerp, Belgium",
+    "Vienna, Austria",        "Salzburg, Austria",
+    "Prague, Czech Republic", "Brno, Czech Republic",
+    "Warsaw, Poland",         "Kraków, Poland",
+    "Manchester, UK",         "Edinburgh, UK",            "Bristol, UK",
+    "Stockholm, Sweden",      "Gothenburg, Sweden",
+    "Copenhagen, Denmark",    "Oslo, Norway",
+    "Dublin, Ireland",        "Helsinki, Finland",
   ],
-  bannerColors: ["#1a0a2e", "#16213e", "#1b0a1a", "#0a2e1a", "#2e1a0a", "#0a1a2e", "#1a1a2e", "#2e0a1a", "#0a2e2e", "#2e2e0a"],
+
+  // Diverse marketplace bios — 25 unique personalities
+  bios: [
+    "Retro collector since 1998. Specialising in Nintendo handhelds and rare European-exclusive cartridges.",
+    "Passionate about vintage gaming. I restore and sell authentic retro consoles from the 90s.",
+    "PS2 and GameCube era enthusiast. All items tested, cleaned, and shipped from Lisbon.",
+    "Retro gaming is my life. Fast shipping across Europe, honest descriptions, no reproductions.",
+    "Collecting since childhood. Now sharing rare finds with retro fans across the continent.",
+    "Console modder and restorer based in Germany. Every item gets a full clean before listing.",
+    "SEGA fanatic since the Genesis days. Authentic hardware only, no clones or bootlegs.",
+    "Vintage game cartridge specialist. All items original and in excellent condition.",
+    "Gaming nostalgia curator. I find, restore, and sell the best retro gems in Europe.",
+    "Retro marketplace veteran with 200+ sales. Quality guaranteed, quick replies.",
+    "Arcade cabinet collector turned console seller. Love restoring old hardware.",
+    "French retro gamer with a soft spot for SNES and Mega Drive. Merci for visiting!",
+    "UK-based collector specialising in PAL-region treasures. Boxed items preferred.",
+    "Started with a Game Boy in '92, now running a small retro shop in Barcelona.",
+    "Italian retro enthusiast. Nintendo, SEGA, PlayStation — if it's old, I love it.",
+    "Dutch collector with a passion for CIB games. All items stored in a smoke-free home.",
+    "Weekend flea market hunter. Found some incredible gems over the years.",
+    "Technology historian by day, retro gamer by night. Every console tells a story.",
+    "Nordic collector with a focus on Scandinavian-released titles and consoles.",
+    "Former game developer who never stopped loving the classics. 100% authentic only.",
+    "Spanish retro lover. Fast shipping within EU, all items photographed in detail.",
+    "Berlin-based retro enthusiast. Specialising in handhelds and imported gems.",
+    "Belgian collector with a love for obscure European releases. Quality over quantity.",
+    "Professional reseller with 5-star feedback. Your trust is my priority.",
+    "Grew up in arcades, now collecting home consoles. CRT enthusiast as well!",
+  ],
+
   allReviewers: [
     "RetroKing", "PixelHunter", "GameMaster99", "ConsoleQueen", "BossFighter",
     "ArcadeWizard", "NostalgiaPro", "VintagePlayer", "CartridgeKing", "BitBlaster",
@@ -34,6 +67,7 @@ const pool = {
     "CRT_Lover", "DiskReader", "ROM_Collector", "JoystickJedi", "ButtonMasher",
     "SpawnPoint", "GameGenieX", "TokenMaster", "BossRush", "InsertCoin",
   ],
+
   listingPools: [
     [
       { title: "GameBoy Advance SP", price: "95€", category: "Consoles", status: "active" },
@@ -78,6 +112,7 @@ const pool = {
       { title: "Zelda Link to the Past", price: "50€", category: "Games", status: "active" },
     ],
   ],
+
   reviewTexts: [
     "Amazing seller! Fast shipping and item exactly as described.",
     "Very professional. Would buy again without hesitation.",
@@ -95,27 +130,39 @@ const pool = {
     "Seller answered all my questions patiently. Great experience.",
     "My go-to seller for retro games. Never disappointed.",
   ],
-  joinDates: ["Jan 2023", "Mar 2022", "Jun 2024", "Sep 2021", "Nov 2023", "Feb 2022", "Aug 2024", "Apr 2021", "Jul 2023", "Dec 2022"],
+
+  joinDates: [
+    "Jan 2023", "Mar 2022", "Jun 2024", "Sep 2021", "Nov 2023",
+    "Feb 2022", "Aug 2024", "Apr 2021", "Jul 2023", "Dec 2022",
+    "Jan 2021", "May 2020", "Oct 2022", "Mar 2024", "Aug 2023",
+  ],
 };
 
+// Generate a unique adult avatar — primary: UI Avatars (always works, initials-style),
+// fallback: per-user colored SVG with initials
 export const generateAvatar = (username) => {
-  const initials = (username || "??").slice(0, 2).toUpperCase();
-  const colorIndex = hashStr(username, 0) % 360;
-  const hue1 = (colorIndex) % 360;
-  const hue2 = (hue1 + 40) % 360;
+  const name = encodeURIComponent(username || "User");
+  return `https://ui-avatars.com/api/?name=${name}&size=256&background=random&color=fff&bold=true&format=png`;
+};
+
+// Generate a per-user colored fallback avatar (shown if dicebear is unreachable)
+export const generateFallbackAvatar = (username) => {
+  const h = hashStr(username, 30);
+  const hue = h % 360;
+  const hue2 = (hue + 40) % 360;
+  const initials = (username || "?").slice(0, 2).toUpperCase();
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-    <rect width="256" height="256" rx="128" fill="hsl(${hue1},60%,18%)"/>
-    <circle cx="128" cy="102" r="46" fill="hsl(${hue2},55%,55%)" opacity="0.92"/>
-    <path d="M48 220c12-44 50-70 80-70s68 26 80 70" fill="hsl(${hue2},55%,55%)" opacity="0.92"/>
-    <text x="128" y="30" text-anchor="middle" fill="#fff" font-family="Arial" font-size="20" font-weight="700">${initials}</text>
+    <rect width="256" height="256" rx="48" fill="hsl(${hue},45%,25%)"/>
+    <circle cx="128" cy="100" r="44" fill="hsl(${hue2},50%,60%)" opacity="0.9"/>
+    <path d="M50 218c12-42 46-66 78-66s66 24 78 66" fill="hsl(${hue2},50%,60%)" opacity="0.9"/>
+    <text x="128" y="36" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="22" font-weight="700">${initials}</text>
   </svg>`;
   return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
 };
 
 const getReviewRating = (username, reviewerName) => {
-  // Deterministic review rating 3-5 based on both usernames
   const h = hashStr(username + reviewerName, 7);
-  const base = (h % 30) / 10; // 0.0 - 2.9
+  const base = (h % 30) / 10;
   return Math.max(3, Math.min(5, Math.round(3 + base)));
 };
 
@@ -129,12 +176,12 @@ export const getMockUser = (username) => {
     username: name,
     name,
     avatar: generateAvatar(name),
+    avatarFallback: generateFallbackAvatar(name),
     profilePic: null,
     profileImage: null,
     about: pick(pool.bios, h),
-    country: pick(pool.countries, hashStr(name, 2)),
+    country: pick(pool.locations, hashStr(name, 2)),
     createdAt: pick(pool.joinDates, hashStr(name, 3)),
-    bannerColor: pick(pool.bannerColors, hashStr(name, 4)),
     tier: null,
   };
 };
@@ -159,7 +206,7 @@ export const getMockReviews = (username) => {
     name: reviewer,
     text: pick(pool.reviewTexts, hashStr(username + reviewer, 8)),
     gems: getReviewRating(username, reviewer),
-    country: pick(pool.countries, hashStr(reviewer, 9)),
+    location: pick(pool.locations, hashStr(reviewer, 9)),
   }));
 };
 
@@ -181,7 +228,6 @@ export const getMockListings = (username) => {
   return listings;
 };
 
-// Aggregate mock user data — full profile object for Profile.jsx
 export const getMockUserProfile = (username) => {
   const user = getMockUser(username);
   if (!user) return null;
@@ -194,21 +240,17 @@ export const getMockUserProfile = (username) => {
 
   return {
     ...user,
-    // Seller stats
     stats: {
       totalListings: listings.length,
       soldItems: soldListings.length,
       activeItems: activeListings.length,
-      reviewsCount: reviews.length,
-      rating: Math.round(avgRating * 10) / 10,
+      reviewsCount: reviews.length + 100,
+      rating: Math.max(4.5, Math.round(avgRating * 10) / 10),
       itemsListed: activeListings.length,
     },
-    // For Profile.jsx review slider
     reviews,
-    // For listings grid
     listings: activeListings,
     soldListings,
-    // Follower counts
     followers: 50 + hashStr(username, 20) % 500,
     following: 20 + hashStr(username, 21) % 200,
   };

@@ -87,6 +87,25 @@
     line-height: 1.6;
 }
 
+.btn-delete-listing {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 14px;
+    padding: 8px 18px;
+    border: 1px solid rgba(255, 50, 50, 0.3);
+    border-radius: var(--radius-md);
+    background: rgba(255, 50, 50, 0.1);
+    color: #ff4d4d;
+    font-size: 0.85rem;
+    font-weight: var(--font-bold);
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-delete-listing:hover {
+    background: rgba(255, 50, 50, 0.22);
+}
+
 /* =========================================
    FORM LAYOUT
    ========================================= */

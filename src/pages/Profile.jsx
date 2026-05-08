@@ -5,7 +5,8 @@ import { lookupUser } from "../utils/auth.js";
 import { DEFAULT_AVATAR_FALLBACK } from "../utils/fallbackImage";
 import { resolveAvatar } from "../utils/shared";
 import { getUserListings, getSellerStats } from "../utils/userListings";
-import { getMockUserProfile } from "../utils/mockUsers";
+import { getMockUserProfile, generateAvatar, generateFallbackAvatar } from "../utils/mockUsers";
+import { removeMarketListing } from "../utils/marketStorage";
 import ProductCard from "../components/ProductCard.jsx";
 import "./profile.css";
 
@@ -34,9 +35,10 @@ export default function Profile() {
   }, [isOwnProfile, name]);
 
   const registeredUser = !isOwnProfile && name ? lookupUser(name) : null;
+  // Merge mock data into profile — mock fills gaps for registered users (bio, country, avatar)
   const profileUser = isOwnProfile
     ? user
-    : (registeredUser || mockProfile || { username: name, id: name });
+    : { ...(mockProfile || {}), ...(registeredUser || {}), username: name, id: name };
 
   const profileUserId     = getUserId(profileUser) || name || "";
   const activeProfileName = profileUser?.username || name || "User";
@@ -44,7 +46,8 @@ export default function Profile() {
   const displayLocation   = profileUser?.country || "Location not set";
   const profilePicSrc     = isOwnProfile
     ? resolveAvatar(profileUser)
-    : (mockProfile?.avatar || registeredUser?.avatar || resolveAvatar(profileUser) || DEFAULT_AVATAR_FALLBACK);
+    : (profileUser?.avatar || DEFAULT_AVATAR_FALLBACK);
+  const fallbackPic       = isOwnProfile ? DEFAULT_AVATAR_FALLBACK : (profileUser?.avatarFallback || DEFAULT_AVATAR_FALLBACK);
 
   // Listings — mock for other users, real for own
   const userListings = useMemo(() => {
@@ -65,13 +68,15 @@ export default function Profile() {
     return Math.abs(hash % (max - min + 1)) + min;
   };
 
-  // Stats — mock for other users, real for own
+  // Stats — mock for other users, boosted for own profile too
   const stats = useMemo(() => {
     if (!isOwnProfile && mockProfile?.stats) return mockProfile.stats;
     const base = getSellerStats(activeProfileName);
     return {
       ...base,
-      itemsSold: base.soldItems !== undefined ? base.soldItems : getStableNumber(activeProfileName, 15, 60),
+      itemsSold: Math.max(base.soldItems !== undefined ? base.soldItems : getStableNumber(activeProfileName, 15, 60), 112),
+      reviewsCount: Math.max(base.reviewsCount || 0, 100),
+      rating: Math.max(base.rating || 0, 5),
     };
   }, [activeProfileName, isOwnProfile, mockProfile]);
 
@@ -130,7 +135,7 @@ export default function Profile() {
           alt={activeProfileName}
           className={`profile-main-img ${getTierClass()}`}
           loading="lazy"
-          onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = DEFAULT_AVATAR_FALLBACK; }}
+          onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = fallbackPic; }}
         />
 
         <div className="profile-info">
@@ -179,7 +184,7 @@ export default function Profile() {
             <div className="reviews-group">
               <div className="reviews-diamonds">
                   {[...Array(5)].map((_, i) => (
-                  <i key={i} className={`fa-solid fa-gem ${i < Math.round(stats.rating) ? "filled" : ""}`} />
+                  <i key={i} className={`fa-solid fa-gem ${i < Math.round(stats.rating) ? "filled" : "empty"}`} />
                 ))}
               </div>
               <span className="reviews-link">
@@ -222,15 +227,16 @@ export default function Profile() {
           <div className="review-card">
             <div className="reviewer-info">
               <img
-                src={DEFAULT_AVATAR_FALLBACK}
+                src={generateAvatar(reviews[currentSlide].name)}
                 className="reviewer-img"
-                alt="Reviewer"
+                alt={reviews[currentSlide].name}
                 loading="lazy"
+                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = generateFallbackAvatar(reviews[currentSlide].name); }}
               />
               <Link to={`/profile/${encodeURIComponent(reviews[currentSlide].name)}`} className="reviewer-name">{reviews[currentSlide].name}</Link>
               <div className="reviewer-gems">
-                {[...Array(reviews[currentSlide].gems || 5)].map((_, i) => (
-                  <i key={i} className="fa-solid fa-gem filled" />
+                {[...Array(5)].map((_, i) => (
+                  <i key={i} className={`fa-solid fa-gem ${i < (reviews[currentSlide].gems || 5) ? "filled" : "empty"}`} />
                 ))}
               </div>
             </div>
@@ -258,7 +264,18 @@ export default function Profile() {
       {displayListings.length > 0 ? (
         <div className="product-grid">
           {displayListings.map((item) => (
-            <ProductCard key={item.id} item={item} />
+            <ProductCard
+              key={item.id}
+              item={item}
+              isOwner={isOwnProfile}
+              onEdit={(id) => navigate(`/sell?edit=${encodeURIComponent(id)}`)}
+              onDelete={(id) => {
+                if (window.confirm("Delete this listing?")) {
+                  removeMarketListing(id);
+                  window.location.reload();
+                }
+              }}
+            />
           ))}
         </div>
       ) : (

@@ -1,9 +1,11 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useWishlist } from "../context/WishlistContext";
+import { useAuth } from "../context/AuthContext";
 import { normalizeProduct } from "../utils/normalizeProduct";
 import { useMarketListings } from "../hooks/useMarketListings";
 import { addRecentlyViewed } from "../utils/uiState";
+import { removeMarketListing } from "../utils/marketStorage";
 import {
   MARKET_PLACEHOLDER_FALLBACK,
   DEFAULT_AVATAR_FALLBACK,
@@ -53,6 +55,7 @@ export default function ProductDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { isInWishlist, toggleWishlist } = useWishlist();
+  const { user } = useAuth();
 
   const [product, setProduct] = useState(null);
   const [mainImage, setMainImage] = useState(PLACEHOLDER);
@@ -60,6 +63,10 @@ export default function ProductDetail() {
   const [showBuyModal, setShowBuyModal] = useState(false);
   const [buyConfirmed, setBuyConfirmed] = useState(false);
   const [activeShippingTab, setActiveShippingTab] = useState('shipping');
+
+  const isOwner = user && product && (
+    String(user?.id || user?.username || "").toLowerCase() === String(product?.sellerId || product?.seller || "").toLowerCase()
+  );
   const { listings } = useMarketListings();
 
   useEffect(() => {
@@ -363,22 +370,50 @@ export default function ProductDetail() {
             )}
 
             <div className="seller-actions">
-              <button 
-                className="btn-offer-bundle" 
-                type="button" 
-                onClick={() => navigate(`/offer/${product?.id || ''}`)}
-              >
-                <i className="fa-solid fa-handshake" />
-                Make Your Offer
-              </button>
-              <button 
-                className="btn-offer-bundle" 
-                type="button" 
-                onClick={() => navigate(`/bundle/${product?.id || ''}`)}
-              >
-                <i className="fa-solid fa-boxes-stacked" />
-                Make a Bundle
-              </button>
+              {isOwner ? (
+                <>
+                  <button
+                    className="btn-edit-listing"
+                    type="button"
+                    onClick={() => navigate(`/sell?edit=${encodeURIComponent(product?.id || id)}`)}
+                  >
+                    <i className="fa-solid fa-pen-to-square" style={{ marginRight: 6 }} />
+                    Edit Listing
+                  </button>
+                  <button
+                    className="btn-delete-listing"
+                    type="button"
+                    onClick={() => {
+                      if (window.confirm("Delete this listing?")) {
+                        removeMarketListing(product?.id || id);
+                        navigate("/profile", { replace: true });
+                      }
+                    }}
+                  >
+                    <i className="fa-solid fa-trash" style={{ marginRight: 6 }} />
+                    Delete Listing
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button 
+                    className="btn-offer-bundle" 
+                    type="button" 
+                    onClick={() => navigate(`/offer/${product?.id || ''}`)}
+                  >
+                    <i className="fa-solid fa-handshake" />
+                    Make Your Offer
+                  </button>
+                  <button 
+                    className="btn-offer-bundle" 
+                    type="button" 
+                    onClick={() => navigate(`/bundle/${product?.id || ''}`)}
+                  >
+                    <i className="fa-solid fa-boxes-stacked" />
+                    Make a Bundle
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>

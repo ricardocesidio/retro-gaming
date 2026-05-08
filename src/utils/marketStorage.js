@@ -335,6 +335,28 @@ export const removeMarketListing = (listingId) => {
   return next;
 };
 
+export const updateMarketListing = (listingId, updates) => {
+  const id = String(listingId ?? "").trim();
+  if (!id || typeof window === "undefined") return null;
+
+  const all = readMarketListings();
+  const index = all.findIndex((item) => String(item.id) === id);
+  if (index === -1) return null;
+
+  const updated = {
+    ...all[index],
+    ...updates,
+    id: all[index].id, // preserve original ID
+    updatedAt: Date.now(),
+    images: Array.isArray(updates.images) ? updates.images : all[index].images,
+  };
+
+  all[index] = normalizeProduct(updated);
+  writeMarketListings(all);
+  dispatchUpdate();
+  return all[index];
+};
+
 export const safeStorageGet = (key, fallback) => {
   if (typeof window === "undefined") return fallback;
   try {

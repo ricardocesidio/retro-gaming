@@ -27,6 +27,9 @@ export default function ProductCard({
   detailsLabel,
   className        = "",
   onClickOverride,
+  isOwner          = false,
+  onEdit,
+  onDelete,
 }) {
   const navigate = useNavigate();
   const { isInWishlist: contextIsInWishlist, toggleWishlist } = useWishlist();
@@ -165,21 +168,56 @@ export default function ProductCard({
         <div className="product-footer">
           <span className="product-price">{priceLabel}</span>
 
-          <button
-            type="button"
-            className="btn-view-details"
-            onMouseDown={(e) => e.stopPropagation()}
-            onPointerDown={(e) => e.stopPropagation()}
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              if (!isSold && product.id) navigate(`/product/${product.id}`);
-            }}
-            disabled={isSold}
-            aria-label={`View details for ${product.title}`}
-          >
-            {buttonText}
-          </button>
+          {isOwner ? (
+            <div className="owner-actions">
+              <button
+                type="button"
+                className="btn-edit-listing"
+                onMouseDown={(e) => e.stopPropagation()}
+                onPointerDown={(e) => e.stopPropagation()}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  onEdit?.(product.id);
+                }}
+                aria-label={`Edit ${product.title}`}
+                title="Edit listing"
+              >
+                <i className="fa-solid fa-pen-to-square" />
+              </button>
+              <button
+                type="button"
+                className="btn-delete-listing"
+                onMouseDown={(e) => e.stopPropagation()}
+                onPointerDown={(e) => e.stopPropagation()}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  onDelete?.(product.id);
+                }}
+                aria-label={`Delete ${product.title}`}
+                title="Delete listing"
+              >
+                <i className="fa-solid fa-trash-can" />
+              </button>
+            </div>
+          ) : (
+            <button
+              type="button"
+              className="btn-view-details"
+              onMouseDown={(e) => e.stopPropagation()}
+              onPointerDown={(e) => e.stopPropagation()}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (!isSold && product.id) navigate(`/product/${product.id}`);
+              }}
+              disabled={isSold}
+              aria-label={`View details for ${product.title}`}
+            >
+              {buttonText}
+            </button>
+          )}
         </div>
       </div>
     </article>
