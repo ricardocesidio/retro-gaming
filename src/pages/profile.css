@@ -747,8 +747,8 @@
 .review-card { min-width: 100%; box-sizing: border-box; padding: 10px; }
 .reviewer-info { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
 .reviewer-img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--accent-purple); object-fit: cover; }
-.reviewer-name { color: var(--verified-color); text-decoration: none; font-weight: var(--font-bold); font-size: 1.1rem; }
-.reviewer-name:hover { color: #fff200 !important; text-decoration: none; }
+.reviewer-name { color: var(--verified-color); text-decoration: none; font-weight: var(--font-bold); font-size: 1.1rem; cursor: pointer; transition: color 0.2s ease; }
+.reviewer-name:hover { color: #fff200 !important; text-decoration: underline; }
 .reviewer-gems { display: flex; align-items: center; gap: 4px; }
 .reviewer-gems .fa-gem.filled { font-size: 0.85rem; }
 .slider-controls { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }

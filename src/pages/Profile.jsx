@@ -1,10 +1,11 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { lookupUser } from "../utils/auth.js";
 import { DEFAULT_AVATAR_FALLBACK } from "../utils/fallbackImage";
 import { resolveAvatar } from "../utils/shared";
-import { getUserListings, getSellerStats, getUserSoldCount } from "../utils/userListings";
+import { getUserListings, getSellerStats } from "../utils/userListings";
+import { getMockUserProfile } from "../utils/mockUsers";
 import ProductCard from "../components/ProductCard.jsx";
 import "./profile.css";
 
@@ -25,22 +26,37 @@ export default function Profile() {
   const [isTogglingFollow, setIsTogglingFollow] = useState(false);
 
   const isOwnProfile = !name || name === user?.username;
-  const profileUser = isOwnProfile ? user : lookupUser(name) || { username: name, id: name };
+
+  // Generate mock profile data for non-registered users
+  const mockProfile = useMemo(() => {
+    if (isOwnProfile || !name) return null;
+    return getMockUserProfile(name);
+  }, [isOwnProfile, name]);
+
+  const registeredUser = !isOwnProfile && name ? lookupUser(name) : null;
+  const profileUser = isOwnProfile
+    ? user
+    : (registeredUser || mockProfile || { username: name, id: name });
+
   const profileUserId     = getUserId(profileUser) || name || "";
   const activeProfileName = profileUser?.username || name || "User";
   const displayBio        = profileUser?.about   || (isOwnProfile ? "You haven't written a bio yet. Go to Settings to add one." : "This user hasn't written a biography yet.");
   const displayLocation   = profileUser?.country || "Location not set";
-  const profilePicSrc     = resolveAvatar(profileUser);
+  const profilePicSrc     = isOwnProfile
+    ? resolveAvatar(profileUser)
+    : (mockProfile?.avatar || registeredUser?.avatar || resolveAvatar(profileUser) || DEFAULT_AVATAR_FALLBACK);
 
+  // Listings — mock for other users, real for own
   const userListings = useMemo(() => {
+    if (!isOwnProfile && mockProfile?.listings) return mockProfile.listings;
     return getUserListings(activeProfileName);
-  }, [activeProfileName]);
+  }, [activeProfileName, isOwnProfile, mockProfile]);
 
   const activeListings = userListings.filter(item => item.status !== "sold");
   const soldListings = userListings.filter(item => item.status === "sold");
   const displayListings = showSold ? soldListings : activeListings;
 
-  // Get seller stats with stable mock numbers (based on username hash)
+  // Stable mock helper
   const getStableNumber = (str, min, max) => {
     let hash = 0;
     for (let i = 0; i < str.length; i++) {
@@ -49,28 +65,34 @@ export default function Profile() {
     return Math.abs(hash % (max - min + 1)) + min;
   };
 
+  // Stats — mock for other users, real for own
   const stats = useMemo(() => {
+    if (!isOwnProfile && mockProfile?.stats) return mockProfile.stats;
     const base = getSellerStats(activeProfileName);
     return {
       ...base,
       itemsSold: base.soldItems !== undefined ? base.soldItems : getStableNumber(activeProfileName, 15, 60),
     };
-  }, [activeProfileName]);
+  }, [activeProfileName, isOwnProfile, mockProfile]);
 
-  // Mock reviews for demo display
-  const reviews = useMemo(() => [
-    { id: 1, name: "RetroCollector",  text: "Great seller, fast shipping and item exactly as described!", gems: 5 },
-    { id: 2, name: "GameEnthusiast",   text: "Very professional. Would buy again.", gems: 5 },
-    { id: 3, name: "NostalgiaHunter", text: "Item arrived in perfect condition. Recommended!", gems: 5 },
-    { id: 4, name: "PixelWizard",     text: "Amazing communication! The controller was even better than the photos.", gems: 5 },
-    { id: 5, name: "LevelUp99",       text: "Packaged with care. The console looks brand new. 10/10 experience.", gems: 5 },
-    { id: 6, name: "RetroGamer88",    text: "Fair price and quick delivery. Would definitely buy from again.", gems: 4 },
-    { id: 7, name: "ClassicCartridge",text: "Shipped internationally and arrived in just 4 days. Impressive!", gems: 5 },
-    { id: 8, name: "MarioFanatic",    text: "Exactly what I was looking for. Great condition, honest seller.", gems: 5 },
-    { id: 9, name: "DigitalDreamer",  text: "Smooth transaction from start to finish. Highly recommended seller.", gems: 5 },
-  ], []);
+  // Reviews — per-user mock reviews, fallback for own profile
+  const reviews = useMemo(() => {
+    if (!isOwnProfile && mockProfile?.reviews) return mockProfile.reviews;
+    // Own profile — show some demo reviews
+    return [
+      { id: 1, name: "RetroCollector",  text: "Great seller, fast shipping and item exactly as described!", gems: 5 },
+      { id: 2, name: "GameEnthusiast",   text: "Very professional. Would buy again.", gems: 5 },
+      { id: 3, name: "NostalgiaHunter", text: "Item arrived in perfect condition. Recommended!", gems: 5 },
+      { id: 4, name: "PixelWizard",     text: "Amazing communication! The controller was even better than the photos.", gems: 5 },
+      { id: 5, name: "LevelUp99",       text: "Packaged with care. The console looks brand new. 10/10 experience.", gems: 5 },
+      { id: 6, name: "RetroGamer88",    text: "Fair price and quick delivery. Would definitely buy from again.", gems: 4 },
+      { id: 7, name: "ClassicCartridge",text: "Shipped internationally and arrived in just 4 days. Impressive!", gems: 5 },
+      { id: 8, name: "MarioFanatic",    text: "Exactly what I was looking for. Great condition, honest seller.", gems: 5 },
+      { id: 9, name: "DigitalDreamer",  text: "Smooth transaction from start to finish. Highly recommended seller.", gems: 5 },
+    ];
+  }, [isOwnProfile, mockProfile]);
 
-  // Stable mock followers/following counts (based on username)
+  // Follower/following counts
   const followersCount = getFollowersCount(profileUserId) || getStableNumber(activeProfileName, 80, 550);
   const followingCount = getFollowingCount(profileUserId) || getStableNumber(activeProfileName + '_f', 30, 230);
   const followingState = !isOwnProfile && isFollowing(profileUserId);
@@ -205,7 +227,7 @@ export default function Profile() {
                 alt="Reviewer"
                 loading="lazy"
               />
-              <span className="reviewer-name">{reviews[currentSlide].name}</span>
+              <Link to={`/profile/${encodeURIComponent(reviews[currentSlide].name)}`} className="reviewer-name">{reviews[currentSlide].name}</Link>
               <div className="reviewer-gems">
                 {[...Array(reviews[currentSlide].gems || 5)].map((_, i) => (
                   <i key={i} className="fa-solid fa-gem filled" />
@@ -254,4 +276,3 @@ export default function Profile() {
     </div>
   );
 }
-
