@@ -248,8 +248,66 @@
 }
 
 @media (max-width: 480px) {
+  .product-card {
+    padding: 8px;
+    border-radius: var(--radius-md);
+  }
+
   .product-image-container {
     aspect-ratio: 1 / 1;
+  }
+
+  .product-image {
+    object-fit: cover;
+    height: 100%;
+  }
+
+  .product-title {
+    font-size: 0.82rem;
+  }
+
+  .product-condition {
+    font-size: 0.7rem;
+  }
+
+  .product-price {
+    font-size: 0.92rem;
+  }
+
+  .product-footer {
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .btn-view-details {
+    padding: 7px 10px;
+    font-size: 0.72rem;
+  }
+
+  .btn-heart {
+    width: 28px;
+    height: 28px;
+    font-size: 0.7rem;
+  }
+
+  .seller-pill {
+    padding: 3px 7px;
+    font-size: 0.65rem;
+  }
+
+  .seller-pill-avatar {
+    width: 18px;
+    height: 18px;
+  }
+
+  .owner-actions {
+    gap: 4px;
+  }
+
+  .btn-edit-listing,
+  .btn-delete-listing {
+    padding: 6px 8px;
+    font-size: 0.7rem;
   }
 }
 

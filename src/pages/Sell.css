@@ -909,16 +909,90 @@
 }
 
 @media (max-width: 480px) {
-    .parcel-options {
+    .sell-container {
+        padding: 0 8px;
+    }
+
+    .sell-card {
+        padding: 20px 12px;
+        border-radius: var(--radius-xl);
+    }
+
+    .sell-header h1 {
+        font-size: 1.4rem;
+    }
+
+    .sell-header p {
+        font-size: 0.85rem;
+    }
+
+    .form-split-layout {
         grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .form-left-col,
+    .form-right-col {
+        gap: 14px;
+    }
+
+    .form-group label {
+        font-size: 0.82rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 10px 12px;
+        font-size: 0.88rem;
+    }
+
+    .upload-area {
+        padding: 20px 10px;
     }
 
     .upload-grid {
-        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
     }
 
-    .btn-save-draft,
-    .btn-publish-ad {
+    .preview-item {
         width: 100%;
+        height: 100px;
+    }
+
+    .parcel-size-section {
+        margin: 30px 0;
+        padding: 20px 12px;
+    }
+
+    .parcel-options {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .parcel-card {
+        padding: 12px;
+    }
+
+    .btn-publish-ad,
+    .btn-publish-auction {
+        padding: 14px 24px;
+        font-size: 0.88rem;
+        width: 100%;
+    }
+
+    .btn-save-draft {
+        padding: 10px 16px;
+        font-size: 0.8rem;
+        width: 100%;
+    }
+
+    .char-counter-inline {
+        font-size: 0.7rem;
+    }
+
+    .error-text {
+        font-size: 0.72rem;
     }
 }

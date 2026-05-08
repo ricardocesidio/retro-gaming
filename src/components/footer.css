@@ -197,6 +197,59 @@
   }
 }
 
+@media (max-width: 480px) {
+  .main-footer {
+    padding: 22px 0 18px;
+  }
+
+  .footer-container {
+    gap: 18px;
+  }
+
+  .footer-logo {
+    font-size: 0.85rem;
+  }
+
+  .footer-subtext {
+    font-size: 0.7rem;
+  }
+
+  .footer-nav {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .nav-col-heading {
+    font-size: 0.7rem;
+  }
+
+  .nav-col a {
+    font-size: 0.72rem;
+  }
+
+  .footer-end {
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .social-row {
+    gap: 10px;
+  }
+
+  .social-placeholder {
+    font-size: 0.85rem;
+  }
+
+  .copyright {
+    font-size: 0.65rem;
+  }
+
+  .demo-mode-label {
+    font-size: 0.65rem;
+  }
+}
+
 /* Social placeholder links - noop (portfolio demo) */
 .social-placeholder {
   color: var(--text-muted);

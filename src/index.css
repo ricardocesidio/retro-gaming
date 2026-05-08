@@ -342,3 +342,14 @@ input:focus {
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 480px) {
+  h1 { font-size: 1.4rem; }
+  h2 { font-size: 1.15rem; }
+  h3 { font-size: 1rem; }
+  .app { padding-bottom: 70px; }
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+}

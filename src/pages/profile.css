@@ -964,3 +964,36 @@
         text-align: center;
     }
 }
+
+@media (max-width: 480px) {
+    .profile-page-wrapper { padding: 0 8px; margin: 20px auto; }
+    .profile-header-card { padding: 20px 10px; }
+    .profile-main-img { width: 100px; height: 100px; }
+    .profile-name-row { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+    .profile-name-row h1 { font-size: 1.3rem; }
+    .profile-action-btns { width: 100%; justify-content: center; flex-wrap: wrap; gap: 8px; }
+    .btn-follow { padding: 8px 14px; font-size: 0.8rem; }
+    .profile-meta-info { flex-direction: column; align-items: center; gap: 8px; margin: 12px 0; padding: 8px 14px; }
+    .meta-divider { display: none; }
+    .profile-stats { justify-content: center; gap: 16px; }
+    .stat-value { font-size: 1.2rem; }
+    .stat-label { font-size: 0.7rem; }
+    .profile-bio { padding: 0 8px; }
+    .profile-bio h3 { font-size: 0.95rem; }
+    .profile-bio p { font-size: 0.82rem; }
+    .reviews-diamonds i { font-size: 0.9rem; }
+    .reviews-slider { padding: 0 8px; }
+    .reviews-slider h2 { font-size: 1.1rem; }
+    .review-card { padding: 12px 10px; }
+    .reviewer-name { font-size: 0.9rem; }
+    .review-card p { font-size: 0.8rem; }
+    .reviewer-gems .fa-gem.filled,
+    .reviewer-gems .fa-gem.empty { font-size: 0.65rem; }
+    .slider-btn { padding: 8px 14px; font-size: 0.8rem; }
+    .inventory-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .inventory-header h2 { font-size: 1.1rem; }
+    .btn-sold-history { padding: 6px 12px; font-size: 0.75rem; }
+    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .inventory-empty { padding: 30px 12px; }
+    .inventory-empty i { font-size: 2.5rem; }
+}

@@ -496,6 +496,90 @@
   .no-results {
     padding: 56px 12px;
   }
+
+  /* === Enhanced mobile search (big, rounded, elegant) === */
+  .search-input-wrapper { width: 100%; height: auto; }
+  .search-input {
+    padding: 14px 16px 14px 44px;
+    font-size: 0.95rem;
+    border-radius: var(--radius-xl);
+    height: 48px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .search-icon {
+    left: 14px;
+    top: 14px;
+    font-size: 0.9rem;
+    right: auto;
+    width: auto;
+    height: auto;
+    transform: none;
+  }
+
+  /* === Category pills: horizontal scroll, compact, no wrap === */
+  .category-pills-scroll {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    gap: 6px;
+    padding: 4px 0;
+    margin: 8px 0;
+  }
+  .category-pills-scroll::-webkit-scrollbar { display: none; }
+  .category-pill {
+    padding: 7px 14px;
+    font-size: 0.72rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: var(--text-muted);
+  }
+  .category-pill.active {
+    background: var(--accent-purple);
+    color: #fff;
+    border-color: var(--accent-purple);
+  }
+
+  /* === Filters row: compact, organized === */
+  .filters-row-advanced {
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .filter-group select,
+  .price-input {
+    padding: 8px 10px;
+    font-size: 0.75rem;
+    height: 36px;
+    border-radius: var(--radius-md);
+    min-width: 0;
+  }
+  .price-range-group {
+    gap: 4px;
+  }
+  .price-range-group .price-input {
+    width: 60px;
+  }
+  .filter-group select {
+    font-size: 0.72rem;
+    padding: 8px;
+  }
+
+  /* === Market grid: 2 columns compact === */
+  .market-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+
+  /* === Market header === */
+  .market-header { padding: 0; margin-bottom: 12px; }
+  .market-header h1 { font-size: 1.3rem; }
+
+  /* === Load more button === */
+  .btn-view { padding: 10px 20px; font-size: 0.8rem; }
 }
 
 @media (max-width: 400px) {

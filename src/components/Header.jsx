@@ -101,9 +101,9 @@ export default function Header({
     { to: "/messages", label: "Messages", icon: "fa-message" },
     { to: "/notifications", label: "Notifications", icon: "fa-bell" },
     { to: "/my-orders", label: "My Orders", icon: "fa-box" },
+    { to: "/wallet", label: "Wallet", icon: "fa-wallet" },
     { to: "/invite", label: "Invite Friends", icon: "fa-user-plus" },
     { to: "/settings", label: "Settings", icon: "fa-gear" },
-    { to: "/wallet", label: "Wallet", icon: "fa-wallet" },
     { to: "/donations", label: "Donations", icon: "fa-heart" },
     { to: "/retro-rules", label: "Retro Rules", icon: "fa-shield-halved" },
   ];

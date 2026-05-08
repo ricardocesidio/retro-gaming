@@ -116,11 +116,48 @@
 
 @media (max-width: 480px) {
   .auction-container {
-    padding: 24px 16px;
+    padding: 20px 10px;
+  }
+
+  .auction-header h1 {
+    font-size: 1.4rem;
+  }
+
+  .auction-header p {
+    font-size: 0.82rem;
+  }
+
+  .auction-card {
+    padding: 14px 12px;
+  }
+
+  .auction-card h3 {
+    font-size: 0.95rem;
+  }
+
+  .auction-timer {
+    font-size: 0.9rem;
+  }
+
+  .bid-input-group {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .bid-input {
+    width: 100%;
+    padding: 10px 12px;
+  }
+
+  .btn-place-bid {
+    width: 100%;
+    padding: 12px;
   }
 
   .btn-browse-market {
     width: 100%;
+    padding: 10px 16px;
+    font-size: 0.82rem;
     justify-content: center;
   }
 }

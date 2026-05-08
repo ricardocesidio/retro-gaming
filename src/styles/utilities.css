@@ -232,3 +232,21 @@
   background: var(--bg-card);
   animation: pulse 1.5s ease-in-out infinite;
 }
+
+@media (max-width: 480px) {
+  .grid-loader {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .empty-state-icon {
+    font-size: 2.5rem;
+  }
+
+  .error-boundary-content i {
+    font-size: 2rem;
+  }
+
+  .skeleton-card {
+    height: 200px;
+  }
+}

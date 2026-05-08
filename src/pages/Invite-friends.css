@@ -368,3 +368,65 @@
     color: #dc3545;
     border: 1px solid rgba(220, 53, 69, 0.3);
 }
+
+@media (max-width: 480px) {
+    .invite-wrapper {
+        padding: 80px 12px 40px;
+    }
+    .invite-glass-card {
+        padding: 24px 14px;
+        border-radius: var(--radius-xl);
+    }
+    .invite-header h1 {
+        font-size: 1.5rem;
+    }
+    .invite-header p {
+        font-size: 0.85rem;
+    }
+    .invite-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+    .invite-card {
+        padding: 16px 14px;
+    }
+    .invite-card h3 {
+        font-size: 1rem;
+    }
+    .invite-card p {
+        font-size: 0.78rem;
+    }
+    .invite-link-box {
+        padding: 10px 12px;
+        font-size: 0.72rem;
+    }
+    .btn-copy {
+        padding: 8px 14px;
+        font-size: 0.78rem;
+    }
+    .elite-how-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .elite-how-card {
+        padding: 14px 12px;
+    }
+    .elite-how-card h4 {
+        font-size: 0.9rem;
+    }
+    .elite-how-card p {
+        font-size: 0.75rem;
+    }
+    .elite-rewards-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .elite-reward-card {
+        padding: 14px;
+    }
+    .btn-invite-share {
+        padding: 12px 16px;
+        font-size: 0.85rem;
+        width: 100%;
+    }
+}

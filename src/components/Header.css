@@ -435,6 +435,17 @@
     right: -12px;
     width: 95vw;
   }
+
+  .header-main { padding: 6px 10px; gap: 6px; height: 48px; }
+  .logo .logopic { height: 28px; }
+  .user-menu { gap: 4px; }
+  .icon-group { gap: 4px; }
+  .icon-btn { width: 32px; height: 32px; font-size: 0.85rem; }
+  .profile-chip { padding: 2px 8px 2px 2px; font-size: 0.72rem; min-height: 34px; }
+  .profile-chip .avatar { width: 26px; height: 26px; }
+  .profile-chip .arrow-id { font-size: 0.55rem; margin-left: 2px; }
+  .notifications-btn { width: 32px; height: 32px; }
+  .notification-count { width: 16px; height: 16px; font-size: 0.6rem; top: -2px; right: -2px; }
 }
 
 /* Touch devices */
@@ -479,6 +490,11 @@
     width: 30px;
     height: 30px;
   }
+
+  .header-main { padding: 4px 6px; gap: 4px; height: 44px; }
+  .icon-btn { width: 30px; height: 30px; font-size: 0.8rem; }
+  .profile-chip { font-size: 0.68rem; }
+  .profile-chip .avatar { width: 24px; height: 24px; }
 }
 
 /* Reduced motion */

@@ -248,16 +248,51 @@
 /* --bp-sm (480px) */
 @media (max-width: 480px) {
   .login-page .login-wrapper {
-    padding: 12px;
+    padding: 100px 10px 40px;
   }
   
   .login-page .login-card {
-    padding: 24px 20px;
-    border-radius: var(--radius-xl);
+    padding: 22px 14px;
+    border-radius: var(--radius-lg);
+  }
+  
+  .login-page .login-card h1 {
+    font-size: 1.4rem;
   }
   
   .login-page .login-header h2 {
     font-size: 1.45rem;
+  }
+
+  .login-page .form-group label {
+    font-size: 0.82rem;
+  }
+
+  .login-page .form-group input {
+    padding: 10px 12px;
+    font-size: 0.88rem;
+  }
+
+  .login-page .btn-login {
+    padding: 12px;
+    font-size: 0.9rem;
+    height: 44px;
+  }
+
+  .login-page .login-footer {
+    font-size: 0.75rem;
+  }
+
+  .login-page .login-footer a {
+    font-size: 0.75rem;
+  }
+
+  .login-page .error-message {
+    font-size: 0.72rem;
+  }
+
+  .login-page .btn-forgot {
+    font-size: 0.72rem;
   }
 }
 

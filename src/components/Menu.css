@@ -1,7 +1,9 @@
 /* ==========================================================
-   MENU — Icon Navigation Bar
+   MENU — Desktop: original sticky-top icon bar (unchanged)
+   Mobile: fixed bottom nav bar (visible only ≤768px)
    ========================================================== */
 
+/* === BASE (DESKTOP) === */
 .category-bar {
   position: sticky;
   top: calc(var(--header-height) - 4px);
@@ -28,9 +30,7 @@
   padding: 4px 0;
 }
 
-.nav-links::-webkit-scrollbar {
-  display: none;
-}
+.nav-links::-webkit-scrollbar { display: none; }
 
 .nav-links a {
   color: rgba(255, 255, 255, 0.85);
@@ -52,17 +52,9 @@
   transform: translateY(-1px);
 }
 
-.nav-links a:first-child {
-  color: #ffffff;
-}
-
-.gray-icon {
-  color: rgba(255, 255, 255, 0.55) !important;
-}
-
-.gray-icon:hover {
-  color: rgba(255, 255, 255, 0.85) !important;
-}
+.nav-links a:first-child { color: #ffffff; }
+.gray-icon { color: rgba(255, 255, 255, 0.55) !important; }
+.gray-icon:hover { color: rgba(255, 255, 255, 0.85) !important; }
 
 .sell-highlight {
   background: rgba(157, 80, 187, 0.3);
@@ -70,22 +62,25 @@
   color: var(--accent-purple) !important;
 }
 
-.auction-icon {
-  color: var(--tier-gold) !important;
-}
+.auction-icon { color: var(--tier-gold) !important; }
+
+/* Mobile nav hidden on desktop */
+.mobile-nav { display: none; }
+.desktop-nav { display: flex; }
+
+/* Nav labels hidden on desktop */
+.nav-label { display: none; }
 
 /* ==========================================================
-   TABLET (769px - 1024px)
+   DESKTOP TABLET (769px - 1024px)
    ========================================================== */
 @media (max-width: 1024px) {
   .category-bar {
     padding: 8px var(--space-4);
   }
-
   .nav-links {
     gap: var(--space-2);
   }
-
   .nav-links a {
     width: 38px;
     height: 38px;
@@ -94,51 +89,88 @@
 }
 
 /* ==========================================================
-   TABLET (641px - 768px)
+   MOBILE BOTTOM NAV ACTIVATED (≤768px)
    ========================================================== */
 @media (max-width: 768px) {
-  .category-bar {
-    top: calc(var(--header-height-mobile) - 4px);
-    padding: 8px var(--space-4);
-    gap: var(--space-2);
+  /* Hide desktop nav, show mobile nav */
+  .desktop-nav { display: none !important; }
+  .mobile-nav { display: flex !important; }
+
+  /* Mobile nav: fixed bottom bar */
+  .mobile-nav.category-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0; top: auto;
+    z-index: var(--z-sticky);
+    padding: 5px 6px;
+    padding-bottom: max(5px, env(safe-area-inset-bottom));
+    gap: 0;
+    background: #0a0a0a;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: none;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
   }
 
-  .nav-links a {
-    width: 36px;
-    height: 36px;
-    font-size: 0.95rem;
+  .mobile-nav .nav-links {
+    width: 100%;
+    justify-content: space-around;
+    gap: 0;
+    padding: 0;
+    overflow-x: visible;
   }
+
+  .mobile-nav .nav-links a {
+    flex-direction: column;
+    width: auto; height: auto;
+    min-width: 48px;
+    padding: 3px 8px;
+    border-radius: var(--radius-md);
+    font-size: 1.15rem;
+    gap: 2px;
+  }
+
+  .mobile-nav .nav-label {
+    display: block;
+    font-size: 0.6rem;
+    font-weight: var(--font-bold);
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+  }
+
+  .mobile-nav .nav-links a.active .nav-label { color: var(--accent-purple); }
+
+  .mobile-nav .sell-highlight {
+    background: var(--accent-purple);
+    border: none;
+    color: #fff !important;
+    border-radius: var(--radius-lg);
+    min-width: 56px;
+  }
+
+  .mobile-nav .sell-highlight .nav-label { color: #fff; }
+
+  /* Push body content above bottom nav */
+  .app > .main-content { padding-bottom: 70px; }
 }
 
 /* ==========================================================
-   MOBILE LARGE (481px - 640px)
-   ========================================================== */
-@media (max-width: 640px) {
-  .category-bar {
-    padding: 8px var(--space-3);
-    gap: var(--space-2);
-  }
-
-  .nav-links a {
-    width: 34px;
-    height: 34px;
-    font-size: 0.9rem;
-  }
-}
-
-/* ==========================================================
-   MOBILE (up to 480px)
+   SMALL PHONES (≤480px) — tighter mobile nav
    ========================================================== */
 @media (max-width: 480px) {
-  .category-bar {
-    top: calc(var(--header-height-mobile) - 8px);
-    padding: 6px var(--space-2);
-    gap: var(--space-1);
+  .mobile-nav.category-bar {
+    padding: 4px 4px;
+    padding-bottom: max(4px, env(safe-area-inset-bottom));
   }
 
-  .nav-links a {
-    width: 32px;
-    height: 32px;
-    font-size: 0.85rem;
+  .mobile-nav .nav-links a {
+    font-size: 1rem;
+    min-width: 42px;
+    padding: 2px 5px;
   }
+
+  .mobile-nav .nav-label { font-size: 0.52rem; }
+
+  .mobile-nav .sell-highlight { padding: 5px 12px; min-width: 50px; }
+
+  .app > .main-content { padding-bottom: 62px; }
 }
