@@ -148,9 +148,6 @@
   }
 
   .mobile-nav .sell-highlight .nav-label { color: #fff; }
-
-  /* Push body content above bottom nav */
-  .app > .main-content { padding-bottom: 70px; }
 }
 
 /* ==========================================================
@@ -171,6 +168,4 @@
   .mobile-nav .nav-label { font-size: 0.52rem; }
 
   .mobile-nav .sell-highlight { padding: 5px 12px; min-width: 50px; }
-
-  .app > .main-content { padding-bottom: 62px; }
 }

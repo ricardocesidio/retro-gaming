@@ -966,34 +966,116 @@
 }
 
 @media (max-width: 480px) {
-    .profile-page-wrapper { padding: 0 8px; margin: 20px auto; }
-    .profile-header-card { padding: 20px 10px; }
-    .profile-main-img { width: 100px; height: 100px; }
-    .profile-name-row { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
-    .profile-name-row h1 { font-size: 1.3rem; }
-    .profile-action-btns { width: 100%; justify-content: center; flex-wrap: wrap; gap: 8px; }
-    .btn-follow { padding: 8px 14px; font-size: 0.8rem; }
-    .profile-meta-info { flex-direction: column; align-items: center; gap: 8px; margin: 12px 0; padding: 8px 14px; }
-    .meta-divider { display: none; }
-    .profile-stats { justify-content: center; gap: 16px; }
-    .stat-value { font-size: 1.2rem; }
-    .stat-label { font-size: 0.7rem; }
-    .profile-bio { padding: 0 8px; }
-    .profile-bio h3 { font-size: 0.95rem; }
-    .profile-bio p { font-size: 0.82rem; }
-    .reviews-diamonds i { font-size: 0.9rem; }
-    .reviews-slider { padding: 0 8px; }
-    .reviews-slider h2 { font-size: 1.1rem; }
-    .review-card { padding: 12px 10px; }
-    .reviewer-name { font-size: 0.9rem; }
-    .review-card p { font-size: 0.8rem; }
+    .profile-page-wrapper { padding: 80px 6px 80px; margin: 0 auto; }
+
+    /* === HEADER CARD === */
+    .profile-header-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 16px 10px;
+        border-radius: var(--radius-lg);
+    }
+    .profile-main-img { width: 80px; height: 80px; border-width: 4px; }
+
+    /* === NAME ROW === */
+    .profile-name-row {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 8px;
+    }
+    .profile-name-row h1 { font-size: 1.15rem; }
+    .verified-badge { font-size: 0.85rem; margin-left: 4px; }
+
+    /* === ACTION BUTTONS === */
+    .profile-action-btns {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+    .btn-follow {
+        display: inline-flex !important;
+        width: auto !important;
+        padding: 7px 14px;
+        font-size: 0.72rem;
+        margin-bottom: 0 !important;
+        margin-right: 0 !important;
+        border-radius: var(--radius-md);
+    }
+
+    /* === META INFO (rating + location) === */
+    .profile-meta-info {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 14px;
+        padding: 6px 10px;
+        border-radius: var(--radius-md);
+        width: 100%;
+    }
+    .reviews-diamonds { gap: 6px; }
+    .reviews-diamonds i { font-size: 0.55rem; }
+    .reviews-link { font-size: 0.65rem; }
+    .reviews-count { font-size: 0.7rem; }
+    .meta-divider { display: inline; }
+    .location-group { font-size: 0.65rem; }
+    .location-group i { font-size: 0.6rem; }
+
+    /* === STATS === */
+    .profile-stats {
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+        margin-top: 10px;
+    }
+    .stat-link { text-align: center; }
+    .stat-value { font-size: 1.05rem; }
+    .stat-label { font-size: 0.62rem; }
+
+    /* === BIO === */
+    .profile-bio { padding: 0 4px; margin-top: 10px; }
+    .profile-bio h3 { font-size: 0.85rem; margin-bottom: 4px; }
+    .profile-bio p { font-size: 0.72rem; line-height: 1.4; }
+
+    /* === REVIEWS SLIDER === */
+    .reviews-slider { padding: 0 4px; margin-top: 18px; }
+    .reviews-slider h2 { font-size: 1rem; margin-bottom: 10px; }
+    .review-card { padding: 10px 8px; }
+    .reviewer-info { gap: 8px; margin-bottom: 8px; }
+    .reviewer-img { width: 32px; height: 32px; border-width: 1px; }
+    .reviewer-name { font-size: 0.8rem; }
+    .reviewer-gems { gap: 2px; }
     .reviewer-gems .fa-gem.filled,
-    .reviewer-gems .fa-gem.empty { font-size: 0.65rem; }
-    .slider-btn { padding: 8px 14px; font-size: 0.8rem; }
-    .inventory-header { flex-direction: column; align-items: flex-start; gap: 10px; }
-    .inventory-header h2 { font-size: 1.1rem; }
-    .btn-sold-history { padding: 6px 12px; font-size: 0.75rem; }
-    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-    .inventory-empty { padding: 30px 12px; }
-    .inventory-empty i { font-size: 2.5rem; }
+    .reviewer-gems .fa-gem.empty { font-size: 0.58rem; }
+    .review-card p { font-size: 0.72rem; line-height: 1.4; }
+    .slider-controls { margin-top: 12px; gap: 10px; }
+    .slider-btn { padding: 6px 12px; font-size: 0.72rem; border-radius: var(--radius-md); }
+
+    /* === INVENTORY === */
+    .inventory-header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 12px;
+        margin-top: 18px;
+    }
+    .inventory-header h2 { font-size: 1rem; }
+    .btn-sold-history { padding: 5px 10px; font-size: 0.68rem; border-radius: var(--radius-md); }
+
+    /* === LISTINGS GRID === */
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+
+    /* === EMPTY STATE === */
+    .inventory-empty { padding: 24px 10px; }
+    .inventory-empty i { font-size: 2rem; }
+    .inventory-empty p { font-size: 0.78rem; }
 }
