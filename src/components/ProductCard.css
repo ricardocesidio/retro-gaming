@@ -249,12 +249,13 @@
 
 @media (max-width: 480px) {
   .product-card {
-    padding: 8px;
+    padding: 6px;
     border-radius: var(--radius-md);
   }
 
   .product-image-container {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 3 / 2;
+    min-height: 150px;
   }
 
   .product-image {
@@ -262,52 +263,58 @@
     height: 100%;
   }
 
+  .product-details {
+    padding: 4px 0;
+  }
+
   .product-title {
-    font-size: 0.82rem;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    min-height: auto;
   }
 
   .product-condition {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
   }
 
   .product-price {
-    font-size: 0.92rem;
+    font-size: 0.85rem;
   }
 
   .product-footer {
-    gap: 6px;
+    gap: 4px;
     flex-wrap: wrap;
   }
 
   .btn-view-details {
-    padding: 7px 10px;
-    font-size: 0.72rem;
+    padding: 5px 8px;
+    font-size: 0.68rem;
   }
 
   .btn-heart {
-    width: 28px;
-    height: 28px;
-    font-size: 0.7rem;
-  }
-
-  .seller-pill {
-    padding: 3px 7px;
+    width: 24px;
+    height: 24px;
     font-size: 0.65rem;
   }
 
+  .seller-pill {
+    padding: 2px 5px;
+    font-size: 0.6rem;
+  }
+
   .seller-pill-avatar {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
   }
 
   .owner-actions {
-    gap: 4px;
+    gap: 3px;
   }
 
   .btn-edit-listing,
   .btn-delete-listing {
-    padding: 6px 8px;
-    font-size: 0.7rem;
+    padding: 5px 7px;
+    font-size: 0.65rem;
   }
 }
 
