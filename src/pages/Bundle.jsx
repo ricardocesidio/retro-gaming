@@ -14,6 +14,7 @@ export default function Bundle() {
   const { listings } = useMarketListings();
   const [bundleItems, setBundleItems] = useState([]);
   const [step, setStep] = useState(1); // 1: confirm first item, 2: add more items
+  const [bundleError, setBundleError] = useState('');
 
   // First item (the one user clicked "Make a bundle" from)
   const firstItem = useMemo(() => {
@@ -63,7 +64,8 @@ export default function Bundle() {
       : bundleItems;
 
     if (allItems.length === 0) {
-      alert("Please add at least one item to the bundle.");
+      setBundleError("Add at least one item to the bundle.");
+      setTimeout(() => setBundleError(''), 3000);
       return;
     }
 
@@ -205,6 +207,7 @@ export default function Bundle() {
           </div>
 
           <div className="bundle-actions">
+            {bundleError && <p className="bundle-error-msg">{bundleError}</p>}
             <button
               className="btn-send-bundle"
               onClick={sendBundleOffer}

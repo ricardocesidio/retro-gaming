@@ -1,9 +1,10 @@
 // src/utils/marketStorage.js
 import { normalizeProduct } from "./normalizeProduct";
+import { safeJsonParse as safeParse, normalizeImageValue } from "./shared.js";
 
 export const MARKET_LISTINGS_KEY = "meusAnunciosRetro";
 export const MARKET_LISTINGS_UPDATED_EVENT = "marketplaceListingsUpdated";
-export const DRAFT_LISTINGS_KEY = "myRetroDrafts";
+const DRAFT_LISTINGS_KEY = "myRetroDrafts";
 
 const STORAGE_IMAGE_CAPS = [4, 3, 2, 1];
 const STORAGE_IMAGE_QUALITY = [
@@ -13,14 +14,6 @@ const STORAGE_IMAGE_QUALITY = [
   { maxSide: 560, quality: 0.5 },
   { maxSide: 420, quality: 0.44 },
 ];
-
-const safeParse = (value, fallback) => {
-  try {
-    return value ? JSON.parse(value) : fallback;
-  } catch {
-    return fallback;
-  }
-};
 
 const safeReadArray = (key) => {
   if (typeof window === "undefined") return [];
@@ -125,14 +118,6 @@ const resizeDataImage = async (src, maxSide = 900, quality = 0.62) => {
   }
 };
 
-const normalizeImageValue = (img) => {
-  if (typeof img === "string") return img.trim();
-  if (img?.preview) return String(img.preview).trim();
-  if (img?.url) return String(img.url).trim();
-  if (img?.src) return String(img.src).trim();
-  return "";
-};
-
 const compactListingSync = (listing, maxImages = 3) => {
   const normalized = normalizeProduct(listing);
   const sourceImages = Array.isArray(normalized.images) && normalized.images.length > 0
@@ -202,7 +187,7 @@ export const readMarketListings = () => {
   return dedupeById(stored.map(normalizeProduct).filter(Boolean)).sort(compareListings);
 };
 
-export const writeMarketListings = (listings) => {
+const writeMarketListings = (listings) => {
   if (typeof window === "undefined") return [];
 
   const normalized = Array.isArray(listings)

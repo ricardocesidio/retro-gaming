@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../App";
+import { useAuth } from "../context/AuthContext";
 import "./profile.css";
 import "./Invite-friends.css";
 
@@ -16,8 +16,11 @@ export default function InviteFriends() {
   ]);
 
   const userId = getUserId(user);
-  const inviteLink = `https://retro-vault.com/invite/${userId}`;
-  const inviteCode = `${userId?.slice(-6) || "RETRO"}-${Date.now().toString().slice(-4)}`;
+  const inviteLink = userId ? `https://retro-vault.com/invite/${userId}` : "https://retro-vault.com/invite/guest";
+  const inviteCode = useMemo(
+    () => `${userId?.slice(-6) || "RETRO"}-${Date.now().toString().slice(-4)}`,
+    [userId]
+  );
 
   const copyToClipboard = async (text, type) => {
     try {
@@ -30,26 +33,26 @@ export default function InviteFriends() {
         setTimeout(() => setCopiedCode(false), 2000);
       }
     } catch (err) {
-      console.error("Failed to copy", err);
+      if (import.meta.env.DEV) console.error("Failed to copy", err);
     }
   };
 
   const shareWhatsApp = () => {
     const message = `Join me on Retro Vault! Use my invite: ${inviteCode}\n${inviteLink}`;
-    window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, "_blank");
+    window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
   };
 
   const shareEmail = () => {
     const subject = "Join Retro Vault - My Exclusive Invite";
     const body = `Hey! Join me on Retro Vault marketplace:\n\nInvite Code: ${inviteCode}\nInvite Link: ${inviteLink}\n\nLet's collect together!`;
-    window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(`mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, "_blank", "noopener,noreferrer");
   };
 
   const stats = {
     totalInvites: invites.length,
     accepted: invites.filter(i => i.status === "accepted").length,
     pending: invites.filter(i => i.status === "pending").length,
-    conversion: ((invites.filter(i => i.status === "accepted").length / invites.length) * 100).toFixed(1),
+    conversion: invites.length === 0 ? "0.0" : ((invites.filter(i => i.status === "accepted").length / invites.length) * 100).toFixed(1),
   };
 
   return (

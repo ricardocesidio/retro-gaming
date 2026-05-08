@@ -128,10 +128,10 @@
   display: block;
   width: 100%;
   padding: 12px;
-  background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-2));
+  background: var(--gradient-cta);
   color: #fff;
   border: none;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   font-weight: 700;
   font-size: 0.85rem;
   cursor: pointer;
@@ -151,8 +151,8 @@
   right: 10px;
   width: 36px;
   height: 36px;
-  border-radius: 12px;
-  background: rgba(239, 68, 68, 0.15);
+  border-radius: var(--radius-md);
+  background: var(--danger-bg);
   border: 1px solid rgba(239, 68, 68, 0.3);
   color: var(--danger);
   display: flex;
@@ -193,7 +193,7 @@
 .wishlist-empty h2 {
   margin: 0;
   font-size: 1.8rem;
-  font-weight: 800;
+  font-weight: var(--font-extrabold);
   color: #fff;
 }
 
@@ -208,7 +208,7 @@
   align-items: center;
   gap: 8px;
   padding: 12px 28px;
-  background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-2));
+  background: var(--gradient-cta);
   color: #fff;
   border: none;
   border-radius: 999px;
@@ -277,7 +277,7 @@
   .wishlist-view-btn {
     padding: 10px 12px;
     font-size: 0.75rem;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
   }
 
   .wishlist-trash-btn {
@@ -362,7 +362,7 @@
   .wishlist-view-btn {
     padding: 10px 12px;
     font-size: 0.75rem;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
   }
 
   .wishlist-trash-btn {
@@ -382,7 +382,7 @@
     text-align: center;
     background: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
     gap: 16px;
     margin: 20px auto;
     max-width: 600px;
@@ -418,7 +418,7 @@
   }
   
   .btn-explore {
-    background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-2));
+    background: var(--gradient-cta);
     color: #fff;
     padding: 12px 24px;
     border-radius: 999px;
@@ -438,8 +438,8 @@
   }
 }
 
-/* LANDSCAPE MOBILE */
-@media (max-height: 500px) and (orientation: landscape) and (max-width: 768px) {
+/* LANDSCAPE MOBILE — overrides the 768px block above for cramped vertical space */
+@media (max-height: 500px) and (orientation: landscape) {
   .wishlist-page {
     padding: 70px 12px 30px;
   }

@@ -17,7 +17,7 @@ export default function Footer() {
         {/* Nav columns */}
         <nav className="footer-nav" aria-label="Footer navigation">
           <div className="nav-col">
-            <strong style={{ color: "var(--text-main)", marginBottom: 6, display: "block", fontSize: "0.8rem", letterSpacing: "1px" }}>MARKETPLACE</strong>
+            <strong className="nav-col-heading">MARKETPLACE</strong>
             <Link to="/market">Browse All</Link>
             <Link to="/consoles">Consoles</Link>
             <Link to="/games">Games</Link>
@@ -26,16 +26,18 @@ export default function Footer() {
             <Link to="/sell">Sell an Item</Link>
           </div>
           <div className="nav-col">
-            <strong style={{ color: "var(--text-main)", marginBottom: 6, display: "block", fontSize: "0.8rem", letterSpacing: "1px" }}>ACCOUNT</strong>
+            <strong className="nav-col-heading">ACCOUNT</strong>
             <Link to="/profile">Profile</Link>
             <Link to="/wallet">Wallet</Link>
             <Link to="/my-orders">My Orders</Link>
             <Link to="/wishlist">Wishlist</Link>
             <Link to="/settings">Settings</Link>
             <Link to="/invite">Invite Friends</Link>
+            <Link to="/messages">Messages</Link>
+            <Link to="/notifications">Notifications</Link>
           </div>
           <div className="nav-col">
-            <strong style={{ color: "var(--text-main)", marginBottom: 6, display: "block", fontSize: "0.8rem", letterSpacing: "1px" }}>INFO</strong>
+            <strong className="nav-col-heading">INFO</strong>
             <Link to="/retro-rules">Rules</Link>
             <Link to="/donations">Support Us</Link>
           </div>
@@ -44,10 +46,10 @@ export default function Footer() {
         {/* Right column */}
         <div className="footer-end">
           <div className="social-row">
-            <a href="#" onClick={(e) => e.preventDefault()} className="social-placeholder" aria-label="Twitter"><i className="fab fa-x-twitter" /></a>
-            <a href="#" onClick={(e) => e.preventDefault()} className="social-placeholder" aria-label="Instagram"><i className="fab fa-instagram" /></a>
-            <a href="#" onClick={(e) => e.preventDefault()} className="social-placeholder" aria-label="YouTube"><i className="fab fa-youtube" /></a>
-            <a href="#" onClick={(e) => e.preventDefault()} className="social-placeholder" aria-label="Twitch"><i className="fab fa-twitch" /></a>
+            <span className="social-placeholder" aria-label="Twitter" role="img"> <i className="fab fa-x-twitter" /> </span>
+            <span className="social-placeholder" aria-label="Instagram" role="img"> <i className="fab fa-instagram" /> </span>
+            <span className="social-placeholder" aria-label="YouTube" role="img"> <i className="fab fa-youtube" /> </span>
+            <span className="social-placeholder" aria-label="Twitch" role="img"> <i className="fab fa-twitch" /> </span>
           </div>
           <p className="copyright">© 2026 My Retro Room. All rights reserved.</p>
           <p className="demo-mode-label">Demo Mode — Frontend Simulation</p>

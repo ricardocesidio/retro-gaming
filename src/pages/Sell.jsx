@@ -7,7 +7,7 @@ import {
   writeDraftListings,
   isStorageQuotaError,
 } from "../utils/marketStorage";
-import { useAuth } from "../App";
+import { useAuth } from "../context/AuthContext";
 
 const formatFieldLabel = (name) => {
   const labels = {
@@ -27,6 +27,7 @@ const MIN_TITLE_CHARS = 3;
 const MAX_TITLE_CHARS = 80;
 const MIN_DESC_CHARS = 20;
 const MAX_IMAGES = 10;
+const MAX_FILE_SIZE = 20 * 1024 * 1024;
 const IMAGE_MAX_SIDE = 1200;
 const IMAGE_QUALITY = 0.7;
 const DRAFT_MAX_IMAGES = 3;
@@ -182,7 +183,7 @@ export default function Sell() {
   const [dragActive, setDragActive] = useState(false);
   const [parcelSize, setParcelSize] = useState("");
   const [drafts, setDrafts] = useState([]);
-  const [publishHover, setPublishHover] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [publishAttempted, setPublishAttempted] = useState(false);
   const [toast, setToast] = useState({
@@ -540,13 +541,12 @@ export default function Sell() {
   const handlePriceBlur = () => {
     setTouched((prev) => ({ ...prev, price: true }));
     const formatted = formatPriceValue(price);
-    const finalValue = formatted || "0.00";
-    setPrice(finalValue);
-    const num = Number(finalValue);
-    setErrors((prev) => ({
-      ...prev,
-      price: !finalValue || Number.isNaN(num) || num <= 0 ? "Price must be greater than 0." : "",
-    }));
+    if (formatted) {
+      setPrice(formatted);
+      setErrors((prev) => ({ ...prev, price: "" }));
+    } else {
+      setErrors((prev) => ({ ...prev, price: "Price must be greater than 0." }));
+    }
   };
 
   const handleDescriptionChange = (e) => {
@@ -617,6 +617,8 @@ export default function Sell() {
     const incoming = Array.from(files || []).filter((f) => f.type.startsWith("image/"));
     if (incoming.length === 0) return showToast("Please upload valid image files.", "error");
     if (incoming.length + images.length > MAX_IMAGES) return showToast(`Maximum ${MAX_IMAGES} images allowed!`, "error");
+    const oversized = incoming.find((f) => f.size > MAX_FILE_SIZE);
+    if (oversized) return showToast(`"${oversized.name}" exceeds the ${MAX_FILE_SIZE / 1024 / 1024}MB limit.`, "error");
     try {
       const newPreviews = await Promise.all(
         incoming.map(async (file) => ({ file, preview: await readAndCompressImage(file) }))
@@ -680,11 +682,13 @@ export default function Sell() {
     !!parcelSize;
 
   const handleSaveDraft = async () => {
+    if (isSaving) return;
     const hasContent =
       title.trim() || category || subCategory || condition || price || description.trim() || images.length > 0 || parcelSize;
 
     if (!hasContent) return showToast("Add some content before saving a draft.", "error");
 
+    setIsSaving(true);
     try {
       const draft = await buildDraftRecord({
         title: title.trim(),
@@ -707,6 +711,8 @@ export default function Sell() {
         ? "Your browser storage is full. Try removing older drafts or fewer images."
         : "Could not save draft. Please try again.";
       showToast(message, "error");
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -1064,22 +1070,15 @@ export default function Sell() {
             </div>
 
               <div className="form-actions-container">
-                <button type="button" onClick={handleSaveDraft} className="btn-save-draft">
-                  Save Draft
-                </button>
+                  <button type="button" onClick={handleSaveDraft} className="btn-save-draft" disabled={isSaving}>
+                    {isSaving ? "Saving…" : "Save Draft"}
+                  </button>
 
                 <button
                   type="submit"
                   className={`btn-publish-ad ${!isFormValid ? "btn-publish-disabled" : ""}`}
                   disabled={isSubmitting}
                   aria-disabled={!isFormValid || isSubmitting}
-                  onMouseEnter={() => setPublishHover(true)}
-                  onMouseLeave={() => setPublishHover(false)}
-                  style={
-                    publishHover && isFormValid && !isSubmitting
-                      ? { background: "#FFD700", color: "#000", borderColor: "#FFD700" }
-                      : undefined
-                  }
                   aria-label="Publish your ad to the marketplace"
                 >
                   {isSubmitting ? (

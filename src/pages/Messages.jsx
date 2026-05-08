@@ -12,19 +12,27 @@ export default function Messages() {
   const [showMenu, setShowMenu] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
-  const [blockedUsers, setBlockedUsers] = useState(() => []);
+  const [blockedUsers, setBlockedUsers] = useState(() => {
+    try {
+      const stored = localStorage.getItem('retroBlockedUsers');
+      return stored ? JSON.parse(stored) : [];
+    } catch {
+      return [];
+    }
+  });
   const [reportData, setReportData] = useState({ reason: '', description: '' });
   const [mobileShowChat, setMobileShowChat] = useState(false);
   const [conversations, setConversations] = useState(() => readConversations());
   const [selectedImage, setSelectedImage] = useState(null);
+  const [productImgError, setProductImgError] = useState(false);
+  const [imageError, setImageError] = useState('');
   const menuRef = useRef(null);
   const chatEndRef = useRef(null);
   const fileInputRef = useRef(null);
 
-  const handleImgError = (e) => {
-    e.target.style.display = 'none';
-    e.target.nextSibling.style.display = 'flex';
-  };
+  useEffect(() => {
+    setProductImgError(false);
+  }, [activeChatId]);
 
   const getProductColor = (name) => {
     if (name?.includes('GameBoy')) return '#654321';
@@ -71,29 +79,44 @@ export default function Messages() {
   }, [activeChatId, conversations, findConversationFromParams, location.search]);
 
   useEffect(() => {
+    try { localStorage.setItem('retroBlockedUsers', JSON.stringify(blockedUsers)); }
+    catch { /* storage full */ }
+  }, [blockedUsers]);
+
+  useEffect(() => {
     const handleStorage = () => syncConversations();
-    const handleClickOutside = (e) => {
-      if (menuRef.current && !menuRef.current.contains(e.target)) setShowMenu(false);
-    };
+    const handleCustom = () => syncConversations();
 
     window.addEventListener('storage', handleStorage);
     window.addEventListener('focus', handleStorage);
-    if (showMenu) document.addEventListener('mousedown', handleClickOutside);
+    window.addEventListener('retroConversationsUpdated', handleCustom);
 
     return () => {
       window.removeEventListener('storage', handleStorage);
       window.removeEventListener('focus', handleStorage);
-      document.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('retroConversationsUpdated', handleCustom);
     };
-  }, [showMenu, syncConversations]);
+  }, [syncConversations]);
 
-  // Auto-scroll removed per user request
-  // useEffect(() => {
-  //   chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  // }, [activeChatId, conversations]);
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) setShowMenu(false);
+    };
+
+    if (showMenu) document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [showMenu]);
+
+  useEffect(() => {
+    if (chatEndRef.current) {
+      chatEndRef.current.scrollIntoView({
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      });
+    }
+  }, [activeChatId, conversations]);
 
   const activeChat = conversations.find((c) => String(c.id) === String(activeChatId)) || conversations[0] || null;
-  const isBlocked = activeChat ? blockedUsers.map(String).includes(String(activeChat.id)) : false;
+  const isBlocked = activeChat ? blockedUsers.map(String).includes(String(activeChat.name).toLowerCase()) : false;
   const isFormValid = reportData.reason !== '' && reportData.description.trim().length > 0;
 
   const handleDeleteChat = (id) => {
@@ -105,8 +128,8 @@ export default function Messages() {
     setMobileShowChat(false);
   };
 
-  const handleBlockUser = (id) => {
-    const key = String(id);
+  const handleBlockUser = (name) => {
+    const key = String(name).toLowerCase();
     if (!blockedUsers.map(String).includes(key)) setBlockedUsers((prev) => [...prev, key]);
     setShowMenu(false);
   };
@@ -124,14 +147,16 @@ export default function Messages() {
     if (!file) return;
 
     if (!file.type.startsWith('image/')) {
-      alert('Please select an image file');
+      setImageError('Please select an image file');
       e.target.value = '';
+      setTimeout(() => setImageError(''), 3000);
       return;
     }
 
     if (file.size > 5 * 1024 * 1024) {
-      alert('Image must be smaller than 5MB');
+      setImageError('Image must be smaller than 5MB');
       e.target.value = '';
+      setTimeout(() => setImageError(''), 3000);
       return;
     }
 
@@ -146,7 +171,7 @@ export default function Messages() {
     e.target.value = '';
   };
 
-  const handleSendMessage = async (e) => {
+  const handleSendMessage = (e) => {
     e.preventDefault();
     if ((!newMessage.trim() && !selectedImage) || isBlocked || !activeChatId) return;
 
@@ -219,7 +244,7 @@ export default function Messages() {
                     <div className="chat-preview-top">
                       <h4 className="chat-name">
                         {chat.name}
-                        {blockedUsers.map(String).includes(String(chat.id)) && <span className="blocked-tag">🚫</span>}
+                        {blockedUsers.map(String).includes(String(chat.name).toLowerCase()) && <span className="blocked-tag">🚫</span>}
                       </h4>
                       <span className="chat-time">{chat.time}</span>
                     </div>
@@ -249,37 +274,37 @@ export default function Messages() {
                   <i className="fa-solid fa-chevron-left" />
                 </button>
 
-                {activeChat.product ? (
+                  {activeChat.product ? (
                   <div className="chat-product-info">
-                    <img 
-                      src={activeChat.product.img} 
-                      className="chat-product-img" 
-                      alt="Product" 
-                      loading="lazy"
-                      onError={(e) => {
-                        e.target.style.display = 'none';
-                        e.target.nextElementSibling.style.display = 'flex';
-                      }}
-                    />
-                    <div 
-                      className="chat-product-fallback" 
-                      style={{
-                        display: 'none',
-                        width: '68px',
-                        height: '68px',
-                        borderRadius: '16px',
-                        background: getProductColor(activeChat.product.name),
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: '#fff',
-                        fontWeight: 'bold',
-                        fontSize: '12px',
-                        border: '1px solid rgba(255, 255, 255, 0.08)',
-                        flexShrink: 0
-                      }}
-                    >
-                      {activeChat.product.name.split(' ').map(w => w[0]).join('')}
-                    </div>
+                    {!productImgError ? (
+                      <img 
+                        src={activeChat.product.img} 
+                        className="chat-product-img" 
+                        alt="Product" 
+                        loading="lazy"
+                        onError={() => setProductImgError(true)}
+                      />
+                    ) : (
+                      <div 
+                        className="chat-product-fallback" 
+                        style={{
+                          display: 'flex',
+                          width: '68px',
+                          height: '68px',
+                          borderRadius: '16px',
+                          background: getProductColor(activeChat.product.name),
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: '#fff',
+                          fontWeight: 'bold',
+                          fontSize: '12px',
+                          border: '1px solid var(--border-color)',
+                          flexShrink: 0
+                        }}
+                      >
+                        {activeChat.product.name.split(' ').map(w => w[0]).join('')}
+                      </div>
+                    )}
                     <div>
                       <h3>{activeChat.product.name}</h3>
                       <p>{activeChat.product.price}</p>
@@ -309,7 +334,7 @@ export default function Messages() {
                       <button className="drop-item" type="button" onClick={() => { setShowMenu(false); setShowReportModal(true); }}>
                         <i className="fa-solid fa-flag" /> Report User
                       </button>
-                      <button className="drop-item" type="button" onClick={() => handleBlockUser(activeChat.id)}>
+                      <button className="drop-item" type="button" onClick={() => handleBlockUser(activeChat.name)}>
                         <i className="fa-solid fa-ban" /> Block User
                       </button>
                       <div className="drop-divider" />
@@ -323,13 +348,13 @@ export default function Messages() {
 
               <div className="chat-history">
                 {activeChat.history.map((msg, i) => (
-                  <div key={i} className={`message-bubble message-${msg.type}`}>
+                  <div key={`msg-${msg.time}-${msg.type}`} className={`message-bubble message-${msg.type}`}>
                     {msg.image && (
                       <img 
                         src={msg.image} 
                         alt="Sent image" 
                         className="message-image"
-                        onError={(e) => { e.target.style.display = 'none'; }}
+                        onError={(e) => { e.currentTarget.style.display = 'none'; }}
                       />
                     )}
                     {msg.text && <span className="msg-text">{msg.text}</span>}
@@ -361,6 +386,9 @@ export default function Messages() {
                         <i className="fa-solid fa-xmark" />
                       </button>
                     </div>
+                  )}
+                  {imageError && (
+                    <span className="image-error-hint">{imageError}</span>
                   )}
                   <input
                     type="file"

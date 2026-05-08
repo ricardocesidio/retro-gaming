@@ -24,7 +24,7 @@
 .sell-card {
     background: #000000;
     border: 1px solid #2a2a2a;
-    border-radius: 24px;
+    border-radius: var(--radius-2xl);
     padding: 50px 60px;
     width: 100%;
     max-width: 1200px;
@@ -45,7 +45,7 @@
     animation: shimmer 4s ease-in-out infinite;
     pointer-events: none;
     z-index: 0;
-    border-radius: 24px 24px 0 0;
+    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
 }
 
 @keyframes shimmer {
@@ -139,7 +139,7 @@
     background: linear-gradient(145deg, #252525 0%, #2a2a2a 100%);
     border: 2px solid #404040;
     padding: 16px 20px;
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
     color: #fff;
     outline: none;
     font-size: 1rem;
@@ -241,7 +241,7 @@
     background: linear-gradient(145deg, #252525 0%, #2a2a2a 100%);
     border: 2px solid #404040;
     padding: 16px 20px;
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
     color: #fff;
     outline: none;
     font-size: 1rem;
@@ -281,7 +281,7 @@
 
 .upload-area {
     border: 3px dashed #404040;
-    border-radius: 20px;
+    border-radius: var(--radius-xl);
     padding: 60px 30px;
     text-align: center;
     cursor: pointer;
@@ -349,7 +349,7 @@
 .preview-item {
     width: 120px;
     height: 120px;
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
     border: 3px solid rgba(157, 80, 187, 0.3);
     position: relative;
@@ -402,7 +402,7 @@
     padding: 50px;
     background: linear-gradient(145deg, rgba(39, 8, 52, 0.06) 0%, rgba(157, 80, 187, 0.12) 100%);
     border: 2px solid rgba(157, 80, 187, 0.2);
-    border-radius: 24px;
+    border-radius: var(--radius-2xl);
     text-align: center;
     backdrop-filter: blur(20px);
     position: relative;
@@ -427,7 +427,7 @@
 .parcel-size-section h2 {
     font-size: 1.8rem;
     margin-bottom: 12px;
-    font-weight: 800;
+    font-weight: var(--font-extrabold);
     color: #ffffff;
     background: #000000;
 }
@@ -477,7 +477,7 @@
 .parcel-card {
     background: linear-gradient(145deg, #1e1e1e 0%, #252525 100%);
     padding: 20px 16px;
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
     cursor: pointer;
     position: relative;
     border: 2px solid transparent;
@@ -544,7 +544,7 @@
     color: #fff;
     margin: 12px 0 8px 0;
     font-size: 1.1rem;
-    font-weight: 800;
+    font-weight: var(--font-extrabold);
 }
 
 .parcel-card p {
@@ -557,9 +557,9 @@
 .weight-badge {
     display: inline-block;
     padding: 6px 12px;
-    border-radius: 20px;
+    border-radius: var(--radius-xl);
     font-size: 0.8rem;
-    font-weight: 800;
+    font-weight: var(--font-extrabold);
     margin-bottom: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
@@ -596,7 +596,7 @@
     margin: 60px 0 30px 0;
     padding: 40px;
     background: linear-gradient(145deg, rgba(0, 0, 0, 0.4) 0%, transparent 100%);
-    border-radius: 20px;
+    border-radius: var(--radius-xl);
     border: 1px solid rgba(157, 80, 187, 0.2);
     position: relative;
     z-index: 2;
@@ -616,19 +616,26 @@
     letter-spacing: 1px;
 }
 
-.btn-save-draft:hover {
+.btn-save-draft:hover:not(:disabled) {
     background: var(--tier-gold);
     color: #111;
     border-color: #fff;
     transform: translateY(-1px);
 }
 
+.btn-save-draft:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    filter: grayscale(0.4);
+    transform: none;
+}
+
 .btn-publish-ad {
     background: linear-gradient(145deg, var(--accent-purple) 0%, #8a3bb7 100%);
     color: #fff;
     padding: 20px 60px;
-    border-radius: 16px;
-    font-weight: 800;
+    border-radius: var(--radius-lg);
+    font-weight: var(--font-extrabold);
     font-size: 1.15rem;
     border: none;
     cursor: pointer;
@@ -667,13 +674,14 @@
     pointer-events: none;
 }
 
-.btn-publish-ad:hover:not(:disabled)::before {
+.btn-publish-ad:hover:not(:disabled):not(.btn-publish-disabled)::before {
     left: 100%;
 }
 
-.btn-publish-ad:hover:not(:disabled) {
-    background: linear-gradient(145deg, var(--tier-gold) 0%, #ffed4e 100%);
-    color: #111;
+.btn-publish-ad:hover:not(:disabled):not(.btn-publish-disabled) {
+    background: var(--tier-gold) !important;
+    color: #000 !important;
+    border-color: var(--tier-gold) !important;
 }
 
 .btn-publish-ad:disabled,
@@ -686,11 +694,11 @@
 }
 
 .btn-publish-auction {
-    background: linear-gradient(145deg, #FFD700 0%, #ffed4e 100%);
+    background: linear-gradient(145deg, var(--tier-gold) 0%, #ffed4e 100%);
     color: #111;
     padding: 20px 60px;
-    border-radius: 16px;
-    font-weight: 800;
+    border-radius: var(--radius-lg);
+    font-weight: var(--font-extrabold);
     font-size: 1.15rem;
     border: none;
     cursor: pointer;
@@ -710,7 +718,7 @@
 }
 
 .btn-publish-auction:hover:not(:disabled) {
-    background: linear-gradient(145deg, #FFD700 0%, #FFA500 100%);
+    background: linear-gradient(145deg, var(--tier-gold) 0%, #FFA500 100%);
     transform: translateY(-2px);
     box-shadow:
         0 20px 50px rgba(255, 215, 0, 0.5),
@@ -745,7 +753,7 @@
     margin-top: 40px;
     padding: 30px;
     background: linear-gradient(145deg, rgba(40, 40, 40, 0.5) 0%, rgba(60, 60, 60, 0.3) 100%);
-    border-radius: 20px;
+    border-radius: var(--radius-xl);
     border: 1px solid rgba(157, 80, 187, 0.2);
 }
 
@@ -766,7 +774,7 @@
     background: rgba(157, 80, 187, 0.2);
     color: #ccc;
     padding: 8px 16px;
-    border-radius: 20px;
+    border-radius: var(--radius-xl);
     font-size: 0.9rem;
     border: 1px solid rgba(157, 80, 187, 0.4);
 }
@@ -782,11 +790,11 @@
     background: linear-gradient(145deg, #1a1a1a 0%, #252525 100%);
     color: #fff;
     padding: 20px 32px;
-    border-radius: 20px;
+    border-radius: var(--radius-xl);
     display: flex;
     align-items: center;
     gap: 16px;
-    z-index: 10000;
+    z-index: var(--z-toast);
     font-weight: 700;
     font-size: 1.05rem;
     border: 1px solid rgba(157, 80, 187, 0.3);
@@ -846,7 +854,7 @@
 
     .sell-card {
         padding: 30px 20px;
-        border-radius: 20px;
+        border-radius: var(--radius-xl);
     }
 
     .form-split-layout {

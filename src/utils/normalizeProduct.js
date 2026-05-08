@@ -1,6 +1,8 @@
 // src/utils/normalizeProduct.js
 // Single normalized product schema used across the app.
 
+import { normalizeImageValue } from "./shared.js";
+
 export const normalizeId = (value) => String(value ?? "").trim();
 
 const cleanString = (value, fallback = "") => String(value ?? fallback).trim();
@@ -51,14 +53,6 @@ const cleanPrice = (value) => {
   if (Number.isFinite(parsed) && /\d/.test(numericCandidate)) return parsed;
 
   return raw;
-};
-
-const normalizeImageValue = (img) => {
-  if (typeof img === "string") return img.trim();
-  if (img?.preview) return String(img.preview).trim();
-  if (img?.url) return String(img.url).trim();
-  if (img?.src) return String(img.src).trim();
-  return "";
 };
 
 const normalizeImageList = (product = {}) => {

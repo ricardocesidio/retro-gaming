@@ -6,6 +6,7 @@ import "./MyOrders.css";
 const OrderDetails = () => {
   const { id }    = useParams();
   const navigate  = useNavigate();
+  const [invoiceMsg, setInvoiceMsg] = React.useState('');
 
   return (
     <div className="myorders-wrapper">
@@ -85,10 +86,11 @@ const OrderDetails = () => {
             type="button"
             className="btn-elite primary"
             style={{ maxWidth: "350px" }}
-            onClick={() => window.alert("Invoice download coming soon!")}
+            onClick={() => { setInvoiceMsg('Invoice download coming soon!'); setTimeout(() => setInvoiceMsg(''), 3000); }}
           >
             <i className="fa-solid fa-file-invoice-dollar" /> Download Digital Invoice
           </button>
+          {invoiceMsg && <p style={{ marginTop: 12, color: 'var(--text-muted)', fontSize: '0.85rem' }}>{invoiceMsg}</p>}
         </div>
 
       </div>

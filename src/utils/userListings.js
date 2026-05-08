@@ -35,7 +35,7 @@ export function getUserListings(username) {
 /**
  * Get all listings (for finding other sellers' listings)
  */
-export function getAllListings() {
+function getAllListings() {
   try {
     const stored = readMarketListings();
     const raw = localStorage.getItem(USER_LISTINGS_KEY);
@@ -49,7 +49,7 @@ export function getAllListings() {
 /**
  * Get listings by a specific seller
  */
-export function getListingsBySeller(sellerName) {
+function getListingsBySeller(sellerName) {
   if (!sellerName) return [];
   
   const all = getAllListings();
@@ -69,7 +69,7 @@ export function getUserSoldCount(username) {
 /**
  * Get user's active items count
  */
-export function getUserActiveCount(username) {
+function getUserActiveCount(username) {
   const listings = getUserListings(username);
   return listings.filter((item) => item.status === "active").length;
 }
@@ -82,15 +82,15 @@ export function getSellerStats(sellerName) {
   const total = listings.length;
   const sold = listings.filter((item) => item.status === "sold").length;
   
-  // Calculate fake reviews based on sales (for demo)
-  const reviewsCount = Math.max(sold * 2, Math.floor(Math.random() * 50) + 10);
-  const rating = total > 0 ? (4.5 + Math.random() * 0.5).toFixed(1) : "5.0";
+  // Stable mock reviews based on sales (no random, no flicker)
+  const reviewsCount = Math.max(sold * 2, 15);
+  const rating = total > 0 ? 4.8 : 5.0;
   
   return {
     totalListings: total,
     soldItems: sold,
     activeItems: total - sold,
     reviewsCount,
-    rating: parseFloat(rating),
+    rating,
   };
 }

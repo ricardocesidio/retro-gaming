@@ -6,7 +6,7 @@ html, body, #root { min-height: 100%; }
 body {
   margin:0;
   background: #000000;
-  color: #f5f5ff;
+  color: var(--text-main);
   font-family: var(--font-primary);
   line-height: var(--leading-normal);
   overflow-x: hidden;
@@ -19,7 +19,7 @@ img { max-width: 100%; display: block; }
 #root, .app {
   min-height: auto;
   background: #000000;
-  color: #f5f5ff;
+  color: var(--text-main);
 }
 
 /* =========================================
@@ -90,7 +90,7 @@ h1 {
   transform: translateX(-50%);
   min-width: min(90%, 340px);
   padding: 14px 24px;
-  background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-2));
+  background: var(--gradient-cta);
   color: #fff;
   border-radius: var(--radius-full);
   text-decoration: none;
@@ -306,7 +306,7 @@ input:focus {
 .btn-submit-report,
 .mark-all-read-btn,
 .btn-back {
-  background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-2));
+  background: var(--gradient-cta);
   color: #fff;
   padding: 12px 18px;
   box-shadow: var(--shadow-soft);

@@ -45,15 +45,7 @@ export default function Market({ embedded = false }) {
   const { toggleWishlist, isInWishlist } = useWishlist();
   const location   = useLocation();
   const navigate   = useNavigate();
-  const { listings: anuncios, removeListing } = useMarketListings();
-
-  // One-time cleanup: remove "Final Fantasy VII" from listings
-  useEffect(() => {
-    const toRemove = anuncios.filter((ad) =>
-      /final fantasy vii/i.test(String(ad.title ?? ""))
-    );
-    toRemove.forEach((ad) => ad.id && removeListing(ad.id));
-  }, []);
+  const { listings: anuncios } = useMarketListings();
 
   const [searchTerm,        setSearchTerm]        = useState("");
   const [selectedCategory,  setSelectedCategory]  = useState("");
@@ -63,6 +55,7 @@ export default function Market({ embedded = false }) {
   const [maxPrice,          setMaxPrice]          = useState("");
   const [isLoading,         setIsLoading]         = useState(true);
   const [visibleCount,      setVisibleCount]      = useState(12);
+  const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
 
   // Simulate brief loading state
   useEffect(() => {
@@ -83,9 +76,7 @@ export default function Market({ embedded = false }) {
   }, [searchTerm, selectedCategory, selectedCondition, sortBy, minPrice, maxPrice]);
 
   const filteredAnuncios = useMemo(() => {
-    let result = [...anuncios].filter((ad) =>
-      !/final fantasy vii/i.test(String(ad.title ?? ""))
-    );
+    let result = [...anuncios];
 
     if (searchTerm.trim()) {
       const term = searchTerm.toLowerCase();
@@ -104,7 +95,7 @@ export default function Market({ embedded = false }) {
 
     if (selectedCondition) {
       result = result.filter((ad) =>
-        String(ad.condition ?? "").toLowerCase() === selectedCondition.toLowerCase()
+        String(ad.condition ?? "").toLowerCase().replace(/[-]/g, " ") === selectedCondition.toLowerCase()
       );
     }
 
@@ -133,6 +124,30 @@ export default function Market({ embedded = false }) {
       .filter((ad) => String(ad.title ?? "").toLowerCase().includes(term) || String(ad.seller ?? "").toLowerCase().includes(term))
       .slice(0, 5);
   }, [anuncios, searchTerm]);
+
+  const handleSearchKeyDown = (e) => {
+    if (!searchSuggestions.length) return;
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setActiveSuggestionIndex((prev) =>
+        prev < searchSuggestions.length - 1 ? prev + 1 : 0
+      );
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActiveSuggestionIndex((prev) =>
+        prev > 0 ? prev - 1 : searchSuggestions.length - 1
+      );
+    } else if (e.key === "Enter" && activeSuggestionIndex >= 0) {
+      e.preventDefault();
+      const item = searchSuggestions[activeSuggestionIndex];
+      if (item) {
+        setSearchTerm(item.title || "");
+        navigate(`/product/${item.id}`);
+      }
+    } else if (e.key === "Escape") {
+      setActiveSuggestionIndex(-1);
+    }
+  };
 
   const clearFilters = useCallback(() => {
     setSearchTerm("");
@@ -172,18 +187,26 @@ export default function Market({ embedded = false }) {
                 className="search-input"
                 placeholder="Search games, consoles, gear..."
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e) => { setSearchTerm(e.target.value); setActiveSuggestionIndex(-1); }}
+                onKeyDown={handleSearchKeyDown}
+                onBlur={() => setActiveSuggestionIndex(-1)}
                 aria-label="Search market"
+                aria-autocomplete="list"
+                aria-controls="search-suggestions"
+                aria-activedescendant={activeSuggestionIndex >= 0 ? `suggestion-${searchSuggestions[activeSuggestionIndex]?.id}` : undefined}
                 autoComplete="off"
               />
               <i className="fa-solid fa-magnifying-glass search-icon" />
             </div>
             {searchSuggestions.length > 0 && (
-              <div className="search-suggestions" role="listbox" aria-label="Search suggestions">
-                {searchSuggestions.map((item) => (
+              <div className="search-suggestions" role="listbox" id="search-suggestions" aria-label="Search suggestions">
+                {searchSuggestions.map((item, i) => (
                   <button
                     key={item.id}
+                    id={`suggestion-${item.id}`}
                     type="button"
+                    role="option"
+                    aria-selected={activeSuggestionIndex === i}
                     className="search-suggestion"
                     onClick={() => {
                       setSearchTerm(item.title || "");

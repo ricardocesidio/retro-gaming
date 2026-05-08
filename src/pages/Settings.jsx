@@ -1,6 +1,6 @@
 // src/pages/Settings.jsx
 import { useState, useEffect } from "react";
-import { useAuth } from "../App";
+import { useAuth } from "../context/AuthContext";
 import "./Settings.css";
 import { DEFAULT_AVATAR_FALLBACK } from "../utils/fallbackImage";
 

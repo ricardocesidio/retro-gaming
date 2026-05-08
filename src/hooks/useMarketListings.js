@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import {
   readMarketListings,
-  removeMarketListing,
   MARKET_LISTINGS_UPDATED_EVENT,
   MARKET_LISTINGS_KEY,
 } from "../utils/marketStorage";
@@ -13,11 +12,6 @@ export function useMarketListings() {
     if (typeof window === "undefined") return;
     setListings(readMarketListings());
   }, []);
-
-  const removeListing = useCallback((id) => {
-    removeMarketListing(id);
-    refreshListings();
-  }, [refreshListings]);
 
   useEffect(() => {
     refreshListings();
@@ -40,5 +34,5 @@ export function useMarketListings() {
     };
   }, [refreshListings]);
 
-  return { listings, refreshListings, removeListing };
+  return { listings, refreshListings };
 }

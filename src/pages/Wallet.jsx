@@ -9,10 +9,10 @@ const INITIAL_WALLET = {
 };
 
 const MOCK_BANK = {
-  holder: "Ricardo Cesidio",
-  iban: "PT50000201231234567892014",
-  masked: "PT50 **** **** 2014",
-  country: "Portugal",
+  holder: "Demo User",
+  iban: "XX00 0000 0000 0000 0000 0000",
+  masked: "XX00 **** **** 0000",
+  country: "Demo",
 };
 
 const MOCK_TRANSACTIONS = [
@@ -34,6 +34,7 @@ export default function Wallet() {
   const [bankSaved, setBankSaved] = useState(false);
   const [addMoneySuccess, setAddMoneySuccess] = useState(false);
   const [receiveSuccess, setReceiveSuccess] = useState(false);
+  const [processing, setProcessing] = useState(false);
   const [bankConnected, setBankConnected] = useState(true);
 
   const handleWithdraw = (e) => {
@@ -53,6 +54,8 @@ export default function Wallet() {
   };
 
   const handleAddMoney = () => {
+    if (processing) return;
+    setProcessing(true);
     setWallet(prev => ({
       ...prev,
       available: +(prev.available + 50).toFixed(2),
@@ -60,12 +63,20 @@ export default function Wallet() {
       income: +(prev.income + 50).toFixed(2),
     }));
     setAddMoneySuccess(true);
-    setTimeout(() => setAddMoneySuccess(false), 4000);
+    setTimeout(() => {
+      setAddMoneySuccess(false);
+      setProcessing(false);
+    }, 4000);
   };
 
   const handleReceive = () => {
+    if (processing) return;
+    setProcessing(true);
     setReceiveSuccess(true);
-    setTimeout(() => setReceiveSuccess(false), 4000);
+    setTimeout(() => {
+      setReceiveSuccess(false);
+      setProcessing(false);
+    }, 4000);
   };
 
   const handleBankSave = (e) => {
@@ -77,10 +88,7 @@ export default function Wallet() {
     setTimeout(() => setBankSaved(false), 4000);
   };
 
-  const formatCurrency = (val) => {
-    if (val === 0) return `0.00 €`;
-    return `${val.toFixed(2)} €`;
-  };
+  const formatCurrency = (val) => `${val.toFixed(2)} €`;
 
   const transactionIcon = (type) => {
     switch (type) {

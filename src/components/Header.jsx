@@ -37,6 +37,22 @@ export default function Header({
         setShowDropdown(false);
         setShowNotifications(false);
       }
+      if ((e.key === "ArrowDown" || e.key === "ArrowUp") && showDropdown) {
+        e.preventDefault();
+        const items = dropdownRef.current?.querySelectorAll('[role="menuitem"]');
+        if (items?.length) {
+          if (e.key === "ArrowDown") items[0].focus();
+          else items[items.length - 1].focus();
+        }
+      }
+      if ((e.key === "ArrowDown" || e.key === "ArrowUp") && showNotifications) {
+        e.preventDefault();
+        const items = notificationsRef.current?.querySelectorAll('[role="menuitem"]');
+        if (items?.length) {
+          if (e.key === "ArrowDown") items[0].focus();
+          else items[items.length - 1].focus();
+        }
+      }
     };
 
     window.addEventListener("storage", sync);
@@ -50,6 +66,24 @@ export default function Header({
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
+
+  useEffect(() => {
+    if (showDropdown) {
+      requestAnimationFrame(() => {
+        const first = dropdownRef.current?.querySelector('[role="menuitem"]');
+        if (first) first.focus();
+      });
+    }
+  }, [showDropdown]);
+
+  useEffect(() => {
+    if (showNotifications) {
+      requestAnimationFrame(() => {
+        const first = notificationsRef.current?.querySelector('[role="menuitem"]');
+        if (first) first.focus();
+      });
+    }
+  }, [showNotifications]);
 
   const handleLogoutClick = () => {
     if (typeof onLogout === "function") onLogout();
@@ -122,7 +156,7 @@ export default function Header({
                     ))}
                   </div>
                   <hr className="divider" />
-                  <button type="button" onClick={handleLogoutClick} className="logout-btn" role="menuitem">
+                  <button type="button" onClick={handleLogoutClick} className="logout-btn" role="menuitem" aria-label="Log out">
                     <i className="fa-solid fa-right-from-bracket" style={{ marginRight: 8 }} />
                     Log out
                   </button>
@@ -131,50 +165,52 @@ export default function Header({
             </div>
           )}
 
-          <div className="icon-group">
-            <Link to="/messages" className="icon-btn" title="Messages">
-              <i className="fa-solid fa-message" />
-            </Link>
+          {isLoggedIn && (
+            <div className="icon-group">
+              <Link to="/messages" className="icon-btn" aria-label="Messages">
+                <i className="fa-solid fa-message" />
+              </Link>
 
-            <div className="notifications-container" ref={notificationsRef}>
-              <button
-                type="button"
-                className="icon-btn notifications-btn"
-                onClick={() => setShowNotifications((p) => !p)}
-                aria-haspopup="menu"
-                aria-expanded={showNotifications}
-                title="Notifications"
-              >
-                <i className="fa-solid fa-bell" />
-                {unreadCount > 0 && <span className="notification-count">{unreadCount}</span>}
-              </button>
+              <div className="notifications-container" ref={notificationsRef}>
+                <button
+                  type="button"
+                  className="icon-btn notifications-btn"
+                  onClick={() => setShowNotifications((p) => !p)}
+                  aria-haspopup="menu"
+                  aria-expanded={showNotifications}
+                  title="Notifications"
+                >
+                  <i className="fa-solid fa-bell" />
+                  {unreadCount > 0 && <span className="notification-count" aria-label={`${unreadCount} unread notifications`}>{unreadCount}</span>}
+                </button>
 
-              {showNotifications && (
-                <div className="notifications-dropdown" role="menu">
-                  <div className="dropdown-scroll-area">
-                    {notifications.slice(0, 4).map((n) => (
-                      <div key={n.id} className="notification-item" role="menuitem">
-                        <i className={`fa-solid ${n.icon}`} style={{ color: n.color }} />
-                        <div className="notification-content">
-                          <p className="notification-message">{n.message}</p>
-                          <span className="notification-time">{n.time}</span>
+                {showNotifications && (
+                  <div className="notifications-dropdown" role="menu">
+                    <div className="dropdown-scroll-area">
+                      {notifications.slice(0, 4).map((n) => (
+                        <div key={n.id} className="notification-item" role="menuitem" tabIndex={-1}>
+                          <i className={`fa-solid ${n.icon}`} style={{ color: n.color }} />
+                          <div className="notification-content">
+                            <p className="notification-message">{n.message}</p>
+                            <span className="notification-time">{n.time}</span>
+                          </div>
+                          {n.unread && <div className="unread-indicator" />}
                         </div>
-                        {n.unread && <div className="unread-indicator" />}
-                      </div>
-                    ))}
+                      ))}
+                    </div>
+                    <hr className="divider" />
+                    <Link to="/notifications" onClick={() => setShowNotifications(false)} className="see-more-btn">
+                      See all notifications
+                    </Link>
                   </div>
-                  <hr className="divider" />
-                  <Link to="/notifications" onClick={() => setShowNotifications(false)} className="see-more-btn">
-                    See all notifications
-                  </Link>
-                </div>
-              )}
-            </div>
+                )}
+              </div>
 
-            <Link to="/wishlist" className="icon-btn" title="Wishlist">
-              <i className="fa-solid fa-heart" />
-             </Link>
-          </div>
+              <Link to="/wishlist" className="icon-btn" aria-label="Wishlist">
+                <i className="fa-solid fa-heart" />
+              </Link>
+            </div>
+          )}
         </div>
       </div>
 

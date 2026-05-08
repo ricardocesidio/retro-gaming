@@ -30,6 +30,9 @@
   --accent-purple-3: #8a42c9;
   --accent-glow: rgba(157, 80, 187, 0.32);
   --accent-glow-strong: rgba(157, 80, 187, 0.45);
+
+  /* Shared Gradients */
+  --gradient-cta: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-2));
   
   --nav-purple: #33124f;
   --nav-purple-light: #4a1f70;
@@ -214,6 +217,11 @@
   --verified-color: var(--success);
   --tier-master: var(--accent-purple);
   --text-dim: var(--text-muted);
+
+  /* Glass and card backgrounds used in MyOrders */
+  --glass-bg: rgba(18, 18, 31, 0.75);
+  --card-bg: var(--bg-card);
+  --card-bg-hover: rgba(26, 26, 46, 0.8);
 }
 
 /* ==========================================================

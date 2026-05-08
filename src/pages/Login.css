@@ -17,7 +17,7 @@
   width: 100%;
   max-width: 420px;
   padding: 36px 32px;
-  border-radius: 24px;
+  border-radius: var(--radius-2xl);
   overflow: hidden;
 }
 
@@ -153,7 +153,7 @@
   padding: 14px;
   background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-body) 100%);
   border: 3px solid transparent;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   border-color: var(--accent-purple);
   color: var(--text-main);
   font-weight: 700;
@@ -186,7 +186,7 @@
 .login-page .error-box {
   background: rgba(255, 68, 68, 0.15);
   border: 1px solid rgba(255, 68, 68, 0.4);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   padding: 14px 16px;
   margin-bottom: 20px;
   display: flex;
@@ -245,20 +245,15 @@
 /* ========== RESPONSIVIDADE 2026 ========== */
 /* ============================================= */
 
+/* --bp-sm (480px) */
 @media (max-width: 480px) {
   .login-page .login-wrapper {
     padding: 12px;
   }
   
   .login-page .login-card {
-    padding: 28px 24px;
-    border-radius: 20px;
-  }
-}
-
-@media (max-width: 360px) {
-  .login-page .login-card {
     padding: 24px 20px;
+    border-radius: var(--radius-xl);
   }
   
   .login-page .login-header h2 {

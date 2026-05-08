@@ -1,17 +1,17 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function Menu() {
   return (
     <nav className="category-bar" aria-label="Category navigation">
       <div className="nav-links">
-        <Link to="/" title="Home"><i className="fa-solid fa-home" /></Link>
-        <Link to="/consoles" title="Consoles" className="gray-icon"><i className="fa-solid fa-gamepad" /></Link>
-        <Link to="/games" title="Games" className="gray-icon"><i className="fa-solid fa-compact-disc" /></Link>
-        <Link to="/sell" className="sell-highlight" title="Sell"><i className="fa-solid fa-plus" /></Link>
-        <Link to="/collectibles" title="Collectibles" className="gray-icon"><i className="fa-solid fa-star" /></Link>
-        <Link to="/arcade" title="Arcade" className="gray-icon"><i className="fa-solid fa-rocket" /></Link>
-        <Link to="/auction" className="auction-icon" title="Auction"><i className="fa-solid fa-gavel" /></Link>
-        <Link to="/wallet" className="gray-icon" title="Wallet"><i className="fa-solid fa-wallet" /></Link>
+        <NavLink to="/" end aria-label="Home"><i className="fa-solid fa-home" /></NavLink>
+        <NavLink to="/consoles" aria-label="Consoles" className="gray-icon"><i className="fa-solid fa-gamepad" /></NavLink>
+        <NavLink to="/games" aria-label="Games" className="gray-icon"><i className="fa-solid fa-compact-disc" /></NavLink>
+        <NavLink to="/sell" className="sell-highlight" aria-label="Sell"><i className="fa-solid fa-plus" /></NavLink>
+        <NavLink to="/collectibles" aria-label="Collectibles" className="gray-icon"><i className="fa-solid fa-star" /></NavLink>
+        <NavLink to="/arcade" aria-label="Arcade" className="gray-icon"><i className="fa-solid fa-rocket" /></NavLink>
+        <NavLink to="/auction" className="auction-icon" aria-label="Auction"><i className="fa-solid fa-gavel" /></NavLink>
+        <NavLink to="/wallet" aria-label="Wallet" className="gray-icon"><i className="fa-solid fa-wallet" /></NavLink>
       </div>
     </nav>
   );

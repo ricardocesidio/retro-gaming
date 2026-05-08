@@ -1,13 +1,7 @@
+import { safeJsonParse as safeParse } from "./shared.js";
+
 const REGISTRY_KEY = "registeredUsers";
 const LEGACY_REGISTRY_KEY = "registeredUser";
-
-const safeParse = (value, fallback) => {
-  try {
-    return value ? JSON.parse(value) : fallback;
-  } catch {
-    return fallback;
-  }
-};
 
 const normalizeId = (value) => String(value ?? "").trim();
 
@@ -73,7 +67,7 @@ const toRegistryObject = (value) => {
   return {};
 };
 
-export const readRegistry = () => {
+const readRegistry = () => {
   if (typeof window === "undefined") return {};
 
   const current = safeParse(localStorage.getItem(REGISTRY_KEY), null);
@@ -83,7 +77,7 @@ export const readRegistry = () => {
   return legacy ? toRegistryObject(legacy) : {};
 };
 
-export const writeRegistry = (registry) => {
+const writeRegistry = (registry) => {
   if (typeof window === "undefined") return registry;
   const normalized = toRegistryObject(registry);
   localStorage.setItem(REGISTRY_KEY, JSON.stringify(normalized));
@@ -91,7 +85,7 @@ export const writeRegistry = (registry) => {
   return normalized;
 };
 
-export const getAllUsers = () => Object.values(readRegistry());
+const getAllUsers = () => Object.values(readRegistry());
 
 export const saveUser = (userData) => {
   const normalized = normalizeUser(userData);
@@ -119,7 +113,7 @@ export const lookupUser = (identifier) => {
   }) || null;
 };
 
-export const removeUser = (identifier) => {
+const removeUser = (identifier) => {
   const q = normalizeId(identifier).toLowerCase();
   if (!q) return {};
 

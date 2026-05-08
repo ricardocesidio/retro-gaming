@@ -19,16 +19,3 @@ main {
   padding-bottom: 0;
   transition: background var(--transition-base), color var(--transition-base);
 }
-
-/* Responsive */
-@media (max-width: 900px) {
-  .main-content {
-    padding-bottom: 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .main-content {
-    padding-bottom: 0;
-  }
-}

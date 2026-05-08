@@ -9,17 +9,10 @@ import {
 } from "react";
 import { normalizeProduct, normalizeId } from "../utils/normalizeProduct";
 import { safeStorageGet, safeStorageSet } from "../utils/marketStorage";
+import { safeJsonParse as safeParse } from "../utils/shared.js";
 
 const WISHLIST_KEY = "marketplaceWishlist";
 const WishlistContext = createContext(null);
-
-const safeParse = (value, fallback) => {
-  try {
-    return value ? JSON.parse(value) : fallback;
-  } catch {
-    return fallback;
-  }
-};
 
 const dedupeById = (items = []) => {
   const map = new Map();
@@ -67,7 +60,7 @@ export function WishlistProvider({ children }) {
     try {
       safeStorageSet(WISHLIST_KEY, wishlistItems);
     } catch (error) {
-      console.error("Failed to persist wishlist:", error);
+      if (import.meta.env.DEV) console.error("Failed to persist wishlist:", error);
     }
   }, [wishlistItems]);
 

@@ -35,7 +35,7 @@
 .bundle-step {
   background: #000000;
   border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 24px;
+  border-radius: var(--radius-2xl);
   padding: 32px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
@@ -62,7 +62,7 @@
   text-align: center;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   width: 100%;
   box-sizing: border-box;
   gap: 12px;
@@ -100,7 +100,7 @@
   padding: 16px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   margin-bottom: 12px;
   position: relative;
 }
@@ -108,7 +108,7 @@
 .bundle-item-img {
   width: 80px;
   height: 80px;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   object-fit: cover;
   flex-shrink: 0;
 }
@@ -178,7 +178,7 @@
 }
 
 .btn-next-step {
-  background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-2));
+  background: var(--gradient-cta);
   color: #fff;
   margin-top: 24px;
 }
@@ -189,7 +189,7 @@
 }
 
 .btn-send-bundle {
-  background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-2));
+  background: var(--gradient-cta);
   color: #fff;
   width: 100%;
   margin-top: 16px;
@@ -224,7 +224,7 @@
   padding: 16px;
   background: rgba(157, 80, 187, 0.08);
   border: 1px solid rgba(157, 80, 187, 0.15);
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   margin: 16px 0;
   text-align: center;
 }
@@ -241,8 +241,50 @@
 .bundle-actions {
   margin-top: 24px;
 }
+.bundle-error-msg { color: var(--danger); font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; }
 
 .bundle-market-link {
   text-align: center;
   margin-top: 16px;
+}
+
+@media (max-width: 768px) {
+  .bundle-step {
+    padding: 24px 20px;
+  }
+
+  .bundle-item-card {
+    flex-wrap: wrap;
+  }
+
+  .bundle-item-img {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bundle-page {
+    margin: 20px auto;
+  }
+
+  .bundle-step {
+    padding: 20px 16px;
+  }
+
+  .bundle-step h2 {
+    font-size: 1.25rem;
+  }
+
+  .bundle-item-img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .btn-next-step,
+  .btn-send-bundle,
+  .btn-browse-market {
+    padding: 12px 18px;
+    font-size: 0.9rem;
+  }
 }

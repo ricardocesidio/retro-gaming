@@ -33,7 +33,7 @@
   border: 1px solid rgba(157, 80, 187, 0.35);
   background: rgba(157, 80, 187, 0.12);
   color: #fff;
-  font-weight: 800;
+  font-weight: var(--font-extrabold);
   cursor: pointer;
   transition: transform 0.18s ease, background 0.18s ease;
 }
@@ -62,7 +62,7 @@
   border-radius: 999px;
   background: transparent;
   color: var(--text-muted);
-  font-weight: 800;
+  font-weight: var(--font-extrabold);
   cursor: pointer;
   transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
 }
@@ -88,7 +88,7 @@
   align-items: center;
   gap: 14px;
   padding: 16px 18px;
-  border-radius: 20px;
+  border-radius: var(--radius-xl);
   background: rgba(15, 15, 15, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.06);
   cursor: pointer;

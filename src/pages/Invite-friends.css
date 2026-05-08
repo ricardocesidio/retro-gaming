@@ -7,7 +7,7 @@
 .reward-flow-wrapper {
     background: rgba(10, 10, 20, 0.6);
     border:1px solid rgba(0, 212, 255, 0.15);
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
     padding: 24px 30px;
     backdrop-filter: blur(10px);
     width: 100%;
@@ -44,8 +44,8 @@
 }
 
 .reward-stat:nth-child(1) i { color: #00D4FF; filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.5)); }
-.reward-stat:nth-child(3) i { color: #FFD700; filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5)); }
-.reward-stat:nth-child(5) i { color: #E5E4E2; filter: drop-shadow(0 0 8px rgba(229, 228, 226, 0.5)); }
+.reward-stat:nth-child(3) i { color: var(--tier-gold); filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5)); }
+.reward-stat:nth-child(5) i { color: var(--tier-platinum); filter: drop-shadow(0 0 8px rgba(229, 228, 226, 0.5)); }
 
 .reward-label {
     font-size: 11px;
@@ -81,7 +81,7 @@
 
 .progress-bar-fill {
     height: 100%;
-    background: linear-gradient(90deg, #00D4FF 0%, #9B59F5 50%, #FFD700 100%);
+    background: linear-gradient(90deg, #00D4FF 0%, #9B59F5 50%, var(--tier-gold) 100%);
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
     transition: width 0.5s ease;
@@ -95,7 +95,7 @@
 }
 
 .progress-labels .milestone {
-    color: #FFD700;
+    color: var(--tier-gold);
     font-weight: 600;
 }
 
@@ -109,7 +109,7 @@
 .elite-invite-card {
     padding: 30px;
     background: rgba(10, 10, 20, 0.6);
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
     border: 1px solid rgba(0, 212, 255, 0.15);
 }
 
@@ -141,7 +141,7 @@
     width: 100%;
     padding: 12px 80px 12px 16px;
     border: 1px solid rgba(0, 212, 255, 0.3);
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     font-size: 14px;
     background: rgba(0, 0, 0, 0.4);
     color: #00D4FF;
@@ -157,7 +157,7 @@
 
 .elite-code-input {
     text-align: center;
-    font-weight: bold;
+    font-weight: var(--font-bold);
     letter-spacing: 2px;
 }
 
@@ -205,7 +205,7 @@
     gap: 8px;
     padding: 12px 20px;
     border: 1px solid transparent;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     cursor: pointer;
     font-weight: 500;
     transition: all 0.3s ease;
@@ -260,7 +260,7 @@
     padding: 30px;
     background: rgba(10, 10, 20, 0.6);
     border: 1px solid rgba(155, 89, 245, 0.2);
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
     text-align: center;
     transition: all 0.3s ease;
 }
@@ -346,7 +346,7 @@
 
 .elite-status-badge {
     padding: 4px 12px;
-    border-radius: 20px;
+    border-radius: var(--radius-xl);
     font-size: 12px;
     font-weight: 500;
 }

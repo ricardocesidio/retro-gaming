@@ -39,7 +39,7 @@
   background: rgba(157, 80, 187, 0.1);
   color: var(--accent-purple);
   font-size: 10px;
-  font-weight: 800;
+  font-weight: var(--font-extrabold);
   border-radius: 50px;
   letter-spacing: 2px;
 }
@@ -197,7 +197,7 @@
 }
 
 .wallet-btn-primary {
-  background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-2));
+  background: var(--gradient-cta);
   color: #fff;
   box-shadow: 0 4px 16px rgba(157, 80, 187, 0.3);
 }
@@ -245,7 +245,7 @@
 
 .wallet-section h2 {
   font-size: 1.1rem;
-  font-weight: 800;
+  font-weight: var(--font-extrabold);
   color: #fff;
   margin: 0 0 12px;
 }
@@ -456,7 +456,7 @@
 
 .transaction-amount {
   font-size: 0.95rem;
-  font-weight: 800;
+  font-weight: var(--font-extrabold);
   color: var(--success);
   white-space: nowrap;
 }
@@ -635,7 +635,7 @@
 
 .wallet-modal h2 {
   font-size: 1.3rem;
-  font-weight: 800;
+  font-weight: var(--font-extrabold);
   color: #fff;
   margin: 0 0 6px;
 }

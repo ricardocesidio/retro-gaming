@@ -64,7 +64,7 @@ export default function RetroRules() {
       
       <div style={{ 
         display: "grid", 
-        gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr)", 
+        gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", 
         gap: "20px" 
       }}>
         
@@ -150,7 +150,7 @@ export default function RetroRules() {
       {/* Grid de Permissões */}
       <div style={{ 
         display: "grid", 
-        gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr)", 
+        gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", 
         gap: "16px", 
         marginBottom: "24px" 
       }}>
@@ -196,7 +196,7 @@ export default function RetroRules() {
         padding: "20px",
         backgroundColor: "rgba(255, 255, 255, 0.03)",
         borderRadius: "12px",
-        border: "1px border #333"
+        border: "1px solid #333"
       }}>
         <div>
           <strong style={{ color: "#8A2BE2", fontSize: "14px" }}>SELLER PROTOCOL</strong>
@@ -230,7 +230,7 @@ export default function RetroRules() {
       
       <div style={{ 
         display: "grid", 
-        gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr)", 
+        gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", 
         gap: "12px", 
         margin: "20px 0" 
       }}>

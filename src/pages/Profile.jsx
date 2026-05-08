@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useAuth } from "../App";
+import { useAuth } from "../context/AuthContext";
 import { lookupUser } from "../utils/auth.js";
 import { DEFAULT_AVATAR_FALLBACK } from "../utils/fallbackImage";
 import { resolveAvatar } from "../utils/shared";
@@ -32,10 +32,8 @@ export default function Profile() {
   const displayLocation   = profileUser?.country || "Location not set";
   const profilePicSrc     = resolveAvatar(profileUser);
 
-  // Get real user listings (only with images)
   const userListings = useMemo(() => {
-    const all = getUserListings(activeProfileName);
-    return all.filter(item => item.image || (item.images && item.images.length > 0));
+    return getUserListings(activeProfileName);
   }, [activeProfileName]);
 
   const activeListings = userListings.filter(item => item.status !== "sold");
@@ -59,7 +57,7 @@ export default function Profile() {
     };
   }, [activeProfileName]);
 
-  // Generate reviews based on real data
+  // Mock reviews for demo display
   const reviews = useMemo(() => [
     { id: 1, name: "RetroCollector",  text: "Great seller, fast shipping and item exactly as described!" },
     { id: 2, name: "GameEnthusiast",   text: "Very professional. Would buy again." },
@@ -158,8 +156,8 @@ export default function Profile() {
           <div className="profile-meta-info">
             <div className="reviews-group">
               <div className="reviews-diamonds">
-                {[...Array(5)].map((_, i) => (
-                  <i key={i} className={`fa-solid fa-gem ${i < Math.round(stats.rating - 1) ? "filled" : ""}`} />
+                  {[...Array(5)].map((_, i) => (
+                  <i key={i} className={`fa-solid fa-gem ${i < Math.round(stats.rating) ? "filled" : ""}`} />
                 ))}
               </div>
               <span className="reviews-link">

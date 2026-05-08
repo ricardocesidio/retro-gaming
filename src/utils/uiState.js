@@ -1,17 +1,10 @@
 import { safeStorageGet, safeStorageSet } from "./marketStorage";
+import { safeJsonParse as safeParse } from "./shared.js";
 
-export const NOTIFICATIONS_KEY = "retroNotifications";
-export const CONVERSATIONS_KEY = "retroConversations";
-export const RECENTLY_VIEWED_KEY = "retroRecentlyViewed";
+const NOTIFICATIONS_KEY = "retroNotifications";
+const CONVERSATIONS_KEY = "retroConversations";
+const RECENTLY_VIEWED_KEY = "retroRecentlyViewed";
 export const CONVERSATIONS_UPDATED_EVENT = "retroConversationsUpdated";
-
-const safeParse = (value, fallback) => {
-  try {
-    return value ? JSON.parse(value) : fallback;
-  } catch {
-    return fallback;
-  }
-};
 
 const clone = (value) => safeParse(JSON.stringify(value), value);
 
@@ -179,7 +172,7 @@ export const readNotifications = () => {
   return clone(DEFAULT_NOTIFICATIONS);
 };
 
-export const writeNotifications = (notifications) => {
+const writeNotifications = (notifications) => {
   const next = Array.isArray(notifications) ? notifications.map(normalizeNotification) : [];
   safeStorageSet(NOTIFICATIONS_KEY, next);
   return next;
@@ -243,7 +236,7 @@ export const appendConversationMessage = (conversationId, message) => {
   return next;
 };
 
-export const readRecentlyViewed = () => safeStorageGet(RECENTLY_VIEWED_KEY, []);
+const readRecentlyViewed = () => safeStorageGet(RECENTLY_VIEWED_KEY, []);
 
 export const addRecentlyViewed = (product) => {
   if (!product?.id) return [];

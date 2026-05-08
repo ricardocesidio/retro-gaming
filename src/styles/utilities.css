@@ -142,6 +142,12 @@
    ACCESSIBILITY UTILITIES
    ========================================================== */
 
+/* Global focus-visible indicator for keyboard users */
+*:focus-visible {
+  outline: 2px solid var(--accent-purple);
+  outline-offset: 2px;
+}
+
 /* Visually hidden but screen reader accessible */
 .sr-only {
   position: absolute;

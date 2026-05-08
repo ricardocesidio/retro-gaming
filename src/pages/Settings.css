@@ -22,7 +22,7 @@
   background: rgba(10, 10, 10, 0.7);
   backdrop-filter: blur(25px);
   border: 1px solid rgba(157, 80, 187, 0.2);
-  border-radius: 24px;
+  border-radius: var(--radius-2xl);
   padding: 50px;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
   animation: slideUp 0.6s ease-out;
@@ -50,7 +50,7 @@
   background: rgba(157, 80, 187, 0.1);
   color: var(--accent-purple);
   font-size: 10px;
-  font-weight: 800;
+  font-weight: var(--font-extrabold);
   border-radius: 50px;
   letter-spacing: 2px;
   margin-bottom: 15px;
@@ -116,7 +116,7 @@
   background: var(--tier-gold);
   width: 35px;
   height: 35px;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -375,8 +375,8 @@
   margin-top: 20px;
 }
 
-/* LANDSCAPE MOBILE */
-@media (max-height: 500px) and (orientation: landscape) and (max-width: 768px) {
+/* LANDSCAPE MOBILE — overrides the 768px block above for cramped vertical space */
+@media (max-height: 500px) and (orientation: landscape) {
   .settings-wrapper {
     padding: 70px 12px 30px;
   }
