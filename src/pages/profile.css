@@ -922,20 +922,21 @@
     .profile-info { flex: 1; min-width: 0; }
 
     .profile-name-row {
-        flex-direction: row;
-        align-items: center;
-        gap: 6px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
         flex-wrap: wrap;
     }
-    .profile-name-row h1 { font-size: 1rem; margin: 0; }
+    .profile-name-row h1 { font-size: 1rem; margin: 22px 0 0; }
+    .verified-badge { font-size: 0.9rem; }
 
     .profile-action-btns {
         width: auto;
         display: flex;
         flex-direction: row;
-        justify-content: flex-end;
+        justify-content: flex-start;
         gap: 5px;
-        margin-left: auto;
+        margin-left: 0;
     }
     .btn-follow {
         display: inline-flex !important;
@@ -1010,22 +1011,22 @@
 
     /* === NAME ROW === */
     .profile-name-row {
-        flex-direction: row;
-        align-items: center;
+        flex-direction: column;
+        align-items: flex-start;
         text-align: left;
-        gap: 6px;
-        flex-wrap: wrap;
+        gap: 2px;
     }
-    .profile-name-row h1 { font-size: 1rem; }
+    .profile-name-row h1 { font-size: 1rem; margin-top: 22px; }
+    .verified-badge { font-size: 0.9rem; }
 
     /* === ACTION BUTTONS === */
     .profile-action-btns {
         width: auto;
         display: flex;
         flex-direction: row;
-        justify-content: flex-end;
+        justify-content: flex-start;
         gap: 5px;
-        margin-left: auto;
+        margin-left: 0;
     }
     .btn-follow {
         display: inline-flex !important;
@@ -1106,7 +1107,7 @@
 
     /* === LISTINGS GRID === */
     .product-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr) !important;
         gap: 6px;
     }
 
