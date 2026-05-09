@@ -906,141 +906,177 @@
 /* Dispositivos Móveis (Smartphones) */
 @media (max-width: 768px) {
     .profile-page-wrapper {
-        padding: 0 15px !important;
-        margin: 20px auto;
+        padding: 70px 8px 80px;
+        margin: 0 auto;
     }
 
-    .profile-header-card {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 25px 15px;
-    }
-
-    .profile-meta-info {
-        justify-content: center;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .meta-divider {
-        display: none; /* Esconde o separador no mobile para limpar o layout */
-    }
-
-    .profile-stats {
-        justify-content: center;
-        gap: 25px;
-    }
-
-    .btn-follow, 
-    .btn-message {
-        display: block !important; /* Em telas muito pequenas, empilhar fica melhor, mas se quiser manter inline: */
-        width: 100%;
-        margin-right: 0 !important;
-        margin-bottom: 10px;
-    }
-    
-    /* Contêiner para manter os botões lado a lado no mobile, se houver espaço */
-    .button-group {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        gap: 10px;
-    }
-    
-    .button-group .btn-follow,
-    .button-group .btn-message {
-        width: auto;
-        flex: 1;
-        margin-right: 0 !important;
-    }
-
-    .reviews-slider {
-        padding: 20px 15px;
-    }
-
-    .inventory-header {
-        flex-direction: column;
-        text-align: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .profile-page-wrapper { padding: 80px 6px 80px; margin: 0 auto; }
-
-    /* === HEADER CARD === */
-    .profile-header-card {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 16px 10px;
-        border-radius: var(--radius-lg);
-    }
-    .profile-main-img { width: 80px; height: 80px; border-width: 4px; }
-
-    /* === NAME ROW === */
-    .profile-name-row {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 8px;
-    }
-    .profile-name-row h1 { font-size: 1.15rem; }
-    .verified-badge { font-size: 0.85rem; margin-left: 4px; }
-
-    /* === ACTION BUTTONS === */
-    .profile-action-btns {
-        width: 100%;
-        display: flex;
+    .elite-tech.profile-header-card {
         flex-direction: row;
-        justify-content: center;
+        align-items: flex-start;
+        text-align: left;
+        padding: 14px 10px !important;
+        border-radius: var(--radius-lg) !important;
+        gap: 12px !important;
+    }
+    .profile-main-img { width: 72px; height: 72px; border-width: 3px; flex-shrink: 0; }
+    .profile-info { flex: 1; min-width: 0; }
+
+    .profile-name-row {
+        flex-direction: row;
+        align-items: center;
         gap: 6px;
         flex-wrap: wrap;
+    }
+    .profile-name-row h1 { font-size: 1rem; margin: 0; }
+
+    .profile-action-btns {
+        width: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 5px;
+        margin-left: auto;
     }
     .btn-follow {
         display: inline-flex !important;
         width: auto !important;
-        padding: 7px 14px;
-        font-size: 0.72rem;
+        padding: 5px 10px;
+        font-size: 0.65rem;
         margin-bottom: 0 !important;
         margin-right: 0 !important;
         border-radius: var(--radius-md);
     }
 
-    /* === META INFO (rating + location) === */
+    .elite-tech .profile-meta-info {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin: 14px 0 8px !important;
+        padding: 8px 0 !important;
+        width: 100% !important;
+        background: none !important;
+        border: none !important;
+        backdrop-filter: none !important;
+    }
+
+    .reviews-diamonds { gap: 5px; }
+    .reviews-diamonds i { font-size: 0.6rem; }
+    .reviews-link { font-size: 0.7rem; }
+    .reviews-count { font-size: 0.72rem; font-weight: var(--font-bold); }
+    .meta-divider { display: inline; color: var(--text-muted); font-size: 0.7rem; }
+    .location-group { font-size: 0.7rem; }
+    .location-group i { font-size: 0.65rem; margin-right: 3px; }
+
+    .profile-stats {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin: 10px 0 12px;
+        width: 100%;
+    }
+    .stat-link { text-align: center; min-width: 60px; }
+    .stat-value { font-size: 1.1rem; font-weight: var(--font-extrabold); }
+    .stat-label { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.4px; color: var(--text-muted); }
+
+    .profile-bio {
+        padding: 10px 0 0;
+        margin-top: 6px;
+        border-top: 2px solid var(--accent-purple);
+        width: 100%;
+        text-align: center;
+    }
+    .profile-bio h3 { font-size: 0.82rem; margin-bottom: 4px; }
+    .profile-bio p { font-size: 0.72rem; line-height: 1.45; max-width: 280px; margin: 0 auto; }
+
+    .reviews-slider { padding: 20px 8px; }
+    .inventory-header { flex-direction: column; text-align: center; }
+}
+
+@media (max-width: 480px) {
+    .profile-page-wrapper { padding: 80px 6px 80px; margin: 0 auto; }
+
+    /* === HEADER CARD — image left, info right === */
+    .profile-header-card {
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+        padding: 14px 10px;
+        border-radius: var(--radius-lg);
+        gap: 12px;
+    }
+    .profile-main-img { width: 72px; height: 72px; border-width: 3px; flex-shrink: 0; }
+    .profile-info { flex: 1; min-width: 0; }
+
+    /* === NAME ROW === */
+    .profile-name-row {
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+    .profile-name-row h1 { font-size: 1rem; }
+
+    /* === ACTION BUTTONS === */
+    .profile-action-btns {
+        width: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 5px;
+        margin-left: auto;
+    }
+    .btn-follow {
+        display: inline-flex !important;
+        width: auto !important;
+        padding: 5px 10px;
+        font-size: 0.65rem;
+        margin-bottom: 0 !important;
+        margin-right: 0 !important;
+        border-radius: var(--radius-md);
+    }
+
+    /* === META INFO (rating + location) — centered horizontal row === */
     .profile-meta-info {
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        gap: 10px;
-        margin-top: 14px;
-        padding: 6px 10px;
-        border-radius: var(--radius-md);
+        gap: 12px;
+        margin: 14px 0 8px;
+        padding: 8px 0;
         width: 100%;
     }
-    .reviews-diamonds { gap: 6px; }
-    .reviews-diamonds i { font-size: 0.55rem; }
-    .reviews-link { font-size: 0.65rem; }
-    .reviews-count { font-size: 0.7rem; }
-    .meta-divider { display: inline; }
-    .location-group { font-size: 0.65rem; }
-    .location-group i { font-size: 0.6rem; }
+    .reviews-diamonds { gap: 5px; }
+    .reviews-diamonds i { font-size: 0.6rem; }
+    .reviews-link { font-size: 0.7rem; }
+    .reviews-count { font-size: 0.72rem; font-weight: var(--font-bold); }
+    .meta-divider { display: inline; color: var(--text-muted); font-size: 0.7rem; }
+    .location-group { font-size: 0.7rem; }
+    .location-group i { font-size: 0.65rem; margin-right: 3px; }
 
-    /* === STATS === */
+    /* === STATS — centered horizontal row === */
     .profile-stats {
         display: flex;
         justify-content: center;
-        gap: 18px;
-        margin-top: 10px;
+        gap: 20px;
+        margin: 10px 0 12px;
+        width: 100%;
     }
-    .stat-link { text-align: center; }
-    .stat-value { font-size: 1.05rem; }
-    .stat-label { font-size: 0.62rem; }
+    .stat-link { text-align: center; min-width: 60px; }
+    .stat-value { font-size: 1.1rem; font-weight: var(--font-extrabold); }
+    .stat-label { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.4px; color: var(--text-muted); }
 
-    /* === BIO === */
-    .profile-bio { padding: 0 4px; margin-top: 10px; }
-    .profile-bio h3 { font-size: 0.85rem; margin-bottom: 4px; }
-    .profile-bio p { font-size: 0.72rem; line-height: 1.4; }
+    /* === BIO — centered with proper spacing === */
+    .profile-bio {
+        padding: 10px 0 0;
+        margin-top: 6px;
+        border-top: 1px solid rgba(255,255,255,0.06);
+        width: 100%;
+        text-align: center;
+    }
+    .profile-bio h3 { font-size: 0.82rem; margin-bottom: 4px; }
+    .profile-bio p { font-size: 0.72rem; line-height: 1.45; max-width: 280px; margin: 0 auto; }
 
     /* === REVIEWS SLIDER === */
     .reviews-slider { padding: 0 4px; margin-top: 18px; }
