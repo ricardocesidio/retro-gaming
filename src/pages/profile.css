@@ -961,8 +961,8 @@
         backdrop-filter: none !important;
     }
 
-    .reviews-diamonds { gap: 5px; }
-    .reviews-diamonds i { font-size: 0.6rem; }
+    .reviews-diamonds { gap: 7px; }
+    .reviews-diamonds i { font-size: 6px; margin-right: 0; }
     .reviews-link { font-size: 0.7rem; }
     .reviews-count { font-size: 0.72rem; font-weight: var(--font-bold); }
     .meta-divider { display: inline; color: var(--text-muted); font-size: 0.7rem; }
@@ -1048,8 +1048,8 @@
         padding: 8px 0;
         width: 100%;
     }
-    .reviews-diamonds { gap: 5px; }
-    .reviews-diamonds i { font-size: 0.6rem; }
+    .reviews-diamonds { gap: 7px; }
+    .reviews-diamonds i { font-size: 6px; margin-right: 0; }
     .reviews-link { font-size: 0.7rem; }
     .reviews-count { font-size: 0.72rem; font-weight: var(--font-bold); }
     .meta-divider { display: inline; color: var(--text-muted); font-size: 0.7rem; }
