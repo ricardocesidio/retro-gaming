@@ -17,8 +17,8 @@ export default function Menu() {
       </nav>
 
       {/* Mobile bottom nav — visible only on mobile */}
-      <nav className="category-bar mobile-nav" aria-label="Mobile navigation">
-        <div className="nav-links">
+      <nav className="bottom-nav mobile-nav" aria-label="Mobile navigation">
+        <div className="bottom-nav-links">
           <NavLink to="/" end aria-label="Home">
             <i className="fa-solid fa-home" />
             <span className="nav-label">Home</span>
