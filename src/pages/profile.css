@@ -35,7 +35,7 @@
     margin-left: auto;
 }
 
-.mobile-edit-btn { display: none; }
+.mobile-edit-btn { display: inline-flex; margin-top: 10px; }
 
 .profile-name-row .verified-badge { color: #00D4FF !important; }
 
@@ -992,7 +992,6 @@
     .profile-bio h3 { font-size: 0.82rem; margin-bottom: 4px; }
     .profile-bio p { font-size: 0.72rem; line-height: 1.45; max-width: 280px; margin: 0 auto; }
     .mobile-edit-btn { display: inline-flex !important; margin-top: 10px; }
-    .profile-action-btns .btn-follow.edit { display: none !important; }
 
     .reviews-slider { padding: 20px 8px; }
     .inventory-header { flex-direction: column; text-align: center; }
@@ -1083,7 +1082,6 @@
     .profile-bio h3 { font-size: 0.82rem; margin-bottom: 4px; }
     .profile-bio p { font-size: 0.72rem; line-height: 1.45; max-width: 280px; margin: 0 auto; }
     .mobile-edit-btn { display: inline-flex !important; margin-top: 10px; }
-    .profile-action-btns .btn-follow.edit { display: none !important; }
 
     /* === REVIEWS SLIDER === */
     .reviews-slider { padding: 0 4px; margin-top: 18px; }

@@ -146,16 +146,7 @@ export default function Profile() {
             </h1>
 
             <div className="profile-action-btns">
-              {isOwnProfile ? (
-                <button
-                  type="button"
-                  className="btn-follow edit"
-                  onClick={() => navigate("/settings")}
-                >
-                  <i className="fa-solid fa-gear" style={{ marginRight: 6 }} />
-                  Edit Profile
-                </button>
-              ) : (
+              {!isOwnProfile ? (
                 <>
                   <button
                     type="button"
@@ -176,7 +167,7 @@ export default function Profile() {
                     Message
                   </button>
                 </>
-              )}
+              ) : null}
             </div>
           </div>
 
