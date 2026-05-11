@@ -141,6 +141,11 @@ export default function Messages() {
     setShowMenu(false);
   };
 
+  const handleUnblockUser = (name) => {
+    const key = String(name).toLowerCase();
+    setBlockedUsers((prev) => prev.filter((u) => String(u) !== key));
+  };
+
   const submitReport = (e) => {
     e.preventDefault();
     setShowReportModal(false);
@@ -384,6 +389,14 @@ export default function Messages() {
                 <div className="blocked-notice">
                   <i className="fa-solid fa-ban" />
                   <p>This user has been blocked.</p>
+                  <button
+                    type="button"
+                    className="btn-unblock"
+                    onClick={() => handleUnblockUser(activeChat.name)}
+                  >
+                    <i className="fa-solid fa-unlock" style={{ marginRight: 6 }} />
+                    Unblock
+                  </button>
                 </div>
               ) : (
                 <form className="chat-input-area" onSubmit={handleSendMessage}>

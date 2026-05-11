@@ -432,8 +432,7 @@
 
   .retro-dropdown,
   .notifications-dropdown {
-    right: -12px;
-    width: 95vw;
+    width: 50vw;
   }
 
   .icon-group a[aria-label="Messages"],
