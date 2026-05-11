@@ -10,7 +10,7 @@
 ![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=flat&logo=netlify&logoColor=white)
 ![Font Awesome](https://img.shields.io/badge/Font_Awesome-528DD7?style=flat&logo=fontawesome&logoColor=white)
 
-A premium frontend-only marketplace simulation for buying, selling, and trading retro gaming items. Built as a complete product experience with real flows — listings, offers, bundles, messaging, profiles, wishlist, and more — all simulated through client-side state and `localStorage`.
+A premium frontend-only marketplace simulation for buying, selling, and trading retro gaming items. Built as a complete product experience with real flows, listings, offers, bundles, messaging, profiles, wishlist, and more — all simulated through client-side state and `localStorage`.
 
 ---
 
