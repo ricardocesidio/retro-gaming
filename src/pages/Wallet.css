@@ -15,6 +15,11 @@
 .wallet-container {
   width: 100%;
   max-width: 820px;
+  border: 1px solid rgba(157, 80, 187, 0.25);
+  border-radius: var(--radius-xl);
+  background: rgba(10, 10, 10, 0.75);
+  backdrop-filter: blur(25px);
+  padding: 24px;
   animation: walletFadeIn 0.5s ease-out;
 }
 
@@ -812,8 +817,8 @@
   }
 
   .balance-grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
   }
 
   .balance-card {
@@ -863,6 +868,10 @@
 @media (max-width: 480px) {
   .wallet-wrapper {
     padding: 100px 12px 50px;
+  }
+
+  .wallet-container {
+    padding: 16px 12px;
   }
 
   .wallet-header h1 {

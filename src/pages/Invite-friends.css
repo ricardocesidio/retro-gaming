@@ -404,12 +404,16 @@
         padding: 8px 14px;
         font-size: 0.78rem;
     }
-    .elite-how-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
+    .elite-how-grid,
+    .slider-container.elite-how-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px;
     }
     .elite-how-card {
         padding: 14px 12px;
+    }
+    .elite-step-card {
+        padding: 12px 10px;
     }
     .elite-how-card h4 {
         font-size: 0.9rem;

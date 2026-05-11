@@ -62,7 +62,7 @@ export default function RetroRules() {
   <div className="slider-container">
     <div className="review-card" style={{ display: "block" }}>
       
-      <div style={{ 
+      <div className="rules-principles-grid" style={{ 
         display: "grid", 
         gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", 
         gap: "20px" 
@@ -148,7 +148,7 @@ export default function RetroRules() {
     <div className="review-card" style={{ display: "block" }}>
       
       {/* Grid de Permissões */}
-      <div style={{ 
+      <div className="rules-principles-grid" style={{ 
         display: "grid", 
         gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", 
         gap: "16px", 
@@ -188,8 +188,8 @@ export default function RetroRules() {
         </div>
       </div>
 
-      {/* Protocolos de Usuário */}
-      <div style={{ 
+       {/* Protocolos de Usuário */}
+      <div className="rules-grid" style={{ 
         display: "grid", 
         gridTemplateColumns: "1fr 1fr", 
         gap: "16px",
@@ -228,7 +228,7 @@ export default function RetroRules() {
         (overall trust score) and <strong>reviews</strong> (transaction feedback).
       </p>
       
-      <div style={{ 
+      <div className="rules-grid" style={{ 
         display: "grid", 
         gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", 
         gap: "12px", 
@@ -321,7 +321,7 @@ export default function RetroRules() {
         invite accelerates your gem progression and unlocks special badges.
       </p>
       
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr)", gap: "16px", margin: "24px 0" }}>
+      <div className="rules-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr)", gap: "16px", margin: "24px 0" }}>
         
         {/* GOLD */}
         <div style={{ 
@@ -394,7 +394,7 @@ export default function RetroRules() {
       </p>
 
       {/* Grid de Severidade */}
-      <div style={{ 
+      <div className="rules-grid" style={{ 
         display: "grid", 
         gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr)", 
         gap: "12px", 

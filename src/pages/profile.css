@@ -1122,4 +1122,10 @@
     .inventory-empty { padding: 24px 10px; }
     .inventory-empty i { font-size: 2rem; }
     .inventory-empty p { font-size: 0.78rem; }
+
+    .rules-principles-grid,
+    .rules-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+    }
 }

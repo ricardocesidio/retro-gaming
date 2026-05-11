@@ -7,9 +7,9 @@
 .myorders-glass-card {
   max-width: 1180px;
   margin: 0 auto;
-  background: var(--glass-bg);
+  background: rgba(10, 10, 10, 0.75);
   backdrop-filter: blur(30px);
-  border: 1px solid var(--glass-border);
+  border: 1px solid rgba(157, 80, 187, 0.25);
   border-radius: var(--radius-3xl);
   padding: 48px;
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
@@ -495,30 +495,72 @@
     white-space: nowrap;
   }
 
+  .orders-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .elite-order-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 8px;
+  }
+
   .order-visual {
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
+    overflow: hidden;
+    min-width: 0;
   }
 
   .order-image-container {
     width: 100%;
-    height: 180px;
+    height: 103px;
   }
 
   .order-image {
     object-fit: cover;
   }
 
+  .info-block {
+    min-width: 0;
+    overflow: hidden;
+    flex: 1;
+  }
+
+  .product-title {
+    font-size: 1.00rem !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: block;
+    margin: 0 !important;
+    max-width: 100%;
+  }
+
   .order-details h3 {
-    font-size: 0.9rem;
+    font-size: 0.72rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .order-details p {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
   }
 
   .price-tag {
-    font-size: 0.95rem;
+    font-size: 0.72rem;
+  }
+
+  .price-tag .value {
+    font-size: 0.78rem;
+  }
+
+  .price-tag .label {
+    font-size: 0.55rem;
   }
 
   .action-stack {
@@ -533,6 +575,24 @@
     font-size: 0.78rem;
   }
 
+  .meta-info,
+  .id-tag,
+  .status-pill,
+  .date-tag {
+    font-size: 0.65rem;
+    white-space: nowrap;
+  }
+
+  .type-tag {
+    font-size: 0.55rem;
+    padding: 2px 4px;
+  }
+
+  .search-panel {
+    flex-direction: column;
+    gap: 8px;
+  }
+
   .search-label {
     flex-direction: column;
     gap: 6px;
@@ -544,5 +604,22 @@
 
   .search-input {
     width: 100%;
+  }
+
+  .search-container-full {
+    width: 100%;
+  }
+
+  .tabs-wrapper {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 4px;
+  }
+
+  .tab-item {
+    padding: 6px 10px;
+    font-size: 0.65rem;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 }
