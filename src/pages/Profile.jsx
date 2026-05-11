@@ -216,6 +216,16 @@ export default function Profile() {
           <div className="profile-bio">
             <h3 className="bio-title">About</h3>
             <p>{displayBio}</p>
+            {isOwnProfile && (
+              <button
+                type="button"
+                className="btn-follow edit mobile-edit-btn"
+                onClick={() => navigate("/settings")}
+              >
+                <i className="fa-solid fa-gear" style={{ marginRight: 6 }} />
+                Edit Profile
+              </button>
+            )}
           </div>
         </div>
       </section>
