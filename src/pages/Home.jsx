@@ -6,7 +6,7 @@ import "./Home.css";
 import slide1 from "../images/mainpic0.jpg";
 import slide2 from "../images/mainpic2.jpg";
 import slide3 from "../images/mainpic3.jpg";
-import mobileHero from "../images/logo0.jpg";
+import mobileHero from "../images/logo.png";
 
 export default function Home() {
   const images = [slide1, slide2, slide3];
