@@ -700,6 +700,7 @@
   font-size: 0.95rem;
   outline: none;
   transition: all var(--transition-fast);
+  box-sizing: border-box;
 }
 
 .withdraw-form input:focus {
@@ -942,9 +943,19 @@
     gap: 8px;
   }
 
+  .btn-wallet-action {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 0.82rem;
+  }
+
   .bank-card {
     padding: 12px;
     gap: 8px;
+  }
+
+  .bank-card-number {
+    font-size: 0.85rem;
   }
 
   .transaction-item {
@@ -958,6 +969,14 @@
     font-size: 0.75rem;
   }
 
+  .transaction-info h4 {
+    font-size: 0.82rem;
+  }
+
+  .transaction-info p {
+    font-size: 0.7rem;
+  }
+
   .transaction-amount {
     font-size: 0.85rem;
   }
@@ -969,5 +988,10 @@
   .withdraw-input-wrap input {
     padding: 10px 12px;
     font-size: 0.88rem;
+  }
+
+  .btn-withdraw {
+    width: 100%;
+    padding: 12px;
   }
 }

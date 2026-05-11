@@ -93,6 +93,7 @@
   background: rgba(255, 255, 255, 0.045);
   border: 1px solid var(--border-color);
   transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  box-sizing: border-box;
 }
 
 .search-container-full:focus-within {
@@ -474,6 +475,26 @@
 }
 
 @media (max-width: 480px) {
+  .orders-wrapper {
+    padding: 80px 8px 30px;
+  }
+
+  .orders-glass-card {
+    padding: 18px 10px;
+    border-radius: var(--radius-lg);
+  }
+
+  .orders-tab-bar {
+    overflow-x: auto;
+    gap: 4px;
+  }
+
+  .order-tab {
+    padding: 8px 10px;
+    font-size: 0.72rem;
+    white-space: nowrap;
+  }
+
   .orders-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -492,6 +513,15 @@
     gap: 6px;
     overflow: hidden;
     min-width: 0;
+  }
+
+  .order-image-container {
+    width: 100%;
+    height: 103px;
+  }
+
+  .order-image {
+    object-fit: cover;
   }
 
   .info-block {
@@ -533,15 +563,16 @@
     font-size: 0.55rem;
   }
 
-  .search-panel {
-    flex-direction: column;
-    gap: 8px;
-  }
-
   .action-stack {
     flex-direction: column;
     gap: 6px;
     width: 100%;
+  }
+
+  .action-btn {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 0.78rem;
   }
 
   .meta-info,
@@ -569,6 +600,10 @@
 
   .search-label span {
     font-size: 0.75rem;
+  }
+
+  .search-input {
+    width: 100%;
   }
 
   .search-container-full {
