@@ -6,6 +6,7 @@ import "./Home.css";
 import slide1 from "../images/mainpic0.jpg";
 import slide2 from "../images/mainpic2.jpg";
 import slide3 from "../images/mainpic3.jpg";
+import mobileHero from "../images/logo0.jpg";
 
 export default function Home() {
   const images = [slide1, slide2, slide3];
@@ -15,6 +16,15 @@ export default function Home() {
       <div className="banner-outer-wrapper">
         <div className="banner-wrapper">
           <div className="market-container">
+            <img
+              src={mobileHero}
+              alt="Retro Gaming Marketplace"
+              className="mobile-hero-img"
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = MARKET_PLACEHOLDER_FALLBACK;
+              }}
+            />
             <div className="banner-slider">
               <div className="banner-slides">
                 {images.map((src, index) => (

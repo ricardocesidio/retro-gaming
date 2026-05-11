@@ -330,6 +330,10 @@
     padding: 20px 0 60px;
   }
 
+  .market-embedded {
+    padding: 0;
+  }
+
   .market-container {
     width: min(100%, calc(100% - 24px));
   }
@@ -387,6 +391,10 @@
 @media (max-width: 480px) {
   .market-page {
     padding: 80px 8px 80px;
+  }
+
+  .market-embedded {
+    padding: 0;
   }
 
   .market-header { padding: 0; margin-bottom: 10px; }

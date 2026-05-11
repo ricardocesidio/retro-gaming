@@ -436,6 +436,9 @@
     width: 95vw;
   }
 
+  .icon-group a[aria-label="Messages"],
+  .icon-group a[aria-label="Wishlist"] { display: none; }
+
   .header-main { padding: 6px 10px; gap: 6px; height: 48px; }
   .logo .logopic { height: 28px; }
   .user-menu { gap: 4px; }
