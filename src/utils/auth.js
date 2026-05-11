@@ -1,9 +1,8 @@
-import { safeJsonParse as safeParse } from "./shared.js";
+import { isBrowser, safeJsonParse as safeParse } from "./shared.js";
+import { normalizeId } from "./normalizeProduct.js";
 
 const REGISTRY_KEY = "registeredUsers";
 const LEGACY_REGISTRY_KEY = "registeredUser";
-
-const normalizeId = (value) => String(value ?? "").trim();
 
 const normalizeUser = (user = {}) => {
   const username = String(user.username ?? user.name ?? "").trim();
@@ -68,7 +67,7 @@ const toRegistryObject = (value) => {
 };
 
 const readRegistry = () => {
-  if (typeof window === "undefined") return {};
+  if (!isBrowser) return {};
 
   const current = safeParse(localStorage.getItem(REGISTRY_KEY), null);
   if (current) return toRegistryObject(current);
@@ -78,7 +77,7 @@ const readRegistry = () => {
 };
 
 const writeRegistry = (registry) => {
-  if (typeof window === "undefined") return registry;
+  if (!isBrowser) return registry;
   const normalized = toRegistryObject(registry);
   localStorage.setItem(REGISTRY_KEY, JSON.stringify(normalized));
   localStorage.setItem(LEGACY_REGISTRY_KEY, JSON.stringify(normalized));
@@ -109,7 +108,7 @@ export const lookupUser = (identifier) => {
     const username = normalizeId(user?.username).toLowerCase();
     const name = normalizeId(user?.name).toLowerCase();
     const email = normalizeId(user?.email).toLowerCase();
-    return [id, username, name, email].some((value) => value === q || value.includes(q) || q.includes(value));
+    return [id, username, name, email].some((value) => value === q);
   }) || null;
 };
 

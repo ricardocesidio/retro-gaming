@@ -2,9 +2,9 @@
 // User's own listings utility - integrates with market storage
 
 import { readMarketListings } from "./marketStorage";
+import { safeJsonParse } from "./shared.js";
 
 const USER_LISTINGS_KEY = "userListings";
-const MARKET_KEY = "meusAnunciosRetro";
 
 /**
  * Get user's own listings from storage
@@ -15,7 +15,7 @@ export function getUserListings(username) {
   try {
     // Try userListings first
     const raw = localStorage.getItem(USER_LISTINGS_KEY);
-    let allListings = raw ? JSON.parse(raw) : [];
+    let allListings = raw ? safeJsonParse(raw, []) : [];
     
     // Also get from market storage
     const marketListings = readMarketListings();
@@ -39,7 +39,7 @@ function getAllListings() {
   try {
     const stored = readMarketListings();
     const raw = localStorage.getItem(USER_LISTINGS_KEY);
-    const userListings = raw ? JSON.parse(raw) : [];
+    const userListings = raw ? safeJsonParse(raw, []) : [];
     return [...stored, ...userListings];
   } catch {
     return [];
@@ -64,14 +64,6 @@ function getListingsBySeller(sellerName) {
 export function getUserSoldCount(username) {
   const listings = getUserListings(username);
   return listings.filter((item) => item.status === "sold").length;
-}
-
-/**
- * Get user's active items count
- */
-function getUserActiveCount(username) {
-  const listings = getUserListings(username);
-  return listings.filter((item) => item.status === "active").length;
 }
 
 /**

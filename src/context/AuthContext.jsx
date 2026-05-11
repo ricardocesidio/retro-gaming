@@ -7,15 +7,11 @@ import {
   useCallback,
 } from "react";
 import { upsertUser } from "../utils/auth.js";
-import { safeJsonParse as safeParse } from "../utils/shared.js";
+import { isBrowser, safeJsonParse as safeParse } from "../utils/shared.js";
+import { normalizeId } from "../utils/normalizeProduct.js";
 
 const SESSION_KEY = "activeSession";
 const SOCIAL_GRAPH_KEY = "socialGraph";
-
-// SSR-safe guard for browser globals
-const isBrowser = typeof window !== "undefined" && typeof localStorage !== "undefined";
-
-const normalizeId = (value) => String(value ?? "").trim();
 
 const uniq = (arr) =>
   Array.from(new Set((arr || []).map(normalizeId).filter(Boolean)));
@@ -51,7 +47,7 @@ export function AuthProvider({ children }) {
     }
     try {
       const session = sessionStorage.getItem(SESSION_KEY);
-      if (session) setUser(JSON.parse(session));
+      if (session) setUser(safeParse(session, null));
     } catch (err) {
       if (import.meta.env.DEV) console.error("Failed to parse activeSession:", err);
       sessionStorage.removeItem(SESSION_KEY);

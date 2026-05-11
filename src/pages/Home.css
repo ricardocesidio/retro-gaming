@@ -50,33 +50,6 @@
     margin: 0 0 20px;
   }
 
-  .hero-section {
-    padding: 40px 14px 30px;
-  }
-
-  .hero-title {
-    font-size: 1.6rem;
-  }
-
-  .section-title {
-    font-size: 1.2rem;
-  }
-
-  .featured-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-
-  .btn-cta {
-    padding: 10px 20px;
-    font-size: 0.85rem;
-  }
-
-  .category-pills {
-    gap: 6px;
-    flex-wrap: wrap;
-  }
-
   .category-pill {
     padding: 6px 12px;
     font-size: 0.72rem;

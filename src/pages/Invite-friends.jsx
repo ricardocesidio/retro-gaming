@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "./profile.css";
@@ -8,7 +8,7 @@ export default function InviteFriends() {
   const { user, getUserId } = useAuth();
   const [copiedLink, setCopiedLink] = useState(false);
   const [copiedCode, setCopiedCode] = useState(false);
-  const [invites, setInvites] = useState([
+  const [invites] = useState([
     { id: 1, email: "john@retro.com", status: "accepted", date: "Mar 28" },
     { id: 2, email: "ana.gamer@email.com", status: "pending", date: "Mar 27" },
     { id: 3, email: "carlos@vintage.net", status: "accepted", date: "Mar 25" },

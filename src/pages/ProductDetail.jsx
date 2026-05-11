@@ -17,17 +17,6 @@ const PLACEHOLDER = MARKET_PLACEHOLDER_FALLBACK;
 // Demo mock — rating and deal count are hardcoded for a polished demo look
 const DEMO_SELLER_RATING = "⭐ 4.9 · 120 deals";
 
-const readFromWishlist = (id) => {
-  try {
-    const raw = localStorage.getItem("marketplaceWishlist");
-    const items = raw ? JSON.parse(raw) : [];
-    if (!Array.isArray(items)) return null;
-    return items.find((item) => String(item?.id) === String(id)) || null;
-  } catch {
-    return null;
-  }
-};
-
 const resolveSellerAvatar = (listing) =>
   listing?.sellerAvatar ||
   listing?.avatar ||
@@ -54,7 +43,7 @@ const normalizeImagesArray = (product) => {
 export default function ProductDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { isInWishlist, toggleWishlist } = useWishlist();
+  const { isInWishlist, toggleWishlist, getWishlistItem } = useWishlist();
   const { user } = useAuth();
 
   const [product, setProduct] = useState(null);
@@ -76,7 +65,7 @@ export default function ProductDetail() {
       ? listings.find((ad) => String(ad.id) === String(id))
       : null;
 
-    const fallbackRaw = foundRaw || readFromWishlist(id);
+    const fallbackRaw = foundRaw || getWishlistItem(id);
 
     if (fallbackRaw) {
       const normalized = normalizeProduct(fallbackRaw);

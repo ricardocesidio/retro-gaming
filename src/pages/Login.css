@@ -9,7 +9,6 @@
   min-height: 100vh;
   background: var(--bg-body);
   padding: 20px;
-  box-sizing: border-box;
   overflow: hidden;
 }
 
@@ -97,7 +96,7 @@
 }
 
 .login-page .login-input.error-shake {
-  animation: shake 0.4s ease-in-out;
+  animation: login-shake 0.4s ease-in-out;
 }
 
 /* Password */
@@ -224,7 +223,7 @@
 }
 
 /* Animations */
-@keyframes shake {
+@keyframes login-shake {
   10%, 90% { transform: translateX(-2px); }
   30%, 70% { transform: translateX(2px); }
   40%, 60% { transform: translateX(-1px); }
@@ -272,27 +271,6 @@
     padding: 10px 12px;
     font-size: 0.88rem;
   }
-
-  .login-page .btn-login {
-    padding: 12px;
-    font-size: 0.9rem;
-    height: 44px;
-  }
-
-  .login-page .login-footer {
-    font-size: 0.75rem;
-  }
-
-  .login-page .login-footer a {
-    font-size: 0.75rem;
-  }
-
-  .login-page .error-message {
-    font-size: 0.72rem;
-  }
-
-  .login-page .btn-forgot {
-    font-size: 0.72rem;
-  }
 }
+
 

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { useAuth } from "../context/AuthContext";
 import { lookupUser } from "../utils/auth.js";
+import { safeJsonParse } from "../utils/shared";
 
 export default function Login() {
   const navigate       = useNavigate();
@@ -28,7 +29,7 @@ export default function Login() {
     try {
       const remembered = localStorage.getItem("vault_remember_me");
       if (remembered) {
-        const { identifier: saved } = JSON.parse(remembered);
+        const { identifier: saved } = safeJsonParse(remembered, null);
         setIdentifier(saved || "");
         setRememberMe(true);
       }

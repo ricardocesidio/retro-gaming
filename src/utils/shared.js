@@ -1,5 +1,7 @@
 import { DEFAULT_AVATAR_FALLBACK, MARKET_PLACEHOLDER_FALLBACK } from "./fallbackImage";
 
+export const isBrowser = typeof window !== "undefined" && typeof localStorage !== "undefined";
+
 export const resolveAvatar = (user) => {
   if (!user) return DEFAULT_AVATAR_FALLBACK;
   return user.avatar || user.profilePic || user.profileImage || DEFAULT_AVATAR_FALLBACK;

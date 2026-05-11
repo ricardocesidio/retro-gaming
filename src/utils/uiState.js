@@ -1,5 +1,5 @@
 import { safeStorageGet, safeStorageSet } from "./marketStorage";
-import { safeJsonParse as safeParse } from "./shared.js";
+import { isBrowser, safeJsonParse as safeParse } from "./shared.js";
 
 const NOTIFICATIONS_KEY = "retroNotifications";
 const CONVERSATIONS_KEY = "retroConversations";
@@ -204,7 +204,7 @@ export const readConversations = () => {
 export const writeConversations = (conversations) => {
   const next = Array.isArray(conversations) ? conversations.map(normalizeConversation) : [];
   safeStorageSet(CONVERSATIONS_KEY, next);
-  if (typeof window !== "undefined") {
+  if (isBrowser) {
     window.dispatchEvent(new Event(CONVERSATIONS_UPDATED_EVENT));
   }
   return next;

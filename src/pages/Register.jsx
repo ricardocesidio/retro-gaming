@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Register.css';
 import { saveUser } from "../utils/auth.js";
+import { safeJsonParse } from "../utils/shared";
 
 const getPasswordMetrics = (password) => {
   if (!password)              return { width: '0%',   color: '#ff4444', label: 'Too short' };
@@ -32,7 +33,7 @@ export default function Register() {
     const saved = sessionStorage.getItem('vault_reg_draft');
     if (saved) {
       try {
-        const d = JSON.parse(saved);
+        const d = safeJsonParse(saved, null);
         return { username: d.username || '', email: d.email || '', password: '', confirmPassword: '', acceptTerms: false };
       } catch { /* ignore */ }
     }

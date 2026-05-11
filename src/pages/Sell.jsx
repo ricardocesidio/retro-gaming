@@ -196,6 +196,9 @@ export default function Sell() {
   });
 
   const titleRef = useRef(null);
+  const toastTimerRef = useRef(null);
+
+  useEffect(() => () => clearTimeout(toastTimerRef.current), []);
   const categoryRef = useRef(null);
   const subCategoryRef = useRef(null);
   const conditionRef = useRef(null);
@@ -528,7 +531,8 @@ export default function Sell() {
 
   const showToast = useCallback((msg, type = "success") => {
     setToast({ show: true, message: msg, type });
-    setTimeout(() => setToast({ show: false, message: "", type: "success" }), 3500);
+    if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
+    toastTimerRef.current = setTimeout(() => setToast({ show: false, message: "", type: "success" }), 3500);
   }, []);
 
   const handleTitleChange = (e) => {
@@ -849,7 +853,11 @@ export default function Sell() {
                 className="btn-delete-listing"
                 onClick={() => {
                   if (window.confirm("Delete this listing?")) {
-                    removeMarketListing(editId);
+                    try {
+                      removeMarketListing(editId);
+                    } catch (e) {
+                      if (import.meta.env.DEV) console.error("Delete failed:", e);
+                    }
                     navigate("/profile", { replace: true });
                   }
                 }}

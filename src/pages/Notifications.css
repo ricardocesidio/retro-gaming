@@ -200,10 +200,7 @@
   .notifications-header h1 { font-size: 1.4rem; }
   .filter-bar { gap: 6px; flex-wrap: wrap; }
   .filter-btn { padding: 6px 10px; font-size: 0.7rem; min-width: auto; }
-  .mark-all-read { width: 100%; padding: 8px; font-size: 0.75rem; }
   .notification-item { padding: 12px; gap: 10px; }
-  .notification-icon { width: 34px; height: 34px; font-size: 0.85rem; }
-  .notification-content h4 { font-size: 0.85rem; }
   .notification-content p { font-size: 0.72rem; }
   .notification-time { font-size: 0.65rem; }
   .no-notifications { padding: 30px 14px; }

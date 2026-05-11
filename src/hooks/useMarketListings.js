@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { isBrowser } from "../utils/shared";
 import {
   readMarketListings,
   MARKET_LISTINGS_UPDATED_EVENT,
@@ -9,7 +10,7 @@ export function useMarketListings() {
   const [listings, setListings] = useState(() => readMarketListings());
 
   const refreshListings = useCallback(() => {
-    if (typeof window === "undefined") return;
+    if (!isBrowser) return;
     setListings(readMarketListings());
   }, []);
 

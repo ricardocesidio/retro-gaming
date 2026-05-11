@@ -74,9 +74,9 @@ export default function Profile() {
     const base = getSellerStats(activeProfileName);
     return {
       ...base,
-      itemsSold: Math.max(base.soldItems !== undefined ? base.soldItems : getStableNumber(activeProfileName, 15, 60), 112),
-      reviewsCount: Math.max(base.reviewsCount || 0, 100),
-      rating: Math.max(base.rating || 0, 5),
+      itemsSold: base.soldItems !== undefined ? base.soldItems : getStableNumber(activeProfileName, 15, 60),
+      reviewsCount: base.reviewsCount || getStableNumber(activeProfileName + '_r', 5, 50),
+      rating: base.rating || (base.reviewsCount > 0 ? 4.5 : 0),
     };
   }, [activeProfileName, isOwnProfile, mockProfile]);
 

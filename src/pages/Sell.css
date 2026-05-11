@@ -42,13 +42,13 @@
     right: 0;
     height: 2px;
     background: linear-gradient(90deg, var(--accent-purple), var(--tier-gold), var(--accent-purple));
-    animation: shimmer 4s ease-in-out infinite;
+    animation: sell-shimmer 4s ease-in-out infinite;
     pointer-events: none;
     z-index: 0;
     border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
 }
 
-@keyframes shimmer {
+@keyframes sell-shimmer {
     0%,
     100% {
         opacity: 0.6;
@@ -165,7 +165,6 @@
     font-family: inherit;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     backdrop-filter: blur(10px);
-    box-sizing: border-box;
     width: 100%;
 }
 
@@ -266,7 +265,6 @@
     font-size: 1rem;
     font-family: inherit;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-sizing: border-box;
 }
 
 .desc-group textarea:focus {
@@ -967,8 +965,8 @@
     }
 
     .parcel-options {
-        grid-template-columns: 1fr;
-        gap: 10px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
     }
 
     .parcel-card {

@@ -12,6 +12,9 @@ export class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
+    // getDerivedStateFromError sets hasError:true for the fallback UI.
+    // componentDidCatch is used here for logging only, as the fallback
+    // does not display specific error details (intentional for production).
     if (import.meta.env.DEV) console.error("ErrorBoundary caught:", error, errorInfo);
   }
 

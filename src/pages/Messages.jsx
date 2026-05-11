@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import './Messages.css';
 import { readConversations, writeConversations } from '../utils/uiState';
 import { DEFAULT_AVATAR_FALLBACK } from '../utils/fallbackImage';
+import { safeJsonParse } from "../utils/shared";
 
 const nowTime = () => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
@@ -16,7 +17,7 @@ export default function Messages() {
   const [blockedUsers, setBlockedUsers] = useState(() => {
     try {
       const stored = localStorage.getItem('retroBlockedUsers');
-      return stored ? JSON.parse(stored) : [];
+      return stored ? safeJsonParse(stored, []) : [];
     } catch {
       return [];
     }
@@ -28,7 +29,6 @@ export default function Messages() {
   const [productImgError, setProductImgError] = useState(false);
   const [imageError, setImageError] = useState('');
   const menuRef = useRef(null);
-  const chatEndRef = useRef(null);
   const fileInputRef = useRef(null);
 
   useEffect(() => {
@@ -318,7 +318,7 @@ export default function Messages() {
                           flexShrink: 0
                         }}
                       >
-                        {activeChat.product.name.split(' ').map(w => w[0]).join('')}
+                        {String(activeChat.product.name || '').split(' ').map(w => w[0]).join('') || '?'}
                       </div>
                     )}
                     <div>
@@ -382,7 +382,6 @@ export default function Messages() {
                     <span className="msg-time">{msg.time}</span>
                   </div>
                 ))}
-                <div ref={chatEndRef} />
               </div>
 
               {isBlocked ? (

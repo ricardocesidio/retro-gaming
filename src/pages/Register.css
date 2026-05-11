@@ -7,7 +7,6 @@
   min-height: 100vh;
   background-color: var(--bg-body);
   padding: 20px;
-  box-sizing: border-box;
   overflow: hidden;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
@@ -311,7 +310,6 @@
   align-items: center;
   z-index: var(--z-modal);
   padding: 20px;
-  box-sizing: border-box;
 }
 
 .modal-content.v2 {
@@ -525,10 +523,10 @@
 }
 
 .error-shake {
-  animation: shake 0.4s both;
+  animation: register-shake 0.4s both;
 }
 
-@keyframes shake {
+@keyframes register-shake {
   10%,
   90% {
     transform: translate3d(-1px, 0, 0);

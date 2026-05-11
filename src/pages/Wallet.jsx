@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./Wallet.css";
 
 const INITIAL_WALLET = {
@@ -37,6 +37,9 @@ export default function Wallet() {
   const [processing, setProcessing] = useState(false);
   const [bankConnected, setBankConnected] = useState(true);
 
+  const timerRef = useRef(null);
+  useEffect(() => () => clearTimeout(timerRef.current), []);
+
   const handleWithdraw = (e) => {
     e.preventDefault();
     const amount = parseFloat(withdrawAmount);
@@ -73,10 +76,10 @@ export default function Wallet() {
     if (processing) return;
     setProcessing(true);
     setReceiveSuccess(true);
-    setTimeout(() => {
+    timerRef.current = setTimeout(() => {
       setReceiveSuccess(false);
       setProcessing(false);
-    }, 4000);
+    }, 2000);
   };
 
   const handleBankSave = (e) => {

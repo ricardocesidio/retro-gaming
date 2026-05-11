@@ -1,6 +1,6 @@
 // src/utils/marketStorage.js
 import { normalizeProduct } from "./normalizeProduct";
-import { safeJsonParse as safeParse, normalizeImageValue } from "./shared.js";
+import { isBrowser, safeJsonParse as safeParse, normalizeImageValue } from "./shared.js";
 
 export const MARKET_LISTINGS_KEY = "meusAnunciosRetro";
 export const MARKET_LISTINGS_UPDATED_EVENT = "marketplaceListingsUpdated";
@@ -16,7 +16,7 @@ const STORAGE_IMAGE_QUALITY = [
 ];
 
 const safeReadArray = (key) => {
-  if (typeof window === "undefined") return [];
+  if (!isBrowser) return [];
 
   try {
     const parsed = safeParse(localStorage.getItem(key), []);
@@ -36,7 +36,7 @@ const isQuotaExceededError = (error) => {
 };
 
 const safeWriteArray = (key, value) => {
-  if (typeof window === "undefined") {
+  if (!isBrowser) {
     return { ok: true, value: Array.isArray(value) ? value : [] };
   }
 
@@ -68,7 +68,7 @@ const dedupeById = (items) => {
 };
 
 const dispatchUpdate = () => {
-  if (typeof window === "undefined") return;
+  if (!isBrowser) return;
   window.dispatchEvent(new Event(MARKET_LISTINGS_UPDATED_EVENT));
 };
 
@@ -83,7 +83,7 @@ const loadImage = (src) =>
   });
 
 const resizeDataImage = async (src, maxSide = 900, quality = 0.62) => {
-  if (typeof window === "undefined" || typeof document === "undefined") return src;
+  if (!isBrowser || typeof document === "undefined") return src;
   if (!isDataImage(src)) return src;
 
   try {
@@ -182,13 +182,13 @@ const writeWithProgressiveCompaction = (key, list, compactFn, sizes) => {
 };
 
 export const readMarketListings = () => {
-  if (typeof window === "undefined") return [];
+  if (!isBrowser) return [];
   const stored = safeReadArray(MARKET_LISTINGS_KEY);
   return dedupeById(stored.map(normalizeProduct).filter(Boolean)).sort(compareListings);
 };
 
 const writeMarketListings = (listings) => {
-  if (typeof window === "undefined") return [];
+  if (!isBrowser) return [];
 
   const normalized = Array.isArray(listings)
     ? dedupeById(listings.map(normalizeProduct).filter(Boolean)).sort(compareListings)
@@ -215,13 +215,13 @@ const writeMarketListings = (listings) => {
 };
 
 export const readDraftListings = () => {
-  if (typeof window === "undefined") return [];
+  if (!isBrowser) return [];
   const stored = safeReadArray(DRAFT_LISTINGS_KEY);
   return dedupeById(stored.map(normalizeProduct).filter(Boolean)).sort(compareListings);
 };
 
 export const writeDraftListings = (drafts) => {
-  if (typeof window === "undefined") return [];
+  if (!isBrowser) return [];
 
   const base = Array.isArray(drafts) ? drafts : [];
   const deduped = dedupeById(base.map(normalizeProduct).filter(Boolean)).sort(compareListings);
@@ -264,7 +264,7 @@ export const writeDraftListings = (drafts) => {
 };
 
 export const publishMarketListing = async (listing) => {
-  if (typeof window === "undefined") {
+  if (!isBrowser) {
     return { ok: true, listing: normalizeProduct(listing) };
   }
 
@@ -327,7 +327,7 @@ export const publishMarketListing = async (listing) => {
 
 export const removeMarketListing = (listingId) => {
   const id = String(listingId ?? "").trim();
-  if (!id || typeof window === "undefined") return [];
+  if (!id || !isBrowser) return [];
 
   const next = readMarketListings().filter((item) => item.id !== id);
   writeMarketListings(next);
@@ -337,7 +337,7 @@ export const removeMarketListing = (listingId) => {
 
 export const updateMarketListing = (listingId, updates) => {
   const id = String(listingId ?? "").trim();
-  if (!id || typeof window === "undefined") return null;
+  if (!id || !isBrowser) return null;
 
   const all = readMarketListings();
   const index = all.findIndex((item) => String(item.id) === id);
@@ -358,7 +358,7 @@ export const updateMarketListing = (listingId, updates) => {
 };
 
 export const safeStorageGet = (key, fallback) => {
-  if (typeof window === "undefined") return fallback;
+  if (!isBrowser) return fallback;
   try {
     return safeParse(localStorage.getItem(key), fallback);
   } catch {
@@ -367,7 +367,7 @@ export const safeStorageGet = (key, fallback) => {
 };
 
 export const safeStorageSet = (key, value) => {
-  if (typeof window === "undefined") return value;
+  if (!isBrowser) return value;
   try {
     localStorage.setItem(key, JSON.stringify(value));
   } catch {
