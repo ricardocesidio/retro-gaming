@@ -289,7 +289,7 @@ Converting a desktop marketplace to mobile required separate nav systems (top ba
 
 ---
 
-**Author:** Ricardo Cesidio
-**GitHub:** [github.com/ricardocesidio](https://github.com/ricardocesidio)
-**Project:** [github.com/ricardocesidio/retro-gaming](https://github.com/ricardocesidio/retro-gaming)
-**Live:** [retro-gaming-cyan.vercel.app](https://retro-gaming-cyan.vercel.app)
+- **Author:** Ricardo Cesidio
+- **GitHub:** [github.com/ricardocesidio](https://github.com/ricardocesidio)
+- **Project:** [github.com/ricardocesidio/retro-gaming](https://github.com/ricardocesidio/retro-gaming)
+- **Live:** [retro-gaming-cyan.vercel.app](https://retro-gaming-cyan.vercel.app)
