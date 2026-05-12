@@ -250,6 +250,20 @@ All mobile changes isolated inside media queries — desktop untouched.
 
 ---
 
+## Screenshots:
+<img width="2100" height="839" alt="chatdesk" src="https://github.com/user-attachments/assets/4d1b1dd7-5366-4364-a20b-99a44a6df4d6" />
+<img width="2092" height="838" alt="login" src="https://github.com/user-attachments/assets/5dac0b3b-10a7-40c1-869e-b5d46d0f4f7a" />
+<img width="2098" height="838" alt="settingsdesk" src="https://github.com/user-attachments/assets/faf73e0e-e676-415d-addb-e7dd045c7e41" />
+<img width="2098" height="838" alt="register" src="https://github.com/user-attachments/assets/46ba2b34-46c7-41be-9783-3108747b1cef" />
+<img width="2092" height="836" alt="notificationdesk" src="https://github.com/user-attachments/assets/163cd7a5-cbf0-4c7b-92bb-79a7da2a3db0" />
+<img width="2096" height="1679" alt="profiledesk" src="https://github.com/user-attachments/assets/da7522a3-bac2-4a8b-90e7-46438a679a81" />
+<img width="2100" height="841" alt="wishlistdesk" src="https://github.com/user-attachments/assets/ca8a545c-7349-40c6-859b-3bdea558cd34" />
+<img width="2096" height="825" alt="walletdesk" src="https://github.com/user-attachments/assets/bca11b08-cd0c-4386-8277-66bb5a5f1fcd" />
+<img width="2104" height="2542" alt="topdesk" src="https://github.com/user-attachments/assets/16f95913-e41c-4445-90ff-7f57ee3d77a3" />
+<img width="2096" height="1670" alt="myorderdesk" src="https://github.com/user-attachments/assets/db31158d-65fb-4c3d-ad9c-961438a1e961" />
+<img width="2096" height="1669" alt="invitefriendsdesk" src="https://github.com/user-attachments/assets/3b154077-6472-4df6-9bdb-2461978e490d" />
+
+
 ## 🤝 Connect
 
 **Author:** Ricardo Cesidio  
