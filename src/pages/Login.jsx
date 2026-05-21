@@ -48,26 +48,28 @@ export default function Login() {
     e.preventDefault();
     setError("");
     if (!validateLogin()) return;
-    setIsSubmitting(true);
+    await doLogin(identifier, password);
+  };
 
+  const doLogin = async (username, pass) => {
+    setIsSubmitting(true);
     try {
       await new Promise((res) => setTimeout(res, 600));
 
-      // Look up user in multi-user registry
-      const storedUser = lookupUser(identifier);
+      const storedUser = lookupUser(username);
 
       if (!storedUser) {
         throw new Error("No account found. Please register first!");
       }
 
-      if (password !== storedUser.password) {
+      if (pass !== storedUser.password) {
         throw new Error("Incorrect username/email or password.");
       }
 
       login(storedUser);
 
       if (rememberMe) {
-        localStorage.setItem("vault_remember_me", JSON.stringify({ identifier }));
+        localStorage.setItem("vault_remember_me", JSON.stringify({ identifier: username }));
       } else {
         localStorage.removeItem("vault_remember_me");
       }
@@ -153,6 +155,19 @@ export default function Login() {
           <div className="login-footer-links">
             <span>New collector?</span>{" "}
             <Link to="/register" className="register-link">Create account</Link>
+          </div>
+
+          <div className="demo-login-section">
+            <button
+              type="button"
+              className="btn-demo-login"
+              onClick={() => doLogin("DemoUser", "demo123")}
+              disabled={isSubmitting}
+            >
+              <i className="fa-solid fa-user-astronaut" style={{ marginRight: 8 }} />
+              Try Demo Account
+            </button>
+            <p className="demo-hint">Username: DemoUser / Password: demo123</p>
           </div>
         </div>
       </div>
