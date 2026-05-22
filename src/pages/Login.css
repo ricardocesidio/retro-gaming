@@ -326,9 +326,9 @@
 }
 
 .demo-hint {
-  margin: 8px 0 0;
+  margin: 10px 0 0;
   font-size: 0.72rem;
   color: var(--text-muted);
-  opacity: 0.6;
+  opacity: 0.55;
 }
 
