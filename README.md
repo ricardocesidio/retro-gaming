@@ -103,7 +103,19 @@ Placeholder page for upcoming auction functionality.
 Platform guidelines with core principles, transaction framework, gem reputation system, and enforcement severity grid.
 
 ### 🔐 Login / Register
-Authentication pages with form validation, password strength meter, and simulated login flow.
+Authentication pages with form validation, password strength meter, and simulated login flow. Includes **Try Demo Account** button for instant access (username: `DemoUser`, password: `demo123`).
+
+---
+
+## 🆕 Recent Highlights
+
+- **Demo Account** — One-click "Try Demo Account" on login for instant marketplace access
+- **Demo Data Seeding** — Fresh deployments auto-populate with 6 listings (no empty market)
+- **Elite-Tech Messages** — Glass morphism chat with nebula background, purple glows, and refined dropdowns
+- **Edit & Delete Listings** — Full CRUD on your own listings from Profile and Product Detail pages
+- **Gem Rating System** — 5-gem review scores with purple filled / gray empty gems on every review
+- **Tier System** — Bronze → Silver → Gold → Platinum → Master → Supreme animated profile borders
+- **SPA Routing** — Vercel-configured catch-all rewrite prevents 404 on page refresh
 
 ---
 
@@ -269,4 +281,5 @@ All mobile changes isolated inside media queries — desktop untouched.
 **Author:** Ricardo Cesidio  
 **GitHub:** [github.com/ricardocesidio](https://github.com/ricardocesidio)  
 **Repository:** [github.com/ricardocesidio/retro-gaming](https://github.com/ricardocesidio/retro-gaming)  
-**Live Demo:** [retro-gaming-cyan.vercel.app](https://retro-gaming-cyan.vercel.app)
+**Live Demo:** [retro-gaming-cyan.vercel.app](https://retro-gaming-cyan.vercel.app)  
+**Concept Doc:** [PROJECT_CONCEPT.md](PROJECT_CONCEPT.md) — detailed architecture, data flow, design decisions
