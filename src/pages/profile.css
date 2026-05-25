@@ -164,14 +164,13 @@
 .elite-tech .profile-meta-info {
     display: flex;
     align-items: center;
-    justify-content: center !important;
     gap: 20px;
     background: rgba(0, 212, 255, 0.05);
     border:1px solid rgba(0, 212, 255, 0.15);
     padding: 12px 20px;
     border-radius: var(--radius-md);
     width: fit-content;
-    margin: 0 auto !important;
+    margin: 0;
     backdrop-filter: blur(10px);
 }
 
@@ -879,6 +878,7 @@
     padding: 8px 16px;
     margin: 12px auto 0;
     display: block;
+    width: fit-content;
 }
 
 /* =========================================

@@ -171,7 +171,7 @@ export default function Profile() {
             </div>
           </div>
 
-          <div className="profile-meta-info" style={{ justifyContent: 'center', width: '100%' }}>
+          <div className="profile-meta-info">
             <div className="reviews-group">
               <div className="reviews-diamonds">
                   {[...Array(5)].map((_, i) => (
