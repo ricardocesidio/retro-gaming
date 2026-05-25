@@ -3,10 +3,13 @@
   "short_name": "Retro Room",
   "description": "Premium retro gaming marketplace — buy, sell, and trade vintage consoles, games, and collectibles",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
   "background_color": "#000000",
   "theme_color": "#9d50bb",
   "orientation": "any",
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "/icons/icon-192.svg",
