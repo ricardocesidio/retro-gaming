@@ -8,6 +8,7 @@
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
 ![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=flat&logo=eslint&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white)
+![PWA](https://img.shields.io/badge/PWA-5A0FC8?style=flat&logo=pwa&logoColor=white)
 ![Font Awesome](https://img.shields.io/badge/Font_Awesome-528DD7?style=flat&logo=fontawesome&logoColor=white)
 
 A premium frontend-only marketplace simulation for retro gaming collectors. Buy, sell, and trade vintage consoles, games, and collectibles — all simulated through client-side state and `localStorage`.
@@ -103,13 +104,14 @@ Placeholder page for upcoming auction functionality.
 Platform guidelines with core principles, transaction framework, gem reputation system, and enforcement severity grid.
 
 ### 🔐 Login / Register
-Authentication pages with form validation, password strength meter, and simulated login flow. Includes **Try Demo Account** button for instant access (username: `DemoUser`, password: `demo123`).
+Authentication with form validation, password strength meter, simulated login, and **Try Demo Account** one-click access. Credentials: `DemoUser` / `demo123`. Includes policy modal on registration.
 
 ---
 
 ## 🆕 Recent Highlights
 
-- **Demo Account** — One-click "Try Demo Account" on login for instant marketplace access
+- **Progressive Web App** — Installable on any device, works offline with service worker caching, full iOS/Android support
+- **Demo Account** — One-click "Try Demo Account" on login for instant marketplace access (DemoUser / demo123)
 - **Demo Data Seeding** — Fresh deployments auto-populate with 6 listings (no empty market)
 - **Elite-Tech Messages** — Glass morphism chat with nebula background, purple glows, and refined dropdowns
 - **Edit & Delete Listings** — Full CRUD on your own listings from Profile and Product Detail pages
