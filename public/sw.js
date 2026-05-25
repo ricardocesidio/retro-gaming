@@ -26,8 +26,11 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Fetch — network-first, fallback to cache
+// Fetch — network-first, fallback to cache (http/https only)
 self.addEventListener("fetch", (event) => {
+  const { protocol } = new URL(event.request.url);
+  if (protocol !== "http:" && protocol !== "https:") return;
+
   event.respondWith(
     fetch(event.request)
       .then((response) => {
