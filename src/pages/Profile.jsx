@@ -285,7 +285,6 @@ export default function Profile() {
           <p>{showSold ? "No sold items yet." : "No listings yet."}</p>
           {isOwnProfile && (
             <button type="button" className="btn-follow" onClick={() => navigate("/sell")}>
-              <i className="fa-solid fa-plus" style={{ marginRight: 6 }} />
               Start Selling
             </button>
           )}
