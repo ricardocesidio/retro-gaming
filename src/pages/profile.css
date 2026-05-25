@@ -945,8 +945,7 @@
         width: auto !important;
         padding: 5px 10px;
         font-size: 0.65rem;
-        margin-bottom: 0 !important;
-        margin-right: 0 !important;
+        margin: 0 auto !important;
         border-radius: var(--radius-md);
     }
 
@@ -1036,8 +1035,7 @@
         width: auto !important;
         padding: 5px 10px;
         font-size: 0.65rem;
-        margin-bottom: 0 !important;
-        margin-right: 0 !important;
+        margin: 0 auto !important;
         border-radius: var(--radius-md);
     }
 
