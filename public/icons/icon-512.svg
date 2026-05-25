@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0a14"/>
+      <stop offset="100%" stop-color="#1a1025"/>
+    </linearGradient>
+    <linearGradient id="icon" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#9d50bb"/>
+      <stop offset="100%" stop-color="#6e48aa"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="80" fill="url(#bg)"/>
+  <rect x="16" y="16" width="480" height="480" rx="64" fill="none" stroke="url(#icon)" stroke-width="8" opacity="0.5"/>
+  <circle cx="170" cy="230" r="50" fill="url(#icon)"/>
+  <path d="M190 340l32-80h24l32 80" fill="none" stroke="#00d4ff" stroke-width="8" stroke-linecap="round"/>
+  <rect x="280" y="180" width="120" height="80" rx="16" fill="none" stroke="url(#icon)" stroke-width="6"/>
+  <text x="256" y="110" text-anchor="middle" fill="#fff" font-family="Arial" font-size="36" font-weight="900">RETRO ROOM</text>
+  <text x="256" y="430" text-anchor="middle" fill="#9d50bb" font-family="Arial" font-size="28" font-weight="700">MARKETPLACE</text>
+</svg>
